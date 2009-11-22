@@ -1,0 +1,194 @@
+<?xml version="1.0" ?>
+<project name="VIH_Intranet" basedir="." default="build">
+    <taskdef classname="phing.tasks.ext.FtpDeployTask" name="ftpdeploy" />
+    <taskdef classname="phing.tasks.ext.d51PearPkg2Task" name="d51pearpkg2" />	
+    <property name="package-name" value="${phing.project.name}" />
+    <property name="source.dir" value="./" />
+    <property name="tests.dir" value="./tests" />
+    <property name="build.dir" value="../build" />
+    <property name="reports.dir" value="../build/logs" />
+    <property name="reports.phpunit.dir" value="../../build/logs" />
+    <property name="reports.coverage.dir" value="../../build/logs/coverage" />
+    <property name="api.dir" value="../build/api" />
+
+    <property name="version" value="1.4.4" />
+    <property name="stability" value="stable" />
+    <property name="package-filename" value="${package-name}-${version}.tgz" />
+	
+    <target name="prepare">
+         <delete dir="${build.dir}" />
+    </target>
+
+    <target name="build" depends="prepare,checkout,php-documentor,test,phpcs">
+    </target>
+
+    <target name="checkout">
+        <echo msg="Exporting SVN files" />
+        <exec command="svn export ${source.dir}src ${build.dir}" />
+
+        <mkdir dir="${build.dir}/package/${package-name}-${version}" />
+        <copy todir="${build.dir}/package/${package-name}-${version}">
+            <fileset dir="${build.dir}">
+                <include name="vih/**" />
+                <include name="intranet.vih.dk/**" />
+                <exclude name="www/*.htm" />
+                <exclude name="www/config.local.php" />
+                <exclude name="www/config.local.example.php" />
+            </fileset>
+        </copy>
+        <mkdir dir="${reports.dir}" />      
+    </target>
+
+    <target name="test">
+    </target>
+
+    <target name="phpcs">
+        <exec output="${reports.dir}/checkstyle.xml" dir="${source.dir}/src/"
+          command="phpcs --report=checkstyle . --standard=PEAR" />
+    </target>
+
+    <target name="php-documentor">
+        <delete dir="${api.dir}" />
+        <mkdir dir="${api.dir}" />
+        <exec dir="${source.dir}/" command="phpdoc -ue on -t ${api.dir} -d ./src/vih" passthru="true" />
+    </target>
+
+    <target name="pear" depends="build">
+            <d51pearpkg2 dir="${build.dir}/package/${package-name}-${version}" baseinstalldir="/">
+                <name>${package-name}</name>
+                <summary>VIH</summary>
+                <channel>public.intraface.dk</channel>
+                <description>
+                    <!--        Don't exceed this width         -->
+                    VIH
+                </description>
+
+                <lead user="lsolesen" name="Lars Olesen" email="lars@legestue.net" />
+                <license>LGPL</license>
+
+                <version release="${version}" api="${version}" />
+                <stability release="${stability}" api="${stability}" />
+
+                <dirroles key="intranet.vih.dk">web</dirroles>
+
+                <release>
+                </release>
+
+                <dependencies>
+                    <php minimum_version="5.2.0" />
+
+                    <pear minimum_version="1.6.0"
+                             recommended_version="1.6.1" />
+                    <package name="konstrukt"
+                             channel="public.intraface.dk"
+                             minimum_version="0.4.0" />
+                    <package name="Contact_AddressBook"
+                             channel="pear.php.net"
+                             minimum_version="0.5.0" />
+                    <package name="Translation2"
+                             channel="pear.php.net"
+                             minimum_version="0.1.0" />
+                	<package name="HTML_Table"
+                             channel="pear.php.net"
+                             minimum_version="1.0.0" />
+                    <package name="fpdf_font_garamond"
+                             channel="public.intraface.dk"
+                             minimum_version="0.1.0" />
+                    <package name="Ilib_DBQuery"
+                             channel="public.intraface.dk"
+                             minimum_version="0.0.1" />
+                    <package name="Ilib_Redirect"
+                             channel="public.intraface.dk"
+                             minimum_version="0.0.1" />
+                    <package name="Calendar"
+                             channel="pear.php.net"
+                             minimum_version="0.1.0" />
+                    <package name="Structures_Ical"
+                             channel="public.intraface.dk"
+                             minimum_version="0.1.0" />
+                	<package name="fpdf"
+                             channel="public.intraface.dk"
+                             minimum_version="1.53.2" />
+                	<package name="Config"
+                             channel="pear.php.net"
+                             minimum_version="1.10.11" />
+                    <package name="MDB2"
+                             channel="pear.php.net"
+                             minimum_version="2.4.0" />
+                    <package name="MDB2_Driver_mysql"
+                             channel="pear.php.net"
+                             minimum_version="1.4.0" />
+                    <package name="Validate"
+                             channel="pear.php.net"
+                             minimum_version="0.7.0" />
+                    <package name="Validate_DK"
+                             channel="pear.php.net"
+                             minimum_version="0.1.1" />
+                    <package name="Image_Transform"
+                             channel="pear.php.net"
+                             minimum_version="0.9.0" />
+                    <package name="HTTP_Upload"
+                             channel="pear.php.net"
+                             minimum_version="0.9.1" />
+                    <package name="HTML_QuickForm"
+                             channel="pear.php.net"
+                             minimum_version="2.0.0" />
+                    <package name="antispambot"
+                             channel="public.intraface.dk"
+                             minimum_version="0.1.0" />
+                    <package name="Template"
+                             channel="public.intraface.dk"
+                             minimum_version="0.2.1" />
+                    <package name="Ilib_ClassLoader"
+                             channel="public.intraface.dk"
+                             minimum_version="0.1.1" />
+                    <package name="Payment_Quickpay"
+                             channel="public.intraface.dk"
+                             minimum_version="1.18.2" />
+                    <package name="phpmailer"
+                             channel="public.intraface.dk"
+                             minimum_version="1.73.1" />
+                    <package name="IntrafacePublic_Newsletter_XMLRPC"
+                             channel="public.intraface.dk"
+                             minimum_version="0.1.0" />
+                    <package name="Ilib_Validator"
+                             channel="public.intraface.dk"
+                             minimum_version="0.0.1" />
+                    <package name="Ilib_Filehandler"
+                             channel="public.intraface.dk"
+                             minimum_version="0.2.5" />
+                	<package name="Ilib_Filehandler_Controller"
+                             channel="public.intraface.dk"
+                             minimum_version="0.2.7" />
+                	<package name="Ilib_Keyword"
+                             channel="public.intraface.dk"
+                             minimum_version="0.3.2" />
+                    <package name="Ilib_Keyword_Controller"
+                             channel="public.intraface.dk"
+                             minimum_version="0.2.0" />
+                	<package name="IntrafacePublic_Newsletter_Controller"
+                             channel="public.intraface.dk"
+                             minimum_version="0.1.2" />
+                    </dependencies>
+                <notes>
+                    * Bugfixes
+                </notes>
+            </d51pearpkg2>
+    
+    </target>
+
+    <target name="make" depends="pear">
+        <tar compression="gzip" destfile="${package-name}-${version}.tgz" basedir="${build.dir}/package/" />
+    </target>
+
+    <target name="deploy" depends="build">
+        <property file="./build.properties" />
+        <echo msg="Deploying package" />
+        <ftpdeploy host="${ftp.server}" port="21" username="${ftp.user}" password="${ftp.password}" dir="./" mode="ascii" clearfirst="false">
+            <fileset dir="${source.dir}/src">
+                <include name="*.tgz" />
+            </fileset>
+        </ftpdeploy>
+    </target>
+
+</project>
