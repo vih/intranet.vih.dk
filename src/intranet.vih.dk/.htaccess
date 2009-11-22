@@ -1,0 +1,12 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME}  -d
+RewriteRule  ^.*$  -  [L]
+
+RewriteCond %{REQUEST_FILENAME}  -f
+RewriteRule  ^.*$  -  [L]
+
+RewriteRule ^.*$	index.php [L]
+
+ErrorDocument 404 /errorpages/404.php
