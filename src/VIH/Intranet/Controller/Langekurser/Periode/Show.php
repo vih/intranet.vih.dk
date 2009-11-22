@@ -1,9 +1,9 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Periode_Show extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Periode_Show extends k_Controller
 {
-    public $map = array('edit'   => 'VIH_Intranet_Controller_LangeKurser_Periode_Edit',
-                        'delete' => 'VIH_Intranet_Controller_LangeKurser_Periode_Delete',
-                        'faggruppe' => 'VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Index');
+    public $map = array('edit'   => 'VIH_Intranet_Controller_Langekurser_Periode_Edit',
+                        'delete' => 'VIH_Intranet_Controller_Langekurser_Periode_Delete',
+                        'faggruppe' => 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Index');
 
     function getDatasource()
     {
@@ -42,7 +42,7 @@ class VIH_Intranet_Controller_LangeKurser_Periode_Show extends k_Controller
             $this->url('../') => 'Luk'
         );
 
-        return $this->render('vih/intranet/view/langekurser/periode/show.tpl.php', array('periode' => $periode, 'faggrupper' => $this->getSubjectGroup()));
+        return $this->render('VIH/Intranet/view/langekurser/periode/show.tpl.php', array('periode' => $periode, 'faggrupper' => $this->getSubjectGroup()));
     }
 
 }

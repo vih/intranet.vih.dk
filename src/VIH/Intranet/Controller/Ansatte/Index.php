@@ -14,7 +14,7 @@ class VIH_Intranet_Controller_Ansatte_Index extends k_Controller
 
         $data = array('list' => $ansatte);
 
-        return $this->render('vih/intranet/view/ansatte/list-tpl.php', $data);
+        return $this->render('VIH/Intranet/view/ansatte/list-tpl.php', $data);
 
     }
 

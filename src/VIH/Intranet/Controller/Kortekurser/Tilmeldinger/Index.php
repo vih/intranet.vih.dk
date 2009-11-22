@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Index extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index extends k_Controller
 {
     private $form;
 
@@ -23,7 +23,7 @@ class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Index extends k_Controlle
         $data = array('caption' => '5 nyeste tilmeldinger',
                       'tilmeldinger' => $tilmeldinger);
 
-        return $this->render('vih/intranet/view/kortekurser/tilmeldinger-tpl.php', $data) . $this->getForm()->toHTML();
+        return $this->render('VIH/Intranet/view/kortekurser/tilmeldinger-tpl.php', $data) . $this->getForm()->toHTML();
     }
 
     function GET()
@@ -45,13 +45,13 @@ class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Index extends k_Controlle
     function forward($name)
     {
         if ($name == 'udsendte_pdf') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Pdf($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Pdf($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'restance') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Restance($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Restance($this, $name);
             return $next->handleRequest();
         }
-        $next = new VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Show($this, $name);
+        $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show($this, $name);
         return $next->handleRequest();
     }
 

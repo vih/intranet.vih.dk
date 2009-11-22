@@ -15,7 +15,7 @@ class VIH_Intranet_Controller_Fag_Gruppe_Index extends k_Controller
 
         $data = array('faggrupper' => VIH_Model_Fag_Gruppe::getList());
 
-        return $this->render('vih/intranet/view/fag/faggrupper-tpl.php', $data);
+        return $this->render('VIH/Intranet/view/fag/faggrupper-tpl.php', $data);
     }
 
  function forward($name)

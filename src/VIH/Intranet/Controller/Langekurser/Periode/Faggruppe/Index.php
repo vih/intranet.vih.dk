@@ -2,9 +2,9 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Index extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Index extends k_Controller
 {
-    public $map = array('create' => 'VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Create');
+    public $map = array('create' => 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create');
 
     function GET()
     {
@@ -19,7 +19,7 @@ class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Index extends k_Cont
 
         $data = array('period' => $this->context->getModel(), 'faggrupper' => $groups);
 
-        return $this->render('vih/intranet/view/langekurser/periode/faggrupper.tpl.php', $data);
+        return $this->render('VIH/Intranet/view/langekurser/periode/faggrupper.tpl.php', $data);
 
     }
 
@@ -31,9 +31,9 @@ class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Index extends k_Cont
     function forward($name)
     {
         if ($name == 'create') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Create($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create($this, $name);
         } else {
-            $next = new VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Show($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show($this, $name);
         }
         return $next->handleRequest();
     }

@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Show extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Controller
 {
     function GET()
     {
@@ -61,10 +61,10 @@ class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Show extends k_Controller
                            'historik' => $historik->getList());
 
         $data = array('tilmelding' => $tilmelding,
-                      'oplysninger' => $this->render('vih/intranet/view/langekurser/tilmelding/oplysninger-tpl.php', $opl_data),
-                      'prisoversigt' => $this->render('vih/intranet/view/langekurser/tilmelding/prisoversigt-tpl.php', $pris_data),
-                      'betalinger' => $this->render('vih/intranet/view/tilmelding/betalinger-tpl.php', $betal_data),
-                      'historik' => $this->render('vih/intranet/view/tilmelding/historik-tpl.php', $hist_data));
+                      'oplysninger' => $this->render('VIH/Intranet/view/langekurser/tilmelding/oplysninger-tpl.php', $opl_data),
+                      'prisoversigt' => $this->render('VIH/Intranet/view/langekurser/tilmelding/prisoversigt-tpl.php', $pris_data),
+                      'betalinger' => $this->render('VIH/Intranet/view/tilmelding/betalinger-tpl.php', $betal_data),
+                      'historik' => $this->render('VIH/Intranet/view/tilmelding/historik-tpl.php', $hist_data));
 
         // rater
         if (count($rater) > 0) {
@@ -89,29 +89,29 @@ class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Show extends k_Controller
             ';
         }
 
-        return $this->render('vih/intranet/view/langekurser/tilmelding-tpl.php', $data);
+        return $this->render('VIH/Intranet/view/langekurser/tilmelding-tpl.php', $data);
 
     }
 
     function forward($name)
     {
         if ($name == 'rater') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Rater($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'fag') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Fag($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'brev') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Brev($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'diplom') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Pdfdiplom($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'edit') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Edit($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'delete') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Delete($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Delete($this, $name);
             return $next->handleRequest();
         }
     }

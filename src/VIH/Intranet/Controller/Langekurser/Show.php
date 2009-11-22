@@ -1,8 +1,8 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Show extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Show extends k_Controller
 {
-    public $map = array('edit' => 'VIH_Intranet_Controller_LangeKurser_Edit',
-                        'delete' => 'VIH_Intranet_Controller_LangeKurser_Delete');
+    public $map = array('edit' => 'VIH_Intranet_Controller_Langekurser_Edit',
+                        'delete' => 'VIH_Intranet_Controller_Langekurser_Delete');
 
     public $form;
 
@@ -57,7 +57,7 @@ class VIH_Intranet_Controller_LangeKurser_Show extends k_Controller
 
         $data = array('kursus' => $kursus, 'subjects' => $this->getSubjects());
 
-        return $this->render('vih/intranet/view/langekurser/show.tpl.php', $data) . $this->getForm()->toHTML() . $pic_html;
+        return $this->render('VIH/Intranet/view/langekurser/show.tpl.php', $data) . $this->getForm()->toHTML() . $pic_html;
     }
 
     function getSubjects()
@@ -69,7 +69,7 @@ class VIH_Intranet_Controller_LangeKurser_Show extends k_Controller
         $data = array('kursus' => $kursus);
 
 
-        return $this->render('vih/intranet/view/langekurser/tilmelding/fagcount.tpl.php', $data);
+        return $this->render('VIH/Intranet/view/langekurser/tilmelding/fagcount.tpl.php', $data);
         /*
         $conn = $this->registry->get('doctrine');
         $registrations = Doctrine::getTable('VIH_Model_Course_Registration')->findByKursusId($kursus->getId());
@@ -107,34 +107,34 @@ class VIH_Intranet_Controller_LangeKurser_Show extends k_Controller
     function forward($name)
     {
         if ($name == 'edit') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Edit($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Edit($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'delete') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Delete($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Delete($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'copy') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Copy($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Copy($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'periode') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Periode_Index($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Periode_Index($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'tilmeldinger') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Tilmeldinger($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'rater') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Rater($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Rater($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'periode') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Periode_Index($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Periode_Index($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'fag') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Fag_Index($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Fag_Index($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'ministeriumliste') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Ministeriumliste($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Ministeriumliste($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'elevuger') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Elevugerliste($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Elevugerliste($this, $name);
             return $next->handleRequest();
         } else {
             return self::GET();

@@ -29,7 +29,7 @@ class VIH_Intranet_Controller_Index extends k_Controller
         $this->document->title = 'Forside: Velkommen';
         $this->document->help = $hilsener[array_rand($hilsener)];
 
-        return $this->render('vih/intranet/view/special_day-tpl.php', $special_data). '
+        return $this->render('VIH/Intranet/view/special_day-tpl.php', $special_data). '
             <ul class="navigation-frontpage">
                 <li><a href="'.$this->url('/protokol').'">Protokol</a></li>
                 <li><a href="https://mail.vih.dk/exchange/">Tjek din e-mail</a></li>

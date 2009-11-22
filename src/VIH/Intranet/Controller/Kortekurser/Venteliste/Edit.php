@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Venteliste_Edit extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Venteliste_Edit extends k_Controller
 {
     private $form;
 

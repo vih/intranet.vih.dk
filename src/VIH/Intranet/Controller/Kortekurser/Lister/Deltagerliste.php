@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Lister_Deltagerliste extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Lister_Deltagerliste extends k_Controller
 {
     function GET()
     {
@@ -8,7 +8,7 @@ class VIH_Intranet_Controller_KorteKurser_Lister_Deltagerliste extends k_Control
 
         $data = array('kursus' => $kursus, 'deltagere' => $deltagere);
 
-        return $this->render('vih/intranet/view/kortekurser/lister/deltagerliste.tpl.php', $data);
+        return $this->render('VIH/Intranet/view/kortekurser/lister/deltagerliste.tpl.php', $data);
 
     }
 }

@@ -63,7 +63,7 @@ class VIH_Intranet_Controller_Protokol_Holdliste extends k_Controller
 
         return $this->getForm()->toHTML().'
             <p>Antal elever: ' . $db->numRows() . '</p>'
-            . $this->render('vih/intranet/view/protokol/holdliste-tpl.php', $data);
+            . $this->render('VIH/Intranet/view/protokol/holdliste-tpl.php', $data);
     }
 
     function forward($name)

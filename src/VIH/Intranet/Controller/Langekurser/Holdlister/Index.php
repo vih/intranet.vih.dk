@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Holdlister_Index extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Controller
 {
     private $form;
 
@@ -61,7 +61,7 @@ class VIH_Intranet_Controller_LangeKurser_Holdlister_Index extends k_Controller
 
         $this->document->title = 'Holdlister';
 
-        return $this->getForm()->toHTML() . $this->render('vih/intranet/view/holdlister/holdlister-tpl.php', $data);
+        return $this->getForm()->toHTML() . $this->render('VIH/Intranet/view/holdlister/holdlister-tpl.php', $data);
     }
 
     function getCount($fag)
@@ -113,7 +113,7 @@ class VIH_Intranet_Controller_LangeKurser_Holdlister_Index extends k_Controller
 
     function forward($name)
     {
-        $next = new VIH_Intranet_Controller_LangeKurser_Holdlister_Show($this, $name);
+        $next = new VIH_Intranet_Controller_Langekurser_Holdlister_Show($this, $name);
         return $next->handleRequest();
     }
 }

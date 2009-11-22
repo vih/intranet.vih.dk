@@ -134,9 +134,9 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Controller
 
         return '<h2>Fraværende</h2>
             '.$this->getForm()->toHTML().'
-            ' .$this->render('vih/intranet/view/protokol/liste-tpl.php', $list) .
+            ' .$this->render('VIH/Intranet/view/protokol/liste-tpl.php', $list) .
             '<h2>Fritagelser indtil dato</h2>'
-            . $this->render('vih/intranet/view/protokol/liste-tpl.php', $list1);
+            . $this->render('VIH/Intranet/view/protokol/liste-tpl.php', $list1);
 
     }
 }

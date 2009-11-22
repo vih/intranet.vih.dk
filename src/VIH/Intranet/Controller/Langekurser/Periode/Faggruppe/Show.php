@@ -1,8 +1,8 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Show extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Controller
 {
-    public $map = array('edit'   => 'VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Edit',
-                        'delete' => 'VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Delete');
+    public $map = array('edit'   => 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Edit',
+                        'delete' => 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Delete');
 
     function getDatasource()
     {
@@ -85,7 +85,7 @@ class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Show extends k_Contr
         $data = array('fag'       => $this->getSubjects(), 
                       'faggruppe' => $this->getModel(),
                       'chosen'    => $chosen);
-        return $this->render('vih/intranet/view/langekurser/periode/faggruppe.tpl.php', $data);
+        return $this->render('VIH/Intranet/view/langekurser/periode/faggruppe.tpl.php', $data);
     }
     
     function POST()

@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Show extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Controller
 {
     function GET()
     {
@@ -99,13 +99,13 @@ class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Show extends k_Controller
     function forward($name)
     {
         if ($name == 'edit') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Edit($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'delete') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Delete($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Delete($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'sendbrev') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Tilmeldinger_SendBrev($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev($this, $name);
             return $next->handleRequest();
         }
     }

@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Tilmeldinger extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger extends k_Controller
 {
     function GET()
     {
@@ -14,7 +14,7 @@ class VIH_Intranet_Controller_KorteKurser_Tilmeldinger extends k_Controller
                       'vis_besked' => 'ja',
                       'caption' => 'Tilmeldinger');
 
-        return $this->render('vih/intranet/view/kortekurser/tilmeldinger-tpl.php', $data);
+        return $this->render('VIH/Intranet/view/kortekurser/tilmeldinger-tpl.php', $data);
     }
 
     function getKursus()

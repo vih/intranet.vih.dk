@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Tilmeldinger extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Controller
 {
     function GET()
     {
@@ -22,7 +22,7 @@ class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Tilmeldinger extends k_Co
 
     function forward($name)
     {
-        $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Show($this, $name);
+        $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show($this, $name);
         return $next->handleRequest();
     }
 

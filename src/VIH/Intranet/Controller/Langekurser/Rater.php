@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Rater extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Rater extends k_Controller
 {
     function GET()
     {
@@ -28,14 +28,14 @@ class VIH_Intranet_Controller_LangeKurser_Rater extends k_Controller
             $form_html = $form->toHTML();
         } else {
             $data = array('kursus' => $kursus);
-            $form_html = $this->render('vih/intranet/view/langekurser/rater_form-tpl.php', $data);
+            $form_html = $this->render('VIH/Intranet/view/langekurser/rater_form-tpl.php', $data);
         }
         
         $this->document->title = 'Rater for betaling '.$kursus->get('kursusnavn');
         $this->document->options = array($this->context->url() => 'Til kurset');
         
         return '<p><strong>Periode</strong>: '.$kursus->getDateStart()->format('%d-%m-%Y').' &mdash; '.$kursus->getDateEnd()->format('%d-%m-%Y').'</p>
-        ' . $this->render('vih/intranet/view/langekurser/pris-tpl.php', $pris) . $form_html;
+        ' . $this->render('VIH/Intranet/view/langekurser/pris-tpl.php', $pris) . $form_html;
     }
 
     function POST()

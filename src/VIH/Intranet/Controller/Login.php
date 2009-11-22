@@ -33,7 +33,7 @@ class VIH_Intranet_Controller_Login extends k_Controller
         }
 
         $this->document->title = 'Login';
-        throw new k_http_Response(200, $this->render('vih/intranet/view/login-tpl.php', array('content_main' => $this->getForm()->toHTML())));
+        throw new k_http_Response(200, $this->render('VIH/Intranet/view/login-tpl.php', array('content_main' => $this->getForm()->toHTML())));
     }
 
     function POST()

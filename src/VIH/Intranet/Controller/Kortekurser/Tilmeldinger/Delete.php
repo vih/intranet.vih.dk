@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Delete extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Delete extends k_Controller
 {
     function GET()
     {

@@ -1,7 +1,7 @@
 <?php
 require_once 'fpdf/fpdf.php';
 
-class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Pdf extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Pdf extends k_Controller
 {
     function GET()
     {

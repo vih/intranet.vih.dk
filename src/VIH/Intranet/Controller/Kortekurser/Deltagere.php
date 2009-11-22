@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Deltagere extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Controller
 {
     function getKursus()
     {

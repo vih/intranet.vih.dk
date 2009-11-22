@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Index extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Index extends k_Controller
 {
     private $form;
 
@@ -22,7 +22,7 @@ class VIH_Intranet_Controller_KorteKurser_Index extends k_Controller
         $data = array('caption' => 'Korte kurser',
                       'kurser' => $kurser);
 
-        return $this->getForm()->toHTML() . $this->render('vih/intranet/view/kortekurser/kurser-tpl.php', $data);
+        return $this->getForm()->toHTML() . $this->render('VIH/Intranet/view/kortekurser/kurser-tpl.php', $data);
     }
 
     function GET()
@@ -45,14 +45,14 @@ class VIH_Intranet_Controller_KorteKurser_Index extends k_Controller
     function forward($name)
     {
         if ($name == 'tilmeldinger') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Index($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'create') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Edit($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Edit($this, $name);
             return $next->handleRequest();
         }
 
-        $next = new VIH_Intranet_Controller_KorteKurser_Kursus($this, $name);
+        $next = new VIH_Intranet_Controller_Kortekurser_Kursus($this, $name);
         return $next->handleRequest();
     }
 }

@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Copy extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Copy extends k_Controller
 {
     function GET()
     {

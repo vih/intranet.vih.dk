@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Lister_Ministerium extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Lister_Ministerium extends k_Controller
 {
     function GET()
     {

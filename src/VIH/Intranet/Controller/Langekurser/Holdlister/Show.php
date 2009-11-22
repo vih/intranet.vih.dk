@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Holdlister_Show extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Controller
 {
     private $form;
 
@@ -63,7 +63,7 @@ class VIH_Intranet_Controller_LangeKurser_Holdlister_Show extends k_Controller
 
         $this->document->title = $fag->get('navn');
 
-        return '<p>'.count($list).'</p>' . $date . $this->render('vih/intranet/view/holdlister/holdliste-tpl.php', $data);
+        return '<p>'.count($list).'</p>' . $date . $this->render('VIH/Intranet/view/holdlister/holdliste-tpl.php', $data);
     }
 
     function POST()

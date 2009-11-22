@@ -85,7 +85,7 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Controller
         ); 
 
         return '<div style="border: 1px solid #ccc; padding: 0.5em; float: right;">' .   $extra_html . '</div>
-            ' . $this->render('vih/intranet/view/protokol/liste-tpl.php', $data);
+            ' . $this->render('VIH/Intranet/view/protokol/liste-tpl.php', $data);
 
     }
 

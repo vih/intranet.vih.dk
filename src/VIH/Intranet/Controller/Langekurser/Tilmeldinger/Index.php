@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Index extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index extends k_Controller
 {
     private $form;
 
@@ -18,7 +18,7 @@ class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Index extends k_Controlle
         
         );
 
-        return $this->render('vih/intranet/view/langekurser/tilmeldinger-tpl.php', $data) . $this->getForm()->toHTML();
+        return $this->render('VIH/Intranet/view/langekurser/tilmeldinger-tpl.php', $data) . $this->getForm()->toHTML();
     }
 
     function getForm()
@@ -52,11 +52,11 @@ class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Index extends k_Controlle
     function forward($name)
     {
         if ($name == 'exportcsv') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_ExportCSV($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV($this, $name);
         }  elseif ($name == 'restance') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Restance($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Restance($this, $name);
         } else {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Show($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show($this, $name);
         }
         return $next->handleRequest();
     }

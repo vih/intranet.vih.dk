@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Kursus extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Kursus extends k_Controller
 {
     private $form;
 
@@ -104,37 +104,37 @@ class VIH_Intranet_Controller_KorteKurser_Kursus extends k_Controller
     function forward($name)
     {
         if ($name == 'edit') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Edit($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Edit($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'copy') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Copy($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Copy($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'tilmeldinger') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Tilmeldinger($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'deltagere') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Deltagere($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Deltagere($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'venteliste') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Venteliste_Index($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Venteliste_Index($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'adresselabels') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Lister_Adresselabels($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Lister_Adresselabels($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'deltagerliste') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Lister_Deltagerliste($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Lister_Deltagerliste($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'drikkevareliste') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Lister_Drikkevareliste($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Lister_Drikkevareliste($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'ministeriumliste') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Lister_Ministerium($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Lister_Ministerium($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'navneskilte') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Lister_Navneskilte($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'begyndere') {
-            $next = new VIH_Intranet_Controller_KorteKurser_Lister_Begyndere($this, $name);
+            $next = new VIH_Intranet_Controller_Kortekurser_Lister_Begyndere($this, $name);
             return $next->handleRequest();
         }
     }

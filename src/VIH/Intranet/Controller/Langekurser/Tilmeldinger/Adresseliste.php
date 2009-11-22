@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Adresseliste
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Adresseliste
 {
     function GET()
     {

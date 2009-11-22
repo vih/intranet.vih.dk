@@ -2,9 +2,9 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_LangeKurser_Periode_Index extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Periode_Index extends k_Controller
 {
-    public $map = array('create' => 'VIH_Intranet_Controller_LangeKurser_Periode_Create');
+    public $map = array('create' => 'VIH_Intranet_Controller_Langekurser_Periode_Create');
 
     function GET()
     {
@@ -20,7 +20,7 @@ class VIH_Intranet_Controller_LangeKurser_Periode_Index extends k_Controller
         //$perioder = VIH_Model_LangtKursus_Periode::getFromKursusId($this->registry->get('database'), $this->getLangtKursusId());
         $data = array('perioder' => $periods);
 
-        return $this->render('vih/intranet/view/langekurser/perioder-tpl.php', $data);
+        return $this->render('VIH/Intranet/view/langekurser/perioder-tpl.php', $data);
 
     }
 
@@ -38,9 +38,9 @@ class VIH_Intranet_Controller_LangeKurser_Periode_Index extends k_Controller
     function forward($name)
     {
         if ($name == 'create') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Periode_Create($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Periode_Create($this, $name);
         } else {
-            $next = new VIH_Intranet_Controller_LangeKurser_Periode_Show($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Periode_Show($this, $name);
         }
         return $next->handleRequest();
     }

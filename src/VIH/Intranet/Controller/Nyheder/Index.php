@@ -10,7 +10,7 @@ class VIH_Intranet_Controller_Nyheder_Index extends k_Controller
 
         $data = array('nyheder' => VIH_News::getList('', 100));
 
-        return $this->render('vih/intranet/view/nyheder/nyheder-tpl.php', $data);
+        return $this->render('VIH/Intranet/view/nyheder/nyheder-tpl.php', $data);
 
     }
 

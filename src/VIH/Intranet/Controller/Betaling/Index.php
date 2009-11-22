@@ -43,7 +43,7 @@ class VIH_Intranet_Controller_Betaling_Index extends k_Controller
         $this->document->options = array($this->url(null, array('find'=>'alle')) => 'Alle',
                                          $this->url(null, array('find'=>'elevforeningen')) => 'Elevforeningen');
 
-        return $this->render('vih/intranet/view/betalinger/betalinger-tpl.php', $data) . $this->getForm()->toHTML();
+        return $this->render('VIH/Intranet/view/betalinger/betalinger-tpl.php', $data) . $this->getForm()->toHTML();
 
     }
 

@@ -16,7 +16,7 @@
  */
 require_once 'fpdf/fpdf.php';
 
-class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Pdfdiplom extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Controller
 {
     function GET()
     {

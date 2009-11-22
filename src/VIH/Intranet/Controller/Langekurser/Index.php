@@ -2,10 +2,10 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_LangeKurser_Index extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Index extends k_Controller
 {
-    public $map = array('periode' => 'VIH_Intranet_Controller_LangeKurser_Periode_Index',
-                        'tilmeldinger' => 'VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Index',);
+    public $map = array('periode' => 'VIH_Intranet_Controller_Langekurser_Periode_Index',
+                        'tilmeldinger' => 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index');
 
     function GET()
     {

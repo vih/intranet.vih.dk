@@ -1,6 +1,6 @@
 <?php
 
-class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Fag extends VIH_Controller_LangtKursus_Login_Fag
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends VIH_Controller_LangtKursus_Login_Fag
 {
     function getRegistration()
     {
@@ -18,7 +18,7 @@ class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Fag extends VIH_Controlle
 }
 
 /*
-class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Fag extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends k_Controller
 {
     function getRegistration()
     {
@@ -70,7 +70,7 @@ class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Fag extends k_Controller
         $data = array('chosen' => $chosen,
                       'tilmelding' => $registration);
 
-        return $this->render('vih/intranet/view/langekurser/tilmelding/fag.tpl.php', $data);
+        return $this->render('VIH/Intranet/view/langekurser/tilmelding/fag.tpl.php', $data);
     }
 }
 */

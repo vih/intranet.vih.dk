@@ -28,7 +28,7 @@ class B_FPDF extends FPDF {
 }
 
 
-class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Brev extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Controller
 {
     function GET()
     {
@@ -304,10 +304,10 @@ class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Brev extends k_Controller
             return '
                 <h1>Betalingsopgørelse</h1>
                 <p><a href="'.$this->url(null, array('send_pdf' => true)).'">Send brev</a>'
-                . $this->render('vih/intranet/view/langekurser/tilmelding/oplysninger-tpl.php', $opl_data)
-                . $this->render('vih/intranet/view/langekurser/tilmelding/prisoversigt-tpl.php', $pris_data)
-                . $this->render('vih/intranet/view/langekurser/tilmelding/rater-tpl.php', $rater_data)
-                . $this->render('vih/intranet/view/tilmelding/betalinger-tpl.php', $betal_data);
+                . $this->render('VIH/Intranet/view/langekurser/tilmelding/oplysninger-tpl.php', $opl_data)
+                . $this->render('VIH/Intranet/view/langekurser/tilmelding/prisoversigt-tpl.php', $pris_data)
+                . $this->render('VIH/Intranet/view/langekurser/tilmelding/rater-tpl.php', $rater_data)
+                . $this->render('VIH/Intranet/view/tilmelding/betalinger-tpl.php', $betal_data);
         } else {
             return '
                 <h1>Betalingsopgørelsen mangler oplysninger om rater</h1>

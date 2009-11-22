@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Edit extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Controller
 {
     private $form;
 

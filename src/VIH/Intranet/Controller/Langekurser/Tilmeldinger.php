@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Tilmeldinger extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Controller
 {
     function GET()
     {
@@ -78,10 +78,10 @@ class VIH_Intranet_Controller_LangeKurser_Tilmeldinger extends k_Controller
     function forward($name)
     {
         if ($name == 'adresseliste') {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Adresseliste($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Adresseliste($this, $name);
             return $next->handleRequest();
         } else {
-            $next = new VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Show($this, $name);
+            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show($this, $name);
             return $next->handleRequest();
         }
     }

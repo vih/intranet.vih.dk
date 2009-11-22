@@ -1,7 +1,7 @@
 <?php
 require_once 'fpdf/fpdf.php';
 
-class VIH_Intranet_Controller_KorteKurser_Lister_Adresselabels extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Lister_Adresselabels extends k_Controller
 {
     function GET()
     {

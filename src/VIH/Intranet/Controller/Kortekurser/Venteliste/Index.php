@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Venteliste_Index extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Venteliste_Index extends k_Controller
 {
     function GET()
     {
@@ -16,7 +16,7 @@ class VIH_Intranet_Controller_KorteKurser_Venteliste_Index extends k_Controller
         $data = array('venteliste' => $liste);
 
         return '<p>Listen er sorteret med de, der været længst på venteliste øverst</p>
-        ' . $this->render('vih/intranet/view/kortekurser/venteliste-tpl.php', $data);
+        ' . $this->render('VIH/Intranet/view/kortekurser/venteliste-tpl.php', $data);
     }
 
     function getKursusId()
@@ -26,7 +26,7 @@ class VIH_Intranet_Controller_KorteKurser_Venteliste_Index extends k_Controller
 
     function forward($name)
     {
-        $next = new VIH_Intranet_Controller_KorteKurser_Venteliste_Show($this, $name);
+        $next = new VIH_Intranet_Controller_Kortekurser_Venteliste_Show($this, $name);
         return $next->handleRequest();
     }
 

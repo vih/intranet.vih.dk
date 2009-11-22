@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Periode_Create extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Periode_Create extends k_Controller
 {
     function __construct(k_iContext $parent, $name = '')
     {
@@ -8,7 +8,7 @@ class VIH_Intranet_Controller_LangeKurser_Periode_Create extends k_Controller
         $descriptors[] = array('name' => 'description', 'filters' => array('trim'));
         $descriptors[] = array('name' => 'date_start', 'filters' => array('trim'));
         $descriptors[] = array('name' => 'date_end', 'filters' => array('trim'));
-        $this->form = new k_FormBehaviour($this, 'vih/intranet/view/form-tpl.php');
+        $this->form = new k_FormBehaviour($this, 'VIH/Intranet/view/form-tpl.php');
         $this->form->descriptors = $descriptors;
     }
 

@@ -37,7 +37,7 @@ class VIH_Intranet_Controller_Fotogalleri_Index extends k_Controller
         $this->document->options = array($this->url('create') => 'Tilføj');
 
         return '<h2>Gallerier</h2>
-            ' .$this->render('vih/intranet/view/fotogalleri/gallerier-tpl.php', $list);
+            ' .$this->render('VIH/Intranet/view/fotogalleri/gallerier-tpl.php', $list);
 
     }
 

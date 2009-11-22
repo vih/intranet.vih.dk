@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Rater extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Controller
 {
     function GET()
     {
@@ -33,7 +33,7 @@ class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Rater extends k_Controlle
         $this->document->options = array($this->url(null, array('addrate' => 1)) => 'Tilføj rate'); 
     
         return $pris_tpl->fetch('langekurser/tilmelding/prisoversigt-tpl.php') . 
-            $this->render('vih/intranet/view/langekurser/tilmelding/form_rater-tpl.php', $data);
+            $this->render('VIH/Intranet/view/langekurser/tilmelding/form_rater-tpl.php', $data);
 
     }
 

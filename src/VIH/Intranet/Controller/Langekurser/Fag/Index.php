@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_LangeKurser_Fag_Index extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Fag_Index extends k_Controller
 {
     function GET()
     {
@@ -10,7 +10,7 @@ class VIH_Intranet_Controller_LangeKurser_Fag_Index extends k_Controller
         $data = array('fag' => $fag,
                       'selected' => $selected,
                       'periods' => VIH_Model_LangtKursus_Periode::getFromKursusId($this->registry->get('database'), $this->context->name));
-        return $this->render('vih/intranet/view/langekurser/fag-tpl.php', $data);
+        return $this->render('VIH/Intranet/view/langekurser/fag-tpl.php', $data);
     }
 
     function POST()

@@ -83,7 +83,7 @@ $application->registry->registerConstructor('doctrine', create_function(
 $application->registry->registerConstructor('template', create_function(
   '$className, $args, $registry',
   'require_once "Template/Template.php";
-   return new Template(PATH_INCLUDE . "/vih/intranet/view/");
+   return new Template(PATH_INCLUDE . "/VIH/Intranet/view/");
   '
 ));
 
