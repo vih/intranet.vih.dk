@@ -1,11 +1,20 @@
 <?php
-class VIH_Intranet_Controller_Protokol_Elev extends k_Controller
+class VIH_Intranet_Controller_Protokol_Elev extends k_Component
 {
-    function GET()
+    private $db;
+    protected $template;
+
+    function __construct(DB $db, k_TemplateFactory $template)
+    {
+        $this->db = $db;
+        $this->template = $template;
+    }
+
+    function renderHtml()
     {
         $type_key = $this->context->getTypeKeys();
 
-        $db = $this->registry->get('database:pear');
+        $db = $this->db;
         # delete
         if (!empty($_GET['delete']) AND is_numeric($_GET['delete'])) {
             $res =& $db->query('DELETE FROM langtkursus_tilmelding_protokol_item WHERE id = ' . $_GET['delete']);
@@ -24,7 +33,7 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Controller
         }
 
         $form = new HTML_QuickForm;
-        $form->addElement('hidden', 'id', $this->name);
+        $form->addElement('hidden', 'id', $this->name());
         $form->addElement('file', 'userfile', 'Fil');
         $form->addElement('submit', null, 'Upload');
 
@@ -41,11 +50,11 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Controller
                     echo $res->getMessage();
                 }
 
-                throw new k_http_Redirect($this->url('./'));
+                throw new k_SeeOther($this->url('./'));
             }
         }
 
-        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->name);
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->name());
 
         if ($tilmelding->get('id') == 0) {
             throw new k_http_Response(404);
@@ -61,10 +70,10 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Controller
         if (empty($extra_html)) {
             $extra_html = $form->toHTML();
         } else {
-            $extra_html .= ' <br /><a href="'.$stor.'">stor</a> <a href="'.url('./') . '?sletbillede=' .$this->name.'" onclick="return confirm(\'Er du sikker\');">slet billede</a>';
+            $extra_html .= ' <br /><a href="'.$stor.'">stor</a> <a href="'.url('./') . '?sletbillede=' .$this->name().'" onclick="return confirm(\'Er du sikker\');">slet billede</a>';
         }
 
-        $res =& $db->query('SELECT *, DATE_FORMAT(date_start, "%d-%m %H:%i") AS date_start_dk, DATE_FORMAT(date_end, "%d-%m %H:%i") AS date_end_dk FROM langtkursus_tilmelding_protokol_item WHERE tilmelding_id = ' . (int)$this->name . ' ORDER BY date_start DESC, date_end DESC');
+        $res =& $db->query('SELECT *, DATE_FORMAT(date_start, "%d-%m %H:%i") AS date_start_dk, DATE_FORMAT(date_end, "%d-%m %H:%i") AS date_end_dk FROM langtkursus_tilmelding_protokol_item WHERE tilmelding_id = ' . (int)$this->name() . ' ORDER BY date_start DESC, date_end DESC');
 
         if (PEAR::isError($res)) {
             die($res->getMessage());
@@ -74,7 +83,7 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Controller
                       'type_key' => $type_key,
                       'vis_navn' => false);
 
-        $this->document->title = $tilmelding->get('navn');
+        $this->document->setTitle($tilmelding->get('navn'));
         $this->document->options = array(
             $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id')) => 'Ret',
             $this->url('indtast') => 'Indtast',
@@ -82,18 +91,17 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Controller
             $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id') . '/fag') => 'Fag',
             $this->context->url() => 'Holdliste',
             $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id') . '/diplom') => 'Diplom'
-        ); 
+        );
 
         return '<div style="border: 1px solid #ccc; padding: 0.5em; float: right;">' .   $extra_html . '</div>
             ' . $this->render('VIH/Intranet/view/protokol/liste-tpl.php', $data);
 
     }
 
-    function forward($name)
+    function map($name)
     {
         if ($name == 'indtast') {
-            $next = new VIH_Intranet_Controller_Protokol_Indtast($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Protokol_Indtast';
         }
     }
 }

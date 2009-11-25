@@ -1,7 +1,13 @@
 <?php
-class VIH_Intranet_Controller_Kortekurser_Venteliste_Edit extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Venteliste_Edit extends k_Component
 {
     private $form;
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
     function getForm()
     {
@@ -23,10 +29,10 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Edit extends k_Controller
         return ($this->form = $form);
     }
 
-    function GET()
+    function renderHtml()
     {
         $kursus = new VIH_Model_KortKursus($this->context->getKursusId());
-        $venteliste = new VIH_Model_Venteliste(1, $kursus->get('id'), $this->context->name);
+        $venteliste = new VIH_Model_Venteliste(1, $kursus->get('id'), $this->context->name());
 
         $this->getForm()->setDefaults(array(
             'id' => $venteliste->get('id'),
@@ -39,12 +45,12 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Edit extends k_Controller
             'besked' => $venteliste->get('besked')
         ));
 
-        $this->document->title = 'Rediger';
+        $this->document->setTitle('Rediger');
         return $this->getForm()->toHTML();
 
     }
 
-    function POST()
+    function postForm()
     {
         if ($this->getForm()->validate()) {
             $kursus = new VIH_Model_KortKursus($this->POST['kursus_id']);
@@ -52,7 +58,7 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Edit extends k_Controller
             if (!$venteliste->save($this->POST->getArrayCopy())) {
                 throw new Excpetion('Kan ikke gemme');
             }
-            throw new k_http_Redirect($this->context->url('../'));
+            throw new k_SeeOther($this->context->url('../'));
         }
     }
 }

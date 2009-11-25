@@ -1,15 +1,21 @@
 <?php
 XML_RPC2_Backend::setBackend('php');
-class VIH_Intranet_Controller_Elevforeningen_Index extends k_Controller
+class VIH_Intranet_Controller_Elevforeningen_Index extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+    function renderHtml()
     {
         $db = new DB_Sql;
         $db->query("SELECT aargange FROM elevforeningen_jubilar ORDER BY id DESC");
         if ($db->nextRecord()){
             $selected = unserialize($db->f('aargange'));
         }
-        
+
         $credentials = array('private_key' => 'L9FtAdfAu8QwLSChGZehzeZwiAhXNwsqwWIMZF4avCw6jY6HN2G', 'session_id' => session_id());
         $contact_client = new IntrafacePublic_Contact_XMLRPC_Client($credentials, false);
         foreach ($contact_client->getKeywords() AS $key=>$value) {
@@ -17,7 +23,7 @@ class VIH_Intranet_Controller_Elevforeningen_Index extends k_Controller
             if (in_array($value['id'], $selected)) $input .= ' checked="checked"';
             $input .= '/> '.$value['keyword'].' </label><br />';
         }
-        
+
         return '
             <h1>Elevforeningen</h1>
             <form method="post" action="'.$this->url().'">
@@ -28,18 +34,18 @@ class VIH_Intranet_Controller_Elevforeningen_Index extends k_Controller
             </form>
             ';
     }
-    
-    function POST()
+
+    function postForm()
     {
         $input = '';
         $selected = array();
-        
+
         if (!empty($_POST)) {
             $db = new DB_Sql;
             $db->query("INSERT INTO elevforeningen_jubilar SET date_created = NOW(), aargange = '".serialize($_POST['jubilar'])."'");
         }
 
-        throw new k_http_Redirect($this->url());        
+        throw new k_SeeOther($this->url());
     }
 }
 /*

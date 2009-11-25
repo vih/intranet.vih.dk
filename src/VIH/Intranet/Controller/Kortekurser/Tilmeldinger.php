@@ -1,12 +1,19 @@
 <?php
-class VIH_Intranet_Controller_Kortekurser_Tilmeldinger extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $kursus = new VIH_Model_KortKursus((int)$this->context->name);
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $kursus = new VIH_Model_KortKursus((int)$this->context->name());
         $tilmeldinger = $kursus->getTilmeldinger();
 
-        $this->document->title = 'Tilmeldinger til ' . $kursus->getKursusNavn();
+        $this->document->setTitle('Tilmeldinger til ' . $kursus->getKursusNavn());
         $this->document->options = array($this->url('/kortekurser') => 'Kurser',
                                          $this->context->url('deltagere') => 'Deltagere');
 
@@ -19,7 +26,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger extends k_Controller
 
     function getKursus()
     {
-        return new VIH_Model_KortKursus((int)$this->context->name);
+        return new VIH_Model_KortKursus((int)$this->context->name());
     }
 
 }

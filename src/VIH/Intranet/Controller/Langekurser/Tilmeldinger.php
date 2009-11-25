@@ -1,16 +1,23 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+    function renderHtml()
     {
         if ($this->GET['format'] == 'excel') {
             return $this->excel();
         }
 
-        $kursus = new VIH_Model_LangtKursus($this->context->name);
+        $kursus = new VIH_Model_LangtKursus($this->context->name());
         $tilmeldinger = $kursus->getTilmeldinger();
 
-        $this->document->title = 'Tilmeldinger til ' . $kursus->get('kursusnavn');
+        $this->document->setTitle('Tilmeldinger til ' . $kursus->get('kursusnavn'));
         $this->document->options = array($this->url('../../') => 'Alle kurser');
 
 
@@ -22,7 +29,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Controller
 
     function getKursus()
     {
-        return new VIH_Model_LangtKursus((int)$this->context->name);
+        return new VIH_Model_LangtKursus((int)$this->context->name());
     }
 
     function excel()
@@ -75,14 +82,12 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Controller
     }
 
 
-    function forward($name)
+    function map($name)
     {
         if ($name == 'adresseliste') {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Adresseliste($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Adresseliste';
         } else {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show';
         }
     }
 }

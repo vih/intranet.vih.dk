@@ -1,12 +1,12 @@
 <?php
-class VIH_Intranet_Controller_Faciliteter_Edit extends k_Controller
+class VIH_Intranet_Controller_Faciliteter_Edit extends k_Component
 {
     private $form;
 
     function getForm()
     {
         if ($this->form) return $this->form;
-        
+
         $facilitet = new VIH_Model_Facilitet;
 
         $this->form = new HTML_QuickForm('fag', 'POST', $this->url('./'));
@@ -23,13 +23,13 @@ class VIH_Intranet_Controller_Faciliteter_Edit extends k_Controller
         return $this->form;
     }
 
-    function GET()
+    function renderHtml()
     {
-        
-        $this->document->title = 'Rediger Facilitet';
-        
-        if (!empty($this->context->name)) {
-            $facilitet = new VIH_Model_Facilitet($this->context->name);
+
+        $this->document->setTitle('Rediger Facilitet');
+
+        if ($this->context->name()) {
+            $facilitet = new VIH_Model_Facilitet($this->context->name());
 
             $this->getForm()->setDefaults(array(
                                            'navn' => $facilitet->get('navn'),
@@ -47,16 +47,17 @@ class VIH_Intranet_Controller_Faciliteter_Edit extends k_Controller
         return $this->getForm()->toHTML();
     }
 
-    function POST()
+    function postForm()
     {
         if ($this->getForm()->validate()) {
-            $facilitet = new VIH_Model_Facilitet($this->context->name);
+            $facilitet = new VIH_Model_Facilitet($this->context->name());
             //$input = $this->form->exportValues();
-            $input = $this->POST->getArrayCopy();
+            $input = $this->body();
 
             if ($id = $facilitet->save($input)) {
-                throw new k_http_Redirect($this->context->url());
+                return new k_SeeOther($this->context->url());
             }
         }
+        return $this->render();
     }
 }

@@ -3,11 +3,23 @@
  * Controller for the intranet
  */
 
-class VIH_Intranet_Controller_Fag_Gruppe_Index extends k_Controller
+class VIH_Intranet_Controller_Fag_Gruppe_Index extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $this->document->title = 'Faggrupper';
+        $this->template = $template;
+    }
+
+    function map($name)
+    {
+        return 'VIH_Intranet_Controller_Fag_Gruppe_Show';
+    }
+
+    function renderHtml()
+    {
+        $this->document->setTitle('Faggrupper');
         $this->document->options = array(
             $this->url('create') => 'Opret',
             $this->url('../') => 'Tilbage til fag'
@@ -15,17 +27,7 @@ class VIH_Intranet_Controller_Fag_Gruppe_Index extends k_Controller
 
         $data = array('faggrupper' => VIH_Model_Fag_Gruppe::getList());
 
-        return $this->render('VIH/Intranet/view/fag/faggrupper-tpl.php', $data);
-    }
-
- function forward($name)
-    {
-        if ($name == 'create') {
-            $next = new VIH_Intranet_Controller_Fag_Gruppe_Edit($this, $name);
-            return $next->handleRequest();
-
-        }
-        $next = new VIH_Intranet_Controller_Fag_Gruppe_Show($this, $name);
-        return $next->handleRequest();
+        $tpl = $this->template->create('fag/faggrupper');
+        $tpl->render($this, $data);
     }
 }

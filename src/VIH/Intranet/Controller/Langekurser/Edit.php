@@ -1,14 +1,21 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Edit extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Edit extends k_Component
 {
     private $form;
+
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
     function getForm()
     {
         if ($this->form) {
-            return $this->form;   
+            return $this->form;
         }
-        
+
         $date_options = array('minYear' => date('Y') - 10, 'maxYear' => date('Y') + 5);
 
         $liste_ansvarlige = array();
@@ -46,10 +53,10 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Controller
         return $this->form;
     }
 
-    function GET()
+    function renderHtml()
     {
-        if (is_numeric($this->context->name) AND $this->name == 'edit') {
-            $kursus = new VIH_Model_LangtKursus($this->context->name);
+        if (is_numeric($this->context->name()) AND $this->name() == 'edit') {
+            $kursus = new VIH_Model_LangtKursus($this->context->name());
             $defaults = array('id' => $kursus->get('id'),
                               'navn' => $kursus->get('navn'),
                               'shorturl' => $kursus->get('shorturl'),
@@ -78,16 +85,16 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Controller
             $kursus_id = 0;
             $this->getForm()->setDefaults(array('pris_tilmeldingsgebyr' => LANGEKURSER_STANDARDPRISER_TILMELDINGSGEBYR));
         }
-        
-        $this->document->title = 'Rediger kursus';
+
+        $this->document->setTitle('Rediger kursus');
         $this->document->options = array($this->url('../') => 'Luk uden at gemme');
         return $this->getForm()->toHTML();
     }
 
-    function POST()
+    function postForm()
     {
         if ($this->getForm()->validate()) {
-            $kursus = new VIH_Model_LangtKursus($this->context->name);
+            $kursus = new VIH_Model_LangtKursus($this->context->name());
             $var = $this->POST->getArrayCopy();
             $var["dato_start"] = $var["dato_start"]['Y']."-".$var["dato_start"]['M']."-".$var["dato_start"]['d'];
             $var["dato_slut"] = $var["dato_slut"]['Y']."-".$var["dato_slut"]['M']."-".$var["dato_slut"]['d'];
@@ -95,10 +102,10 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Controller
             $var['beskrivelse'] = vih_handle_microsoft($var['beskrivelse']);
             $var['title'] = vih_handle_microsoft($var['title']);
             if (!isset($var['published'])) {
-                $var['published'] = 0;   
+                $var['published'] = 0;
             }
             if ($id = $kursus->save($var)) {
-                throw new k_http_Redirect($this->url('../'));
+                throw new k_SeeOther($this->url('../'));
             }
         }
     }

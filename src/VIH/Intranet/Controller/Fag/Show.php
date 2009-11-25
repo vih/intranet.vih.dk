@@ -1,35 +1,31 @@
 <?php
-class VIH_Intranet_Controller_Fag_Show extends k_Controller
+class VIH_Intranet_Controller_Fag_Show extends k_Component
 {
     public $map = array('edit' => 'VIH_Intranet_Controller_Fag_Edit',
                         'delete' => 'VIH_Intranet_Controller_Fag_Delete');
 
     private $form;
+    private $db;
 
-
-    function getForm()
+    function __construct(DB $db)
     {
-        if ($this->form) {
-            return $this->form;
-        }
-
-        $form = new HTML_QuickForm('fag', 'POST', $this->url());
-        $form->addElement('file', 'userfile', 'Fil');
-        $form->addElement('submit', null, 'Upload');
-
-        return ($this->form = $form);
-
+        $this->db = $db;
     }
 
-    function GET()
+    function map($name)
     {
-        $db = $this->registry->get('database:pear');
+        return $this->map[$name];
+    }
+
+    function renderHtml()
+    {
+        $db = $this->db;
 
         if (!empty($_GET['sletbillede']) AND is_numeric($_GET['sletbillede'])) {
             $fields = array('date_updated', 'pic_id');
             $values = array('NOW()', 0);
 
-            $sth = $db->autoPrepare('langtkursus_fag', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $this->name);
+            $sth = $db->autoPrepare('langtkursus_fag', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $this->name());
             $res = $db->execute($sth, $values);
 
             if (PEAR::isError($res)) {
@@ -37,7 +33,7 @@ class VIH_Intranet_Controller_Fag_Show extends k_Controller
             }
         }
 
-        $fag = new VIH_Model_Fag($this->name);
+        $fag = new VIH_Model_Fag($this->name());
 
         $file = new VIH_FileHandler($fag->get('pic_id'));
         if ($file->get('id') > 0) {
@@ -51,7 +47,7 @@ class VIH_Intranet_Controller_Fag_Show extends k_Controller
             $extra_html = $this->getForm()->toHTML();
         }
 
-        $this->document->title = 'Fag: ' . $fag->get('navn');
+        $this->document->setTitle('Fag: ' . $fag->get('navn'));
         $this->document->options = array($this->url('/langekurser') => 'Kurser',
                                          $this->context->url() => 'Fagoversigt',
                                          $this->url('edit') => 'Ret');
@@ -59,37 +55,37 @@ class VIH_Intranet_Controller_Fag_Show extends k_Controller
         return '<div>'.vih_autoop($fag->get('beskrivelse')).'</div>' . $extra_html;
     }
 
-    function POST()
+    function postForm()
     {
-        $db = $this->registry->get('database:pear');
+        $db = $this->db;
         if ($this->getForm()->validate()) {
             $file = new VIH_FileHandler;
             if($file->upload('userfile')) {
                 $fields = array('date_updated', 'pic_id');
                 $values = array('NOW()', $file->get('id'));
-                $sth = $db->autoPrepare('langtkursus_fag', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $this->name);
+                $sth = $db->autoPrepare('langtkursus_fag', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $this->name());
                 $res = $db->execute($sth, $values);
 
                 if (PEAR::isError($res)) {
                     echo $res->getMessage();
                 }
 
-                throw new k_http_Redirect($this->url());
+                throw new k_SeeOther($this->url());
             }
         }
 
     }
 
-    function forward($name)
+    function getForm()
     {
-        if ($name == 'edit') {
-            $next = new VIH_Intranet_Controller_Fag_Edit($this, $name);
-            return $next->handleRequest();
-        } elseif ($name == 'delete') {
-            $next = new VIH_Intranet_Controller_Fag_Delete($this, $name);
-            return $next->handleRequest();
-        } else {
-            return self::GET();
+        if ($this->form) {
+            return $this->form;
         }
+
+        $form = new HTML_QuickForm('fag', 'POST', $this->url());
+        $form->addElement('file', 'userfile', 'Fil');
+        $form->addElement('submit', null, 'Upload');
+
+        return ($this->form = $form);
     }
 }

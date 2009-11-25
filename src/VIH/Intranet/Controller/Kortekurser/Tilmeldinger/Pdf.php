@@ -1,14 +1,14 @@
 <?php
 require_once 'fpdf/fpdf.php';
 
-class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Pdf extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Pdf extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
         return 'pdf';
     }
 
-    function forward($name) {
+    function map($name) {
         $data = file_get_contents(dirname(__FILE__) . '/udsendte_pdf/' . $name);
 
         $response = new k_http_Response(200, $data);

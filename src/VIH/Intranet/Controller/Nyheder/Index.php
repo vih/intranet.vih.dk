@@ -1,11 +1,16 @@
 <?php
-class VIH_Intranet_Controller_Nyheder_Index extends k_Controller
+class VIH_Intranet_Controller_Nyheder_Index extends k_Component
 {
     public $map = array('create' => 'vih_intranet_controller_news_edit');
+    protected $template;
 
-    function GET()
+    function __construct(k_TemplateFactory $template)
     {
-        $this->document->title = 'Nyheder';
+        $this->template = $template;
+    }
+    function renderHtml()
+    {
+        $this->document->setTitle('Nyheder');
         $this->document->options = array($this->url('create') => 'Opret');
 
         $data = array('nyheder' => VIH_News::getList('', 100));
@@ -14,13 +19,11 @@ class VIH_Intranet_Controller_Nyheder_Index extends k_Controller
 
     }
 
-    function forward($name)
+    function map($name)
     {
         if ($name == 'create') {
-            $next = new VIH_Intranet_Controller_Nyheder_Edit($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Nyheder_Edit';
         }
-        $next = new VIH_Intranet_Controller_Nyheder_Show($this, $name);
-        return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Nyheder_Show';
     }
 }

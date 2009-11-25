@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title><?php e($title); ?></title>
+        <title><?php e($context->document()->title()); ?></title>
         <meta http-equiv="content-type" content="text/html; charset=<?php e($encoding); ?>" />
         <style type="text/css">
             html {
@@ -254,7 +254,7 @@
             }
 
         </style>
-        <?php foreach ($this->document->scripts as $script): ?>
+        <?php foreach ($context->document()->scripts() as $script): ?>
             <script type="text/javascript" src="<?php echo $script; ?>"></script>
         <?php endforeach; ?>
 
@@ -266,15 +266,15 @@
             <h1 id="branding">Vejle Idrætshøjskoles Intranet</h1>
 
             <ul id="navigation-main">
-                <?php foreach($this->document->navigation as $url => $name): ?>
+                <?php foreach($context->document()->navigation() as $url => $name): ?>
                 <li><a href="<?php e($url); ?>"><?php e($name); ?></a></li>
                 <?php endforeach; ?>
             </ul>
 
             <div id="content">
-                <h1><?php e($this->document->title); ?> <span><?php e($this->document->help); ?></span></h1>
+                <h1><?php e($context->document()->title()); ?> <span><?php e($this->document->help); ?></span></h1>
                 <ul id="navigation-sub">
-                    <?php foreach($this->document->options as $url => $name): ?>
+                    <?php foreach($context->document()->options() as $url => $name): ?>
                     <li><a href="<?php e($url); ?>"><?php e($name); ?></a></li>
                     <?php endforeach; ?>
                 </ul>

@@ -2,13 +2,21 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_Fotogalleri_Index extends k_Controller
+class VIH_Intranet_Controller_Fotogalleri_Index extends k_Component
 {
     public $map = array('create' => 'VIH_Intranet_Controller_Fotogalleri_Edit',);
 
-    function GET()
+    private $db;
+    protected $template;
+    function __construct(MDB2_Driver_Common $db, k_TemplateFactory $template)
     {
-        $db = $this->registry->get('database:mdb2');
+        $this->db = $db;
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $db = $this->db;
 
         $result = $db->query('SELECT id, description, DATE_FORMAT(date_created, "%d-%m-%Y") AS dk_date_created, active FROM fotogalleri ORDER BY date_created DESC');
         if (PEAR::isError($result)) {
@@ -33,7 +41,7 @@ class VIH_Intranet_Controller_Fotogalleri_Index extends k_Controller
 
         }
 
-        $this->document->title = 'Fotogalleri';
+        $this->document->setTitle('Fotogalleri');
         $this->document->options = array($this->url('create') => 'Tilføj');
 
         return '<h2>Gallerier</h2>
@@ -41,14 +49,8 @@ class VIH_Intranet_Controller_Fotogalleri_Index extends k_Controller
 
     }
 
-    function forward($name)
+    function map($name)
     {
-        if ($name == 'create') {
-            $next = new VIH_Intranet_Controller_Fotogalleri_Edit($this, $name);
-            return $next->handleRequest();
-        }
-
-        $next = new VIH_Intranet_Controller_Fotogalleri_Show($this, $name);
-        return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Fotogalleri_Show';
     }
 }

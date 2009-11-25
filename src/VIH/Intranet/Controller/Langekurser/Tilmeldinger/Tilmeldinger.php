@@ -1,16 +1,23 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Component
 {
-    function GET()
+     protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+    function renderHtml()
     {
         if ($this->GET['format'] == 'excel') {
             return $this->excel();
         }
 
-        $kursus = new VIH_Model_LangtKursus($this->context->name);
+        $kursus = new VIH_Model_LangtKursus($this->context->name());
         $tilmeldinger = $kursus->getTilmeldinger();
 
-        $this->document->title = 'Tilmeldinger til ' . $kursus->getKursusNavn();
+        $this->document->setTitle('Tilmeldinger til ' . $kursus->getKursusNavn());
         $this->document->options = array($this->url('/langekurser') => 'Alle kurser');
 
         $data = array('tilmeldinger' => $tilmeldinger,
@@ -20,15 +27,14 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Co
 
     }
 
-    function forward($name)
+    function map($name)
     {
-        $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show($this, $name);
-        return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show';
     }
 
     function getKursus()
     {
-        return new VIH_Model_LangtKursus((int)$this->context->name);
+        return new VIH_Model_LangtKursus((int)$this->context->name());
     }
 
     function excel()

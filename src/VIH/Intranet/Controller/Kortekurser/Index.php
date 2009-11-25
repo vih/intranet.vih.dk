@@ -1,7 +1,13 @@
 <?php
-class VIH_Intranet_Controller_Kortekurser_Index extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Index extends k_Component
 {
     private $form;
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
     function getForm()
     {
@@ -16,16 +22,19 @@ class VIH_Intranet_Controller_Kortekurser_Index extends k_Controller
 
     function getContent($kurser)
     {
-        $this->document->title = 'Korte kurser';
+        $this->document->setTitle('Korte kurser');
         $this->document->options = array($this->url('create') => 'Opret');
 
         $data = array('caption' => 'Korte kurser',
                       'kurser' => $kurser);
 
-        return $this->getForm()->toHTML() . $this->render('VIH/Intranet/view/kortekurser/kurser-tpl.php', $data);
+        $tpl = $this->template->create('kortekurser/kurser');
+
+
+        return $this->getForm()->toHTML() . $tpl->render($this, $data);
     }
 
-    function GET()
+    function renderHtml()
     {
         if ($this->getForm()->validate()) {
             if ($this->getForm()->exportValue('filter') == 'old') {
@@ -42,17 +51,14 @@ class VIH_Intranet_Controller_Kortekurser_Index extends k_Controller
         return $this->getContent($kurser);
     }
 
-    function forward($name)
+    function map($name)
     {
         if ($name == 'tilmeldinger') {
-            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index';
         } elseif ($name == 'create') {
-            $next = new VIH_Intranet_Controller_Kortekurser_Edit($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Kortekurser_Edit';
         }
 
-        $next = new VIH_Intranet_Controller_Kortekurser_Kursus($this, $name);
-        return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Kortekurser_Kursus';
     }
 }

@@ -1,8 +1,13 @@
 <?php
-class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index extends k_Component
 {
     private $form;
+    protected $template;
 
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
     function getForm()
     {
         if ($this->form) {
@@ -16,23 +21,24 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index extends k_Controlle
 
     function getContent($tilmeldinger)
     {
-        $this->document->title = 'Korte kurser';
+        $this->document->setTitle('Korte kurser');
         $this->document->options = array($this->url('/kortekurser/') => 'Se de korte kurser',
                                          $this->url('restance') => 'Se liste over folk i restance');
 
         $data = array('caption' => '5 nyeste tilmeldinger',
                       'tilmeldinger' => $tilmeldinger);
 
-        return $this->render('VIH/Intranet/view/kortekurser/tilmeldinger-tpl.php', $data) . $this->getForm()->toHTML();
+        $tpl = $this->template->create('kortekurser/tilmeldinger');
+        return $tpl->render($this, $data);
     }
 
-    function GET()
+    function renderHtml()
     {
         $tilmeldinger = VIH_Model_KortKursus_Tilmelding::getList();
         return $this->getContent($tilmeldinger);
     }
 
-    function POST()
+    function postForm()
     {
         if ($this->getForm()->validate()) {
             $tilmeldinger = VIH_Model_KortKursus_Tilmelding::search($this->POST['search']);
@@ -42,17 +48,14 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index extends k_Controlle
         }
     }
 
-    function forward($name)
+    function map($name)
     {
         if ($name == 'udsendte_pdf') {
-            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Pdf($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Pdf';
         } elseif ($name == 'restance') {
-            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Restance($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Restance';
         }
-        $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show($this, $name);
-        return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show';
     }
 
 }

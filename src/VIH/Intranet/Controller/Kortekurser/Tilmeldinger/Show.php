@@ -1,9 +1,17 @@
 <?php
-class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
 {
-    function GET()
+    private $template;
+    protected $templates;
+
+    function __construct(Template $template, k_TemplateFactory $templates)
     {
-        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->name);
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->name());
 
         if (isset($this->GET['sletdeltager']) AND is_numeric($this->GET['sletdeltager'])) {
             $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $this->GET['sletdeltager']);
@@ -31,7 +39,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Controller
         if(!empty($this->GET['registrer_betaling'])) {
             if($betalinger->save(array('type' => 'giro', 'amount' => $_GET['beloeb']))) {
                 $betalinger->setStatus('approved');
-                throw new k_http_Redirect($this->url());
+                throw new k_SeeOther($this->url());
             } else {
                 throw new Exception("Betalingen kunne ikke gemmes. Det kan skyldes et ugyldigt beløb");
             }
@@ -39,9 +47,9 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Controller
 
         $tilmelding->loadBetaling();
 
-        $this->document->title = 'Tilmelding #' . $tilmelding->getId();
+        $this->document->setTitle('Tilmelding #' . $tilmelding->getId());
 
-        $tilm_tpl = $this->registry->get('template');
+        $tilm_tpl = $this->template;
         $tilm_data = array('message', '');
         if(isset($this->GET['download_file']) && $this->GET['download_file'] != "") {
             $tilm_tpl->set('message', '
@@ -59,12 +67,12 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Controller
         $historik = array('historik' => $historik->getList(),
         				  'tilmelding' => $tilmelding);
 
-        $betaling_tpl = $this->registry->get('template');
+        $betaling_tpl = $this->template;
         $betaling_tpl->set('caption', 'Afventende betalinger');
         $betaling_tpl->set('betalinger', $betalinger->getList('not_approved'));
         $betaling_tpl->set('msg_ingen', 'Der er ingen afventende betalinger.');
 
-        $prisoversigt_tpl = $this->registry->get('template');
+        $prisoversigt_tpl = $this->template;
         $prisoversigt_tpl->set('tilmelding', $tilmelding);
 
 
@@ -87,27 +95,19 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Controller
 
     }
 
-    function POST()
+    function postForm()
     {
-        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->name);
+        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->name());
         if(!empty($_POST['annuller_tilmelding'])) {
             $tilmelding->setStatus("annulleret");
         }
-        throw new k_http_Redirect($this->url());
+        throw new k_SeeOther($this->url());
     }
 
-    function forward($name)
+    function map($name)
     {
-        if ($name == 'edit') {
-            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit($this, $name);
-            return $next->handleRequest();
-        } elseif ($name == 'delete') {
-            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Delete($this, $name);
-            return $next->handleRequest();
-        } elseif ($name == 'sendbrev') {
-            $next = new VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev($this, $name);
-            return $next->handleRequest();
+        if ($name == 'sendbrev') {
+            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev';
         }
     }
 }
-?>

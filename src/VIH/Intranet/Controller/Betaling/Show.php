@@ -1,22 +1,27 @@
 <?php
-class VIH_Intranet_Controller_Betaling_Show extends k_Controller
+class VIH_Intranet_Controller_Betaling_Show extends k_Component
 {
     public $map = array('capture' => 'VIH_Intranet_Controller_Betaling_Capture',
                         'reverse' => 'VIH_Intranet_Controller_Betaling_Reverse');
 
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        return $this->name;
+        $this->template = $template;
     }
 
-    function forward($name)
+    function renderHtml()
+    {
+        return $this->name();
+    }
+
+    function map($name)
     {
         if ($name == 'capture') {
-            $next = new VIH_Intranet_Controller_Betaling_Capture($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Betaling_Capture';
         } elseif ($name == 'reverse') {
-            $next = new VIH_Intranet_Controller_Betaling_Reverse($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Betaling_Reverse';
         }
     }
 }

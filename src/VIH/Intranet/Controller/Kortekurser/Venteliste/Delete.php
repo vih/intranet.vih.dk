@@ -1,13 +1,13 @@
 <?php
-class VIH_Intranet_Controller_Kortekurser_Venteliste_Delete extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Venteliste_Delete extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
-        $venteliste = new VIH_Model_Venteliste(1, (int)$this->context->getKursusId(), $this->context->name);
+        $venteliste = new VIH_Model_Venteliste(1, (int)$this->context->getKursusId(), $this->context->name());
         if (!$venteliste->delete()) {
             throw new Exeption('Kunne ikke slette ventelisten');
         } else {
-            throw new k_http_Redirect($this->context->url('../'));
+            throw new k_SeeOther($this->context->url('../'));
         }
 
     }

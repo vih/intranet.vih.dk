@@ -6,17 +6,168 @@ set_include_path(PATH_INCLUDE);
 require_once 'VIH/errorhandler.php';
 set_error_handler('vih_error_handler');
 
-require_once 'k.php';
 require_once 'Ilib/ClassLoader.php';
 require_once 'VIH/functions.php';
 require_once 'VIH/configuration.php';
 require_once('Doctrine/lib/Doctrine.php');
 spl_autoload_register(array('Doctrine', 'autoload'));
 
-if (!defined('DB_DSN')) {
-    define('DB_DSN', 'mysql://' . DB_USER . ':' . DB_PASSWORD . '@' . DB_HOST . '/' . DB_NAME);
+require_once 'konstrukt/konstrukt.inc.php';
+require_once 'lib/bucket.inc.php';
+
+class k_SessionIdentityLoader implements k_IdentityLoader {
+  function load(k_Context $context) {
+    if ($context->session('identity')) {
+      return $context->session('identity');
+    }
+    return new k_Anonymous();
+  }
 }
 
+class NotAuthorizedComponent extends k_Component {
+  function dispatch() {
+    // redirect to login-page
+    return new k_TemporaryRedirect($this->url('/login', array('continue' => $this->requestUri())));
+  }
+}
+
+class Login extends k_Component {
+  function execute() {
+    $this->url_state->init("continue", $this->url('/'));
+    return parent::execute();
+  }
+  function renderHtml() {
+    $response = new k_HtmlResponse(
+      "<html><head><title>Authentication required</title></head><body><form method='post' action='" . htmlspecialchars($this->url()) . "'>
+  <h1>Authentication required</h1>
+  <p>
+    <label>
+      username:
+      <input type='text' name='username' />
+    </label>
+  </p>
+  <p>
+    <label>
+      password:
+      <input type='password' name='password' />
+    </label>
+  </p>
+  <p>
+    <input type='submit' value='Login' />
+  </p>
+</form></body></html>");
+    $response->setStatus(401);
+    return $response;
+  }
+  function postForm() {
+    $user = $this->selectUser($this->body('username'), $this->body('password'));
+    if ($user) {
+      $this->session()->set('identity', $user);
+      return new k_SeeOther($this->query('continue'));
+    }
+    return $this->render();
+  }
+  protected function selectUser($username, $password) {
+    $users = array(
+      'vih' => 'vih'
+    );
+    if (isset($users[$username]) && $users[$username] == $password) {
+      return new k_AuthenticatedUser($username);
+    }
+  }
+}
+
+class Logout extends k_Component {
+  function execute() {
+    $this->url_state->init("continue", $this->url('/'));
+    return parent::execute();
+  }
+  function postForm() {
+    $this->session()->set('identity', null);
+    return new k_SeeOther($this->query('continue'));
+  }
+}
+
+class Root extends k_Component {
+    private $template;
+  function __construct(k_TemplateFactory $template)
+  {
+      $this->template = $template;
+  }
+
+  protected function map($name) {
+    switch ($name) {
+    case 'restricted':
+      return 'VIH_Intranet_Controller_Index';
+    case 'login':
+      return 'Login';
+    case 'logout':
+      return 'Logout';
+    }
+  }
+    function document()
+    {
+        return $this->document;
+    }
+
+  function execute() {
+    return $this->wrap(parent::execute());
+  }
+  function wrapHtml($content) {
+        $this->document->navigation = array(
+            $this->url('/restricted/nyheder') => 'Nyheder',
+            $this->url('/restricted/langekurser/tilmeldinger')  => 'Lange kurser',
+            $this->url('/restricted/kortekurser/tilmeldinger')  => 'Korte kurser',
+            $this->url('/restricted/betaling') => 'Betalinger',
+            $this->url('/restricted/materialebestilling')  => 'Brochurebestilling',
+            $this->url('/restricted/ansatte')  => 'Ansatte',
+            $this->url('/restricted/faciliteter')  => 'Faciliteter',
+            $this->url('/restricted/filemanager') => 'Dokumenter',
+            $this->url('/restricted/fotogalleri')  => 'Højdepunkter',
+            $this->url('/restricted/logout')  => 'Logout');
+
+      $tpl = $this->template->create('main');
+      return $tpl->render($this, array('content' => $content));
+  }
+  function renderHtml() {
+    return sprintf(
+      "<p>Vejle Idrætshøjskoles intranet er blevet opdateret. Klik på <a href='%s'>restricted</a> for at logge ind. Brugernavnet er det samme som du plejer at bruge som password.</p>",
+      htmlspecialchars($this->url('restricted')));
+  }
+}
+
+$factory = new VIH_Intranet_Factory();
+$container = new bucket_Container($factory);
+
+class VIH_Document extends k_Document
+{
+    public $options;
+    public $navigation;
+
+    function navigation()
+    {
+        return $this->navigation;
+    }
+
+    function options()
+    {
+        if (empty($this->options)) return array();
+        return $this->options;
+    }
+}
+
+if (realpath($_SERVER['SCRIPT_FILENAME']) == __FILE__) {
+  $components = new k_InjectorAdapter($container, new VIH_Document);
+  $components->setImplementation('k_DefaultNotAuthorizedComponent', 'NotAuthorizedComponent');
+  $identity_loader = new k_SessionIdentityLoader();
+  k()
+    ->setComponentCreator($components)
+    ->setIdentityLoader($identity_loader)
+    ->run('Root')
+    ->out();
+}
+
+/*
 $application = new VIH_Intranet_Controller_Root();
 
 $application->registry->registerConstructor('database', create_function(
@@ -94,3 +245,4 @@ $application->registry->registerConstructor('intraface:filehandler:gateway', cre
 
 
 $application->dispatch();
+*/

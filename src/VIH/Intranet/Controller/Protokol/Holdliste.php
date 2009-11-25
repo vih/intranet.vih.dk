@@ -1,7 +1,17 @@
 <?php
-class VIH_Intranet_Controller_Protokol_Holdliste extends k_Controller
+class VIH_Intranet_Controller_Protokol_Holdliste extends k_Component
 {
     private $form;
+
+    private $db;
+    protected $template;
+
+    function __construct(DB_Sql $db, k_TemplateFactory $template)
+    {
+        $this->db = $db;
+        $this->template = $template;
+    }
+
 
     static public function getTypeKeys()
     {
@@ -27,7 +37,7 @@ class VIH_Intranet_Controller_Protokol_Holdliste extends k_Controller
         return ($this->form = $form);
     }
 
-    function GET()
+    function renderHtml()
     {
         $date = date('Y-m-d');
         if (!empty($this->GET['date'])) {
@@ -37,7 +47,7 @@ class VIH_Intranet_Controller_Protokol_Holdliste extends k_Controller
         $this->getForm()->setDefaults(array('date' => $date));
 
 
-        $db = $this->registry->get('database:db_sql');
+        $db = $this->db;
         $db->query("SELECT tilmelding.id, tilmelding.dato_slut
             FROM langtkursus_tilmelding tilmelding
                 INNER JOIN langtkursus ON langtkursus.id = tilmelding.kursus_id
@@ -56,19 +66,18 @@ class VIH_Intranet_Controller_Protokol_Holdliste extends k_Controller
 
         $data = array('elever' => $list);
 
-        $this->document->title = 'Holdliste';
+        $this->document->setTitle('Holdliste');
         $this->document->options = array(
             $this->url('../') => 'Protokol'
-        ); 
+        );
 
         return $this->getForm()->toHTML().'
             <p>Antal elever: ' . $db->numRows() . '</p>'
             . $this->render('VIH/Intranet/view/protokol/holdliste-tpl.php', $data);
     }
 
-    function forward($name)
+    function map($name)
     {
-            $next = new VIH_Intranet_Controller_Protokol_Elev($this, $name);
-            return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Protokol_Elev';
     }
 }

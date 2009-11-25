@@ -146,10 +146,10 @@ class Calendar_Render_MonthlyAgenda_HTML
     }
 }
 
-class VIH_Intranet_Controller_Calendar_Index extends k_Controller
+class VIH_Intranet_Controller_Calendar_Index extends k_Component
 {
     private $form;
-    
+
     function getForm()
     {
         if ($this->form) return $this->form;
@@ -162,8 +162,8 @@ class VIH_Intranet_Controller_Calendar_Index extends k_Controller
 
         return ($this->form = $form);
     }
-    
-    function GET()
+
+    function renderHtml()
     {
         // Calendar instance used to get the dates in the preferred format:
         // you can switch Calendar Engine and the example still works
@@ -172,8 +172,8 @@ class VIH_Intranet_Controller_Calendar_Index extends k_Controller
         //$ical->parse('c:/Users/Lars Olesen/Desktop/basic.ics');
         $ical->parseUrl('http://www.google.com/calendar/ical/scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com/public/basic.ics');
 
-        $this->document->title = utf8_decode($ical->getCalendarName());
-        $this->document->options = array($this->url('http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com') => 'Google kalenderen'); 
+        $this->document->setTitle(utf8_decode($ical->getCalendarName()));
+        $this->document->options = array($this->url('http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com') => 'Google kalenderen');
 
         $events = array();
         foreach ($ical->getSortEventList() as $event) {

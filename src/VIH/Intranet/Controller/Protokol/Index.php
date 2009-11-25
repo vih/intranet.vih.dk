@@ -2,13 +2,18 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_Protokol_Index extends k_Controller
+class VIH_Intranet_Controller_Protokol_Index extends k_Component
 {
     public $map = array('holdliste' => 'VIH_Intranet_Controller_Protokol_Holdliste',
                         'elev'      => 'VIH_Intranet_Controller_Protokol_Elev',
                         'indtast'   => 'VIH_Intranet_Controller_Protokol_Indtast');
     private $form;
+    protected $template;
 
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
     function getTypeKeys()
     {
         return        $type_key = array(1 => 'fri', // fri
@@ -22,7 +27,7 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Controller
 
     }
 
-    function POST()
+    function postForm()
     {
 
     }
@@ -41,11 +46,19 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Controller
         return ($this->form = $form);
     }
 
-    function GET()
+    private $db;
+
+    function __construct(DB $db)
+    {
+        $this->db = $db;
+    }
+
+
+    function renderHtml()
     {
         $type_key = $this->getTypeKeys();
 
-        $db = $this->registry->get('database:pear');
+        $db = $this->db;
 
         if ($this->getForm()->validate()) {
             $date = $this->getForm()->exportValue('date');
@@ -75,7 +88,7 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Controller
             die($res->getMessage());
         }
 
-        $this->document->title = 'Protokol';
+        $this->document->setTitle('Protokol');
 
         $list = array('vis_navn' => 'true', 'items' => $res, 'type_key' => $type_key);
 
@@ -129,7 +142,7 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Controller
         $list .= '</ul>';
         */
 
-        $this->document->title = 'Protokol';
+        $this->document->setTitle('Protokol');
         $this->document->options = array($this->url('holdliste') => 'Holdliste');
 
         return '<h2>Fraværende</h2>

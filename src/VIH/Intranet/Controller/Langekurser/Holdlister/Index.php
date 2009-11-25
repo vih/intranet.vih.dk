@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Component
 {
     private $form;
 
@@ -15,7 +15,7 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Controller
         return ($this->form = $form);
     }
 
-    function GET()
+    function renderHtml()
     {
         $date = date('Y-m-d');
         if (!empty($this->GET['date'])) {
@@ -28,7 +28,7 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Controller
 
         // find alle registrations der er på skolen på en given dato
         // tjek hvilke fag de har hver især
-        
+
         $db = new DB_Sql();
         $db->query("SELECT DISTINCT(fag.id)
             FROM langtkursus_tilmelding tilmelding
@@ -59,7 +59,7 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Controller
 
         $data = array('fag' => $list, 'date' => $date);
 
-        $this->document->title = 'Holdlister';
+        $this->document->setTitle('Holdlister');
 
         return $this->getForm()->toHTML() . $this->render('VIH/Intranet/view/holdlister/holdlister-tpl.php', $data);
     }
@@ -111,9 +111,8 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Controller
         return $result->numRows();
     }
 
-    function forward($name)
+    function map($name)
     {
-        $next = new VIH_Intranet_Controller_Langekurser_Holdlister_Show($this, $name);
-        return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Langekurser_Holdlister_Show'';
     }
 }

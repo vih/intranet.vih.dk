@@ -28,11 +28,18 @@ class B_FPDF extends FPDF {
 }
 
 
-class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name);
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
         $tilmelding->loadBetaling();
         $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
         $betalinger = new VIH_Model_Betaling('langekurser', $tilmelding->get("id"));
@@ -277,7 +284,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Controller
         if(isset($this->GET['send_pdf'])) {
             $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
             $historik->save(array('type' => 'betalingsopgørelse', 'comment' => "Sendt via post"));
-            throw new k_http_Redirect($this->context->url(null, array('download_file' => urlencode($this->url(null, array('create' => 'pdf'))))));
+            throw new k_SeeOther($this->context->url(null, array('download_file' => urlencode($this->url(null, array('create' => 'pdf'))))));
         }
 
         $opl_data = array('caption' => 'Tilmeldingsoplysninger',
@@ -292,7 +299,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Controller
                             'msg_ingen' => '<h2>Betalinger</h2><p>Der er endnu ikke foretaget nogen betalinger.</p>');
 
 
-        $this->document->title = 'Betalingsoversigt';
+        $this->document->setTitle('Betalingsoversigt');
 
         if ($tilmelding->antalRater() > 0 AND $tilmelding->rateDifference() > 0) {
             return '

@@ -1,11 +1,11 @@
 <?php
-class VIH_Intranet_Controller_Nyheder_Delete extends k_Controller
+class VIH_Intranet_Controller_Nyheder_Delete extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
-        $nyhed= new VIH_News($this->context->name);
+        $nyhed= new VIH_News($this->context->name());
         if ($nyhed->delete()) {
-            throw new k_http_Redirect($this->context->url('../'));
+            throw new k_SeeOther($this->context->url('../'));
         }
     }
 

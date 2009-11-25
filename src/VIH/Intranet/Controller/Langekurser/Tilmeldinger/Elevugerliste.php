@@ -1,14 +1,18 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Elevugerliste extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Elevugerliste extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $kursus = new VIH_Model_LangtKursus($this->context->name);
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $kursus = new VIH_Model_LangtKursus($this->context->name());
 
         $data = array('kursus' => $kursus, 'tilmeldinger' => $kursus->getTilmeldinger());
         return $this->render('VIH/Intranet/view/langekurser/elevuger.tpl.php', $data);
     }
 }
-
-
-?>

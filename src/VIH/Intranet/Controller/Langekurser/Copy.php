@@ -1,11 +1,11 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Copy extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Copy extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
-        $kursus = new VIH_Model_LangtKursus($this->context->name);
+        $kursus = new VIH_Model_LangtKursus($this->context->name());
         if ($id = $kursus->copy()) {
-            throw new k_http_Redirect($this->context->url('../' . $id));
+            throw new k_SeeOther($this->context->url('../' . $id));
         }
     }
 }

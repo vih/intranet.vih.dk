@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Component
 {
     private $form;
 
@@ -15,7 +15,7 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Controller
         return ($this->form = $form);
     }
 
-    function GET()
+    function renderHtml()
     {
         if (1==2 AND !empty($this->GET['date']['Y'])) {
             $date = $this->GET['date']['Y'] . '-' . $this->GET['date']['M'] . '-' .$this->GET['date']['d'];
@@ -42,7 +42,7 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Controller
                 (
                     (tilmelding.dato_start <= '$date' AND tilmelding.dato_slut >= '$date')
                 OR (tilmelding.dato_slut = '0000-00-00' AND langtkursus.dato_start <= '$date' AND langtkursus.dato_slut >= '$date'))
-                AND tilmelding.active = 1 AND x_fag.fag_id = ".$this->name." AND (periode.date_start <= '$date' AND periode.date_end >= '$date')
+                AND tilmelding.active = 1 AND x_fag.fag_id = ".$this->name()." AND (periode.date_start <= '$date' AND periode.date_end >= '$date')
                 AND (periode.date_start <= '$date' AND periode.date_end >= '$date' AND x_fag.periode_id = periode.id)
             ORDER BY x_fag.hold ASC, adresse.fornavn ASC");
 
@@ -53,7 +53,7 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Controller
             $list[$db->f('id')]->value['hold_id'] = (int)$db->f('hold_id');
         }
 
-        $fag = new VIH_Model_Fag($this->name);
+        $fag = new VIH_Model_Fag($this->name());
 
         // skal hente holdnumrene for den pågældende tilmelding
         $data = array('tilmeldinger' => $list);
@@ -61,12 +61,12 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Controller
         // $this->getForm()->toHTML()
         // echo $date;
 
-        $this->document->title = $fag->get('navn');
+        $this->document->setTitle($fag->get('navn'));
 
         return '<p>'.count($list).'</p>' . $date . $this->render('VIH/Intranet/view/holdlister/holdliste-tpl.php', $data);
     }
 
-    function POST()
+    function postForm()
     {
         $db = new DB_Sql();
         foreach ($this->POST AS $key=>$value) {
@@ -76,7 +76,7 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Controller
             }
         }
 
-        throw new k_http_Redirect($this->url());
+        throw new k_SeeOther($this->url());
 
     }
 }

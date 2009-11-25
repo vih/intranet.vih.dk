@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Periode_Create extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Periode_Create extends k_Component
 {
     function __construct(k_iContext $parent, $name = '')
     {
@@ -45,6 +45,6 @@ class VIH_Intranet_Controller_Langekurser_Periode_Create extends k_Controller
         //    throw new Exception('insert failed');
         //}
         // It would be proper REST to reply with 201, but browsers doesn't understand that
-        throw new k_http_Redirect($this->context->url());
+        throw new k_SeeOther($this->context->url());
     }
 }

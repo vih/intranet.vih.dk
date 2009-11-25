@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create extends k_Component
 {
     function __construct(k_iContext $parent, $name = '')
     {
@@ -43,6 +43,6 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create extends k_Con
             throw $e;
         }
 
-        throw new k_http_Redirect($this->context->url());
+        throw new k_SeeOther($this->context->url());
     }
 }

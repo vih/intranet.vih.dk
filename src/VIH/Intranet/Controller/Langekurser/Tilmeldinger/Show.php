@@ -1,17 +1,26 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
 {
-    function GET()
+    private $template;
+    protected $templates;
+
+        function __construct(Template $template, k_TemplateFactory $templates)
+    {
+        $this->template = $template;
+        $this->templates = $templates;
+    }
+
+    function renderHtml()
     {
         if (!empty ($this->GET['get_prices']) AND $this->GET['get_prices']) {
             $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->GET['get_prices']);
             if (!$tilmelding->getPriserFromKursus()) {
                 throw new Exception('Tilmeldingen kunne ikke slettes');
             } else {
-                throw new k_http_Redirect($this->url());
+                throw new k_SeeOther($this->url());
             }
         }
-        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->name);
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->name());
         if ($tilmelding->get('id') == 0) {
             throw new k_http_Response(404);
         }
@@ -33,7 +42,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Controller
             if (!$tilmelding->opretRater()) {
                 throw new Exception('Raterne kunne ikke oprettes');
             } else {
-                throw new k_http_Redirect($this->url());
+                throw new k_SeeOther($this->url());
             }
         } elseif(!empty($this->GET['registrer_betaling'])) {
             if($betalinger->save(array('type' => 'giro', 'amount' => $this->GET['beloeb']))) {
@@ -48,7 +57,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Controller
 
         $tilmelding->loadBetaling();
 
-        $this->document->title = 'Tilmelding';
+        $this->document->setTitle('Tilmelding');
 
         $opl_data = array('tilmelding' => $tilmelding);
 
@@ -68,7 +77,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Controller
 
         // rater
         if (count($rater) > 0) {
-            $rater_tpl = $this->registry->get('template');
+            $rater_tpl = $this->template;
             $rater_tpl->set('tilmelding', $tilmelding);
             $data['rater'] = $rater_tpl->fetch('langekurser/tilmelding/rater-tpl.php');
         } else {
@@ -93,26 +102,20 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Controller
 
     }
 
-    function forward($name)
+    function map($name)
     {
         if ($name == 'rater') {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater';
         } elseif ($name == 'fag') {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag';
         } elseif ($name == 'brev') {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev';
         } elseif ($name == 'diplom') {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom';
         } elseif ($name == 'edit') {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit';
         } elseif ($name == 'delete') {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Delete($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Delete';
         }
     }
 }

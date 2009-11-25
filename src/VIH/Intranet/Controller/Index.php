@@ -2,9 +2,46 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_Index extends k_Controller
+class VIH_Intranet_Controller_Index extends k_Component
 {
-    function GET()
+    protected $map = array(
+    					'admin'               => 'VIH_Intranet_Controller_Index',
+                        'login'               => 'VIH_Intranet_Controller_Login',
+                        'logout'              => 'VIH_Intranet_Controller_Logout',
+                        'langekurser'         => 'VIH_Intranet_Controller_Langekurser_Index',
+                        'kortekurser'         => 'VIH_Intranet_Controller_Kortekurser_Index',
+                        'faciliteter'         => 'VIH_Intranet_Controller_Faciliteter_Index',
+                        'materialebestilling' => 'VIH_Intranet_Controller_Materialebestilling_Index',
+                        'ansatte'             => 'VIH_Intranet_Controller_Ansatte_Index',
+                        'fag'                 => 'VIH_Intranet_Controller_Fag_Index',
+                        'betaling'            => 'VIH_Intranet_Controller_Betaling_Index',
+                        'nyheder'             => 'VIH_Intranet_Controller_Nyheder_Index',
+                        'protokol'            => 'VIH_Intranet_Controller_Protokol_Index',
+                        'fotogalleri'         => 'VIH_Intranet_Controller_Fotogalleri_Index',
+                        'filemanager'         => 'Intraface_Filehandler_Controller_Index',
+                        'file'                => 'Intraface_Filehandler_Controller_Viewer',
+                        'keyword'             => 'Intraface_Keyword_Controller_Index',
+                        'elevforeningen'      => 'VIH_Intranet_Controller_Elevforeningen_Index');
+
+    function __construct(k_TemplateFactory $templates)
+    {
+        $this->templates = $templates;
+    }
+
+    function map($name)
+    {
+        return $this->map[$name];
+    }
+
+    function dispatch()
+    {
+        if ($this->identity()->anonymous()) {
+            throw new k_NotAuthorized();
+        }
+        return parent::dispatch();
+    }
+
+    function renderHtml()
     {
         $hilsener = array(
             'Stræk armene op over hovedet og råb jubii.',
@@ -26,15 +63,15 @@ class VIH_Intranet_Controller_Index extends k_Controller
 
         $special_data = array('special_days' => VIH_Model_Ansat::getBirthdays());
 
-        $this->document->title = 'Forside: Velkommen';
-        $this->document->help = $hilsener[array_rand($hilsener)];
+        $this->document->setTitle('Forside: Velkommen');
+        //$this->document->help = $hilsener[array_rand($hilsener)];
 
-        return $this->render('VIH/Intranet/view/special_day-tpl.php', $special_data). '
-            <ul class="navigation-frontpage">
+        $special_day_tpl = $this->templates->create('special_day');
+        return $special_day_tpl->render($this, $special_data) . '<ul class="navigation-frontpage">
                 <li><a href="'.$this->url('/protokol').'">Protokol</a></li>
                 <li><a href="https://mail.vih.dk/exchange/">Tjek din e-mail</a></li>
                 <li><a href="http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com">Højskolens kalender</a></li>
             </ul>
-            ';
+            ' . sprintf("<form method='post' action='%s'><p><input type='submit' value='Log out' /></p></form>", htmlspecialchars($this->url('/logout')));
     }
 }

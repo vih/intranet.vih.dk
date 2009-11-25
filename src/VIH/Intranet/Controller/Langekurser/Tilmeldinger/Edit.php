@@ -1,7 +1,13 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Component
 {
     private $form;
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
     function getForm()
     {
@@ -9,7 +15,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Controller
             return $this->form;
         }
 
-        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name);
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
 
         foreach (VIH_Model_LangtKursus::getList('alle') AS $kursus) {
             $kurser[$kursus->get('id')] = $kursus->getKursusNavn();
@@ -109,10 +115,10 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Controller
         return ($this->form = $form);
     }
 
-    function GET()
+    function renderHtml()
     {
 
-        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name);
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
 
         $this->getForm()->setDefaults(array(
             'id' => $tilmelding->get('id'),
@@ -159,15 +165,15 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Controller
             'sex' => $tilmelding->get('sex')
         ));
 
-        $this->document->title = 'Tilmelding';
+        $this->document->setTitle('Tilmelding');
         return $this->getForm()->toHTML();
 
     }
 
-    function POST()
+    function postForm()
     {
         if ($this->getForm()->validate()) {
-            $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name);
+            $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
             $input = $this->POST->getArrayCopy();
 
             $input['dato_start'] = $input['dato_start']['Y'] . '-' . $input['dato_start']['M'] . '-' . $input['dato_start']['d'];
@@ -177,7 +183,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Controller
                 if (!$tilmelding->savePriser($input)) {
                     trigger_error('Kunne ikke opdatere priserne', E_USER_ERROR);
                 }
-                throw new k_http_Redirect($this->context->url());
+                throw new k_SeeOther($this->context->url());
             } else {
                 trigger_error('Kunne ikke gemme oplysningerne om tilmeldingen', E_USER_ERROR);
             }

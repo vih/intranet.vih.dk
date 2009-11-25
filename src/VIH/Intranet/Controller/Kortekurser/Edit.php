@@ -1,7 +1,13 @@
 <?php
-class VIH_Intranet_Controller_Kortekurser_Edit extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
 {
     private $form;
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
     function getForm()
     {
@@ -50,9 +56,9 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Controller
         return ($this->form = $form);
     }
 
-    function GET()
+    function renderHtml()
     {
-        $kursus = new VIH_Model_KortKursus($this->context->name);
+        $kursus = new VIH_Model_KortKursus($this->context->name());
         $this->getForm()->setDefaults(array(
             'id' => $kursus->get('id'),
             'navn' => $kursus->get('navn'),
@@ -79,16 +85,16 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Controller
             'gruppe_id' =>  $kursus->get('gruppe_id')
         ));
 
-        $this->document->title = 'Rediger kursus';
+        $this->document->setTitle('Rediger kursus');
         $this->document->navigation = array($this->context->url('../', array('filter' => $kursus->get('gruppe_id')))  => 'Tilbage til kurser');
-        
+
         return $this->getForm()->toHTML();
     }
 
-    function POST()
+    function postForm()
     {
         if ($this->getForm()->validate()) {
-            $kursus = new VIH_Model_KortKursus($this->context->name);
+            $kursus = new VIH_Model_KortKursus($this->context->name());
             $values = $this->POST->getArrayCopy();
 
             $values['dato_start'] = $values['dato_start']['Y'] . '-' . $values['dato_start']['M'] . '-' . $values['dato_start']['d'];
@@ -99,7 +105,7 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Controller
             if (empty($values['nyhed'])) $values['nyhed'] = 0;
 
             if ($id = $kursus->save($values)) {
-                throw new k_http_Redirect($this->url('../'));
+                throw new k_SeeOther($this->url('../'));
             }
         }
 

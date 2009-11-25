@@ -1,15 +1,20 @@
 <?php
-class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
 {
     private $form;
+    protected $template;
 
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
     function getForm()
     {
         if ($this->form) {
             return $this->form;
         }
 
-        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name);
+        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name());
         $deltagere = $tilmelding->getDeltagere();
 
         $form = new HTML_QuickForm(null, 'post', $this->url(), '', null, true);
@@ -139,18 +144,18 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Controller
 
     }
 
-    function GET()
+    function renderHtml()
     {
-        $this->document->title = 'Rediger tilmelding';
+        $this->document->setTitle('Rediger tilmelding');
 
         return $this->getForm()->toHTML();
 
     }
 
-    function POST()
+    function postForm()
     {
         if ($this->getForm()->validate()) {
-            $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name);
+            $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name());
             $deltagere = $tilmelding->getDeltagere();
 
             if ($id = $tilmelding->save($this->POST->getArrayCopy())) {
@@ -193,10 +198,10 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Controller
                     $i++;
                 } // foreach
 
-                throw new k_http_Redirect($this->context->url());
+                throw new k_SeeOther($this->context->url());
             }
         } else {
-            $this->document->title = 'Rediger tilmelding'; 
+            $this->document->setTitle('Rediger tilmelding');
             return $this->getForm()->toHTML();
         }
 

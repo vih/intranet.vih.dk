@@ -1,19 +1,26 @@
 <?php
-class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Component
 {
-    function getKursus()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        return new VIH_Model_KortKursus((int)$this->context->name);
+        $this->template = $template;
     }
 
-    function GET()
+    function getKursus()
+    {
+        return new VIH_Model_KortKursus((int)$this->context->name());
+    }
+
+    function renderHtml()
     {
 
         if ($this->GET['format'] == 'excel') {
             return $this->excel();
         }
 
-        $kursus = new VIH_Model_KortKursus($this->context->name);
+        $kursus = new VIH_Model_KortKursus($this->context->name());
         $deltagere = $kursus->getDeltagere();
         switch ($kursus->get('gruppe_id')) {
             case 1: // golf
@@ -34,7 +41,7 @@ class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Controller
             break;
         }
 
-        $this->document->title = 'Deltagere på ' . $kursus->getKursusNavn();
+        $this->document->setTitle('Deltagere på ' . $kursus->getKursusNavn());
 
         $this->document->options = array(
             $this->url('../tilmeldinger') => 'Gå til tilmeldingerne',

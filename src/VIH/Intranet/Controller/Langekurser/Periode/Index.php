@@ -2,17 +2,17 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_Langekurser_Periode_Index extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Periode_Index extends k_Component
 {
     public $map = array('create' => 'VIH_Intranet_Controller_Langekurser_Periode_Create');
 
-    function GET()
+    function renderHtml()
     {
-        $this->document->title = 'Perioder';
+        $this->document->setTitle('Perioder');
         $this->document->options = array(
             $this->url('create') => 'Opret',
             $this->url('../') => 'Tilbage til kursus'
-        ); 
+        );
 
         $doctrine = $this->registry->get('doctrine');
         $periods = Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($this->getLangtKursusId());
@@ -26,7 +26,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Index extends k_Controller
 
     function getLangtKursusId()
     {
-        return $this->context->name;
+        return $this->context->name();
     }
 
     function getDatasource()
@@ -35,13 +35,8 @@ class VIH_Intranet_Controller_Langekurser_Periode_Index extends k_Controller
     }
 
 
-    function forward($name)
+    function map($name)
     {
-        if ($name == 'create') {
-            $next = new VIH_Intranet_Controller_Langekurser_Periode_Create($this, $name);
-        } else {
-            $next = new VIH_Intranet_Controller_Langekurser_Periode_Show($this, $name);
-        }
-        return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Langekurser_Periode_Show'';
     }
 }

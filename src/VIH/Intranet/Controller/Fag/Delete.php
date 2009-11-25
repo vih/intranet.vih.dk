@@ -1,11 +1,11 @@
 <?php
-class VIH_Intranet_Controller_Fag_Delete extends k_Controller
+class VIH_Intranet_Controller_Fag_Delete extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
-        $fag = new VIH_Model_Fag($this->context->name);
+        $fag = new VIH_Model_Fag($this->context->name());
         if ($fag->delete()) {
-            throw new k_http_Redirect($this->context->url('../'));
+            throw new k_SeeOther($this->context->url('../'));
         }
     }
 

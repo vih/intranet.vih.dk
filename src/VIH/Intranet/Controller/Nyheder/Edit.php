@@ -1,8 +1,13 @@
 <?php
-class VIH_Intranet_Controller_Nyheder_Edit extends k_Controller
+class VIH_Intranet_Controller_Nyheder_Edit extends k_Component
 {
     private $form;
+    protected $template;
 
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
     function getForm()
     {
         if ($this->form) {
@@ -40,10 +45,10 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Controller
         return $this->form;
     }
 
-    function GET()
+    function renderHtml()
     {
-        if (!empty($this->context->name)) {
-            $nyhed = new VIH_News((int)$this->context->name);
+        if (!empty($this->context->name())) {
+            $nyhed = new VIH_News((int)$this->context->name());
         } else {
             $nyhed = new VIH_News;
         }
@@ -74,15 +79,15 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Controller
 
         $this->getForm()->setDefaults($defaults);
 
-        $this->document->title = 'Rediger nyhed';
+        $this->document->setTitle('Rediger nyhed');
 
         return $this->getForm()->toHTML();
     }
 
-    function POST()
+    function postForm()
     {
         if ($this->getForm()->validate()) {
-            $nyhed = new VIH_News($this->context->name);
+            $nyhed = new VIH_News($this->context->name());
             $input = $this->POST->getArrayCopy();
             $input['title'] = vih_handle_microsoft($input['title']);
             $input['tekst'] = vih_handle_microsoft($input['tekst']);
@@ -106,7 +111,7 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Controller
                 $appender->addKeywordsByString($input['keyword']);
             }
 
-            throw new k_http_Redirect($this->url('/nyheder/' . $id));
+            throw new k_SeeOther($this->url('/nyheder/' . $id));
 
         } else {
             return $this->form->toHTML();

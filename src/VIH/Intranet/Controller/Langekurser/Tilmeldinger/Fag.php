@@ -2,15 +2,22 @@
 
 class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends VIH_Controller_LangtKursus_Login_Fag
 {
-    function getRegistration()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        return new VIH_Model_LangtKursus_Tilmelding($this->context->name);
+        $this->template = $template;
     }
 
-    function GET()
+    function getRegistration()
+    {
+        return new VIH_Model_LangtKursus_Tilmelding($this->context->name());
+    }
+
+    function renderHtml()
     {
 
-        $this->document->title = $this->getRegistration()->get('navn').' fag på '.$this->getRegistration()->getKursus()->getKursusNavn();
+        $this->document->setTitle($this->getRegistration()->get('navn').' fag på '.$this->getRegistration()->getKursus()->getKursusNavn());
         $this->document->options = array($this->url('../') => 'Tilmeldingen',
                                          $this->url('../diplom') => 'Diplom (pdf)');
     	return parent::GET();
@@ -18,17 +25,17 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends VIH_Controlle
 }
 
 /*
-class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends k_Component
 {
     function getRegistration()
     {
-        return new VIH_Model_LangtKursus_Tilmelding($this->context->name);
+        return new VIH_Model_LangtKursus_Tilmelding($this->context->name());
     }
 
-    function POST()
+    function postForm()
     {
         $doctrine = $this->registry->get('doctrine');
-        $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($this->context->name);
+        $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($this->context->name());
 
         $subjects = array();
         foreach ($registration->Subjects as $subject) {
@@ -49,17 +56,17 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends k_Controller
 
         $registration->save();
 
-        throw new k_http_Redirect($this->url());
+        throw new k_SeeOther($this->url());
     }
 
-    function GET()
+    function renderHtml()
     {
         $doctrine = $this->registry->get('doctrine');
-        $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($this->context->name);
+        $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($this->context->name());
 
-        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name);
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
 
-        $this->document->title = $tilmelding->get('navn').' fag på '.$tilmelding->getKursus()->getKursusNavn();
+        $this->document->setTitle($tilmelding->get('navn').' fag på '.$tilmelding->getKursus()->getKursusNavn();
         $this->document->options = array($this->url('../') => 'Tilmeldingen',
                                          $this->url('../diplom') => 'Diplom (pdf)');
 

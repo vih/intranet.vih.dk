@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Component
 {
     public $map = array('edit'   => 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Edit',
                         'delete' => 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Delete');
@@ -11,26 +11,25 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Contr
 
     function getLangtKursusId()
     {
-        return $this->context->name;
+        return $this->context->name();
     }
 
-    protected function forward($name)
+    function map($name)
     {
-        $response = parent::forward($name);
-        return $response;
+        return $this->map[$name];
     }
 
     function getModel()
     {
         $this->registry->get('doctrine');
-        return Doctrine::getTable('VIH_Model_Course_SubjectGroup')->findOneById($this->name);
+        return Doctrine::getTable('VIH_Model_Course_SubjectGroup')->findOneById($this->name());
     }
 
     function getSubjects()
     {
         $this->registry->get('doctrine');
         return Doctrine::getTable('VIH_Model_Subject')->findAll();
-        
+
         /*
         $sql = "SELECT IFNULL(langtkursus_fag_periode.date_start, '9999-01-01') AS date_start,
                 IFNULL(langtkursus_fag_periode.date_end, '9999-01-01') AS date_end, fag.id AS id, x.periode_id as periode_id
@@ -52,7 +51,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Contr
                            gruppe.position ASC,
                            fag.fag_gruppe_id ASC,
                            fag.navn ASC";
-    
+
         $db = $this->registry->get('database:mdb2');
         $result = $db->query($sql);
         $subjects = array();
@@ -62,33 +61,33 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Contr
         return $subjects;
         */
     }
-    
+
     function getSubject($id)
     {
         $this->registry->get('doctrine');
         return Doctrine::getTable('VIH_Model_Subject')->findOneById($id);
     }
 
-    function GET()
+    function renderHtml()
     {
-        $this->document->title = 'Faggruppe: ' . $this->getModel()->getName();
+        $this->document->setTitle('Faggruppe: ' . $this->getModel()->getName());
         $this->document->options = array(
             $this->url('../create') => 'Opret',
-            $this->url('../../') => 'Tilbage til perioden' 
+            $this->url('../../') => 'Tilbage til perioden'
         );
-        
+
         $chosen = array();
         foreach ($this->getModel()->Subjects as $subject) {
             $chosen[] = $subject->getId();
         }
-        
-        $data = array('fag'       => $this->getSubjects(), 
+
+        $data = array('fag'       => $this->getSubjects(),
                       'faggruppe' => $this->getModel(),
                       'chosen'    => $chosen);
         return $this->render('VIH/Intranet/view/langekurser/periode/faggruppe.tpl.php', $data);
     }
-    
-    function POST()
+
+    function postForm()
     {
         $SubjectGroup = $this->getModel();
         $subjects = array();
@@ -99,23 +98,23 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Contr
             try {
                 $SubjectGroup->unlink('Subjects', $subjects);
             } catch (Doctrine_Query_Exception $e) {
-            }    
-        }        
-        
-        if (isset($this->POST['fag']) and is_array($this->POST['fag'])) {
-            foreach ($this->POST['fag'] as $key => $post) {
-                $SubjectGroup->Subjects[] = $this->getSubject($post);        
             }
         }
-        
+
+        if (isset($this->POST['fag']) and is_array($this->POST['fag'])) {
+            foreach ($this->POST['fag'] as $key => $post) {
+                $SubjectGroup->Subjects[] = $this->getSubject($post);
+            }
+        }
+
         try {
             $SubjectGroup->save();
         } catch (Exception $e) {
             throw $e;
         }
-        
-        throw new k_http_Redirect($this->context->url());
+
+        throw new k_SeeOther($this->context->url());
     }
-    
+
 
 }

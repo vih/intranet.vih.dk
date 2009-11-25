@@ -20,11 +20,17 @@ class VIH_Intranet_Controller_Root extends k_Dispatcher
                         'elevforeningen'      => 'VIH_Intranet_Controller_Elevforeningen_Index');
     public $debug = true;
 
+
+    function document()
+    {
+        return $this->document;
+    }
+
     function __construct()
     {
         parent::__construct();
         $this->document->template = dirname(__FILE__) . '/../view/main-tpl.php';
-        $this->document->title = 'Vejle Idrætshøjskoles Intranet';
+        $this->document->setTitle('Vejle Idrætshøjskoles Intranet');
         $this->document->options = array();
         $this->document->navigation = array(
             $this->url('/nyheder') => 'Nyheder',
@@ -53,7 +59,7 @@ class VIH_Intranet_Controller_Root extends k_Dispatcher
 
         $session = $this->SESSION->get('vih');
         if (empty($session['logged_in']) OR $session['logged_in'] != 'true') {
-            throw new k_http_Redirect($this->url('/login'));
+            throw new k_SeeOther($this->url('/login'));
         }
         return parent::forward($name);
     }

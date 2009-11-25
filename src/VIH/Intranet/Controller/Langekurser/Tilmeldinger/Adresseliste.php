@@ -1,9 +1,19 @@
 <?php
 class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Adresseliste
 {
-    function GET()
+    private $db;
+
+    protected $template;
+
+    function __construct(DB_Sql $db, k_TemplateFactory $template)
     {
-        $db = $this->registry->get('database:db_sql');
+        $this->db = $db;
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $db = $this->db;
         $db->query("SELECT tilmelding.id, tilmelding.dato_slut
             FROM langtkursus_tilmelding tilmelding
                 INNER JOIN langtkursus ON langtkursus.id = tilmelding.kursus_id
@@ -20,7 +30,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Adresseliste
             $list[] = new VIH_Model_LangtKursus_Tilmelding($db->f('id'));
         }
 
-        $this->document->title = 'Adresseliste';
+        $this->document->setTitle('Adresseliste');
         $this->document->options = array();
 
         $data = array('elever' => $list);

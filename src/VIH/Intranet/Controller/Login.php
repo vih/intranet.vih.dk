@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_Login extends k_Controller
+class VIH_Intranet_Controller_Login extends k_Component
 {
     private $form;
 
@@ -16,7 +16,7 @@ class VIH_Intranet_Controller_Login extends k_Controller
         return ($this->form = $form);
     }
 
-    function GET()
+    function renderHtml()
     {
         $usr = $this->registry->get('liveuser');
 
@@ -29,14 +29,14 @@ class VIH_Intranet_Controller_Login extends k_Controller
         }
 
         if ($usr->isLoggedIn()) {
-            throw new k_http_Redirect($this->url('../'));
+            throw new k_SeeOther($this->url('../'));
         }
 
-        $this->document->title = 'Login';
+        $this->document->setTitle('Login');
         throw new k_http_Response(200, $this->render('VIH/Intranet/view/login-tpl.php', array('content_main' => $this->getForm()->toHTML())));
     }
 
-    function POST()
+    function postForm()
     {
         $usr = $this->registry->get('liveuser');
 
@@ -47,9 +47,9 @@ class VIH_Intranet_Controller_Login extends k_Controller
             $usr->login($this->POST['handle'], $this->POST['passwrd']);
 
             if ($usr->isLoggedIn()) {
-                throw new k_http_Redirect($this->context->url());
+                throw new k_SeeOther($this->context->url());
             }
         }
-        throw new k_http_Redirect($this->url(''));
+        throw new k_SeeOther($this->url(''));
     }
 }

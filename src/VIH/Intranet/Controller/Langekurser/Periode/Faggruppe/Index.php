@@ -2,13 +2,13 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Index extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Index extends k_Component
 {
     public $map = array('create' => 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create');
 
-    function GET()
+    function renderHtml()
     {
-        $this->document->title = 'Faggrupper på perioden ' . $this->context->getModel()->getName();
+        $this->document->setTitle('Faggrupper på perioden ' . $this->context->getModel()->getName());
 
         $this->document->options = array(
             $this->url('create') => 'Opret faggruppe',
@@ -25,16 +25,11 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Index extends k_Cont
 
     function getPeriodId()
     {
-        return $this->context->name;
+        return $this->context->name();
     }
 
     function forward($name)
     {
-        if ($name == 'create') {
-            $next = new VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create($this, $name);
-        } else {
-            $next = new VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show($this, $name);
-        }
-        return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show'';
     }
 }

@@ -1,8 +1,13 @@
 <?php
-class VIH_Intranet_Controller_Protokol_Indtast extends k_Controller
+class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
 {
     private $form;
+    protected $template;
 
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
     function getForm()
     {
         if ($this->form) {
@@ -38,9 +43,16 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Controller
 
     }
 
-    function GET()
+    private $db;
+
+    function __construct(DB $db)
     {
-        $db = $this->registry->get('database:pear');
+        $this->db = $db;
+    }
+
+    function renderHtml()
+    {
+        $db = $this->db;
         $row = array();
 
         if (!empty($this->GET['id'])) {
@@ -60,9 +72,9 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Controller
                                      'type' => $row['type_key'],
                                      'id' => $this->GET['id']));
 
-            $elev_id = $this->context->name;
+            $elev_id = $this->context->name();
         } else {
-            $this->getForm()->setDefaults(array('elev_id' => (int)$this->context->name,
+            $this->getForm()->setDefaults(array('elev_id' => (int)$this->context->name(),
                                      'date_start' => array('Y' => date('Y'),
                                                            'm' => date('m'),
                                                            'd' => date('d'),
@@ -74,17 +86,17 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Controller
                                                          'i' => 30)));
         }
 
-        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name);
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
 
 
-        $this->document->title = 'Indtast ' . $tilmelding->get('navn');
+        $this->document->setTitle('Indtast ' . $tilmelding->get('navn'));
         return $this->getForm()->toHTML();
 
     }
 
-    function POST()
+    function postForm()
     {
-        $db = $this->registry->get('database:pear');
+        $db = $this->db;
 
         if ($this->getForm()->validate()) {
             $date_start = $this->getForm()->exportValue('date_start');
@@ -112,16 +124,15 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Controller
                 echo $res->getMessage();
             }
 
-            throw new k_http_Redirect($this->context->url('../'));
+            throw new k_SeeOther($this->context->url('../'));
 
         }
 
     }
 
-    function forward($name)
+    function map($name)
     {
-        $next = new VIH_Intranet_Controller_Protokol_Show($this, $name);
-        $next->handleRequest();
+        return 'VIH_Intranet_Controller_Protokol_Show';
     }
 }
 

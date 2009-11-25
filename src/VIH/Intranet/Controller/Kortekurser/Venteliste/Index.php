@@ -1,9 +1,15 @@
 <?php
-class VIH_Intranet_Controller_Kortekurser_Venteliste_Index extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Venteliste_Index extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $kursus = new VIH_Model_KortKursus($this->context->name);
+        $this->template = $template;
+    }
+    function renderHtml()
+    {
+        $kursus = new VIH_Model_KortKursus($this->context->name());
 
         $venteliste = new VIH_Model_Venteliste(1, $kursus->get('id'));
         if(intval($venteliste->get('kursus_id')) == 0) {
@@ -11,7 +17,7 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Index extends k_Controller
         }
         $liste = $venteliste->getList();
 
-        $this->document->title = 'Venteliste til ' . $venteliste->get('kursusnavn');
+        $this->document->setTitle('Venteliste til ' . $venteliste->get('kursusnavn'));
 
         $data = array('venteliste' => $liste);
 
@@ -21,13 +27,12 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Index extends k_Controller
 
     function getKursusId()
     {
-        return $this->context->name;
+        return $this->context->name();
     }
 
-    function forward($name)
+    function map($name)
     {
-        $next = new VIH_Intranet_Controller_Kortekurser_Venteliste_Show($this, $name);
-        return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Kortekurser_Venteliste_Show';
     }
 
 }

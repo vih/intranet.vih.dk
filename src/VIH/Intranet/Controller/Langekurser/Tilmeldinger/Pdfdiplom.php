@@ -16,11 +16,11 @@
  */
 require_once 'fpdf/fpdf.php';
 
-class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
-        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name);
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
 
         $forstander_navn = 'Lars Kjærsgaard';
         $navn = $tilmelding->get('navn');

@@ -26,9 +26,9 @@
  * Skal sikkert bygges op som en grundklasse, der kan skrive en pdf,
  * og så lave nogle extends.
  */
-class VIH_Intranet_Controller_Fag_Pdf extends k_Controller
+class VIH_Intranet_Controller_Fag_Pdf extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
         $fag = new VIH_Model_Fag($_GET['id']);
 

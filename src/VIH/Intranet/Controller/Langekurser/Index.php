@@ -2,16 +2,24 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_Langekurser_Index extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Index extends k_Component
 {
     public $map = array('periode' => 'VIH_Intranet_Controller_Langekurser_Periode_Index',
                         'tilmeldinger' => 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index');
 
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+
+    function renderHtml()
     {
         $kurser = VIH_Model_LangtKursus::getList('intranet');
 
-        $this->document->title = 'Lange Kurser';
+        $this->document->setTitle('Lange Kurser');
         $this->document->options = array($this->url('/fag') => 'Fag', $this->url('create') => 'Opret kursus');
 
         $data = array('caption' => 'Lange kurser',
@@ -23,14 +31,11 @@ class VIH_Intranet_Controller_Langekurser_Index extends k_Controller
     function forward($name)
     {
         if ($name == 'create') {
-            $next = new VIH_Intranet_Controller_Langekurser_Edit($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Edit';
         } elseif ($name == 'tilmeldinger') {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index';
         } else {
-            $next = new VIH_Intranet_Controller_Langekurser_Show($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Show';
         }
     }
 }

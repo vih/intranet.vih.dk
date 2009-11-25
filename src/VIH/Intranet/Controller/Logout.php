@@ -1,7 +1,7 @@
 <?php
-class VIH_Intranet_Controller_Logout extends k_Controller
+class VIH_Intranet_Controller_Logout extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
         if ($this->registry->identity->init()) {
             if ($this->registry->identity->logout()) {
@@ -14,7 +14,7 @@ class VIH_Intranet_Controller_Logout extends k_Controller
                 $_COOKIE['PHP_AUTH_PW'] = null;
                 unset($_COOKIE['PHP_AUTH_PW']);
                 unset($_COOKIE['PHP_AUTH_USER']);
-                throw new k_http_Redirect($this->url('/'));
+                throw new k_SeeOther($this->url('/'));
             }
         } else {
             $this->SESSION->destroy();

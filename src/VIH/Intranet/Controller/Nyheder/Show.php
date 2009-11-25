@@ -1,11 +1,16 @@
 <?php
-class VIH_Intranet_Controller_Nyheder_Show extends k_Controller
+class VIH_Intranet_Controller_Nyheder_Show extends k_Component
 {
     public $map = array('edit'   => 'VIH_Intranet_Controller_Nyheder_Edit',
                         'delete' => 'VIH_Intranet_Controller_Nyheder_Delete');
 
     private $form;
+    protected $template;
 
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
     function getForm()
     {
         if ($this->form) return $this->form;
@@ -13,13 +18,13 @@ class VIH_Intranet_Controller_Nyheder_Show extends k_Controller
         $this->form->addElement('hidden', 'id');
         $this->form->addElement('file', 'userfile', 'Fil');
         $this->form->addElement('submit', null, 'Upload');
-        
+
         return $this->form;
     }
 
-    function GET()
+    function renderHtml()
     {
-        $nyhed = new VIH_News($this->name);
+        $nyhed = new VIH_News($this->name());
 
         if (!empty($this->GET['sletbillede']) AND is_numeric($this->GET['sletbillede'])) {
             $nyhed->deletePicture($this->GET['sletbillede']);
@@ -35,34 +40,21 @@ class VIH_Intranet_Controller_Nyheder_Show extends k_Controller
             $pic_html .= '<div>' . $file->getImageHtml() . '<br /><a href="'. $this->url('./') . '?sletbillede='.$pic['file_id'] . '">Slet</a></div>';
         }
 
-        $this->document->title = 'Nyhed: ' . $nyhed->get('overskrift');
-        $this->document->options = array($this->url('edit') => 'Ret'); 
+        $this->document->setTitle('Nyhed: ' . $nyhed->get('overskrift'));
+        $this->document->options = array($this->url('edit') => 'Ret');
         // $tpl->set('title', 'Nyhed');
         return '<div>'.vih_autoop($nyhed->get('tekst')).'</div> ' . $this->getForm()->toHTML() . $pic_html . $nyhed->get('date_updated');
     }
 
-    function POST()
+    function postForm()
     {
-        $nyhed = new VIH_News($this->name);
+        $nyhed = new VIH_News($this->name());
         if ($this->getForm()->validate()) {
             $file = new VIH_FileHandler;
             if($file->upload('userfile')) {
                 $nyhed->addPicture($file->get('id'));
             }
         }
-        throw new k_http_Redirect($this->url());
-    }
-
-    function forward($name)
-    {
-        if ($name == 'edit') {
-            $next = new VIH_Intranet_Controller_Nyheder_Edit($this, $name);
-            return $next->handleRequest();
-        } elseif ($name == 'delete') {
-            $next = new VIH_Intranet_Controller_Nyheder_Delete($this, $name);
-            return $next->handleRequest();
-        } else {
-            return self::GET();
-        }
+        throw new k_SeeOther($this->url());
     }
 }

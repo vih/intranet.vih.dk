@@ -4,12 +4,12 @@
  *
  * @author Lars Olesen <lars@legestue.net>
  */
-class VIH_Intranet_Controller_Betaling_Reverse extends k_Controller
+class VIH_Intranet_Controller_Betaling_Reverse extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
 
-        $betaling = new VIH_Model_Betaling($this->context->name);
+        $betaling = new VIH_Model_Betaling($this->context->name());
 
         $onlinebetaling = new VIH_Onlinebetaling('reversal');
         $eval = $onlinebetaling->reverse($betaling->get('transactionnumber'));
@@ -20,7 +20,7 @@ class VIH_Intranet_Controller_Betaling_Reverse extends k_Controller
                     $historik = new VIH_Model_Historik($betaling->get('belong_to'), $betaling->get('belong_to_id'));
                     $historik->save(array('type' => 'dankort', 'comment' => 'Reversal transaktion #' . $betaling->get('transactionnumber')));
                 }
-                throw new k_http_Redirect($this->context->url('../'));
+                throw new k_SeeOther($this->context->url('../'));
             } else {
                 // An error occured with the capture
                 // Dumping return data for debugging

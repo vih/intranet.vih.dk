@@ -1,9 +1,16 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Ministeriumliste extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Ministeriumliste extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $kursus = new VIH_Model_LangtKursus($this->context->name);
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $kursus = new VIH_Model_LangtKursus($this->context->name());
         $list = new VIH_List_Ministerium();
         $list->update($kursus, $kursus->getTilmeldinger());
 

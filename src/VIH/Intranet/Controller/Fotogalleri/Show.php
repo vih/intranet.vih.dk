@@ -2,22 +2,35 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_Fotogalleri_Show extends k_Controller
+class VIH_Intranet_Controller_Fotogalleri_Show extends k_Component
 {
-    function activate($active = 1) 
+    private $db;
+    private $kernel;
+    private $pear_db;
+    protected $template;
+
+    function __construct(k_TemplateFactory $template, DB $pear_db, MDB2_Driver_Common $db, VIH_Intraface_Kernel $kernel)
     {
-        $db = $this->registry->get('database:mdb2');
-        $result = $db->query('UPDATE fotogalleri SET active = '.intval($active).' WHERE id = '.intval($this->name));
+        $this->db = $db;
+        $this->kernel = $kernel;
+        $this->pear_db = $pear_db;
+        $this->template = $template;
+    }
+
+    function activate($active = 1)
+    {
+        $db = $this->db;
+        $result = $db->query('UPDATE fotogalleri SET active = '.intval($active).' WHERE id = '.intval($this->name()));
         if (PEAR::isError($result)) {
             throw new Exception($result->getUserInfo());
         }
         return true;
     }
 
-    function GET()
+    function renderHtml()
     {
-        $db = $this->registry->get('database:mdb2');
-        $result = $db->query('SELECT id, description, DATE_FORMAT(date_created, "%d-%m-%Y") AS dk_date_created, active FROM fotogalleri WHERE id = '.intval($this->name));
+        $db = $this->db;
+        $result = $db->query('SELECT id, description, DATE_FORMAT(date_created, "%d-%m-%Y") AS dk_date_created, active FROM fotogalleri WHERE id = '.intval($this->name()));
         if (PEAR::isError($result)) {
             throw new Exception($result->getUserInfo());
         }
@@ -28,14 +41,14 @@ class VIH_Intranet_Controller_Fotogalleri_Show extends k_Controller
         }
 
         // HACK start
-        $kernel = $this->registry->get('intraface:kernel');
+        $kernel = $this->kernel;
         $kernel->session_id = $this->SESSION->getSessionId();
         // HACK end
 
         $appender = new VIH_AppendFile($kernel, 'fotogalleri', $row['id']);
         if(isset($this->GET['return_redirect_id']) && intval($this->GET['return_redirect_id']) != 0) {
-            $appender = new VIH_AppendFile($this->registry->get('intraface:kernel'), 'fotogalleri', $row['id']);
-            $redirect = Ilib_Redirect::returns($this->SESSION->getSessionId(), $this->registry->get('database:pear'));
+            $appender = new VIH_AppendFile($this->kernel, 'fotogalleri', $row['id']);
+            $redirect = Ilib_Redirect::returns($this->SESSION->getSessionId(), $this->pear_db);
 
             foreach($redirect->getParameter('file_handler_id') AS $file_id) {
                 $filehandler = new Ilib_FileHandler($kernel, $file_id);
@@ -60,33 +73,32 @@ class VIH_Intranet_Controller_Fotogalleri_Show extends k_Controller
         }
         $list = array('photos' => $photos);
 
-        $redirect = Ilib_Redirect::go($this->SESSION->getSessionId(), $this->registry->get('database:mdb2'));
+        $redirect = Ilib_Redirect::go($this->SESSION->getSessionId(), $this->db);
         $url = $redirect->setDestination($this->url('/filemanager/selectfile', array('images' => 1)), $this->url());
         $redirect->askParameter('file_handler_id', 'multiple');
 
-        $this->document->title = 'Tilføj billeder til galleriet' . $row['description'];
+        $this->document->setTitle('Tilføj billeder til galleriet' . $row['description']);
         $this->document->options = array($url => 'Tilføj billeder',
                                          $this->url('../'), 'Tilbage');
 
         return $this->render('VIH/Intranet/view/fotogalleri/fotoliste-tpl.php', $list);
     }
 
-    function forward($name)
+    function map($name)
     {
         if ($name == 'edit') {
-            $next = new VIH_Intranet_Controller_Fotogalleri_Edit($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Fotogalleri_Edit';
         }
 
-        if($name == 'deactivate') {
+        if ($name == 'deactivate') {
             $this->activate(0);
-            throw new k_http_Redirect($this->url('../'));
+            throw new k_SeeOther($this->url('../'));
 
         }
 
-        if($name == 'activate') {
+        if ($name == 'activate') {
             $this->activate();
-            throw new k_http_Redirect($this->url('../'));
+            throw new k_SeeOther($this->url('../'));
         }
     }
 }

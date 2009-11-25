@@ -1,21 +1,28 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Fag_Index extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Fag_Index extends k_Component
 {
-    function GET()
+    private $pdo;
+
+    function __construct(pdoext_Connection $pdo)
     {
-        $langtkursus = new VIH_Model_LangtKursus($this->context->name);
+        $this->pdo = $pdo;
+    }
+
+    function renderHtml()
+    {
+        $langtkursus = new VIH_Model_LangtKursus($this->context->name());
         $fag = VIH_Model_Fag::getList();
-        $selected = $langtkursus->getFag($this->registry->get('database'), 'all');
+        $selected = $langtkursus->getFag($this->pdo, 'all');
 
         $data = array('fag' => $fag,
                       'selected' => $selected,
-                      'periods' => VIH_Model_LangtKursus_Periode::getFromKursusId($this->registry->get('database'), $this->context->name));
+                      'periods' => VIH_Model_LangtKursus_Periode::getFromKursusId($this->pdo, $this->context->name()));
         return $this->render('VIH/Intranet/view/langekurser/fag-tpl.php', $data);
     }
 
-    function POST()
+    function postForm()
     {
-        $langtkursus = new VIH_Model_LangtKursus($this->context->name);
+        $langtkursus = new VIH_Model_LangtKursus($this->context->name());
         $langtkursus->flushFag();
         foreach ($this->POST['fag'] as $key => $value) {
             $fag = new VIH_Model_Fag($value);
@@ -24,11 +31,11 @@ class VIH_Intranet_Controller_Langekurser_Fag_Index extends k_Controller
             }
 
             foreach ($this->POST['period'][$key] as $key => $value) {
-                $periode = VIH_Model_LangtKursus_Periode::getFromId($this->registry->get('database'), $value);
+                $periode = VIH_Model_LangtKursus_Periode::getFromId($this->pdo, $value);
                 $fagperiode = new VIH_Model_LangtKursus_FagPeriode($fag, $periode);
                 $langtkursus->addFag($fagperiode);
             }
         }
-        throw new k_http_Redirect($this->url());
+        throw new k_SeeOther($this->url());
     }
 }

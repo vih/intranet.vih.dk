@@ -1,7 +1,14 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Component
 {
     private $form;
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
 
     function getForm()
     {
@@ -15,7 +22,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Contr
         return ($this->form = $form);
     }
 
-    function GET()
+    function renderHtml()
     {
         $date = date('Y-m-d');
         if (!empty($this->GET['date'])) {
@@ -24,24 +31,24 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Contr
 
         $this->getForm()->setDefaults(array('date' => $date));
 
-        $this->document->title = 'Eksporter CSV';
+        $this->document->setTitle('Eksporter CSV');
         $this->document->options = array($this->url('../') => 'Tilmeldinger');
 
         return $this->getForm()->toHTML();
 
     }
 
-    function POST()
+    function postForm()
     {
         $date = date('Y-m-d');
         if (!empty($this->POST['date'])) {
             $date = $this->POST['date']['Y'] . '-' . $this->POST['date']['M'] . '-' .$this->POST['date']['d'];
         }
-        
+
         // Ensures that PEAR uses correct config file.
         PEAR_Config::singleton(PATH_ROOT.'.pearrc');
 
-        $db = $this->registry->get('database:db_sql');
+        $db = $this->db;
         $db->query("SELECT tilmelding.id, tilmelding.dato_slut
             FROM langtkursus_tilmelding tilmelding
                 INNER JOIN langtkursus ON langtkursus.id = tilmelding.kursus_id
@@ -128,9 +135,8 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Contr
         exit;
     }
 
-    function forward($name)
+    function map($name)
     {
-            $next = new VIH_Intranet_Controller_Protokol_Elev($this, $name);
-            return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Protokol_Elev';
     }
 }

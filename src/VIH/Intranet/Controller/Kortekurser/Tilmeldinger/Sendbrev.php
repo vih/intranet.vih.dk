@@ -1,13 +1,22 @@
 <?php
 require_once 'fpdf/fpdf.php';
 
-class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Component
 {
-    function GET()
+    private $template;
+    protected $templates;
+
+    function __construct(Template $template, k_TemplateFactory $templates)
+    {
+        $this->template = $template;
+        $this->templates = $templates;
+    }
+
+    function renderHtml()
     {
 
         $GLOBALS['_global_function_callback_url'] = Array($this, 'url');
-        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name);
+        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name());
 
         $allowed_brev_type = array('' => '_fejl_',
            'rykker.php' => 'rykker',
@@ -54,12 +63,12 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Contro
            $pdf->Output(dirname(__FILE__) .'/udsendte_pdf/' . $tilmelding->get('id') . '.pdf', 'F');
 
            # workaround for at få IE til at forstå noget.
-           throw new k_http_Redirect($this->url('/kortekurser/tilmeldinger/udsendte_pdf/'.$tilmelding->get('id').'.pdf'));
+           throw new k_SeeOther($this->url('/kortekurser/tilmeldinger/udsendte_pdf/'.$tilmelding->get('id').'.pdf'));
         }
 
-        $this->document->title = 'Send brev';
+        $this->document->setTitle('Send brev');
 
-        $send_tpl = $this->registry->get('template');
+        $send_tpl = $this->template;
         $send_tpl->set('tilmelding', $tilmelding);
         $send_tpl->set('brev_tekst', $brev_tekst);
         $send_tpl->set('brev_type', $this->GET['type']);
@@ -67,9 +76,9 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Contro
         return $send_tpl->fetch('kortekurser/send_brev-tpl.php');
     }
 
-    function POST()
+    function postForm()
     {
-        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name);
+        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name());
 
         $allowed_brev_type = array('' => '_fejl_',
            'rykker.php' => 'rykker',
@@ -98,12 +107,12 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Contro
             $historik = new VIH_Model_Historik('kortekurser', $tilmelding->get("id"));
             $historik->save(array('type' => $brev_type, 'comment' => "Sendt via e-mail"));
 
-            throw new k_http_Redirect($this->context->url());
+            throw new k_SeeOther($this->context->url());
         } elseif(isset($this->POST['send_pdf'])) {
 
             $historik = new VIH_Model_Historik('kortekurser', $tilmelding->get("id"));
             $historik->save(array('type' => $brev_type, 'comment' => "Sendt via post"));
-            throw new k_http_Redirect($this->context->url(null, array('download_file' => $this->url('sendbrev'), 'type' => $brev_type, 'create' => 'pdf')));
+            throw new k_SeeOther($this->context->url(null, array('download_file' => $this->url('sendbrev'), 'type' => $brev_type, 'create' => 'pdf')));
         }
 
     }

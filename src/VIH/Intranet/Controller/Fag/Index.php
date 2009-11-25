@@ -2,29 +2,34 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_Fag_Index extends k_Controller
+class VIH_Intranet_Controller_Fag_Index extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $this->document->title = 'Fag';
+        $this->template = $template;
+    }
+
+    function map($name)
+    {
+        if ($name == 'faggrupper') {
+            return 'VIH_Intranet_Controller_Fag_Gruppe_Index';
+        } else {
+            return 'VIH_Intranet_Controller_Fag_Show';
+        }
+    }
+
+    function renderHtml()
+    {
+        $this->document->setTitle('Fag');
         $this->document->options = array($this->url('create') => 'Opret',
-                                         $this->url('faggrupper') => 'Faggrupper'); 
+                                         $this->url('faggrupper') => 'Faggrupper');
 
         $data = array('list' => VIH_Model_Fag::getList());
 
-        return $this->render(dirname(__FILE__) . '/../../view/fag/liste-tpl.php', $data);
+        $tpl = $this->template->create('fag/liste');
+        return $tpl->render($this, $data);
     }
 
-    function forward($name)
-    {
-        if ($name == 'faggrupper') {
-            $next = new VIH_Intranet_Controller_Fag_Gruppe_Index($this, $name);
-            return $next->handleRequest();
-        } elseif ($name == 'create') {
-            $next = new VIH_Intranet_Controller_Fag_Edit($this, $name);
-            return $next->handleRequest();
-        }
-        $next = new VIH_Intranet_Controller_Fag_Show($this, $name);
-        return $next->handleRequest();
-    }
 }

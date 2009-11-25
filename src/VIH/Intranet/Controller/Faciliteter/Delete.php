@@ -1,11 +1,11 @@
 <?php
-class VIH_Intranet_Controller_Faciliteter_Delete extends k_Controller
+class VIH_Intranet_Controller_Faciliteter_Delete extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
-        $facilitet = new VIH_Model_Facilitet($this->context->name);
+        $facilitet = new VIH_Model_Facilitet($this->context->name());
         if ($facilitet->delete()) {
-            throw new k_http_Redirect($this->context->url('../'));
+            throw new k_SeeOther($this->context->url('../'));
         }
     }
 

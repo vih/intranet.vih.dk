@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Edit extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Edit extends k_Component
 {
     function __construct(k_iContext $parent, $name = "")
     {
@@ -34,7 +34,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Edit extends k_Contr
     function validHandler($values)
     {
         $this->registry->get('doctrine');
-        $group = Doctrine::getTable('VIH_Model_Course_SubjectGroup')->findOneById($this->context->name);
+        $group = Doctrine::getTable('VIH_Model_Course_SubjectGroup')->findOneById($this->context->name());
         $group->name = $values['name'];
         $group->description = $values['description'];
         $group->elective_course = $values['elective_course'];
@@ -45,6 +45,6 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Edit extends k_Contr
             throw $e;
         }
 
-        throw new k_http_Redirect($this->url("../.."));
+        throw new k_SeeOther($this->url("../.."));
     }
 }

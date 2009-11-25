@@ -1,9 +1,17 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Rater extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Rater extends k_Component
 {
-    function GET()
+
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $kursus = new VIH_Model_LangtKursus($this->context->name);
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $kursus = new VIH_Model_LangtKursus($this->context->name());
 
         if($kursus->get("id") == 0) {
             throw k_http_Response(404);
@@ -16,7 +24,7 @@ class VIH_Intranet_Controller_Langekurser_Rater extends k_Controller
             }
         }
 
-        $this->document->title = 'Opdater rater';
+        $this->document->setTitle('Opdater rater');
 
         $pris = array('kursus' => $kursus);
 
@@ -30,17 +38,17 @@ class VIH_Intranet_Controller_Langekurser_Rater extends k_Controller
             $data = array('kursus' => $kursus);
             $form_html = $this->render('VIH/Intranet/view/langekurser/rater_form-tpl.php', $data);
         }
-        
-        $this->document->title = 'Rater for betaling '.$kursus->get('kursusnavn');
+
+        $this->document->setTitle('Rater for betaling '.$kursus->get('kursusnavn'));
         $this->document->options = array($this->context->url() => 'Til kurset');
-        
+
         return '<p><strong>Periode</strong>: '.$kursus->getDateStart()->format('%d-%m-%Y').' &mdash; '.$kursus->getDateEnd()->format('%d-%m-%Y').'</p>
         ' . $this->render('VIH/Intranet/view/langekurser/pris-tpl.php', $pris) . $form_html;
     }
 
-    function POST()
+    function postForm()
     {
-        $kursus = new VIH_Model_LangtKursus($this->context->name);
+        $kursus = new VIH_Model_LangtKursus($this->context->name());
 
         if(isset($this->POST["opret_rater"])) {
             if (!$kursus->opretRater((int)$this->POST["antal"], $this->POST["foerste_rate_dato"])) {
@@ -51,7 +59,7 @@ class VIH_Intranet_Controller_Langekurser_Rater extends k_Controller
                 trigger_error('Kunne ikke opdatere rater', E_USER_ERROR);
             }
         }
-        throw new k_http_Redirect($this->url());
+        return new k_SeeOther($this->url());
 
     }
 }

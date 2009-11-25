@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_Fag_Edit extends k_Controller
+class VIH_Intranet_Controller_Fag_Edit extends k_Component
 {
     private $form;
 
@@ -39,14 +39,14 @@ class VIH_Intranet_Controller_Fag_Edit extends k_Controller
     }
 
 
-    function GET()
+    function renderHtml()
     {
         $fag = VIH_Model_Fag::getList();
         foreach($fag AS $f) {
             $faglist[$f->get('id')] = $f->get('navn');
         }
 
-        $fag = new VIH_Model_Fag($this->context->name);
+        $fag = new VIH_Model_Fag($this->context->name());
 
         if ($fag->get('id') > 0) {
             $undervisere = $fag->getUndervisere();
@@ -69,15 +69,15 @@ class VIH_Intranet_Controller_Fag_Edit extends k_Controller
             $this->getForm()->setDefaults($defaults);
 
         }
-        $this->document->title = 'Rediger fag';
+        $this->document->setTitle('Rediger fag');
 
         return $this->getForm()->toHTML();
     }
 
-    function POST()
+    function postForm()
     {
         if ($this->getForm()->validate()) {
-            $fag = new VIH_Model_Fag($this->context->name);
+            $fag = new VIH_Model_Fag($this->context->name());
             $input = $this->POST->getArrayCopy();
             $input['navn'] = vih_handle_microsoft($input['navn']);
             $input['beskrivelse'] = vih_handle_microsoft($input['beskrivelse']);
@@ -86,13 +86,14 @@ class VIH_Intranet_Controller_Fag_Edit extends k_Controller
             if (!isset($input['published'])) {
                 $input['published'] = 0;
             }
-            
+
             if ($id = $fag->save($input)) {
                 if (!empty($this->POST['underviser'])) {
                     $fag->addUnderviser($this->POST['underviser']);
                 }
-                throw new k_http_Redirect($this->url('/fag/' . $fag->get('id')));
+                throw new k_SeeOther($this->url('/fag/' . $fag->get('id')));
             }
         }
+        return $this->render();
     }
 }

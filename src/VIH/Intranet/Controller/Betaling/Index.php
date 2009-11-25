@@ -4,10 +4,15 @@
  *
  * @author Lars Olesen <lars@legestue.net>
  */
-class VIH_Intranet_Controller_Betaling_Index extends k_Controller
+class VIH_Intranet_Controller_Betaling_Index extends k_Component
 {
     private $form;
-    
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
     function getForm()
     {
         if ($this->form) return $this->form;
@@ -16,10 +21,10 @@ class VIH_Intranet_Controller_Betaling_Index extends k_Controller
         $form->addElement('submit', null, 'Søg efter bundtnummer');
         return ($this->form = $form);
     }
-    
-    function GET()
+
+    function renderHtml()
     {
-        $this->document->title = 'Betalinger';
+        $this->document->setTitle('Betalinger');
 
         if ($this->getForm()->validate()) {
             $betalinger = VIH_Model_Betaling::search($this->getForm()->exportValue('search'));
@@ -43,13 +48,13 @@ class VIH_Intranet_Controller_Betaling_Index extends k_Controller
         $this->document->options = array($this->url(null, array('find'=>'alle')) => 'Alle',
                                          $this->url(null, array('find'=>'elevforeningen')) => 'Elevforeningen');
 
-        return $this->render('VIH/Intranet/view/betalinger/betalinger-tpl.php', $data) . $this->getForm()->toHTML();
+      $tpl = $this->template->create('betalinger/betalinger');
+      return $tpl->render($this, $data);
 
     }
 
-    function forward($name)
+    function map($name)
     {
-        $next = new VIH_Intranet_Controller_Betaling_Show($this, $name);
-        return $next->handleRequest();
+        return 'VIH_Intranet_Controller_Betaling_Show';
     }
 }

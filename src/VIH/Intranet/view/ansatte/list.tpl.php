@@ -8,8 +8,8 @@
             <td><?php echo $ansat->get('telefon'); ?></td>
             <td><?php echo $ansat->get('mobil'); ?></td>
             <td><?php echo $ansat->get('email'); ?></td>
-            <td><a href="<?php echo url($ansat->get('id') . '/edit'); ?>">Ret</a></td>
-            <td><a href="<?php echo url($ansat->get('id') . '/delete'); ?>" onclick="return confirm('Er du sikker?');">Slet</a></td>
+            <td><a href="<?php echo url($ansat->get('id'), array('edit')); ?>">Ret</a></td>
+            <td><a href="<?php echo url($ansat->get('id'), array('delete')); ?>" onclick="return confirm('Er du sikker?');">Slet</a></td>
         </tr>
     <?php endforeach; ?>
 

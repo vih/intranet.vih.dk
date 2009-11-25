@@ -1,5 +1,5 @@
 <?php
-class VIH_Intranet_Controller_Fag_Gruppe_Edit extends k_Controller
+class VIH_Intranet_Controller_Fag_Gruppe_Edit extends k_Component
 {
     private $form;
 
@@ -22,9 +22,9 @@ class VIH_Intranet_Controller_Fag_Gruppe_Edit extends k_Controller
         return ($this->form = $form);
     }
 
-    function GET()
+    function renderHtml()
     {
-        $faggruppe = new VIH_Model_Fag_Gruppe($this->context->name);
+        $faggruppe = new VIH_Model_Fag_Gruppe($this->context->name());
 
         if ($faggruppe->get('id') > 0) {
             $defaults = array('id' => $faggruppe->get('id'),
@@ -37,16 +37,16 @@ class VIH_Intranet_Controller_Fag_Gruppe_Edit extends k_Controller
             $this->getForm()->setDefaults($defaults);
         }
 
-        $this->document->title = 'Rediger faggrupper';
+        $this->document->setTitle('Rediger faggrupper');
         $this->options = array(
             $this->context->url() => 'Tilbage'
         );
         return $this->getForm()->toHTML();
     }
 
-    function POST()
+    function postForm()
     {
-        $faggruppe = new VIH_Model_Fag_Gruppe($this->context->name);
+        $faggruppe = new VIH_Model_Fag_Gruppe($this->context->name());
         if ($this->getForm()->validate()) {
             if (!isset($this->POST['show_description'])) {
                 $this->POST['show_description'] = 0;
@@ -55,10 +55,10 @@ class VIH_Intranet_Controller_Fag_Gruppe_Edit extends k_Controller
                 $this->POST['published'] = 0;
             }
             if ($id = $faggruppe->save($this->POST->getArrayCopy())) {
-                throw new k_http_Redirect($this->context->url());
+                throw new k_SeeOther($this->context->url());
             }
         }
 
-        throw new Exception('Could not update faggruppe');
+        return $this->render();
     }
 }

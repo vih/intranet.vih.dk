@@ -1,12 +1,19 @@
 <?php
-class VIH_Intranet_Controller_Protokol_Delete extends k_Controller
+class VIH_Intranet_Controller_Protokol_Delete extends k_Component
 {
-    function GET()
+    private $db;
+
+    function __construct(DB $db)
     {
-        $db = $this->registry->get('database:pear');
+        $this->db = $db;
+    }
 
-        $res = $db->query('DELETE FROM langtkursus_tilmelding_protokol_item WHERE id = ' . (int)$this->context->name);
+    function renderHtml()
+    {
+        $db = $this->db;
 
-        throw new k_http_Redirect($this->url('../../../'));
+        $res = $db->query('DELETE FROM langtkursus_tilmelding_protokol_item WHERE id = ' . (int)$this->context->name());
+
+        throw new k_SeeOther($this->url('../../../'));
     }
 }

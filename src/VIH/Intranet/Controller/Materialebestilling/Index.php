@@ -2,9 +2,15 @@
 /**
  * Controller for the intranet
  */
-class VIH_Intranet_Controller_Materialebestilling_Index extends k_Controller
+class VIH_Intranet_Controller_Materialebestilling_Index extends k_Component
 {
-    function GET()
+     protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+    function renderHtml()
     {
         if (!empty($this->GET['sent'])) {
             $bestilling = new VIH_Model_MaterialeBestilling((int)$this->GET['sent']);
@@ -19,7 +25,7 @@ class VIH_Intranet_Controller_Materialebestilling_Index extends k_Controller
             $bestillinger = $bestilling->getList();
         }
 
-        $this->document->title = 'Materialebestilling';
+        $this->document->setTitle('Materialebestilling');
         $this->document->options = array($this->url(null, array('filter' => 'all')) =>'Alle');
 
 

@@ -1,11 +1,11 @@
 <?php
-class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Delete extends k_Controller
+class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Delete extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
-        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name);
+        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name());
         if ($tilmelding->delete()) {
-            throw new k_http_Redirect($this->context->url('../'));
+            throw new k_SeeOther($this->context->url('../'));
         }
     }
 }

@@ -1,17 +1,25 @@
 <?php
-class VIH_Intranet_Controller_Langekurser_Show extends k_Controller
+class VIH_Intranet_Controller_Langekurser_Show extends k_Component
 {
     public $map = array('edit' => 'VIH_Intranet_Controller_Langekurser_Edit',
                         'delete' => 'VIH_Intranet_Controller_Langekurser_Delete');
 
     public $form;
 
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+
     function getForm()
     {
         if ($this->form) {
             return $this->form;
         }
-        $kursus = new VIH_Model_LangtKursus((int)$this->name);
+        $kursus = new VIH_Model_LangtKursus((int)$this->name());
 
         $form = new HTML_QuickForm('show', 'POST', $this->url());
         $form->addElement('hidden', 'id', $kursus->get('id'));
@@ -20,9 +28,9 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Controller
         return ($this->form = $form);
     }
 
-    function GET()
+    function renderHtml()
     {
-        $kursus = new VIH_Model_LangtKursus((int)$this->name);
+        $kursus = new VIH_Model_LangtKursus((int)$this->name());
 
         if (!empty($this->GET['sletbillede']) AND is_numeric($this->GET['sletbillede'])) {
             $kursus->deletePicture($this->GET['sletbillede']);
@@ -39,7 +47,7 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Controller
             $pic_html .= '<div>' . $file->getImageHtml() . '<br /><a href="'.$this->url().'?sletbillede='.$pic['file_id'].'&amp;id='.$kursus->get('id').'">Slet</a></div>';
         }
 
-        $this->document->title = $kursus->getKursusNavn();
+        $this->document->setTitle($kursus->getKursusNavn());
         $this->document->options = array(
                 $this->url('../') => 'Kurser',
                 $this->url('edit') => 'Ret',
@@ -64,7 +72,7 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Controller
     {
         $conn = $this->registry->get('doctrine');
 
-        $kursus = new VIH_Model_LangtKursus((int)$this->name);
+        $kursus = new VIH_Model_LangtKursus((int)$this->name());
 
         $data = array('kursus' => $kursus);
 
@@ -92,52 +100,38 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Controller
         */
     }
 
-    function POST()
+    function postForm()
     {
-        $kursus = new VIH_Model_LangtKursus((int)$this->name);
+        $kursus = new VIH_Model_LangtKursus((int)$this->name());
         if ($this->getForm()->validate()) {
             $file = new Ilib_FileHandler;
             if($file->upload('userfile')) {
                 $kursus->addPicture($file->get('id'));
-                throw new k_http_Redirect($this->url());
+                throw new k_SeeOther($this->url());
             }
         }
     }
 
-    function forward($name)
+    function map($name)
     {
         if ($name == 'edit') {
-            $next = new VIH_Intranet_Controller_Langekurser_Edit($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Edit';
         } elseif ($name == 'delete') {
-            $next = new VIH_Intranet_Controller_Langekurser_Delete($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Delete';
         } elseif ($name == 'copy') {
-            $next = new VIH_Intranet_Controller_Langekurser_Copy($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Copy';
         } elseif ($name == 'periode') {
-            $next = new VIH_Intranet_Controller_Langekurser_Periode_Index($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Periode_Index';
         } elseif ($name == 'tilmeldinger') {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger';
         } elseif ($name == 'rater') {
-            $next = new VIH_Intranet_Controller_Langekurser_Rater($this, $name);
-            return $next->handleRequest();
-        } elseif ($name == 'periode') {
-            $next = new VIH_Intranet_Controller_Langekurser_Periode_Index($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Rater';
         } elseif ($name == 'fag') {
-            $next = new VIH_Intranet_Controller_Langekurser_Fag_Index($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Fag_Index';
         } elseif ($name == 'ministeriumliste') {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Ministeriumliste($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Ministeriumliste';
         } elseif ($name == 'elevuger') {
-            $next = new VIH_Intranet_Controller_Langekurser_Tilmeldinger_Elevugerliste($this, $name);
-            return $next->handleRequest();
-        } else {
-            return self::GET();
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Elevugerliste'';
         }
     }
 }

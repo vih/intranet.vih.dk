@@ -1,11 +1,10 @@
 <?php
-class VIH_Intranet_Controller_Protokol_Show extends k_Controller
+class VIH_Intranet_Controller_Protokol_Show extends k_Component
 {
-    function forward($name)
+    function map($name)
     {
         if ($name == 'delete') {
-            $next = new VIH_Intranet_Controller_Protokol_Delete($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Intranet_Controller_Protokol_Delete';
         }
     }
 }
