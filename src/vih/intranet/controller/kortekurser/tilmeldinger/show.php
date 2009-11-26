@@ -56,25 +56,23 @@ class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Show extends k_Controller
         				'type' => $tilmelding->get('keywords'),
         				'vis_slet' => 'ja');
 
-        $historik = array('historik' => $historik->getList(),
+        $historik_data = array('historik' => $historik->getList(),
         				  'tilmelding' => $tilmelding);
 
-        $betaling_tpl = $this->registry->get('template');
-        $betaling_tpl->set('caption', 'Afventende betalinger');
-        $betaling_tpl->set('betalinger', $betalinger->getList('not_approved'));
-        $betaling_tpl->set('msg_ingen', 'Der er ingen afventende betalinger.');
+        $betaling_data = array(
+        	'caption' => 'Afventende betalinger',
+        	'betalinger' => $betalinger->getList('not_approved'),
+        	'msg_ingen' => 'Der er ingen afventende betalinger.');
 
-        $prisoversigt_tpl = $this->registry->get('template');
-        $prisoversigt_tpl->set('tilmelding', $tilmelding);
-
+        $prisoversigt_data = array('tilmelding' => $tilmelding);
 
         $tilmelding = array('tilmelding' => $tilmelding,
         					'historik_object' => $historik,
-        					'deltagere' => $this->render(dirname(__FILE__) . '/../../../view/kortekurser/deltagere-tpl.php', $data),
+        					'deltagere' => $this->render('VIH/View/KortKursus/Tilmelding/deltagere-tpl.php', $data),
         					'status' => $tilmelding->get('status'),
-                            'prisoversigt' => $prisoversigt_tpl->fetch('kortekurser/tilmelding/prisoversigt-tpl.php'),
-        					'historik' => $this->render(dirname(__FILE__) . '/../../../view/tilmelding/historik-tpl.php', $historik),
-        					'betalinger'=> $betaling_tpl->fetch('tilmelding/betalinger-tpl.php'));
+                            'prisoversigt' => $this->render('VIH/View/KortKursus/Tilmelding/prisoversigt-tpl.php', $prisoversigt_data),
+        					'historik' => $this->render(dirname(__FILE__) . '/../../../view/tilmelding/historik-tpl.php', $historik_data),
+        					'betalinger'=> $this->render(dirname(__FILE__) . '/../../../view/tilmelding/betalinger-tpl.php', $betaling_data));
         return $this->render(dirname(__FILE__) . '/../../../view/kortekurser/tilmelding-tpl.php', $tilmelding);
 
         /*
@@ -90,7 +88,7 @@ class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Show extends k_Controller
     function POST()
     {
         $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->name);
-        if(!empty($_POST['annuller_tilmelding'])) {
+        if (!empty($_POST['annuller_tilmelding'])) {
             $tilmelding->setStatus("annulleret");
         }
         throw new k_http_Redirect($this->url());

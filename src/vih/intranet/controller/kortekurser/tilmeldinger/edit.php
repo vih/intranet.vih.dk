@@ -1,6 +1,16 @@
 <?php
-class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Edit extends k_Controller
+class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Edit extends VIH_Controller_KortKursus_Tilmelding_Kontakt
 {
+    function getTilmelding()
+    {
+        return new VIH_Model_KortKursus_Tilmelding($this->context->name);
+    }
+
+    function getRedirectUrl()
+    {
+        return $this->context->url();
+    }
+    /*
     private $form;
 
     function getForm()
@@ -196,10 +206,10 @@ class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Edit extends k_Controller
                 throw new k_http_Redirect($this->context->url());
             }
         } else {
-            $this->document->title = 'Rediger tilmelding'; 
+            $this->document->title = 'Rediger tilmelding';
             return $this->getForm()->toHTML();
         }
 
     }
-
+	*/
 }
