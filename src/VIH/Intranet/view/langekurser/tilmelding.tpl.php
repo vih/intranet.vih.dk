@@ -1,8 +1,9 @@
 <div id="content-left">
 
-    <h1>Tilmelding #<?php echo $tilmelding->get('id'); ?></h1>
-    <p><strong>Kursus</strong>: <?php echo $tilmelding->getKursus()->getKursusNavn(); ?></p>
-    <p><strong>Tilmeldingsdato</strong>: <?php echo $tilmelding->get('date_created_dk'); ?></p>
+    <h1>Tilmelding #<?php e($tilmelding->get('id')); ?></h1>
+    <p><strong>Kursus</strong>: <?php e($tilmelding->getKursus()->getKursusNavn()); ?></p>
+    <p><strong>Tilmeldingsdato</strong>: <?php e($tilmelding->get('date_created_dk')); ?></p>
+    <p><strong>Periode</strong>: <?php e($tilmelding->get('dato_start_dk')); ?> til <?php e($tilmelding->get('dato_slut_dk')); ?></p>
 
     <?php echo $message; ?>
 

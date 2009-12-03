@@ -2,9 +2,11 @@
 <div id="content-left">
 
     <div id="tilmeldingsoplysninger">
-        <!--  <h1>Tilmelding #<?php echo $tilmelding->get('id'); ?></h1> -->
-        <p><strong>Kursus:</strong> <?php echo $tilmelding->kursus->get('kursusnavn'); ?></p>
-        <p><strong>Tilmeldingsdato:</strong> <?php echo $tilmelding->get("date_created_dk"); ?></p>
+        <!--  <h1>Tilmelding #<?php e($tilmelding->get('id')); ?></h1> -->
+        <p><strong>Kursus:</strong> <?php e($tilmelding->kursus->get('kursusnavn')); ?></p>
+        <p><strong>Tilmeldingsdato:</strong> <?php e($tilmelding->get("date_created_dk")); ?></p>
+        <p><strong>Periode</strong>: <?php e($tilmelding->kursus->get('dato_start_dk')); ?> til <?php e($tilmelding->kursus->get('dato_end_dk')); ?></p>
+
         <!--
         <p><strong>Depositum forfalden:</strong> <?php echo $tilmelding->get("dato_forfalden_depositum_dk"); ?></p>
         <p><strong>Forfalden:</strong> <?php echo $tilmelding->get("dato_forfalden_dk"); ?></p>
