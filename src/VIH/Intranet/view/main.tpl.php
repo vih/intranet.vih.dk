@@ -263,7 +263,7 @@
 
     <body>
         <div id="container">
-            <h1 id="branding">Vejle Idrætshøjskoles Intranet</h1>
+            <h1 id="branding">Vejle IdrÃ¦tshÃ¸jskoles Intranet</h1>
 
             <ul id="navigation-main">
                 <?php foreach($context->document()->navigation() as $url => $name): ?>
@@ -272,7 +272,7 @@
             </ul>
 
             <div id="content">
-                <h1><?php e($context->document()->title()); ?> <span><?php e($this->document->help); ?></span></h1>
+                <h1><?php e($context->document()->title()); ?> <span><?php e($context->document()->help()); ?></span></h1>
                 <ul id="navigation-sub">
                     <?php foreach($context->document()->options() as $url => $name): ?>
                     <li><a href="<?php e($url); ?>"><?php e($name); ?></a></li>
@@ -283,7 +283,7 @@
             </div>
 
             <div id="footer">
-                &copy; Vejle Idrætshøjskole
+                &copy; Vejle IdrÃ¦tshÃ¸jskole
             </div>
         </div>
     </body>

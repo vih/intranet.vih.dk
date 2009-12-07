@@ -2,10 +2,10 @@
 require_once 'config.local.php';
 
 set_include_path(PATH_INCLUDE);
-
+/*
 require_once 'VIH/errorhandler.php';
 set_error_handler('vih_error_handler');
-
+*/
 require_once 'Ilib/ClassLoader.php';
 require_once 'VIH/functions.php';
 require_once 'VIH/configuration.php';
@@ -123,16 +123,14 @@ class Root extends k_Component {
             $this->url('/restricted/ansatte')  => 'Ansatte',
             $this->url('/restricted/faciliteter')  => 'Faciliteter',
             $this->url('/restricted/filemanager') => 'Dokumenter',
-            $this->url('/restricted/fotogalleri')  => 'Højdepunkter',
+            $this->url('/restricted/fotogalleri')  => 'Hï¿½jdepunkter',
             $this->url('/restricted/logout')  => 'Logout');
 
       $tpl = $this->template->create('main');
       return $tpl->render($this, array('content' => $content));
   }
   function renderHtml() {
-    return sprintf(
-      "<p>Vejle Idrætshøjskoles intranet er blevet opdateret. Klik på <a href='%s'>restricted</a> for at logge ind. Brugernavnet er det samme som du plejer at bruge som password.</p>",
-      htmlspecialchars($this->url('restricted')));
+      return new k_SeeOther($this->url('restricted'));
   }
 }
 
@@ -143,6 +141,7 @@ class VIH_Document extends k_Document
 {
     public $options;
     public $navigation;
+    public $help;
 
     function navigation()
     {
@@ -153,6 +152,11 @@ class VIH_Document extends k_Document
     {
         if (empty($this->options)) return array();
         return $this->options;
+    }
+
+    function help()
+    {
+        return $this->help;
     }
 }
 
