@@ -21,7 +21,8 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger extends k_Component
                       'vis_besked' => 'ja',
                       'caption' => 'Tilmeldinger');
 
-        return $this->render('VIH/Intranet/view/kortekurser/tilmeldinger-tpl.php', $data);
+        $tpl = $this->template->create('kortekurser/tilmeldinger');
+        return $tpl->render($this, $data);
     }
 
     function getKursus()

@@ -1,13 +1,17 @@
 <?php
+/**
+ * Only used for ajax calls
+ *
+ * @category
+ * @package
+ * @author     lsolesen
+ * @copyright
+ * @license   http://www.opensource.org/licenses/lgpl-license.php LGPL
+ * @version
+ *
+ */
 class VIH_Intranet_Controller_Kortekurser_Begyndere extends k_Component
 {
-    protected $template;
-
-    function __construct(k_TemplateFactory $template)
-    {
-        $this->template = $template;
-    }
-
     function renderHtml()
     {
         $kursus = new VIH_Model_KortKursus($this->context->name());

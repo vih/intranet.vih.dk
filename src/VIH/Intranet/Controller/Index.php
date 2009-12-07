@@ -16,6 +16,7 @@ class VIH_Intranet_Controller_Index extends k_Component
                         'fag'                 => 'VIH_Intranet_Controller_Fag_Index',
                         'betaling'            => 'VIH_Intranet_Controller_Betaling_Index',
                         'nyheder'             => 'VIH_Intranet_Controller_Nyheder_Index',
+                        'kalender'            => 'VIH_Intranet_Controller_Calendar_Index',
                         'protokol'            => 'VIH_Intranet_Controller_Protokol_Index',
                         'fotogalleri'         => 'VIH_Intranet_Controller_Fotogalleri_Index',
                         'filemanager'         => 'Intraface_Filehandler_Controller_Index',

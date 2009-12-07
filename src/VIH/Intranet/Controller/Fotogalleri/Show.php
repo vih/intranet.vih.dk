@@ -81,7 +81,8 @@ class VIH_Intranet_Controller_Fotogalleri_Show extends k_Component
         $this->document->options = array($url => 'Tilføj billeder',
                                          $this->url('../'), 'Tilbage');
 
-        return $this->render('VIH/Intranet/view/fotogalleri/fotoliste-tpl.php', $list);
+        $tpl = $this->template->create('fotogalleri/fotoliste');
+        return $tpl->render($data, $list);
     }
 
     function map($name)

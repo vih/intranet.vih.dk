@@ -8,7 +8,6 @@ class VIH_Intranet_Controller_Fotogalleri_Edit extends k_Component
     private $mdb2;
     protected $template;
 
-
     function __construct(DB $db, MDB2_Driver_Common $mdb2, k_TemplateFactory $template)
     {
         $this->db = $db;
@@ -90,6 +89,7 @@ class VIH_Intranet_Controller_Fotogalleri_Edit extends k_Component
 
             }
         }
+        return $this->render();
 
     }
 }

@@ -14,7 +14,6 @@ class VIH_Intranet_Controller_Langekurser_Index extends k_Component
         $this->template = $template;
     }
 
-
     function renderHtml()
     {
         $kurser = VIH_Model_LangtKursus::getList('intranet');
@@ -25,6 +24,7 @@ class VIH_Intranet_Controller_Langekurser_Index extends k_Component
         $data = array('caption' => 'Lange kurser',
                      'kurser' => $kurser);
 
+        $tpl = $this->template->create('langekurser/kurser');
         return $this->render(dirname(__FILE__) . '/../../view/langekurser/kurser-tpl.php', $data);
     }
 

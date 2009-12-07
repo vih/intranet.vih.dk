@@ -20,7 +20,7 @@ class VIH_Intranet_Controller_Fotogalleri_Index extends k_Component
 
         $result = $db->query('SELECT id, description, DATE_FORMAT(date_created, "%d-%m-%Y") AS dk_date_created, active FROM fotogalleri ORDER BY date_created DESC');
         if (PEAR::isError($result)) {
-            die($result->getUserInfo());
+            throw new Exception($result->getUserInfo());
         }
 
         $i = 0;
@@ -43,9 +43,10 @@ class VIH_Intranet_Controller_Fotogalleri_Index extends k_Component
 
         $this->document->setTitle('Fotogalleri');
         $this->document->options = array($this->url('create') => 'Tilføj');
+        $tpl = $this->template->create('fotogalleri/gallerier');
 
         return '<h2>Gallerier</h2>
-            ' .$this->render('VIH/Intranet/view/fotogalleri/gallerier-tpl.php', $list);
+            ' .$tpl->render($this, $list);
 
     }
 

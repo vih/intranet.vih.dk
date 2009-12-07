@@ -15,9 +15,8 @@ class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Component
 
     function renderHtml()
     {
-
         if ($this->GET['format'] == 'excel') {
-            return $this->excel();
+            return $this->renderXls();
         }
 
         $kursus = new VIH_Model_KortKursus($this->context->name());
@@ -57,11 +56,12 @@ class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Component
                       'type' => $keywords,
                       'indkvartering' => $kursus->get('indkvartering'));
 
-        return '<p>Deltagerantal: ' . count($deltagere) . '</p>' .$this->render(dirname(__FILE__) . '/../../view/kortekurser/deltagere-tpl.php', $data);
+        $tpl = $this->template->create('kortekurser/deltagere');
+        return '<p>Deltagerantal: ' . count($deltagere) . '</p>' . $tpl->render($this, $data);
     }
 
 
-    function excel()
+    function renderXls()
     {
         $workbook = new Spreadsheet_Excel_Writer();
 

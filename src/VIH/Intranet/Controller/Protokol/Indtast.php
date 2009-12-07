@@ -127,7 +127,6 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
             throw new k_SeeOther($this->context->url('../'));
 
         }
-
     }
 
     function map($name)

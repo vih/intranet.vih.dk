@@ -29,11 +29,11 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
         $brev_type_key = array_search($brev_type, $allowed_brev_type);
 
         if($brev_type_key === false) {
-           trigger_error("Ugyldig brev type", E_USER_ERROR);
+            throw new Exception("Ugyldig brev type");
         }
 
         if($tilmelding->get('id') == 0) {
-           trigger_error("Ugyldig tilmelding", E_USER_ERROR);
+           throw new Exception("Ugyldig tilmelding");
         }
 
         include(dirname(__FILE__) . '/breve/'.$brev_type_key);

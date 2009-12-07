@@ -67,13 +67,13 @@ class VIH_Intranet_Controller_Fag_Show extends k_Component
                 $res = $db->execute($sth, $values);
 
                 if (PEAR::isError($res)) {
-                    echo $res->getMessage();
+                    throw new Exception($res->getMessage());
                 }
 
                 throw new k_SeeOther($this->url());
             }
         }
-
+        return $this->render();
     }
 
     function getForm()
@@ -87,5 +87,23 @@ class VIH_Intranet_Controller_Fag_Show extends k_Component
         $form->addElement('submit', null, 'Upload');
 
         return ($this->form = $form);
+    }
+
+    function renderPdf()
+    {
+        $fag = new VIH_Model_Fag($this->name());
+
+        // beskrivelsen skal deles op og regnes ud, hvor meget, der kan være på hver side.
+        // det der ikke kan være på midtersiderne skal være på bagsiden.
+
+        $pdf = new VIH_PdfBrochure();
+        $pdf->SetTitle($fag->get('navn'));
+        $pdf->SetSubject('Fagbeskrivelse: ' . $fag->get('navn'));
+        $pdf->SetAuthor('Lars Olesen, Vejle Idrætshøjskole');
+        $pdf->SetCreator('Lars Olesen, Vejle Idrætshøjskole');
+        $pdf->SetDisplayMode('fullpage', 'two');
+        $pdf->SetKeywords('keyword');
+        $pdf->VIHContent($fag->get('beskrivelse'));
+        $pdf->Output();
     }
 }

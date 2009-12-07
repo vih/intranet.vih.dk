@@ -13,6 +13,14 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
         $this->template = $template;
     }
 
+    function dispatch()
+    {
+        $kursus = new VIH_Model_LangtKursus($this->context->name());
+        if ($kursus->get("id") == 0) {
+            throw k_PageNotFound();
+        }
+        return parent::dispatch();
+    }
 
     function getForm()
     {
@@ -65,7 +73,8 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
 
         $data = array('kursus' => $kursus, 'subjects' => $this->getSubjects());
 
-        return $this->render('VIH/Intranet/view/langekurser/show.tpl.php', $data) . $this->getForm()->toHTML() . $pic_html;
+        $tpl = $this->template->create('langekurser/show');
+        return $tpl->render($this, $data) . $this->getForm()->toHTML() . $pic_html;
     }
 
     function getSubjects()

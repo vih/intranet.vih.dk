@@ -165,25 +165,22 @@ class VIH_Intranet_Controller_Calendar_Index extends k_Component
 
     function renderHtml()
     {
-        // Calendar instance used to get the dates in the preferred format:
-        // you can switch Calendar Engine and the example still works
         $cal = new Calendar;
-        $ical = new Structures_Ical();
-        //$ical->parse('c:/Users/Lars Olesen/Desktop/basic.ics');
-        $ical->parseUrl('http://www.google.com/calendar/ical/scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com/public/basic.ics');
 
-        $this->document->setTitle(utf8_decode($ical->getCalendarName()));
+        $gateway = new Structures_IcalGateway;
+        $ical = $gateway->getFromUri('http://www.google.com/calendar/ical/scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com/public/basic.ics');
+
+        $this->document->setTitle($ical->getCalendarName());
         $this->document->options = array($this->url('http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com') => 'Google kalenderen');
 
-        $events = array();
-        foreach ($ical->getSortEventList() as $event) {
+        foreach ($ical->getSortedEvents() as $event) {
             $start = new Date($event['DTSTART']['unixtime']);
             $end = new Date($event['DTEND']['unixtime']);
 
             $events[] = array(
                 'start' => $start->format('%Y-%m-%d %T'),
                 'end'   => $end->format('%Y-%m-%d %T'),
-                'desc'  => utf8_decode($event['SUMMARY'])
+                'desc'  => $event['SUMMARY']
             );
         }
 

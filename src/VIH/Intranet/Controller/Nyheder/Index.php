@@ -8,6 +8,7 @@ class VIH_Intranet_Controller_Nyheder_Index extends k_Component
     {
         $this->template = $template;
     }
+
     function renderHtml()
     {
         $this->document->setTitle('Nyheder');
@@ -15,8 +16,8 @@ class VIH_Intranet_Controller_Nyheder_Index extends k_Component
 
         $data = array('nyheder' => VIH_News::getList('', 100));
 
-        return $this->render('VIH/Intranet/view/nyheder/nyheder-tpl.php', $data);
-
+        $tpl = $this->template->create('nyheder/nyheder');
+        return $tpl->render($this, $data);
     }
 
     function map($name)

@@ -145,11 +145,13 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Component
         $this->document->setTitle('Protokol');
         $this->document->options = array($this->url('holdliste') => 'Holdliste');
 
+        $tpl = $this->template->create('protokol/liste');
+
         return '<h2>Fraværende</h2>
             '.$this->getForm()->toHTML().'
-            ' .$this->render('VIH/Intranet/view/protokol/liste-tpl.php', $list) .
+            ' .$tpl->render('VIH/Intranet/view/protokol/liste-tpl.php', $list) .
             '<h2>Fritagelser indtil dato</h2>'
-            . $this->render('VIH/Intranet/view/protokol/liste-tpl.php', $list1);
+            . $tpl->render('VIH/Intranet/view/protokol/liste-tpl.php', $list1);
 
     }
 }

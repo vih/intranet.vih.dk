@@ -7,13 +7,14 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Index extends k_Component
     {
         $this->template = $template;
     }
+
     function renderHtml()
     {
         $kursus = new VIH_Model_KortKursus($this->context->name());
 
         $venteliste = new VIH_Model_Venteliste(1, $kursus->get('id'));
         if(intval($venteliste->get('kursus_id')) == 0) {
-            trigger_error("Ugyldigt kursus", E_USER_ERROR);
+            throw new Exception("Ugyldigt kursus");
         }
         $liste = $venteliste->getList();
 
@@ -21,8 +22,9 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Index extends k_Component
 
         $data = array('venteliste' => $liste);
 
+        $tpl = $this->template->create('kortekurser/venteliste');
         return '<p>Listen er sorteret med de, der været længst på venteliste øverst</p>
-        ' . $this->render('VIH/Intranet/view/kortekurser/venteliste-tpl.php', $data);
+        ' . $tpl->render($this, $data);
     }
 
     function getKursusId()

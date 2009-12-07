@@ -29,8 +29,6 @@ class VIH_Intranet_Controller_Kortekurser_Index extends k_Component
                       'kurser' => $kurser);
 
         $tpl = $this->template->create('kortekurser/kurser');
-
-
         return $this->getForm()->toHTML() . $tpl->render($this, $data);
     }
 

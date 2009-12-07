@@ -93,8 +93,10 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Component
             $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id') . '/diplom') => 'Diplom'
         );
 
+        $tpl = $this->template->create('protokol/liste');
+
         return '<div style="border: 1px solid #ccc; padding: 0.5em; float: right;">' .   $extra_html . '</div>
-            ' . $this->render('VIH/Intranet/view/protokol/liste-tpl.php', $data);
+            ' . $tpl->render($this, $data);
 
     }
 

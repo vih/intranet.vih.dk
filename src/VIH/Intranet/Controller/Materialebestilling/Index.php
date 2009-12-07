@@ -10,6 +10,7 @@ class VIH_Intranet_Controller_Materialebestilling_Index extends k_Component
     {
         $this->template = $template;
     }
+
     function renderHtml()
     {
         if (!empty($this->GET['sent'])) {
@@ -28,11 +29,10 @@ class VIH_Intranet_Controller_Materialebestilling_Index extends k_Component
         $this->document->setTitle('Materialebestilling');
         $this->document->options = array($this->url(null, array('filter' => 'all')) =>'Alle');
 
-
         $data = array('headline' => 'Materialebestilling',
                       'bestillinger' => $bestillinger);
 
-        return $this->render(dirname(__FILE__) . '/../../view/materialebestilling/index-tpl.php', $data);
-
+        $tpl = $this->template->create('materialebestilling/index');
+        return $tpl->render($this, $data);
     }
 }

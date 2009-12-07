@@ -8,6 +8,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index extends k_Component
     {
         $this->template = $template;
     }
+
     function getForm()
     {
         if ($this->form) {

@@ -1,7 +1,6 @@
 <?php
 class VIH_Intranet_Controller_Langekurser_Rater extends k_Component
 {
-
     protected $template;
 
     function __construct(k_TemplateFactory $template)
@@ -12,11 +11,6 @@ class VIH_Intranet_Controller_Langekurser_Rater extends k_Component
     function renderHtml()
     {
         $kursus = new VIH_Model_LangtKursus($this->context->name());
-
-        if($kursus->get("id") == 0) {
-            throw k_http_Response(404);
-        }
-
 
         if(isset($this->GET["addrate"])) {
             if (!$kursus->addRate($this->GET["addrate"])) {
@@ -42,8 +36,9 @@ class VIH_Intranet_Controller_Langekurser_Rater extends k_Component
         $this->document->setTitle('Rater for betaling '.$kursus->get('kursusnavn'));
         $this->document->options = array($this->context->url() => 'Til kurset');
 
+        $tpl =  $this->template->create('langekurser/pris');
         return '<p><strong>Periode</strong>: '.$kursus->getDateStart()->format('%d-%m-%Y').' &mdash; '.$kursus->getDateEnd()->format('%d-%m-%Y').'</p>
-        ' . $this->render('VIH/Intranet/view/langekurser/pris-tpl.php', $pris) . $form_html;
+        ' . $tpl->render($this, $pris) . $form_html;
     }
 
     function postForm()

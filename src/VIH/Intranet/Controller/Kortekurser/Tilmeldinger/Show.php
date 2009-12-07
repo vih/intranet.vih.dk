@@ -83,7 +83,9 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
                             'prisoversigt' => $prisoversigt_tpl->fetch('kortekurser/tilmelding/prisoversigt-tpl.php'),
         					'historik' => $this->render(dirname(__FILE__) . '/../../../view/tilmelding/historik-tpl.php', $historik),
         					'betalinger'=> $betaling_tpl->fetch('tilmelding/betalinger-tpl.php'));
-        return $this->render(dirname(__FILE__) . '/../../../view/kortekurser/tilmelding-tpl.php', $tilmelding);
+        $tpl = $this->templates->create('kortekurser/tilmelding');
+
+        return $tpl->render($this, $tilmelding);
 
         /*
         $tpl->set('content_sub', '
@@ -109,5 +111,23 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
         if ($name == 'sendbrev') {
             return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev';
         }
+    }
+
+    function renderPdf()
+    {
+        require_once 'fpdf/fpdf.php';
+
+        $data = file_get_contents(dirname(__FILE__) . '/udsendte_pdf/' . $name);
+
+        $response = new k_http_Response(200, $data);
+        $response->setEncoding(NULL);
+        $response->setContentType("application/pdf");
+
+        $response->setHeader("Content-Length", strlen($data));
+        $response->setHeader("Content-Disposition", "attachment; filename=\"foobar.pdf\"");
+        $response->setHeader("Content-Transfer-Encoding", "binary");
+        $response->setHeader("Cache-Control", "Public");
+        $response->setHeader("Pragma", "public");
+        throw $response;
     }
 }

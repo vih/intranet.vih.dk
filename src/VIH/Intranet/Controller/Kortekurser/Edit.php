@@ -108,6 +108,6 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
                 throw new k_SeeOther($this->url('../'));
             }
         }
-
+        return $this->render();
     }
 }

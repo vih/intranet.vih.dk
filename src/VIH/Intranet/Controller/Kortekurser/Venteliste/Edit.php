@@ -2,12 +2,6 @@
 class VIH_Intranet_Controller_Kortekurser_Venteliste_Edit extends k_Component
 {
     private $form;
-    protected $template;
-
-    function __construct(k_TemplateFactory $template)
-    {
-        $this->template = $template;
-    }
 
     function getForm()
     {
