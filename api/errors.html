@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>phpDocumentor Parser Errors and Warnings</title>
+			<link rel="stylesheet" href="media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<a href="#Post-parsing">Post-parsing</a><br>
+<a href="#adresselabels.php">adresselabels.php</a><br>
+<a href="#adresseliste-tpl.php">adresseliste-tpl.php</a><br>
+<a href="#adresseliste.php">adresseliste.php</a><br>
+<a href="#begyndere.php">begyndere.php</a><br>
+<a href="#bekraeftelse.php">bekraeftelse.php</a><br>
+<a href="#betaling.php">betaling.php</a><br>
+<a href="#betalinger-tpl.php">betalinger-tpl.php</a><br>
+<a href="#brev.php">brev.php</a><br>
+<a href="#capture.php">capture.php</a><br>
+<a href="#copy.php">copy.php</a><br>
+<a href="#create.php">create.php</a><br>
+<a href="#delete.php">delete.php</a><br>
+<a href="#deltagere-tpl.php">deltagere-tpl.php</a><br>
+<a href="#deltagere.php">deltagere.php</a><br>
+<a href="#deltagerliste.php">deltagerliste.php</a><br>
+<a href="#deltagerliste.tpl.php">deltagerliste.tpl.php</a><br>
+<a href="#depositumbekraeftelse.php">depositumbekraeftelse.php</a><br>
+<a href="#depositumrykker.php">depositumrykker.php</a><br>
+<a href="#drikkevareliste.php">drikkevareliste.php</a><br>
+<a href="#drikkevareliste.tpl.php">drikkevareliste.tpl.php</a><br>
+<a href="#edit.php">edit.php</a><br>
+<a href="#elev.php">elev.php</a><br>
+<a href="#elevuger.tpl.php">elevuger.tpl.php</a><br>
+<a href="#elevugerliste.php">elevugerliste.php</a><br>
+<a href="#exportcsv.php">exportcsv.php</a><br>
+<a href="#facebooktest.php">facebooktest.php</a><br>
+<a href="#faciliteter-tpl.php">faciliteter-tpl.php</a><br>
+<a href="#fag-tpl.php">fag-tpl.php</a><br>
+<a href="#fag.php">fag.php</a><br>
+<a href="#fag.tpl.php">fag.tpl.php</a><br>
+<a href="#fagcount.tpl.php">fagcount.tpl.php</a><br>
+<a href="#faggruppe.tpl.php">faggruppe.tpl.php</a><br>
+<a href="#faggrupper-tpl.php">faggrupper-tpl.php</a><br>
+<a href="#faggrupper.tpl.php">faggrupper.tpl.php</a><br>
+<a href="#form-tpl.php">form-tpl.php</a><br>
+<a href="#form_rater-tpl.php">form_rater-tpl.php</a><br>
+<a href="#fotoliste-tpl.php">fotoliste-tpl.php</a><br>
+<a href="#gallerier-tpl.php">gallerier-tpl.php</a><br>
+<a href="#historik-tpl.php">historik-tpl.php</a><br>
+<a href="#holdliste-tpl.php">holdliste-tpl.php</a><br>
+<a href="#holdliste.php">holdliste.php</a><br>
+<a href="#holdlister-tpl.php">holdlister-tpl.php</a><br>
+<a href="#index-tpl.php">index-tpl.php</a><br>
+<a href="#index.php">index.php</a><br>
+<a href="#indtast.php">indtast.php</a><br>
+<a href="#kurser-tpl.php">kurser-tpl.php</a><br>
+<a href="#kursus.php">kursus.php</a><br>
+<a href="#list-tpl.php">list-tpl.php</a><br>
+<a href="#liste-tpl.php">liste-tpl.php</a><br>
+<a href="#login-tpl.php">login-tpl.php</a><br>
+<a href="#login.php">login.php</a><br>
+<a href="#logout.php">logout.php</a><br>
+<a href="#main-tpl.php">main-tpl.php</a><br>
+<a href="#medlemmer-tpl.php">medlemmer-tpl.php</a><br>
+<a href="#ministerium.php">ministerium.php</a><br>
+<a href="#ministerium.tpl.php">ministerium.tpl.php</a><br>
+<a href="#ministeriumliste.php">ministeriumliste.php</a><br>
+<a href="#navneskilte.php">navneskilte.php</a><br>
+<a href="#nyheder-tpl.php">nyheder-tpl.php</a><br>
+<a href="#oplysninger-tpl.php">oplysninger-tpl.php</a><br>
+<a href="#pdf.php">pdf.php</a><br>
+<a href="#pdfdiplom.php">pdfdiplom.php</a><br>
+<a href="#pdf_label.php">pdf_label.php</a><br>
+<a href="#perioder-tpl.php">perioder-tpl.php</a><br>
+<a href="#pris-tpl.php">pris-tpl.php</a><br>
+<a href="#prisoversigt-tpl.php">prisoversigt-tpl.php</a><br>
+<a href="#rater-tpl.php">rater-tpl.php</a><br>
+<a href="#rater.php">rater.php</a><br>
+<a href="#rater_form-tpl.php">rater_form-tpl.php</a><br>
+<a href="#restance.php">restance.php</a><br>
+<a href="#reverse.php">reverse.php</a><br>
+<a href="#root.php">root.php</a><br>
+<a href="#rykker.php">rykker.php</a><br>
+<a href="#sendbrev.php">sendbrev.php</a><br>
+<a href="#send_brev-tpl.php">send_brev-tpl.php</a><br>
+<a href="#show.php">show.php</a><br>
+<a href="#show.tpl.php">show.tpl.php</a><br>
+<a href="#special_day-tpl.php">special_day-tpl.php</a><br>
+<a href="#tilmelding-tpl.php">tilmelding-tpl.php</a><br>
+<a href="#tilmeldinger-tpl.php">tilmeldinger-tpl.php</a><br>
+<a href="#tilmeldinger.php">tilmeldinger.php</a><br>
+<a href="#user.php">user.php</a><br>
+<a href="#venteliste-tpl.php">venteliste-tpl.php</a><br>
+<a href="#wrapper-tpl.php">wrapper-tpl.php</a><br>
+<a name="Post-parsing"></a>
+<h1>Post-parsing</h1>
+<h2>Warnings:</h2><br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Fag_Gruppe_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Fag_Gruppe_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Fag_Pdf parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Fag_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Lister_Ministerium parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Lister_Navneskilte parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Fag parent VIH_Controller_LangtKursus_Login_Fag not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Rater parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Protokol_Elev parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Periode_Create parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Protokol_Indtast parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Protokol_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Deltagere parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Lister_Deltagerliste parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Lister_Adresselabels parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Betaling_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Betaling_Reverse parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Betaling_Capture parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Faciliteter_Delete parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Faciliteter_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Faciliteter_Edit parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Betaling_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Protokol_Holdliste parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Begyndere parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Lister_Drikkevareliste parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Root parent k_Dispatcher not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Protokol_Delete parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Periode_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Holdlister_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Fag_Gruppe_Edit parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Nyheder_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Delete parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Edit parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Brev parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Delete parent k_Controller not found<br>
+<b>Warning</b> - Class B_FPDF parent FPDF not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Periode_Edit parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_ExportCSV parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Elevugerliste parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Periode_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Ministeriumliste parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Tilmeldinger parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Edit parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Holdlister_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Restance parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Logout parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Fag_Delete parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Fag_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Fag_Edit parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Pdfdiplom parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Create parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Nyheder_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Nyheder_Edit parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Nyheder_Delete parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Faciliteter_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Protokol_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Login parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Calendar_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Edit parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Materialebestilling_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_SendBrev parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Pdf parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Rater parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Ansatte_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Venteliste_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Venteliste_Edit parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Venteliste_Delete parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Index parent k_Controller not found<br>
+<b>Warning</b> - Class MonthPayload_Decorator parent Calendar_Decorator not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Venteliste_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Ansatte_Delete parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Copy parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Edit parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Tilmeldinger parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Ansatte_Edit parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Tilmeldinger parent k_Controller not found<br>
+<b>Warning</b> - Class DiaryEvent parent Calendar_Decorator not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Copy parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Fotogalleri_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Delete parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Restance parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Kursus parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Fag_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Ansatte_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Edit parent VIH_Controller_KortKursus_Tilmelding_Kontakt not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Fotogalleri_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_LangeKurser_Show parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Elevforeningen_Index parent k_Controller not found<br>
+<b>Warning</b> - Class VIH_Intranet_Controller_Fotogalleri_Edit parent k_Controller not found<br>
+<a name="adLdap.php"></a>
+<h1>adLdap.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 38</b> - Unknown tag "@revision" used<br>
+<b>Warning on line 38</b> - package default is already in category default, will now replace with category ToolsAndUtilities<br>
+<b>Warning on line 61</b> - no @package tag was used in a DocBlock for class adLDAP<br>
+<b>Warning on line 996</b> - Unknown tag "@requires" used<br>
+<b>Warning on line 2087</b> - no @package tag was used in a DocBlock for class adLDAPException<br>
+<h2>Errors:</h2><br>
+<b>Error on line 91</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var string "<br>
+<b>Error on line 138</b> - DocBlock has multiple @var tags, illegal. ignoring additional tag "@var mixed "<br>
+<a name="adresselabels.php"></a>
+<h1>adresselabels.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 4</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Lister_Adresselabels<br>
+<b>Warning on line 4</b> - Class "VIH_Intranet_Controller_KorteKurser_Lister_Adresselabels" has no Class-level DocBlock.<br>
+<b>Warning on line 30</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 45</b> - Method "Avery7160" has no method-level DocBlock.<br>
+<b>Warning on line 83</b> - Method "PrintAddressLabels" has no method-level DocBlock.<br>
+<b>Warning on line 85</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/lister/adresselabels.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="adresseliste-tpl.php"></a>
+<h1>adresseliste-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/adresseliste-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="adresseliste.php"></a>
+<h1>adresseliste.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Adresseliste" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Adresseliste<br>
+<b>Warning on line 30</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 31</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/adresseliste.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="begyndere.php"></a>
+<h1>begyndere.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Begyndere<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Begyndere" has no Class-level DocBlock.<br>
+<b>Warning on line 13</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 14</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/begyndere.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="bekraeftelse.php"></a>
+<h1>bekraeftelse.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 45</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger/breve/bekraeftelse.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="betaling.php"></a>
+<h1>betaling.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 141</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/betaling.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="betalinger-tpl.php"></a>
+<h1>betalinger-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 34</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/tilmelding/betalinger-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 46</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/betalinger/betalinger-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 78</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/tilmelding/betalinger-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="brev.php"></a>
+<h1>brev.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 3</b> - no @package tag was used in a DocBlock for class B_FPDF<br>
+<b>Warning on line 3</b> - Class "B_FPDF" has no Class-level DocBlock.<br>
+<b>Warning on line 7</b> - Method "b_fpdf" has no method-level DocBlock.<br>
+<b>Warning on line 17</b> - Method "footer" has no method-level DocBlock.<br>
+<b>Warning on line 26</b> - Method "setY" has no method-level DocBlock.<br>
+<b>Warning on line 31</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Brev<br>
+<b>Warning on line 31</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Brev" has no Class-level DocBlock.<br>
+<b>Warning on line 318</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 319</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/brev.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="capture.php"></a>
+<h1>capture.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Betaling_Capture<br>
+<b>Warning on line 42</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 44</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/betaling/capture.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="copy.php"></a>
+<h1>copy.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Copy" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Copy<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Copy" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Copy<br>
+<b>Warning on line 9</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 10</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/copy.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 12</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 13</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/copy.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="create.php"></a>
+<h1>create.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Create<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Create" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Periode_Create" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Periode_Create<br>
+<b>Warning on line 11</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 12</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 16</b> - Method "execute" has no method-level DocBlock.<br>
+<b>Warning on line 17</b> - Method "execute" has no method-level DocBlock.<br>
+<b>Warning on line 21</b> - Method "validate" has no method-level DocBlock.<br>
+<b>Warning on line 22</b> - Method "validate" has no method-level DocBlock.<br>
+<b>Warning on line 46</b> - Method "validHandler" has no method-level DocBlock.<br>
+<b>Warning on line 47</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/periode/faggruppe/create.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 48</b> - Method "validHandler" has no method-level DocBlock.<br>
+<b>Warning on line 49</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/periode/create.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="delete.php"></a>
+<h1>delete.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Delete" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Delete<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Delete<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Delete" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Faciliteter_Delete" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Faciliteter_Delete<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Protokol_Delete<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Protokol_Delete" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Ansatte_Delete" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Delete<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Delete" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Fag_Delete<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Venteliste_Delete" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Venteliste_Delete<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Ansatte_Delete<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Nyheder_Delete" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Nyheder_Delete<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Fag_Delete" has no Class-level DocBlock.<br>
+<b>Warning on line 9</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 9</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 9</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 9</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 9</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 9</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 10</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 10</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/delete.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 10</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger/delete.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 11</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/faciliteter/delete.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 11</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/nyheder/delete.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 11</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 11</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/fag/delete.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 11</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/protokol/delete.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 11</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/ansatte/delete.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 12</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/delete.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 12</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 13</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/venteliste/delete.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="deltagere-tpl.php"></a>
+<h1>deltagere-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 63</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/kortekurser/deltagere-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="deltagere.php"></a>
+<h1>deltagere.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Deltagere" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Deltagere<br>
+<b>Warning on line 6</b> - Method "getKursus" has no method-level DocBlock.<br>
+<b>Warning on line 53</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 103</b> - Method "excel" has no method-level DocBlock.<br>
+<b>Warning on line 104</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/deltagere.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="deltagerliste.php"></a>
+<h1>deltagerliste.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Lister_Deltagerliste" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Lister_Deltagerliste<br>
+<b>Warning on line 12</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 13</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/lister/deltagerliste.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="deltagerliste.tpl.php"></a>
+<h1>deltagerliste.tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 24</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/kortekurser/lister/deltagerliste.tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="depositumbekraeftelse.php"></a>
+<h1>depositumbekraeftelse.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 44</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger/breve/depositumbekraeftelse.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="depositumrykker.php"></a>
+<h1>depositumrykker.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 41</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger/breve/depositumrykker.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="drikkevareliste.php"></a>
+<h1>drikkevareliste.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Lister_Drikkevareliste<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Lister_Drikkevareliste" has no Class-level DocBlock.<br>
+<b>Warning on line 12</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 13</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/lister/drikkevareliste.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="drikkevareliste.tpl.php"></a>
+<h1>drikkevareliste.tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/kortekurser/lister/drikkevareliste.tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="edit.php"></a>
+<h1>edit.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Edit<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Fag_Gruppe_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Fag_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Fag_Edit<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Fag_Gruppe_Edit<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Venteliste_Edit<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Ansatte_Edit<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Edit<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Venteliste_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Ansatte_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Nyheder_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Edit<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Periode_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Periode_Edit<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Edit<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Edit<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Faciliteter_Edit<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Nyheder_Edit<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Faciliteter_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 3</b> - Class "VIH_Intranet_Controller_Fotogalleri_Edit" has no Class-level DocBlock.<br>
+<b>Warning on line 3</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Fotogalleri_Edit<br>
+<b>Warning on line 6</b> - Method "getTilmelding" has no method-level DocBlock.<br>
+<b>Warning on line 11</b> - Method "getRedirectUrl" has no method-level DocBlock.<br>
+<b>Warning on line 12</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 14</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 18</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 20</b> - Method "getDefaultValues" has no method-level DocBlock.<br>
+<b>Warning on line 22</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 23</b> - Method "getDefaultValues" has no method-level DocBlock.<br>
+<b>Warning on line 23</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 23</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 26</b> - Method "execute" has no method-level DocBlock.<br>
+<b>Warning on line 29</b> - Method "execute" has no method-level DocBlock.<br>
+<b>Warning on line 31</b> - Method "validate" has no method-level DocBlock.<br>
+<b>Warning on line 34</b> - Method "validate" has no method-level DocBlock.<br>
+<b>Warning on line 38</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 39</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 40</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 42</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 44</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 44</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 46</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 47</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 48</b> - Method "validHandler" has no method-level DocBlock.<br>
+<b>Warning on line 49</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/periode/faggruppe/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 52</b> - Method "validHandler" has no method-level DocBlock.<br>
+<b>Warning on line 53</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/periode/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 56</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 59</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 59</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/venteliste/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 60</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 61</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/faciliteter/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 62</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 63</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/fag/gruppe/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 74</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 79</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 81</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 82</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/fotogalleri/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 84</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 85</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 96</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 97</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/fag/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 102</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 103</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 104</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 108</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 109</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/ansatte/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 109</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 113</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 114</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/nyheder/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 129</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 130</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 164</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 187</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 189</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 214</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger/edit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="elev.php"></a>
+<h1>elev.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Protokol_Elev" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Protokol_Elev<br>
+<b>Warning on line 89</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 97</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 98</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/protokol/elev.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="elevuger.tpl.php"></a>
+<h1>elevuger.tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/elevuger.tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="elevugerliste.php"></a>
+<h1>elevugerliste.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Elevugerliste" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Elevugerliste<br>
+<b>Warning on line 9</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 13</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/elevugerliste.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="exportcsv.php"></a>
+<h1>exportcsv.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_ExportCSV<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_ExportCSV" has no Class-level DocBlock.<br>
+<b>Warning on line 15</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 31</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 128</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 134</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 135</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/exportcsv.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="facebooktest.php"></a>
+<h1>facebooktest.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 33</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/facebooktest.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="faciliteter-tpl.php"></a>
+<h1>faciliteter-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 13</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/faciliteter/faciliteter-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fag-tpl.php"></a>
+<h1>fag-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 36</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/fag-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fag.php"></a>
+<h1>fag.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 3</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Fag" has no Class-level DocBlock.<br>
+<b>Warning on line 3</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Fag<br>
+<b>Warning on line 7</b> - Method "getRegistration" has no method-level DocBlock.<br>
+<b>Warning on line 16</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 75</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/fag.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fag.tpl.php"></a>
+<h1>fag.tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 16</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/tilmelding/fag.tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fagcount.tpl.php"></a>
+<h1>fagcount.tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/tilmelding/fagcount.tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="faggruppe.tpl.php"></a>
+<h1>faggruppe.tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 10</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/periode/faggruppe.tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="faggrupper-tpl.php"></a>
+<h1>faggrupper-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 13</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/fag/faggrupper-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="faggrupper.tpl.php"></a>
+<h1>faggrupper.tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/periode/faggrupper.tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="form-tpl.php"></a>
+<h1>form-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/form-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="form_rater-tpl.php"></a>
+<h1>form_rater-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 56</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/tilmelding/form_rater-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fotoliste-tpl.php"></a>
+<h1>fotoliste-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 12</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/fotogalleri/fotoliste-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="gallerier-tpl.php"></a>
+<h1>gallerier-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 12</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/fotogalleri/gallerier-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="historik-tpl.php"></a>
+<h1>historik-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 32</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/tilmelding/historik-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="holdliste-tpl.php"></a>
+<h1>holdliste-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 13</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/holdlister/holdliste-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 14</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/protokol/holdliste-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="holdliste.php"></a>
+<h1>holdliste.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Protokol_Holdliste<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Protokol_Holdliste" has no Class-level DocBlock.<br>
+<b>Warning on line 15</b> - Method "getTypeKeys" has no method-level DocBlock.<br>
+<b>Warning on line 27</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 66</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 72</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 73</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/protokol/holdliste.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="holdlister-tpl.php"></a>
+<h1>holdlister-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/holdlister/holdlister-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="index-tpl.php"></a>
+<h1>index-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 47</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/materialebestilling/index-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="index.php"></a>
+<h1>index.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Index" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Holdlister_Index" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Holdlister_Index<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Index<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Nyheder_Index<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Nyheder_Index" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Index<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Venteliste_Index" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Index" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Venteliste_Index<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Fag_Index<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Fag_Index" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Index<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Index" has no Class-level DocBlock.<br>
+<b>Warning on line 3</b> - Class "VIH_Intranet_Controller_Elevforeningen_Index" has no Class-level DocBlock.<br>
+<b>Warning on line 3</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Elevforeningen_Index<br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Ansatte_Index<br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Fag_Index<br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Periode_Index<br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Fotogalleri_Index<br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Index<br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Materialebestilling_Index<br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Protokol_Index<br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Index<br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Faciliteter_Index<br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Index<br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Fag_Gruppe_Index<br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Betaling_Index<br>
+<b>Warning on line 12</b> - Class "DiaryEvent" has no Class-level DocBlock.<br>
+<b>Warning on line 12</b> - no @package tag was used in a DocBlock for class DiaryEvent<br>
+<b>Warning on line 13</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 14</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 14</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 14</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 14</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 15</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 15</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 17</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 17</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 18</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 18</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 19</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 20</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 20</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 21</b> - Method "addEntry" has no method-level DocBlock.<br>
+<b>Warning on line 21</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/faciliteter/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 21</b> - Method "getContent" has no method-level DocBlock.<br>
+<b>Warning on line 22</b> - Method "getTypeKeys" has no method-level DocBlock.<br>
+<b>Warning on line 23</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 24</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 24</b> - Method "getKursusId" has no method-level DocBlock.<br>
+<b>Warning on line 24</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 25</b> - Method "getContent" has no method-level DocBlock.<br>
+<b>Warning on line 25</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/nyheder/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 26</b> - Method "getContent" has no method-level DocBlock.<br>
+<b>Warning on line 27</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 28</b> - Method "getPeriodId" has no method-level DocBlock.<br>
+<b>Warning on line 28</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 28</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 29</b> - Method "getLangtKursusId" has no method-level DocBlock.<br>
+<b>Warning on line 29</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 29</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/fag/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 29</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 29</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/ansatte/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 30</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 30</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 30</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/fag/gruppe/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 31</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/materialebestilling/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 31</b> - Method "getEntry" has no method-level DocBlock.<br>
+<b>Warning on line 32</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/venteliste/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 32</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 32</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 32</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 33</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/fag/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 34</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 34</b> - Method "getDatasource" has no method-level DocBlock.<br>
+<b>Warning on line 35</b> - Class "MonthPayload_Decorator" has no Class-level DocBlock.<br>
+<b>Warning on line 35</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 35</b> - no @package tag was used in a DocBlock for class MonthPayload_Decorator<br>
+<b>Warning on line 38</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 38</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 38</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 39</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/periode/faggruppe/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 39</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 41</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 41</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 42</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 42</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 42</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 45</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 46</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/periode/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 47</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 49</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 52</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 53</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/fotogalleri/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 53</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 54</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/betaling/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 55</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 56</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 57</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 57</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 61</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 62</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 64</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 67</b> - Method "build" has no method-level DocBlock.<br>
+<b>Warning on line 83</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/elevforeningen/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 85</b> - Method "setSelection" has no method-level DocBlock.<br>
+<b>Warning on line 96</b> - Method "fetch" has no method-level DocBlock.<br>
+<b>Warning on line 100</b> - Class "Calendar_Render_MonthlyAgenda_HTML" has no Class-level DocBlock.<br>
+<b>Warning on line 100</b> - no @package tag was used in a DocBlock for class Calendar_Render_MonthlyAgenda_HTML<br>
+<b>Warning on line 101</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 111</b> - Method "getCount" has no method-level DocBlock.<br>
+<b>Warning on line 117</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 118</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/holdlister/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 140</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 141</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/protokol/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 145</b> - Method "toHTML" has no method-level DocBlock.<br>
+<b>Warning on line 149</b> - Class "VIH_Intranet_Controller_Calendar_Index" has no Class-level DocBlock.<br>
+<b>Warning on line 149</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Calendar_Index<br>
+<b>Warning on line 163</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 196</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 198</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/calendar/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="indtast.php"></a>
+<h1>indtast.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Protokol_Indtast" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Protokol_Indtast<br>
+<b>Warning on line 38</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 82</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 118</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 124</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 125</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/protokol/indtast.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="kurser-tpl.php"></a>
+<h1>kurser-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 46</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/kurser-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 47</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/kortekurser/kurser-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="kursus.php"></a>
+<h1>kursus.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Kursus<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Kursus" has no Class-level DocBlock.<br>
+<b>Warning on line 18</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 82</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 101</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 139</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 142</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/kursus.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="list-tpl.php"></a>
+<h1>list-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 16</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/ansatte/list-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="liste-tpl.php"></a>
+<h1>liste-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/fag/liste-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 32</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/protokol/liste-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="login-tpl.php"></a>
+<h1>login-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 39</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/login-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="login.php"></a>
+<h1>login.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Login" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Login<br>
+<b>Warning on line 16</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 36</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 53</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 54</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/login.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="logout.php"></a>
+<h1>logout.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Logout" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Logout<br>
+<b>Warning on line 22</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 23</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/logout.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="main-tpl.php"></a>
+<h1>main-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 289</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/main-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="medlemmer-tpl.php"></a>
+<h1>medlemmer-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 20</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/elevforeningen/medlemmer-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ministerium.php"></a>
+<h1>ministerium.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Lister_Ministerium" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Lister_Ministerium<br>
+<b>Warning on line 4</b> - no @package tag was used in a DocBlock for class VIH_List_Ministerium<br>
+<b>Warning on line 4</b> - Class "VIH_List_Ministerium" has no Class-level DocBlock.<br>
+<b>Warning on line 11</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 12</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/lister/ministerium.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 13</b> - Method "update" has no method-level DocBlock.<br>
+<b>Warning on line 18</b> - Method "fetch" has no method-level DocBlock.<br>
+<b>Warning on line 20</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/list/ministerium.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ministerium.tpl.php"></a>
+<h1>ministerium.tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 74</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/list/templates/ministerium.tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ministeriumliste.php"></a>
+<h1>ministeriumliste.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Ministeriumliste" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Ministeriumliste<br>
+<b>Warning on line 11</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 12</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/ministeriumliste.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="navneskilte.php"></a>
+<h1>navneskilte.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 4</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Lister_Navneskilte<br>
+<b>Warning on line 4</b> - Class "VIH_Intranet_Controller_KorteKurser_Lister_Navneskilte" has no Class-level DocBlock.<br>
+<b>Warning on line 24</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 47</b> - Method "Avery7160" has no method-level DocBlock.<br>
+<b>Warning on line 78</b> - Method "PrintAddressLabels" has no method-level DocBlock.<br>
+<b>Warning on line 82</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/lister/navneskilte.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="nyheder-tpl.php"></a>
+<h1>nyheder-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 14</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/nyheder/nyheder-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="oplysninger-tpl.php"></a>
+<h1>oplysninger-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 42</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/tilmelding/oplysninger-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="pdf.php"></a>
+<h1>pdf.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 4</b> - Class "VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Pdf" has no Class-level DocBlock.<br>
+<b>Warning on line 4</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Pdf<br>
+<b>Warning on line 8</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 24</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 25</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger/pdf.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 28</b> - Unknown tag "@require" used<br>
+<b>Warning on line 29</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Fag_Pdf<br>
+<b>Warning on line 40</b> - Unknown tag "@require" used<br>
+<b>Warning on line 41</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/pdf.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 46</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 47</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/fag/pdf.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="pdfdiplom.php"></a>
+<h1>pdfdiplom.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 19</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Pdfdiplom<br>
+<b>Warning on line 19</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Pdfdiplom" has no Class-level DocBlock.<br>
+<b>Warning on line 133</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 134</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/pdfdiplom.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="pdf_label.php"></a>
+<h1>pdf_label.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 69</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/materialebestilling/pdf_label.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="perioder-tpl.php"></a>
+<h1>perioder-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 10</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/perioder-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="pris-tpl.php"></a>
+<h1>pris-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 43</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/pris-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="prisoversigt-tpl.php"></a>
+<h1>prisoversigt-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 49</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/kortekurser/tilmelding/prisoversigt-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 114</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/tilmelding/prisoversigt-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="rater-tpl.php"></a>
+<h1>rater-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 68</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/tilmelding/rater-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="rater.php"></a>
+<h1>rater.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Rater<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Rater" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Rater" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Rater<br>
+<b>Warning on line 37</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 38</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 49</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 50</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/rater.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 55</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 56</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/rater.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="rater_form-tpl.php"></a>
+<h1>rater_form-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 58</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/rater_form-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="restance.php"></a>
+<h1>restance.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 1</b> - Class "VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Restance" has no Class-level DocBlock.<br>
+<b>Warning on line 1</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Restance<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Restance<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Restance" has no Class-level DocBlock.<br>
+<b>Warning on line 8</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 9</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/restance.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 10</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 11</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger/restance.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="reverse.php"></a>
+<h1>reverse.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Betaling_Reverse<br>
+<b>Warning on line 43</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 45</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/betaling/reverse.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="root.php"></a>
+<h1>root.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Root" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Root<br>
+<b>Warning on line 41</b> - Method "__construct" has no method-level DocBlock.<br>
+<b>Warning on line 47</b> - Method "loadUser" has no method-level DocBlock.<br>
+<b>Warning on line 60</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 65</b> - Method "execute" has no method-level DocBlock.<br>
+<b>Warning on line 66</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/root.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="rykker.php"></a>
+<h1>rykker.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 33</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger/breve/rykker.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="sendbrev.php"></a>
+<h1>sendbrev.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 4</b> - Class "VIH_Intranet_Controller_KorteKurser_Tilmeldinger_SendBrev" has no Class-level DocBlock.<br>
+<b>Warning on line 4</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_SendBrev<br>
+<b>Warning on line 67</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 108</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 109</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger/sendbrev.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="send_brev-tpl.php"></a>
+<h1>send_brev-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/kortekurser/send_brev-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="show.php"></a>
+<h1>show.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Fag_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Ansatte_Show<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Periode_Faggruppe_Show<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Show<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Betaling_Show<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Holdlister_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Periode_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Periode_Show<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Ansatte_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Fag_Gruppe_Show<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Fag_Gruppe_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Holdlister_Show<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Fag_Show<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Betaling_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Faciliteter_Show<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Protokol_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Protokol_Show<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Faciliteter_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Venteliste_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Venteliste_Show<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Show<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_Nyheder_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Tilmeldinger_Show<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Nyheder_Show<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Show" has no Class-level DocBlock.<br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_Fotogalleri_Show<br>
+<b>Warning on line 9</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 9</b> - Method "getDatasource" has no method-level DocBlock.<br>
+<b>Warning on line 9</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 10</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/protokol/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 10</b> - Method "getDatasource" has no method-level DocBlock.<br>
+<b>Warning on line 11</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 14</b> - Method "getLangtKursusId" has no method-level DocBlock.<br>
+<b>Warning on line 14</b> - Method "activate" has no method-level DocBlock.<br>
+<b>Warning on line 15</b> - Method "getLangtKursusId" has no method-level DocBlock.<br>
+<b>Warning on line 15</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 16</b> - Method "getKursusId" has no method-level DocBlock.<br>
+<b>Warning on line 17</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/venteliste/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 17</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 17</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 19</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 20</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 20</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 20</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 20</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 21</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 21</b> - Method "getForm" has no method-level DocBlock.<br>
+<b>Warning on line 21</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/betaling/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 26</b> - Method "getModel" has no method-level DocBlock.<br>
+<b>Warning on line 27</b> - Method "getModel" has no method-level DocBlock.<br>
+<b>Warning on line 28</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 29</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/fag/gruppe/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 31</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 33</b> - Method "getSubjectGroup" has no method-level DocBlock.<br>
+<b>Warning on line 41</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 45</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 46</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 47</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/periode/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 51</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 53</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 59</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 59</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 60</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/ansatte/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 60</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 63</b> - Method "getSubjects" has no method-level DocBlock.<br>
+<b>Warning on line 64</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 66</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 66</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 67</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/nyheder/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 69</b> - Method "getSubject" has no method-level DocBlock.<br>
+<b>Warning on line 71</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 77</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 78</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/faciliteter/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 80</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 80</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 81</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/holdlister/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 85</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 88</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 90</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 91</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/fotogalleri/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 92</b> - Method "getSubjects" has no method-level DocBlock.<br>
+<b>Warning on line 93</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 93</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 94</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 94</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/fag/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 104</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 108</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 110</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 116</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 117</b> - Method "POST" has no method-level DocBlock.<br>
+<b>Warning on line 117</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 120</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/periode/faggruppe/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 141</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 142</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="show.tpl.php"></a>
+<h1>show.tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/show.tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 17</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/periode/show.tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="special_day-tpl.php"></a>
+<h1>special_day-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 12</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/special_day-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="tilmelding-tpl.php"></a>
+<h1>tilmelding-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 69</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/tilmelding-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 102</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/kortekurser/tilmelding-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="tilmeldinger-tpl.php"></a>
+<h1>tilmeldinger-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 38</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/kortekurser/tilmeldinger-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 42</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/langekurser/tilmeldinger-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="tilmeldinger.php"></a>
+<h1>tilmeldinger.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_KorteKurser_Tilmeldinger<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Tilmeldinger<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_KorteKurser_Tilmeldinger" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_Controller_LangeKurser_Tilmeldinger<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger_Tilmeldinger" has no Class-level DocBlock.<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_Controller_LangeKurser_Tilmeldinger" has no Class-level DocBlock.<br>
+<b>Warning on line 17</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 20</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 20</b> - Method "GET" has no method-level DocBlock.<br>
+<b>Warning on line 22</b> - Method "getKursus" has no method-level DocBlock.<br>
+<b>Warning on line 24</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/kortekurser/tilmeldinger.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 25</b> - Method "getKursus" has no method-level DocBlock.<br>
+<b>Warning on line 26</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 31</b> - Method "getKursus" has no method-level DocBlock.<br>
+<b>Warning on line 74</b> - Method "excel" has no method-level DocBlock.<br>
+<b>Warning on line 80</b> - Method "excel" has no method-level DocBlock.<br>
+<b>Warning on line 82</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger/tilmeldinger.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 86</b> - Method "forward" has no method-level DocBlock.<br>
+<b>Warning on line 87</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/controller/langekurser/tilmeldinger.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="user.php"></a>
+<h1>user.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class VIH_Intranet_User<br>
+<b>Warning on line 2</b> - Class "VIH_Intranet_User" has no Class-level DocBlock.<br>
+<b>Warning on line 8</b> - Method "init" has no method-level DocBlock.<br>
+<b>Warning on line 33</b> - Method "login" has no method-level DocBlock.<br>
+<b>Warning on line 38</b> - Method "isLoggedIn" has no method-level DocBlock.<br>
+<b>Warning on line 43</b> - Method "logout" has no method-level DocBlock.<br>
+<b>Warning on line 48</b> - Method "readRememberCookie" has no method-level DocBlock.<br>
+<b>Warning on line 49</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/user.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="venteliste-tpl.php"></a>
+<h1>venteliste-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 46</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/kortekurser/venteliste-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="wrapper-tpl.php"></a>
+<h1>wrapper-tpl.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - File "/home/lsolesen/workspace/vih/trunk/intranet/tags/1_5_0_konstrukt1/src/vih/intranet/view/wrapper-tpl.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 26 Nov 2009 11:07:28 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

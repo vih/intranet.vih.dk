@@ -1,0 +1,3165 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class adLDAP</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class adLDAP</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Main adLDAP class</p>
+<p class="description"><p>Can be initialised using $adldap = new adLDAP();</p><p>Something to keep in mind is that Active Directory is a permissions  based directory. If you bind as a domain user, you can't fetch as  much information on other users as you could as a domain admin.</p><p>Before asking questions, please read the Documentation at  http://adldap.sourceforge.net/wiki/doku.php?id=api</p></p>
+		<p class="notes">
+			Located in <a class="field" href="_intranet---adLdap.php.html">/intranet/adLdap.php</a> (line <span class="field">62</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																																																																								<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$_account_suffix" title="details" class="var-name">$_account_suffix</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$_ad_password" title="details" class="var-name">$_ad_password</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$_ad_username" title="details" class="var-name">$_ad_username</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$_base_dn" title="details" class="var-name">$_base_dn</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$_bind" title="details" class="var-name">$_bind</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$_conn" title="details" class="var-name">$_conn</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$_domain_controllers" title="details" class="var-name">$_domain_controllers</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">bool</span>
+					<a href="#$_real_primarygroup" title="details" class="var-name">$_real_primarygroup</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">bool</span>
+					<a href="#$_recursive_groups" title="details" class="var-name">$_recursive_groups</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">bool</span>
+					<a href="#$_use_ssl" title="details" class="var-name">$_use_ssl</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">bool</span>
+					<a href="#$_use_tls" title="details" class="var-name">$_use_tls</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#__destruct" title="details" class="method-name">__destruct</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#account_control" title="details" class="method-name">account_control</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#adldap_schema" title="details" class="method-name">adldap_schema</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#all_contacts" title="details" class="method-name">all_contacts</a>
+											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#all_distribution_groups" title="details" class="method-name">all_distribution_groups</a>
+											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#all_groups" title="details" class="method-name">all_groups</a>
+											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#all_security_groups" title="details" class="method-name">all_security_groups</a>
+											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#all_users" title="details" class="method-name">all_users</a>
+											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#authenticate" title="details" class="method-name">authenticate</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$prevent_rebind</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#bool2str" title="details" class="method-name">bool2str</a>
+											(<span class="var-type">bool</span>&nbsp;<span class="var-name">$bool</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#close" title="details" class="method-name">close</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#computer_groups" title="details" class="method-name">computer_groups</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$computer_name</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#computer_info" title="details" class="method-name">computer_info</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$computer_name</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#computer_ingroup" title="details" class="method-name">computer_ingroup</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$computer_name</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#connect" title="details" class="method-name">connect</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#contact_create" title="details" class="method-name">contact_create</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#contact_delete" title="details" class="method-name">contact_delete</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$distinguishedname</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#contact_groups" title="details" class="method-name">contact_groups</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$distinguishedname</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$distinguisedname</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#contact_info" title="details" class="method-name">contact_info</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$distinguishedname</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span> = <span class="var-default">NULL</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$distinguisedname</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#contact_ingroup" title="details" class="method-name">contact_ingroup</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$distinguisedname</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#contact_modify" title="details" class="method-name">contact_modify</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$distinguishedname</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#dn_delete" title="details" class="method-name">dn_delete</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$dn</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#encode8bit" title="details" class="method-name">encode8bit</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">&$item</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$key</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#encode_password" title="details" class="method-name">encode_password</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#exchange_add_address" title="details" class="method-name">exchange_add_address</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$emailaddress</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$default</span> = <span class="var-default">FALSE</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#exchange_contact_mailenable" title="details" class="method-name">exchange_contact_mailenable</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$distinguishedname</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$emailaddress</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$mailnickname</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#exchange_create_mailbox" title="details" class="method-name">exchange_create_mailbox</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$storagegroup</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$emailaddress</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$mailnickname</span> = <span class="var-default">NULL</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$usedefaults</span> = <span class="var-default">TRUE</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$base_dn</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#exchange_del_address" title="details" class="method-name">exchange_del_address</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$emailaddress</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#exchange_primary_address" title="details" class="method-name">exchange_primary_address</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$emailaddress</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#folder_list" title="details" class="method-name">folder_list</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$folder_name</span> = <span class="var-default">NULL</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$dn_type</span> = <span class="var-default">ADLDAP_FOLDER</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getTextSID" title="details" class="method-name">getTextSID</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$binsid</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_account_suffix" title="details" class="method-name">get_account_suffix</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#get_ad_password" title="details" class="method-name">get_ad_password</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#get_ad_username" title="details" class="method-name">get_ad_username</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#get_domain_controllers" title="details" class="method-name">get_domain_controllers</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#get_last_error" title="details" class="method-name">get_last_error</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#get_primary_group" title="details" class="method-name">get_primary_group</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$gid</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$usersid</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#get_real_primarygroup" title="details" class="method-name">get_real_primarygroup</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#get_recursive_groups" title="details" class="method-name">get_recursive_groups</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#get_use_ssl" title="details" class="method-name">get_use_ssl</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#get_use_tls" title="details" class="method-name">get_use_tls</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#groups_in_group" title="details" class="method-name">groups_in_group</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#group_add_contact" title="details" class="method-name">group_add_contact</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$contact_dn</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#group_add_group" title="details" class="method-name">group_add_group</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$parent</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$child</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#group_add_user" title="details" class="method-name">group_add_user</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$user</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#group_cn" title="details" class="method-name">group_cn</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$gid</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#group_create" title="details" class="method-name">group_create</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#group_del_contact" title="details" class="method-name">group_del_contact</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$contact_dn</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#group_del_group" title="details" class="method-name">group_del_group</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$parent</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$child</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#group_del_user" title="details" class="method-name">group_del_user</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$user</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#group_info" title="details" class="method-name">group_info</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$group_name</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#group_members" title="details" class="method-name">group_members</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#ldap_slashes" title="details" class="method-name">ldap_slashes</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#little_endian" title="details" class="method-name">little_endian</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$hex</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#nice_names" title="details" class="method-name">nice_names</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$groups</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#random_controller" title="details" class="method-name">random_controller</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#recursive_groups" title="details" class="method-name">recursive_groups</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#search_groups" title="details" class="method-name">search_groups</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$samaccounttype</span> = <span class="var-default">ADLDAP_SECURITY_GLOBAL_GROUP</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#set_account_suffix" title="details" class="method-name">set_account_suffix</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$_account_suffix</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#set_ad_password" title="details" class="method-name">set_ad_password</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$_ad_password</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#set_ad_username" title="details" class="method-name">set_ad_username</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$_ad_username</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#set_domain_controllers" title="details" class="method-name">set_domain_controllers</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$_domain_controllers</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#set_real_primarygroup" title="details" class="method-name">set_real_primarygroup</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$_real_primarygroup</span>, <span class="var-type">bool</span>&nbsp;<span class="var-name">$_real_primary_group</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#set_recursive_groups" title="details" class="method-name">set_recursive_groups</a>
+											(<span class="var-type">bool</span>&nbsp;<span class="var-name">$_recursive_groups</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#set_use_ssl" title="details" class="method-name">set_use_ssl</a>
+											(<span class="var-type">bool</span>&nbsp;<span class="var-name">$_use_ssl</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#set_use_tls" title="details" class="method-name">set_use_tls</a>
+											(<span class="var-type">bool</span>&nbsp;<span class="var-name">$_use_tls</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#user_create" title="details" class="method-name">user_create</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#user_delete" title="details" class="method-name">user_delete</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#user_disable" title="details" class="method-name">user_disable</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#user_dn" title="details" class="method-name">user_dn</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#user_enable" title="details" class="method-name">user_enable</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#user_groups" title="details" class="method-name">user_groups</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#user_info" title="details" class="method-name">user_info</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#user_ingroup" title="details" class="method-name">user_ingroup</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#user_modify" title="details" class="method-name">user_modify</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#user_password" title="details" class="method-name">user_password</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#user_password_expiry" title="details" class="method-name">user_password_expiry</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$_account_suffix" id="$_account_suffix"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$_account_suffix</span>
+			 = <span class="var-default"> &quot;@vejleidraetsefterskole.local&quot;</span>			(line <span class="line-number">68</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The account suffix for your domain, can be set when the class is invoked</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_ad_password" id="$_ad_password"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_ad_password</span>
+			 = <span class="var-default">NULL</span>			(line <span class="line-number">93</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_ad_username" id="$_ad_username"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$_ad_username</span>
+			 = <span class="var-default">NULL</span>			(line <span class="line-number">92</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Optional account with higher privileges for searching  This should be set to a domain admin account</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_base_dn" id="$_base_dn"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$_base_dn</span>
+			 = <span class="var-default"> &quot;DC=mydomain,DC=local&quot;</span>			(line <span class="line-number">75</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The base dn for your domain</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_bind" id="$_bind"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_bind</span>
+						(line <span class="line-number">140</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_conn" id="$_conn"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_conn</span>
+						(line <span class="line-number">139</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Connection and bind default variables</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_domain_controllers" id="$_domain_controllers"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$_domain_controllers</span>
+			 = <span class="var-default">array (&quot;mail.vih.dk&quot;)</span>			(line <span class="line-number">83</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Array of domain controllers. Specifiy multiple controllers if you  would like the class to balance the LDAP queries amongst multiple servers</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_real_primarygroup" id="$_real_primarygroup"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">bool</span>
+			<span class="var-name">$_real_primarygroup</span>
+			 = <span class="var-default">true</span>			(line <span class="line-number">103</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">AD does not return the primary group. http://support.microsoft.com/?kbid=321360  This tweak will resolve the real primary group.</p>
+<p class="description"><p>Setting to false will fudge &quot;Domain Users&quot; and is much faster. Keep in mind though that if  someone's primary group is NOT domain users, this is obviously going to mess up the results</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_recursive_groups" id="$_recursive_groups"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">bool</span>
+			<span class="var-name">$_recursive_groups</span>
+			 = <span class="var-default">true</span>			(line <span class="line-number">128</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">When querying group memberships, do it recursively  eg. User Fred is a member of Group A, which is a member of Group B, which is a member of Group C  user_ingroup(&quot;Fred&quot;,&quot;C&quot;) will returns true with this option turned on, false if turned off</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_use_ssl" id="$_use_ssl"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">bool</span>
+			<span class="var-name">$_use_ssl</span>
+			 = <span class="var-default">false</span>			(line <span class="line-number">111</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Use SSL (LDAPS), your server needs to be setup, please see  http://adldap.sourceforge.net/wiki/doku.php?id=ldap_over_ssl</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_use_tls" id="$_use_tls"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">bool</span>
+			<span class="var-name">$_use_tls</span>
+			 = <span class="var-default">false</span>			(line <span class="line-number">119</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Use TLS  If you wish to use TLS you should ensure that $_use_ssl is set to false and vice-versa</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">323</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Default Constructor</p>
+<p class="description"><p>Tries to bind to the AD domain over LDAP or LDAPs</p></p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> Exception - if unable to bind to Domain Controller</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			__construct
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$options</span><span class="var-description">: Array of options to pass to the constructor</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__destruct" id="__destruct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Destructor __destruct</span> (line <span class="line-number">347</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Default Destructor</p>
+<p class="description"><p>Closes the LDAP connection</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__destruct
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodaccount_control" id="account_control"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">account_control</span> (line <span class="line-number">1980</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Account control options</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			account_control
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$options</span><span class="var-description">: The options to convert to int</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodadldap_schema" id="adldap_schema"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">adldap_schema</span> (line <span class="line-number">1757</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Schema</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			adldap_schema
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$attributes</span><span class="var-description">: Attributes to be queried</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodall_contacts" id="all_contacts"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">all_contacts</span> (line <span class="line-number">1352</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a list of all contacts</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			all_contacts
+		</span>
+					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$include_desc</span><span class="var-description">: Include a description of a contact</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$search</span><span class="var-description">: The search parameters</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$sorted</span><span class="var-description">: Whether to sort the results</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodall_distribution_groups" id="all_distribution_groups"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">all_distribution_groups</span> (line <span class="line-number">837</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a complete list of distribution lists in AD</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			all_distribution_groups
+		</span>
+					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$include_desc</span><span class="var-description">: Whether to return a description</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$search</span><span class="var-description">: Search parameters</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$sorted</span><span class="var-description">: Whether to sort the results</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodall_groups" id="all_groups"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">all_groups</span> (line <span class="line-number">811</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a complete list of all groups in AD</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			all_groups
+		</span>
+					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$include_desc</span><span class="var-description">: Whether to return a description</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$search</span><span class="var-description">: Search parameters</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$sorted</span><span class="var-description">: Whether to sort the results</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodall_security_groups" id="all_security_groups"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">all_security_groups</span> (line <span class="line-number">824</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a complete list of security groups in AD</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			all_security_groups
+		</span>
+					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$include_desc</span><span class="var-description">: Whether to return a description</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$search</span><span class="var-description">: Search parameters</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$sorted</span><span class="var-description">: Whether to sort the results</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodall_users" id="all_users"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">all_users</span> (line <span class="line-number">1166</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a list of all users in AD</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			all_users
+		</span>
+					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$include_desc</span><span class="var-description">: Return a description of the user</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$search</span><span class="var-description">: Search parameter</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$sorted</span><span class="var-description">: Sort the user accounts</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodauthenticate" id="authenticate"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">authenticate</span> (line <span class="line-number">404</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Validate a user's login credentials</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			authenticate
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$prevent_rebind</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: A user's AD username</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$password</span><span class="var-description">: A user's AD password</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$prevent_rebind</span><span class="var-description">: optional $prevent_rebind</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodbool2str" id="bool2str"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">bool2str</span> (line <span class="line-number">2053</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert a boolean value to a string  You should never need to call this yourself</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			bool2str
+		</span>
+					(<span class="var-type">bool</span>&nbsp;<span class="var-name">$bool</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$bool</span><span class="var-description">: Boolean value</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodclose" id="close"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">close</span> (line <span class="line-number">392</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Closes the LDAP connection</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			close
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcomputer_groups" id="computer_groups"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">computer_groups</span> (line <span class="line-number">1505</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the groups a computer is in</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			computer_groups
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$computer_name</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$computer_name</span><span class="var-description">: The name of the computer</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$recursive</span><span class="var-description">: Whether to check recursively</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcomputer_info" id="computer_info"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">computer_info</span> (line <span class="line-number">1463</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get information about a specific computer</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			computer_info
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$computer_name</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$computer_name</span><span class="var-description">: The name of the computer</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$fields</span><span class="var-description">: Attributes to return</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcomputer_ingroup" id="computer_ingroup"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">computer_ingroup</span> (line <span class="line-number">1483</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check if a computer is in a group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			computer_ingroup
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$computer_name</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$computer_name</span><span class="var-description">: The name of the computer</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group</span><span class="var-description">: The group to check</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$recursive</span><span class="var-description">: Whether to check recursively</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodconnect" id="connect"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">connect</span> (line <span class="line-number">354</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Connects and Binds to the Domain Controller</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			connect
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcontact_create" id="contact_create"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">contact_create</span> (line <span class="line-number">1199</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create a contact</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			contact_create
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$attributes</span><span class="var-description">: The attributes to set to the contact</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcontact_delete" id="contact_delete"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">contact_delete</span> (line <span class="line-number">1338</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a contact</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			contact_delete
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$distinguishedname</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$distinguishedname</span><span class="var-description">: The contact dn to delete (please be careful here!)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcontact_groups" id="contact_groups"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">contact_groups</span> (line <span class="line-number">1237</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Determine the list of groups a contact is a member of</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			contact_groups
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$distinguishedname</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$distinguisedname</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$distinguisedname</span><span class="var-description">: The full DN of a contact</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$recursive</span><span class="var-description">: Recursively check groups</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$distinguishedname</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcontact_info" id="contact_info"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">contact_info</span> (line <span class="line-number">1263</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get contact information</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			contact_info
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$distinguishedname</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span> = <span class="var-default">NULL</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$distinguisedname</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$distinguisedname</span><span class="var-description">: The full DN of a contact</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$fields</span><span class="var-description">: Attributes to be returned</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$distinguishedname</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcontact_ingroup" id="contact_ingroup"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">contact_ingroup</span> (line <span class="line-number">1294</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Determine if a contact is a member of a group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			contact_ingroup
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$distinguisedname</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$distinguisedname</span><span class="var-description">: The full DN of a contact</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group</span><span class="var-description">: The group name to query</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$recursive</span><span class="var-description">: Recursively check groups</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcontact_modify" id="contact_modify"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">contact_modify</span> (line <span class="line-number">1316</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Modify a contact</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			contact_modify
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$distinguishedname</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$distinguishedname</span><span class="var-description">: The contact to query</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$attributes</span><span class="var-description">: The attributes to modify.  Note if you set the enabled attribute you must not specify any other attributes</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddn_delete" id="dn_delete"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">dn_delete</span> (line <span class="line-number">2040</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a distinguished name from Active Directory  You should never need to call this yourself, just use the wrapper functions user_delete and contact_delete</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			dn_delete
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$dn</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$dn</span><span class="var-description">: The distinguished name to delete</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodencode8bit" id="encode8bit"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">encode8bit</span> (line <span class="line-number">2060</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert 8bit characters e.g. accented characters to UTF8 encoded characters</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			encode8bit
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">&$item</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$key</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">&$item</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$key</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodencode_password" id="encode_password"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">encode_password</span> (line <span class="line-number">1941</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Encode a password for transmission over LDAP</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			encode_password
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$password</span><span class="var-description">: The password to encode</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodexchange_add_address" id="exchange_add_address"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">exchange_add_address</span> (line <span class="line-number">1573</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add an address to Exchange</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			exchange_add_address
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$emailaddress</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$default</span> = <span class="var-default">FALSE</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username of the user to add the Exchange account to</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$emailaddress</span><span class="var-description">: The email address to add to this user</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$default</span><span class="var-description">: Make this email address the default address, this is a bit more intensive as we have to demote any existing default addresses</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodexchange_contact_mailenable" id="exchange_contact_mailenable"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">exchange_contact_mailenable</span> (line <span class="line-number">1709</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Mail enable a contact  Allows email to be sent to them through Exchange</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			exchange_contact_mailenable
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$distinguishedname</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$emailaddress</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$mailnickname</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$distinguishedname</span><span class="var-description">: The contact to mail enable</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$emailaddress</span><span class="var-description">: The email address to allow emails to be sent through</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$mailnickname</span><span class="var-description">: The mailnickname for the contact in Exchange.  If NULL this will be set to the display name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodexchange_create_mailbox" id="exchange_create_mailbox"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">exchange_create_mailbox</span> (line <span class="line-number">1539</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create an Exchange account</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			exchange_create_mailbox
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$storagegroup</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$emailaddress</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$mailnickname</span> = <span class="var-default">NULL</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$usedefaults</span> = <span class="var-default">TRUE</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$base_dn</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username of the user to add the Exchange account to</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$storagegroup</span><span class="var-description">: The mailbox, Exchange Storage Group, for the user account, this must be a full CN                             If the storage group has a different base_dn to the adLDAP configuration, set it using $base_dn</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$emailaddress</span><span class="var-description">: The primary email address to add to this user</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$mailnickname</span><span class="var-description">: The mail nick name.  If mail nickname is blank, the username will be used</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$usedefaults</span><span class="var-description">: Indicates whether the store should use the default quota, rather than the per-mailbox quota.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$base_dn</span><span class="var-description">: Specify an alternative base_dn for the Exchange storage grop</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodexchange_del_address" id="exchange_del_address"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">exchange_del_address</span> (line <span class="line-number">1633</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Remove an address to Exchange  If you remove a default address the account will no longer have a default,  we recommend changing the default address first</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			exchange_del_address
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$emailaddress</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username of the user to add the Exchange account to</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$emailaddress</span><span class="var-description">: The email address to add to this user</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodexchange_primary_address" id="exchange_primary_address"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">exchange_primary_address</span> (line <span class="line-number">1669</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Change the default address</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			exchange_primary_address
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$emailaddress</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username of the user to add the Exchange account to</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$emailaddress</span><span class="var-description">: The email address to make default</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfolder_list" id="folder_list"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">folder_list</span> (line <span class="line-number">1390</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a folder listing for a specific OU  See http://adldap.sourceforge.net/wiki/doku.php?id=api_folder_functions</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			folder_list
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$folder_name</span> = <span class="var-default">NULL</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$dn_type</span> = <span class="var-default">ADLDAP_FOLDER</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$folder_name</span><span class="var-description">: An array to the OU you wish to list.                            If set to NULL will list the root, strongly recommended to set                            $recursive to false in that instance!</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$dn_type</span><span class="var-description">: The type of record to list.  This can be ADLDAP_FOLDER or ADLDAP_CONTAINER.</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$recursive</span><span class="var-description">: Recursively search sub folders</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$type</span><span class="var-description">: Specify a type of object to search for</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetTextSID" id="getTextSID"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getTextSID</span> (line <span class="line-number">1890</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert a binary SID to a text SID</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getTextSID
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$binsid</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$binsid</span><span class="var-description">: A Binary SID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget_account_suffix" id="get_account_suffix"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_account_suffix</span> (line <span class="line-number">162</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the account suffix</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_account_suffix
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_ad_password" id="get_ad_password"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_ad_password</span> (line <span class="line-number">225</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the password of the account with higher priviledges</p>
+<p class="description"><p>This will throw an exception for security reasons</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			get_ad_password
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_ad_username" id="get_ad_username"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_ad_username</span> (line <span class="line-number">204</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the username of the account with higher priviledges</p>
+<p class="description"><p>This will throw an exception for security reasons</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			get_ad_username
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_domain_controllers" id="get_domain_controllers"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_domain_controllers</span> (line <span class="line-number">183</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the list of domain controllers</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			get_domain_controllers
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_last_error" id="get_last_error"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_last_error</span> (line <span class="line-number">1747</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get last error from Active Directory</p>
+<p class="description"><p>This function gets the last message from Active Directory  This may indeed be a 'Success' message but if you get an unknown error  it might be worth calling this function to see what errors were raised</p><p>return string</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			get_last_error
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_primary_group" id="get_primary_group"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_primary_group</span> (line <span class="line-number">1871</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Coping with AD not returning the primary group  http://support.microsoft.com/?kbid=321360</p>
+<p class="description"><p>This is a re-write based on code submitted by Bruce which prevents the  need to search each security group to find the true primary group</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			get_primary_group
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$gid</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$usersid</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$gid</span><span class="var-description">: Group ID</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$usersid</span><span class="var-description">: User's Object SID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget_real_primarygroup" id="get_real_primarygroup"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_real_primarygroup</span> (line <span class="line-number">246</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the real primary group setting</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			get_real_primarygroup
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_recursive_groups" id="get_recursive_groups"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_recursive_groups</span> (line <span class="line-number">309</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the recursive groups setting</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			get_recursive_groups
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_use_ssl" id="get_use_ssl"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_use_ssl</span> (line <span class="line-number">267</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the SSL setting</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			get_use_ssl
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget_use_tls" id="get_use_tls"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_use_tls</span> (line <span class="line-number">288</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the TLS setting</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			get_use_tls
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgroups_in_group" id="groups_in_group"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">groups_in_group</span> (line <span class="line-number">620</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a list of groups in a group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			groups_in_group
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group</span><span class="var-description">: The group to query</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$recursive</span><span class="var-description">: Recursively get groups</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgroup_add_contact" id="group_add_contact"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">group_add_contact</span> (line <span class="line-number">489</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add a contact to a group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			group_add_contact
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$contact_dn</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group</span><span class="var-description">: The group to add the contact to</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$contact_dn</span><span class="var-description">: The DN of the contact to add</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgroup_add_group" id="group_add_group"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">group_add_group</span> (line <span class="line-number">434</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add a group to a group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			group_add_group
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$parent</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$child</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$parent</span><span class="var-description">: The parent group name</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$child</span><span class="var-description">: The child group name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgroup_add_user" id="group_add_user"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">group_add_user</span> (line <span class="line-number">461</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add a user to a group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			group_add_user
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$user</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group</span><span class="var-description">: The group to add the user to</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$user</span><span class="var-description">: The user to add to the group</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgroup_cn" id="group_cn"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">group_cn</span> (line <span class="line-number">1841</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Coping with AD not returning the primary group  http://support.microsoft.com/?kbid=321360</p>
+<p class="description"><p>For some reason it's not possible to search on primarygrouptoken=XXX  If someone can show otherwise, I'd like to know about it :)  this way is resource intensive and generally a pain in the @#%^</p></p>
+	<ul class="tags">
+				<li><span class="field">deprecated:</span> deprecated since version 3.1, see get get_primary_group</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			group_cn
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$gid</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$gid</span><span class="var-description">: Group ID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgroup_create" id="group_create"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">group_create</span> (line <span class="line-number">512</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create a group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			group_create
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$attributes</span><span class="var-description">: Default attributes of the group</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgroup_del_contact" id="group_del_contact"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">group_del_contact</span> (line <span class="line-number">598</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Remove a contact from a group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			group_del_contact
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$contact_dn</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group</span><span class="var-description">: The group to remove a user from</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$contact_dn</span><span class="var-description">: The DN of a contact to remove from the group</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgroup_del_group" id="group_del_group"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">group_del_group</span> (line <span class="line-number">545</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Remove a group from a group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			group_del_group
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$parent</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$child</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$parent</span><span class="var-description">: The parent group name</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$child</span><span class="var-description">: The child group name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgroup_del_user" id="group_del_user"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">group_del_user</span> (line <span class="line-number">572</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Remove a user from a group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			group_del_user
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$user</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group</span><span class="var-description">: The group to remove a user from</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$user</span><span class="var-description">: The AD user to remove from the group</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgroup_info" id="group_info"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">group_info</span> (line <span class="line-number">721</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Group Information.  Returns an array of information about a group.</p>
+<p class="description"><p>The group name is case sensitive</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			group_info
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$group_name</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group_name</span><span class="var-description">: The group name to retrieve info about</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$fields</span><span class="var-description">: Fields to retrieve</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgroup_members" id="group_members"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">group_members</span> (line <span class="line-number">668</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a list of members in a group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			group_members
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group</span><span class="var-description">: The group to query</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$recursive</span><span class="var-description">: Recursively get group members</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodldap_slashes" id="ldap_slashes"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">ldap_slashes</span> (line <span class="line-number">1958</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Escape strings for the use in LDAP filters</p>
+<p class="description"><p>DEVELOPERS SHOULD BE DOING PROPER FILTERING IF THEY'RE ACCEPTING USER INPUT  Ported from Perl's Net::LDAP::Util escape_filter_value</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Port by Andreas Gohr &lt;<a href="mailto:andi@splitbrain.org">andi@splitbrain.org</a>&gt;</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			ldap_slashes
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$str</span><span class="var-description">: The string the parse</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlittle_endian" id="little_endian"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">little_endian</span> (line <span class="line-number">1913</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Converts a little-endian hex number to one that hexdec() can convert</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			little_endian
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$hex</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$hex</span><span class="var-description">: A hex code</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodnice_names" id="nice_names"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">nice_names</span> (line <span class="line-number">2016</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Take an LDAP query and return the nice names, without all the LDAP prefixes (eg. CN, DN)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			nice_names
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$groups</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$groups</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrandom_controller" id="random_controller"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">random_controller</span> (line <span class="line-number">1969</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Select a random domain controller from your domain controller array</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			random_controller
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodrecursive_groups" id="recursive_groups"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">recursive_groups</span> (line <span class="line-number">744</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a complete list of &quot;groups in groups&quot;</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			recursive_groups
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group</span><span class="var-description">: The group to get the list from</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsearch_groups" id="search_groups"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">search_groups</span> (line <span class="line-number">776</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a complete list of the groups in AD based on a SAM Account Type</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			search_groups
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$samaccounttype</span> = <span class="var-default">ADLDAP_SECURITY_GLOBAL_GROUP</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$include_desc</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$search</span> = <span class="var-default">&quot;*&quot;</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$samaccounttype</span><span class="var-description">: The account type to return</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$include_desc</span><span class="var-description">: Whether to return a description</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$search</span><span class="var-description">: Search parameters</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$sorted</span><span class="var-description">: Whether to sort the results</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_account_suffix" id="set_account_suffix"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_account_suffix</span> (line <span class="line-number">152</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the account suffix</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_account_suffix
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$_account_suffix</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$_account_suffix</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_ad_password" id="set_ad_password"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_ad_password</span> (line <span class="line-number">215</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the password of an account with higher priviledges</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_ad_password
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$_ad_password</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$_ad_password</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_ad_username" id="set_ad_username"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_ad_username</span> (line <span class="line-number">194</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the username of an account with higher priviledges</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_ad_username
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$_ad_username</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$_ad_username</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_domain_controllers" id="set_domain_controllers"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_domain_controllers</span> (line <span class="line-number">173</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the domain controllers array</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_domain_controllers
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$_domain_controllers</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$_domain_controllers</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_real_primarygroup" id="set_real_primarygroup"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_real_primarygroup</span> (line <span class="line-number">236</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set whether to detect the true primary group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_real_primarygroup
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$_real_primarygroup</span>, <span class="var-type">bool</span>&nbsp;<span class="var-name">$_real_primary_group</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$_real_primary_group</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$_real_primarygroup</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_recursive_groups" id="set_recursive_groups"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_recursive_groups</span> (line <span class="line-number">299</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set whether to lookup recursive groups</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_recursive_groups
+		</span>
+					(<span class="var-type">bool</span>&nbsp;<span class="var-name">$_recursive_groups</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$_recursive_groups</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_use_ssl" id="set_use_ssl"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_use_ssl</span> (line <span class="line-number">257</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set whether to use SSL</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_use_ssl
+		</span>
+					(<span class="var-type">bool</span>&nbsp;<span class="var-name">$_use_ssl</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$_use_ssl</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodset_use_tls" id="set_use_tls"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_use_tls</span> (line <span class="line-number">278</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set whether to use TLS</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_use_tls
+		</span>
+					(<span class="var-type">bool</span>&nbsp;<span class="var-name">$_use_tls</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$_use_tls</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduser_create" id="user_create"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">user_create</span> (line <span class="line-number">853</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create a user</p>
+<p class="description"><p>If you specify a password here, this can only be performed over SSL</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			user_create
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$attributes</span><span class="var-description">: The attributes to set to the user account</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduser_delete" id="user_delete"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">user_delete</span> (line <span class="line-number">903</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a user account</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			user_delete
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username to delete (please be careful here!)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduser_disable" id="user_disable"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">user_disable</span> (line <span class="line-number">1107</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Disable a user account</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			user_disable
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username to disable</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduser_dn" id="user_dn"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">user_dn</span> (line <span class="line-number">1928</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Obtain the user's distinguished name based on their userid</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			user_dn
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduser_enable" id="user_enable"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">user_enable</span> (line <span class="line-number">1122</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Enable a user account</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			user_enable
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username to enable</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduser_groups" id="user_groups"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">user_groups</span> (line <span class="line-number">918</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Groups the user is a member of</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			user_groups
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username to query</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$recursive</span><span class="var-description">: Recursive list of groups</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduser_info" id="user_info"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">user_info</span> (line <span class="line-number">944</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Find information about the users</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			user_info
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username to query</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$fields</span><span class="var-description">: Array of parameters to query</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduser_ingroup" id="user_ingroup"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">user_ingroup</span> (line <span class="line-number">975</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Determine if a user is in a specific group</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			user_ingroup
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$group</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$recursive</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username to query</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group</span><span class="var-description">: The name of the group to check against</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$recursive</span><span class="var-description">: Check groups recursively</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduser_modify" id="user_modify"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">user_modify</span> (line <span class="line-number">1067</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Modify a user</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			user_modify
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$attributes</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username to query</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$attributes</span><span class="var-description">: The attributes to modify.  Note if you set the enabled attribute you must not specify any other attributes</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduser_password" id="user_password"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">user_password</span> (line <span class="line-number">1138</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the password of a user - This must be performed over SSL</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			user_password
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username to modify</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$password</span><span class="var-description">: The new password</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduser_password_expiry" id="user_password_expiry"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">user_password_expiry</span> (line <span class="line-number">997</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Determine a user's password expiry date</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			user_password_expiry
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: The username to query</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 26 Nov 2009 11:07:22 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

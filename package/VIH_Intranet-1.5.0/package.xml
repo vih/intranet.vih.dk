@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>VIH_Intranet</name>
+ <channel>public.intraface.dk</channel>
+ <summary>VIH</summary>
+ <description>
+                    
+                    Vejle Idrætshøjskoles Intranet
+                </description>
+ <lead>
+  <name>Lars Olesen</name>
+  <user>lsolesen</user>
+  <email>lars@legestue.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2009-11-26</date>
+ <time>11:08:23</time>
+ <version>
+  <release>1.5.0</release>
+  <api>1.5.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+ <notes>
+* Bugfixes
+ </notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <file baseinstalldir="/" md5sum="bfa9b0dbf922ef186db19321060135f0" name="intranet.vih.dk/config.local.example.php" role="www" />
+   <file baseinstalldir="/" md5sum="04216913f0982f90be15f57bdd56771a" name="intranet.vih.dk/index.php" role="www" />
+   <file baseinstalldir="/" md5sum="03ce3dcc84af110e9da8699a841e5200" name="intranet.vih.dk/images/indicator.gif" role="www" />
+   <file baseinstalldir="/" md5sum="b3ddf645ca0c2e750dac757e30fe732b" name="intranet.vih.dk/images/logo.jpg" role="www" />
+   <file baseinstalldir="/" md5sum="9e2a27e6fe7a76b35d9f6cabf9a1f3bf" name="intranet.vih.dk/images/mime_type/csv.jpg" role="www" />
+   <file baseinstalldir="/" md5sum="f8bb43ac4fb3c9ad5528e5122a0269f6" name="intranet.vih.dk/images/mime_type/doc.jpg" role="www" />
+   <file baseinstalldir="/" md5sum="4e5aa149f0fbdffb26d8dc0fdc12894e" name="intranet.vih.dk/images/mime_type/html.jpg" role="www" />
+   <file baseinstalldir="/" md5sum="52c79369ac1f292c7b45f34a2c650ac8" name="intranet.vih.dk/images/mime_type/mp3.jpg" role="www" />
+   <file baseinstalldir="/" md5sum="b40b15aa3c62176828624db1de6cf423" name="intranet.vih.dk/images/mime_type/pdf.jpg" role="www" />
+   <file baseinstalldir="/" md5sum="0c986c742f87e630a8f7679b3d48cf16" name="intranet.vih.dk/images/mime_type/ppt.jpg" role="www" />
+   <file baseinstalldir="/" md5sum="9b61c51eedb9d344fb2d4c272d60a3e2" name="intranet.vih.dk/images/mime_type/rtf.jpg" role="www" />
+   <file baseinstalldir="/" md5sum="774ef358767f7992d84e487dd437ae22" name="intranet.vih.dk/images/mime_type/txt.jpg" role="www" />
+   <file baseinstalldir="/" md5sum="9e2a27e6fe7a76b35d9f6cabf9a1f3bf" name="intranet.vih.dk/images/mime_type/xls.jpg" role="www" />
+   <file baseinstalldir="/" md5sum="d956d5ea4edf6b18b4ae64e4dbefcdf0" name="intranet.vih.dk/images/mime_type/zip.jpg" role="www" />
+   <file baseinstalldir="/" md5sum="a61a05c552b8c0ea15fce11c6d3a5439" name="intranet.vih.dk/scripts/crop_image.js.php" role="www" />
+   <file baseinstalldir="/" md5sum="32b8cd8e32c7028c7fab762700e6c97d" name="intranet.vih.dk/scripts/multifile.js" role="www" />
+   <file baseinstalldir="/" md5sum="2a4fd9414d5f9e391e029ae8b82b8a71" name="intranet.vih.dk/scripts/select_file.js" role="www" />
+   <file baseinstalldir="/" md5sum="d14497afc98bbb588763481e5527063f" name="intranet.vih.dk/scripts/cropper/cropper.css" role="www" />
+   <file baseinstalldir="/" md5sum="90a9dcb2104168403c4849d2507c791f" name="intranet.vih.dk/scripts/cropper/cropper.js" role="www" />
+   <file baseinstalldir="/" md5sum="9b4c27fccf817923f59b78fa6099c376" name="intranet.vih.dk/scripts/cropper/marqueeHoriz.gif" role="www" />
+   <file baseinstalldir="/" md5sum="2b2adfe6df6517f146b5b7c5b86eda42" name="intranet.vih.dk/scripts/cropper/marqueeVert.gif" role="www" />
+   <file baseinstalldir="/" md5sum="6b737ecca99b73e70149195653627e4a" name="intranet.vih.dk/scripts/cropper/lib/builder.js" role="www" />
+   <file baseinstalldir="/" md5sum="23cef7404ffe6d410b0c235433771d51" name="intranet.vih.dk/scripts/cropper/lib/controls.js" role="www" />
+   <file baseinstalldir="/" md5sum="2a8ba7d2631729bb53b42530d522ff08" name="intranet.vih.dk/scripts/cropper/lib/dragdrop.js" role="www" />
+   <file baseinstalldir="/" md5sum="5723ef231fd913fa981a3dc5a2492131" name="intranet.vih.dk/scripts/cropper/lib/effects.js" role="www" />
+   <file baseinstalldir="/" md5sum="f57aaa32617e68bc8328178fd26c1f52" name="intranet.vih.dk/scripts/cropper/lib/prototype.js" role="www" />
+   <file baseinstalldir="/" md5sum="ba6e48c926618bb08b6a5853efeb2463" name="intranet.vih.dk/scripts/cropper/lib/scriptaculous.js" role="www" />
+   <file baseinstalldir="/" md5sum="e1169fc74b36a0c1529a15a85feda299" name="intranet.vih.dk/scripts/cropper/lib/slider.js" role="www" />
+   <file baseinstalldir="/" md5sum="19e5e5117633a8bc41724d0bc67e4162" name="intranet.vih.dk/scripts/cropper/lib/unittest.js" role="www" />
+   <file baseinstalldir="/" md5sum="10f9bc58c5b10fde7b799314236fb8df" name="vih/intranet/adLdap.php" role="php" />
+   <file baseinstalldir="/" md5sum="cc222c94a140665cb956b195f4dcbad6" name="vih/intranet/user.php" role="php" />
+   <file baseinstalldir="/" md5sum="9ce5f11af409eb9622f2c6a392518c80" name="vih/intranet/controller/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="1c96cb403c63ddffb4227bfd1f98815f" name="vih/intranet/controller/login.php" role="php" />
+   <file baseinstalldir="/" md5sum="36337e93ed433d26b8552fbf171bcd41" name="vih/intranet/controller/logout.php" role="php" />
+   <file baseinstalldir="/" md5sum="1508f3a1866723b0f0add8119876f4b5" name="vih/intranet/controller/root.php" role="php" />
+   <file baseinstalldir="/" md5sum="7fdd0efdc7dc4929e3b2560fd118b27d" name="vih/intranet/controller/ansatte/delete.php" role="php" />
+   <file baseinstalldir="/" md5sum="be0fdda3196795e0c6a6a310d93a5da6" name="vih/intranet/controller/ansatte/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="a509396cdecd9fea8cdc9a0b48bb1fcb" name="vih/intranet/controller/ansatte/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="7e89820e38a26a811b1195bca3975b7c" name="vih/intranet/controller/ansatte/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="9c86206603da84ff173c39c000de0465" name="vih/intranet/controller/betaling/capture.php" role="php" />
+   <file baseinstalldir="/" md5sum="333a27c2c7312f2ebdb52232398057c4" name="vih/intranet/controller/betaling/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="79bb74d8e532705c2a604e4dac5e2ae7" name="vih/intranet/controller/betaling/reverse.php" role="php" />
+   <file baseinstalldir="/" md5sum="95e0321dd86a7bbc8906a9506cf5bd6d" name="vih/intranet/controller/betaling/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="01a1748a9c4214517927f5a53d738b7a" name="vih/intranet/controller/calendar/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="f95816b6a1c90b0250946f7fd38ca013" name="vih/intranet/controller/elevforeningen/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="dab786cc3ce4b257eec698c34163625b" name="vih/intranet/controller/faciliteter/delete.php" role="php" />
+   <file baseinstalldir="/" md5sum="f51c35538f2c2189f946534fcb0434d5" name="vih/intranet/controller/faciliteter/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="d33b89fcfc38da4dc851ce29ab38aead" name="vih/intranet/controller/faciliteter/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="d9052dbb9c6535dfe2fcc93cc52b9240" name="vih/intranet/controller/faciliteter/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="176cbb3e5ed7819ef5ea94134ff64eb5" name="vih/intranet/controller/fag/delete.php" role="php" />
+   <file baseinstalldir="/" md5sum="639a2310253cf00b334aa903367fdfd4" name="vih/intranet/controller/fag/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="b272eb733529b146c0bc1393f1f99449" name="vih/intranet/controller/fag/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="801d6fc05906cd9525d80ae8d0c8acb4" name="vih/intranet/controller/fag/pdf.php" role="php" />
+   <file baseinstalldir="/" md5sum="3ad4be485229b7ea94a7e80eec61e47a" name="vih/intranet/controller/fag/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="5a1ed5599229ec3b6db8a30ff250ec6a" name="vih/intranet/controller/fag/gruppe/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="b92f82edfb5a05fbc8b98909c54f602c" name="vih/intranet/controller/fag/gruppe/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="d5b001279f864d4a5271561df357e7fc" name="vih/intranet/controller/fag/gruppe/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="a89f61a5b8d499a2e3efc80d87643540" name="vih/intranet/controller/fotogalleri/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="b8234fe6846a170619cccc6da0099f6c" name="vih/intranet/controller/fotogalleri/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="f7a5e4b034c0696b785ad77c3fde8ebd" name="vih/intranet/controller/fotogalleri/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="89301848e67b2510726e72d80d1cbf0a" name="vih/intranet/controller/kortekurser/begyndere.php" role="php" />
+   <file baseinstalldir="/" md5sum="bc6ed7a8565ccbad3f4934efb67b5722" name="vih/intranet/controller/kortekurser/betaling.php" role="php" />
+   <file baseinstalldir="/" md5sum="431e1605cb11d61c0f00ad63540d3f30" name="vih/intranet/controller/kortekurser/copy.php" role="php" />
+   <file baseinstalldir="/" md5sum="2a7bd8791a38b15cb2370eac859877f8" name="vih/intranet/controller/kortekurser/deltagere.php" role="php" />
+   <file baseinstalldir="/" md5sum="203d23f122a0a53123d9c9ffc06321da" name="vih/intranet/controller/kortekurser/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="8cdb5d3f3c2ed9b1f3f91c63084c0a40" name="vih/intranet/controller/kortekurser/facebooktest.php" role="php" />
+   <file baseinstalldir="/" md5sum="e6552ab40a2b86824f779a6e493e0821" name="vih/intranet/controller/kortekurser/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="9079303b69dcfcf76065da17861650f4" name="vih/intranet/controller/kortekurser/kursus.php" role="php" />
+   <file baseinstalldir="/" md5sum="0c3fe873d0d1311e6c4c1bc098f2fc31" name="vih/intranet/controller/kortekurser/tilmeldinger.php" role="php" />
+   <file baseinstalldir="/" md5sum="3940b92457094f54dd1900d903d8af14" name="vih/intranet/controller/kortekurser/lister/adresselabels.php" role="php" />
+   <file baseinstalldir="/" md5sum="4710642c0edac1834402c9874051e239" name="vih/intranet/controller/kortekurser/lister/deltagerliste.php" role="php" />
+   <file baseinstalldir="/" md5sum="7fbb1f4e80ca124a9f7baf6988cd3402" name="vih/intranet/controller/kortekurser/lister/drikkevareliste.php" role="php" />
+   <file baseinstalldir="/" md5sum="2cdb2727be27a7b8be73ce5f6587dbf1" name="vih/intranet/controller/kortekurser/lister/logo.jpg" role="data" />
+   <file baseinstalldir="/" md5sum="8947fd16d93bfa576d31d55ef79377fc" name="vih/intranet/controller/kortekurser/lister/ministerium.php" role="php" />
+   <file baseinstalldir="/" md5sum="4f1ca5ec8445be4c93df7fc8c1710aeb" name="vih/intranet/controller/kortekurser/lister/navneskilte.php" role="php" />
+   <file baseinstalldir="/" md5sum="f0c25b9421bb58283cfc54552be1cc54" name="vih/intranet/controller/kortekurser/tilmeldinger/delete.php" role="php" />
+   <file baseinstalldir="/" md5sum="0e882e18f53b31986b4aa2075644cc3d" name="vih/intranet/controller/kortekurser/tilmeldinger/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="94ed7a1c93b21a5c9fc8c1c51ec3de7d" name="vih/intranet/controller/kortekurser/tilmeldinger/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="83c0c2f0fc112ce0076a53ce39742fc2" name="vih/intranet/controller/kortekurser/tilmeldinger/pdf.php" role="php" />
+   <file baseinstalldir="/" md5sum="169cb72113ce4c8484c2b430d8790271" name="vih/intranet/controller/kortekurser/tilmeldinger/restance.php" role="php" />
+   <file baseinstalldir="/" md5sum="7ee093ab2955459455ddfb9d2e886225" name="vih/intranet/controller/kortekurser/tilmeldinger/sendbrev.php" role="php" />
+   <file baseinstalldir="/" md5sum="6becd6753d193be31cab23bf5769ca88" name="vih/intranet/controller/kortekurser/tilmeldinger/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="57590bdd95ad83297f5267e5127927b2" name="vih/intranet/controller/kortekurser/tilmeldinger/breve/bekraeftelse.php" role="php" />
+   <file baseinstalldir="/" md5sum="916004af52dbe8766449531604cd74b6" name="vih/intranet/controller/kortekurser/tilmeldinger/breve/depositumbekraeftelse.php" role="php" />
+   <file baseinstalldir="/" md5sum="d64889c00698e4b8185e46d87ac19793" name="vih/intranet/controller/kortekurser/tilmeldinger/breve/depositumrykker.php" role="php" />
+   <file baseinstalldir="/" md5sum="4cfd26f360ef87a2bcfd47da37b9291b" name="vih/intranet/controller/kortekurser/tilmeldinger/breve/rykker.php" role="php" />
+   <file baseinstalldir="/" md5sum="0cc5cab7e28379e28c709f97478648ee" name="vih/intranet/controller/kortekurser/venteliste/delete.php" role="php" />
+   <file baseinstalldir="/" md5sum="de83706533d1abd31d8dcfd75e9b2e3a" name="vih/intranet/controller/kortekurser/venteliste/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="061ffa4a767eb295ae44bbb5c5f060f8" name="vih/intranet/controller/kortekurser/venteliste/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="6955504cd28ee09a3b7f94643b8aeea0" name="vih/intranet/controller/kortekurser/venteliste/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="39f975f5cc06a8f7aa8fc58a6d1a7b5d" name="vih/intranet/controller/langekurser/copy.php" role="php" />
+   <file baseinstalldir="/" md5sum="8202b3712534ab6cf23a7175742b86b5" name="vih/intranet/controller/langekurser/delete.php" role="php" />
+   <file baseinstalldir="/" md5sum="99db023652361a7e4cb041834a6b806d" name="vih/intranet/controller/langekurser/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="5ddd88e0bc4b875a40afd81233d0d2f4" name="vih/intranet/controller/langekurser/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="84f752a476465722a863ee1935630650" name="vih/intranet/controller/langekurser/pdf.php" role="php" />
+   <file baseinstalldir="/" md5sum="aba3c756656eebfbc61a00ddb96be741" name="vih/intranet/controller/langekurser/rater.php" role="php" />
+   <file baseinstalldir="/" md5sum="127f589bb8b5222789995f1c33d80cf9" name="vih/intranet/controller/langekurser/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="437c4caac76a8bde3f0934b17be4b77b" name="vih/intranet/controller/langekurser/tilmeldinger.php" role="php" />
+   <file baseinstalldir="/" md5sum="6cef64c9c4f58128e16688272a3e210d" name="vih/intranet/controller/langekurser/fag/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="d6e10658ce21625479964a90a0dfc453" name="vih/intranet/controller/langekurser/holdlister/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="677eefa41c5571efbf7de10d395195d0" name="vih/intranet/controller/langekurser/holdlister/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="c412e9783c20e63cd79e38601a16459c" name="vih/intranet/controller/langekurser/periode/create.php" role="php" />
+   <file baseinstalldir="/" md5sum="29a9fd0b5ec4cea3cfc8b1a7caf4c7f6" name="vih/intranet/controller/langekurser/periode/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="7516f231ebbceb67adc456f037ce37e7" name="vih/intranet/controller/langekurser/periode/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="5211be119892ac81ff19db77eb6253f6" name="vih/intranet/controller/langekurser/periode/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="e7350d46a604e976de1bab7625e70757" name="vih/intranet/controller/langekurser/periode/faggruppe/create.php" role="php" />
+   <file baseinstalldir="/" md5sum="53d3c51497dbb826c700a022e1b7873f" name="vih/intranet/controller/langekurser/periode/faggruppe/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="c97b2c7209668a6dab8f6900f55c2fbe" name="vih/intranet/controller/langekurser/periode/faggruppe/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="5720391f0c3d9f99679f7f86d0d339dc" name="vih/intranet/controller/langekurser/periode/faggruppe/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="05e63585eacc4747d63dbb77f15e4f38" name="vih/intranet/controller/langekurser/tilmeldinger/adresseliste.php" role="php" />
+   <file baseinstalldir="/" md5sum="d75fc0c129278fc0ac96e23b13af24c5" name="vih/intranet/controller/langekurser/tilmeldinger/brev.php" role="php" />
+   <file baseinstalldir="/" md5sum="ad29d9d55537cb87001ef4642958212f" name="vih/intranet/controller/langekurser/tilmeldinger/delete.php" role="php" />
+   <file baseinstalldir="/" md5sum="453f7b84a8700f5dee92851978d56e54" name="vih/intranet/controller/langekurser/tilmeldinger/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="6444ac98f2165660eb2aa7d7456ef444" name="vih/intranet/controller/langekurser/tilmeldinger/elevugerliste.php" role="php" />
+   <file baseinstalldir="/" md5sum="73a42bffa11941c4d882ba195a8f5ee9" name="vih/intranet/controller/langekurser/tilmeldinger/exportcsv.php" role="php" />
+   <file baseinstalldir="/" md5sum="9a4fa525f48e16540382c61af5412c9f" name="vih/intranet/controller/langekurser/tilmeldinger/fag.php" role="php" />
+   <file baseinstalldir="/" md5sum="92cc894ed141becef77e69c35bb9a815" name="vih/intranet/controller/langekurser/tilmeldinger/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="553c353f366a0096bb0d8b5ac062f59c" name="vih/intranet/controller/langekurser/tilmeldinger/ministeriumliste.php" role="php" />
+   <file baseinstalldir="/" md5sum="ca8a4eaae91a0b80bc057e87e3d5dce0" name="vih/intranet/controller/langekurser/tilmeldinger/pdfdiplom.php" role="php" />
+   <file baseinstalldir="/" md5sum="31f226cf903ac9cff3aa3e2ec386ff60" name="vih/intranet/controller/langekurser/tilmeldinger/rater.php" role="php" />
+   <file baseinstalldir="/" md5sum="b053ce22edcf307898aca5836ce9bcf9" name="vih/intranet/controller/langekurser/tilmeldinger/rektangel.png" role="data" />
+   <file baseinstalldir="/" md5sum="8b67b42119646144c3d816acf8a16dba" name="vih/intranet/controller/langekurser/tilmeldinger/rektangel2.png" role="data" />
+   <file baseinstalldir="/" md5sum="4f058f3a378f82178c4425b024a8e110" name="vih/intranet/controller/langekurser/tilmeldinger/restance.php" role="php" />
+   <file baseinstalldir="/" md5sum="36cd02da15b4bee1136ea052daf5474a" name="vih/intranet/controller/langekurser/tilmeldinger/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="fab0533c60ea4f6c3034cf7308bc0de0" name="vih/intranet/controller/langekurser/tilmeldinger/tilmeldinger.php" role="php" />
+   <file baseinstalldir="/" md5sum="64ff0d9deb79b57104469d30be320d42" name="vih/intranet/controller/materialebestilling/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="3890d1121d49c62ac387e71db5a94b64" name="vih/intranet/controller/materialebestilling/pdf_label.php" role="php" />
+   <file baseinstalldir="/" md5sum="755665377cea0b909edf30bdeee6c9fd" name="vih/intranet/controller/nyheder/delete.php" role="php" />
+   <file baseinstalldir="/" md5sum="d80b8e8360b9f70d32255fa360c72195" name="vih/intranet/controller/nyheder/edit.php" role="php" />
+   <file baseinstalldir="/" md5sum="9885377c31e921df190985c6c4288231" name="vih/intranet/controller/nyheder/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="35d1efcd56a24dcc2f4ca59b39b5445c" name="vih/intranet/controller/nyheder/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="bdb01d0322226e95aaa3146d63b52f9c" name="vih/intranet/controller/protokol/delete.php" role="php" />
+   <file baseinstalldir="/" md5sum="8b8c4538ed019fcd369f5521e2ffe917" name="vih/intranet/controller/protokol/elev.php" role="php" />
+   <file baseinstalldir="/" md5sum="f7d3ef01c658d1489d02a8c38175fc4b" name="vih/intranet/controller/protokol/holdliste.php" role="php" />
+   <file baseinstalldir="/" md5sum="1eb967ad8ba5c70aa32edcd5ede04f46" name="vih/intranet/controller/protokol/index.php" role="php" />
+   <file baseinstalldir="/" md5sum="e7086dfd35d3498cba145d756bec7594" name="vih/intranet/controller/protokol/indtast.php" role="php" />
+   <file baseinstalldir="/" md5sum="37ea92a1344ab349280e18f9bfecf02d" name="vih/intranet/controller/protokol/show.php" role="php" />
+   <file baseinstalldir="/" md5sum="8dfb181814cf77e99018c327235c0ec5" name="vih/intranet/view/form-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="a6f46fe52fea853ddcb5c9ea16300251" name="vih/intranet/view/login-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="8318b25ba8aab7db303a6c48fe5e9355" name="vih/intranet/view/main-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="f3c2c4b22a26d83c8f5322c6be064d73" name="vih/intranet/view/special_day-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="29f87c8d90a7a12ea4e0caeead5b52fb" name="vih/intranet/view/wrapper-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="4d680efc4ec8421d86f7f1522c681a9e" name="vih/intranet/view/ansatte/list-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="4bf29d7e8a262848a436a21ae5fbbf2d" name="vih/intranet/view/betalinger/betalinger-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="0ba6f5170047dd012af48a81daf38639" name="vih/intranet/view/elevforeningen/medlemmer-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="a947274dd6b15e30160d966c472e5b5b" name="vih/intranet/view/faciliteter/faciliteter-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="d41d8cd98f00b204e9800998ecf8427e" name="vih/intranet/view/fag/fag-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="29ca27d2d178146fb1123299d8c1938a" name="vih/intranet/view/fag/faggrupper-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="9a93ca059c82044ef97c5dfd66a793bd" name="vih/intranet/view/fag/liste-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="f7e68185c6c2ff0e42a9f34f19b830fd" name="vih/intranet/view/fotogalleri/fotoliste-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="d429c6f5030abd5c648eabc41a6cc288" name="vih/intranet/view/fotogalleri/gallerier-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="cf45bdbbcd3950d1b40a057f5ae4072b" name="vih/intranet/view/holdlister/holdliste-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="b10b0016fdb4503d7e5fdf402d49e81a" name="vih/intranet/view/holdlister/holdlister-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="738e9c33f00038b99f4c1bd617d6cdb1" name="vih/intranet/view/kortekurser/deltagere-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="66a53eeddb848ac144d96e8781fb7ae1" name="vih/intranet/view/kortekurser/kurser-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="8d146c9ca0a199ea78048c9cbe27aba4" name="vih/intranet/view/kortekurser/send_brev-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="38328f09b6da5a2b0ef976859d04d10c" name="vih/intranet/view/kortekurser/tilmelding-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="cca08c7d58b2fda48ea35513886b0872" name="vih/intranet/view/kortekurser/tilmeldinger-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="b8f5a6d95fcc1979253017b45230d0f3" name="vih/intranet/view/kortekurser/venteliste-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="2d5120ba3f6b14e0e15b224d934bd49c" name="vih/intranet/view/kortekurser/lister/deltagerliste.tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="10392de214eb7fde15223288a8b9d33f" name="vih/intranet/view/kortekurser/lister/drikkevareliste.tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="0532abb4381e8a73663d2ea90cb2fa0e" name="vih/intranet/view/kortekurser/tilmelding/prisoversigt-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="e090b0607f3c31bfc51cc92f5d27b37e" name="vih/intranet/view/langekurser/adresseliste-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="0eef6a841fb6671d3b2d9a2a943a71af" name="vih/intranet/view/langekurser/elevuger.tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="101821df008801f71a25f9b30630771f" name="vih/intranet/view/langekurser/fag-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="186b6064792a9245d70a762d031db088" name="vih/intranet/view/langekurser/kurser-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="5068bc59b4a12aac5191fd49538ce010" name="vih/intranet/view/langekurser/perioder-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="783da096d07341725d1a4ef6e6752a68" name="vih/intranet/view/langekurser/pris-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="2093392b3b6dceaf1a6ed15b3e402beb" name="vih/intranet/view/langekurser/rater_form-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="37e07e8e7bb0ee142ba925d7a7b8da81" name="vih/intranet/view/langekurser/show.tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="209c1506295b090a323d4db72fe7cc9e" name="vih/intranet/view/langekurser/tilmelding-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="dd2861990a6c60586f9a602a466034e7" name="vih/intranet/view/langekurser/tilmeldinger-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="8a3884ce076fae277ce0888cf5858986" name="vih/intranet/view/langekurser/periode/faggruppe.tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="7161f5d9934fd4b6c79a9455a4ae6d06" name="vih/intranet/view/langekurser/periode/faggrupper.tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="db694b6523181d137cba17fc6e131939" name="vih/intranet/view/langekurser/periode/show.tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="9eaf71f936d30be4fe86097367e70222" name="vih/intranet/view/langekurser/tilmelding/betalinger-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="8f007134ec4c2f974c8f3da869f46f57" name="vih/intranet/view/langekurser/tilmelding/fag.tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="89eb352e3a615efbbfa432c1649e85d6" name="vih/intranet/view/langekurser/tilmelding/fagcount.tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="4e0dee2bcbeca8c93f73f695a0e54fdb" name="vih/intranet/view/langekurser/tilmelding/form_rater-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="e7585e727a2d5a77fba2a1071937f48e" name="vih/intranet/view/langekurser/tilmelding/oplysninger-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="4fed792f66fc146b45da1ac2e12f009e" name="vih/intranet/view/langekurser/tilmelding/prisoversigt-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="2ca83fb2def678913510f9a963674a68" name="vih/intranet/view/langekurser/tilmelding/rater-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="65a896cd6aa1ef3325a4c41d7dd02b30" name="vih/intranet/view/materialebestilling/index-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="6eb750a6ded3be8bebb9cbdb745604db" name="vih/intranet/view/nyheder/nyheder-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="08061a7b438b5cb9f2fe96bedcde893a" name="vih/intranet/view/protokol/holdliste-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="3e6b182f6ffef04f06b4571e8b6eebee" name="vih/intranet/view/protokol/liste-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="ae4fe923f957de8f383027733fc70c81" name="vih/intranet/view/tilmelding/betalinger-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="be9f46fb5b5a9dd892ac7a3ca55e8e6e" name="vih/intranet/view/tilmelding/historik-tpl.php" role="php" />
+   <file baseinstalldir="/" md5sum="ebbec13e7e2ed960e37150bb1b693dcb" name="vih/list/ministerium.php" role="php" />
+   <file baseinstalldir="/" md5sum="8571d68e56388d1e53a658d84c9206c9" name="vih/list/templates/ministerium.tpl.php" role="php" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.6.0</min>
+    <recommended>1.6.1</recommended>
+   </pearinstaller>
+   <package>
+    <name>konstrukt</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.4.0</min>
+   </package>
+   <package>
+    <name>Contact_AddressBook</name>
+    <channel>pear.php.net</channel>
+    <min>0.5.0</min>
+   </package>
+   <package>
+    <name>Translation2</name>
+    <channel>pear.php.net</channel>
+    <min>0.1.0</min>
+   </package>
+   <package>
+    <name>HTML_Table</name>
+    <channel>pear.php.net</channel>
+    <min>1.0.0</min>
+   </package>
+   <package>
+    <name>fpdf_font_garamond</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.1.0</min>
+   </package>
+   <package>
+    <name>Ilib_DBQuery</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.0.1</min>
+   </package>
+   <package>
+    <name>Ilib_Redirect</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.0.1</min>
+   </package>
+   <package>
+    <name>Calendar</name>
+    <channel>pear.php.net</channel>
+    <min>0.1.0</min>
+   </package>
+   <package>
+    <name>Structures_Ical</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.1.0</min>
+   </package>
+   <package>
+    <name>fpdf</name>
+    <channel>public.intraface.dk</channel>
+    <min>1.53.2</min>
+   </package>
+   <package>
+    <name>Config</name>
+    <channel>pear.php.net</channel>
+    <min>1.10.11</min>
+   </package>
+   <package>
+    <name>MDB2</name>
+    <channel>pear.php.net</channel>
+    <min>2.4.0</min>
+   </package>
+   <package>
+    <name>MDB2_Driver_mysql</name>
+    <channel>pear.php.net</channel>
+    <min>1.4.0</min>
+   </package>
+   <package>
+    <name>Validate</name>
+    <channel>pear.php.net</channel>
+    <min>0.7.0</min>
+   </package>
+   <package>
+    <name>Validate_DK</name>
+    <channel>pear.php.net</channel>
+    <min>0.1.1</min>
+   </package>
+   <package>
+    <name>Image_Transform</name>
+    <channel>pear.php.net</channel>
+    <min>0.9.0</min>
+   </package>
+   <package>
+    <name>HTTP_Upload</name>
+    <channel>pear.php.net</channel>
+    <min>0.9.1</min>
+   </package>
+   <package>
+    <name>HTML_QuickForm</name>
+    <channel>pear.php.net</channel>
+    <min>2.0.0</min>
+   </package>
+   <package>
+    <name>antispambot</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.1.0</min>
+   </package>
+   <package>
+    <name>Template</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.2.1</min>
+   </package>
+   <package>
+    <name>Ilib_ClassLoader</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.1.1</min>
+   </package>
+   <package>
+    <name>Payment_Quickpay</name>
+    <channel>public.intraface.dk</channel>
+    <min>1.18.2</min>
+   </package>
+   <package>
+    <name>phpmailer</name>
+    <channel>public.intraface.dk</channel>
+    <min>1.73.1</min>
+   </package>
+   <package>
+    <name>IntrafacePublic_Newsletter_XMLRPC</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.1.0</min>
+   </package>
+   <package>
+    <name>Ilib_Validator</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.0.1</min>
+   </package>
+   <package>
+    <name>Ilib_Filehandler</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.2.5</min>
+   </package>
+   <package>
+    <name>Ilib_Filehandler_Controller</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.2.7</min>
+   </package>
+   <package>
+    <name>Ilib_Keyword</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.3.2</min>
+   </package>
+   <package>
+    <name>Ilib_Keyword_Controller</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.2.0</min>
+   </package>
+   <package>
+    <name>IntrafacePublic_Newsletter_Controller</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.1.2</min>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>1.5.0</release>
+    <api>1.5.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-11-26</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* Bugfixes
+   </notes>
+  </release>
+ </changelog>
+</package>

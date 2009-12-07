@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title></title>
+			<link rel="stylesheet" href="media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<a name="top"></a>
+<h2>[adLDAP] element index</h2>
+	<h3>Package indexes</h3>
+	<ul>
+				<li><a href="elementindex_default.html">default</a></li>
+					</ul>
+<a href="elementindex.html">All elements</a>
+<br />
+<div class="index-letter-menu">
+	<a class="index-letter" href="elementindex_adLDAP.html#a">a</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#b">b</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#c">c</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#d">d</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#e">e</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#f">f</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#g">g</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#l">l</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#n">n</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#r">r</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#s">s</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#u">u</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#_">_</a>
+</div>
+
+	<a name="_"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">_</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="var-title">$_account_suffix</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#var$_account_suffix">adLDAP::$_account_suffix</a> in adLdap.php</div>
+							<div class="index-item-description">The account suffix for your domain, can be set when the class is invoked</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$_ad_password</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#var$_ad_password">adLDAP::$_ad_password</a> in adLdap.php</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$_ad_username</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#var$_ad_username">adLDAP::$_ad_username</a> in adLdap.php</div>
+							<div class="index-item-description">Optional account with higher privileges for searching  This should be set to a domain admin account</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$_base_dn</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#var$_base_dn">adLDAP::$_base_dn</a> in adLdap.php</div>
+							<div class="index-item-description">The base dn for your domain</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$_bind</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#var$_bind">adLDAP::$_bind</a> in adLdap.php</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$_conn</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#var$_conn">adLDAP::$_conn</a> in adLdap.php</div>
+							<div class="index-item-description">Connection and bind default variables</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$_domain_controllers</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#var$_domain_controllers">adLDAP::$_domain_controllers</a> in adLdap.php</div>
+							<div class="index-item-description">Array of domain controllers. Specifiy multiple controllers if you  would like the class to balance the LDAP queries amongst multiple servers</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$_real_primarygroup</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#var$_real_primarygroup">adLDAP::$_real_primarygroup</a> in adLdap.php</div>
+							<div class="index-item-description">AD does not return the primary group. http://support.microsoft.com/?kbid=321360  This tweak will resolve the real primary group.</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$_recursive_groups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#var$_recursive_groups">adLDAP::$_recursive_groups</a> in adLdap.php</div>
+							<div class="index-item-description">When querying group memberships, do it recursively  eg. User Fred is a member of Group A, which is a member of Group B, which is a member of Group C  user_ingroup(&quot;Fred&quot;,&quot;C&quot;) will returns true with this option turned on, false if turned off</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$_use_ssl</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#var$_use_ssl">adLDAP::$_use_ssl</a> in adLdap.php</div>
+							<div class="index-item-description">Use SSL (LDAPS), your server needs to be setup, please see  http://adldap.sourceforge.net/wiki/doku.php?id=ldap_over_ssl</div>
+					</dd>
+			<dt class="field">
+						<span class="var-title">$_use_tls</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#var$_use_tls">adLDAP::$_use_tls</a> in adLdap.php</div>
+							<div class="index-item-description">Use TLS  If you wish to use TLS you should ensure that $_use_ssl is set to false and vice-versa</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">__construct</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#method__construct">adLDAP::__construct()</a> in adLdap.php</div>
+							<div class="index-item-description">Default Constructor</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">__destruct</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#method__destruct">adLDAP::__destruct()</a> in adLdap.php</div>
+							<div class="index-item-description">Default Destructor</div>
+					</dd>
+		</dl>
+	<a name="a"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">a</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">account_control</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodaccount_control">adLDAP::account_control()</a> in adLdap.php</div>
+							<div class="index-item-description">Account control options</div>
+					</dd>
+			<dt class="field">
+						adLDAP
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html">adLDAP</a> in adLdap.php</div>
+							<div class="index-item-description">Main adLDAP class</div>
+					</dd>
+			<dt class="field">
+						adLDAPException
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAPException.html">adLDAPException</a> in adLdap.php</div>
+							<div class="index-item-description">adLDAP Exception Handler</div>
+					</dd>
+			<dt class="field">
+						<span class="const-title">ADLDAP_CONTAINER</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/_intranet---adLdap.php.html#defineADLDAP_CONTAINER">ADLDAP_CONTAINER</a> in adLdap.php</div>
+					</dd>
+			<dt class="field">
+						<span class="const-title">ADLDAP_DISTRIBUTION_GROUP</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/_intranet---adLdap.php.html#defineADLDAP_DISTRIBUTION_GROUP">ADLDAP_DISTRIBUTION_GROUP</a> in adLdap.php</div>
+					</dd>
+			<dt class="field">
+						<span class="const-title">ADLDAP_DISTRIBUTION_LOCAL_GROUP</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/_intranet---adLdap.php.html#defineADLDAP_DISTRIBUTION_LOCAL_GROUP">ADLDAP_DISTRIBUTION_LOCAL_GROUP</a> in adLdap.php</div>
+					</dd>
+			<dt class="field">
+						<span class="const-title">ADLDAP_FOLDER</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/_intranet---adLdap.php.html#defineADLDAP_FOLDER">ADLDAP_FOLDER</a> in adLdap.php</div>
+					</dd>
+			<dt class="field">
+						<span class="const-title">ADLDAP_INTERDOMAIN_TRUST</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/_intranet---adLdap.php.html#defineADLDAP_INTERDOMAIN_TRUST">ADLDAP_INTERDOMAIN_TRUST</a> in adLdap.php</div>
+					</dd>
+			<dt class="field">
+						<span class="const-title">ADLDAP_NORMAL_ACCOUNT</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/_intranet---adLdap.php.html#defineADLDAP_NORMAL_ACCOUNT">ADLDAP_NORMAL_ACCOUNT</a> in adLdap.php</div>
+							<div class="index-item-description">Define the different types of account in AD</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">adldap_schema</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodadldap_schema">adLDAP::adldap_schema()</a> in adLdap.php</div>
+							<div class="index-item-description">Schema</div>
+					</dd>
+			<dt class="field">
+						<span class="const-title">ADLDAP_SECURITY_GLOBAL_GROUP</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/_intranet---adLdap.php.html#defineADLDAP_SECURITY_GLOBAL_GROUP">ADLDAP_SECURITY_GLOBAL_GROUP</a> in adLdap.php</div>
+					</dd>
+			<dt class="field">
+						<span class="const-title">ADLDAP_SECURITY_LOCAL_GROUP</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/_intranet---adLdap.php.html#defineADLDAP_SECURITY_LOCAL_GROUP">ADLDAP_SECURITY_LOCAL_GROUP</a> in adLdap.php</div>
+					</dd>
+			<dt class="field">
+						<span class="const-title">ADLDAP_WORKSTATION_TRUST</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/_intranet---adLdap.php.html#defineADLDAP_WORKSTATION_TRUST">ADLDAP_WORKSTATION_TRUST</a> in adLdap.php</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">all_contacts</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodall_contacts">adLDAP::all_contacts()</a> in adLdap.php</div>
+							<div class="index-item-description">Return a list of all contacts</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">all_distribution_groups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodall_distribution_groups">adLDAP::all_distribution_groups()</a> in adLdap.php</div>
+							<div class="index-item-description">Returns a complete list of distribution lists in AD</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">all_groups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodall_groups">adLDAP::all_groups()</a> in adLdap.php</div>
+							<div class="index-item-description">Returns a complete list of all groups in AD</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">all_security_groups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodall_security_groups">adLDAP::all_security_groups()</a> in adLdap.php</div>
+							<div class="index-item-description">Returns a complete list of security groups in AD</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">all_users</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodall_users">adLDAP::all_users()</a> in adLdap.php</div>
+							<div class="index-item-description">Return a list of all users in AD</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">authenticate</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodauthenticate">adLDAP::authenticate()</a> in adLdap.php</div>
+							<div class="index-item-description">Validate a user's login credentials</div>
+					</dd>
+			<dt class="field">
+						<span class="include-title">adLdap.php</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/_intranet---adLdap.php.html">adLdap.php</a> in adLdap.php</div>
+					</dd>
+		</dl>
+	<a name="b"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">b</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">bool2str</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodbool2str">adLDAP::bool2str()</a> in adLdap.php</div>
+							<div class="index-item-description">Convert a boolean value to a string  You should never need to call this yourself</div>
+					</dd>
+		</dl>
+	<a name="c"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">c</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">close</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodclose">adLDAP::close()</a> in adLdap.php</div>
+							<div class="index-item-description">Closes the LDAP connection</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">computer_groups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodcomputer_groups">adLDAP::computer_groups()</a> in adLdap.php</div>
+							<div class="index-item-description">Get the groups a computer is in</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">computer_info</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodcomputer_info">adLDAP::computer_info()</a> in adLdap.php</div>
+							<div class="index-item-description">Get information about a specific computer</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">computer_ingroup</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodcomputer_ingroup">adLDAP::computer_ingroup()</a> in adLdap.php</div>
+							<div class="index-item-description">Check if a computer is in a group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">connect</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodconnect">adLDAP::connect()</a> in adLdap.php</div>
+							<div class="index-item-description">Connects and Binds to the Domain Controller</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">contact_create</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodcontact_create">adLDAP::contact_create()</a> in adLdap.php</div>
+							<div class="index-item-description">Create a contact</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">contact_delete</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodcontact_delete">adLDAP::contact_delete()</a> in adLdap.php</div>
+							<div class="index-item-description">Delete a contact</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">contact_groups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodcontact_groups">adLDAP::contact_groups()</a> in adLdap.php</div>
+							<div class="index-item-description">Determine the list of groups a contact is a member of</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">contact_info</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodcontact_info">adLDAP::contact_info()</a> in adLdap.php</div>
+							<div class="index-item-description">Get contact information</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">contact_ingroup</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodcontact_ingroup">adLDAP::contact_ingroup()</a> in adLdap.php</div>
+							<div class="index-item-description">Determine if a contact is a member of a group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">contact_modify</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodcontact_modify">adLDAP::contact_modify()</a> in adLdap.php</div>
+							<div class="index-item-description">Modify a contact</div>
+					</dd>
+		</dl>
+	<a name="d"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">d</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">dn_delete</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoddn_delete">adLDAP::dn_delete()</a> in adLdap.php</div>
+							<div class="index-item-description">Delete a distinguished name from Active Directory  You should never need to call this yourself, just use the wrapper functions user_delete and contact_delete</div>
+					</dd>
+		</dl>
+	<a name="e"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">e</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">encode8bit</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodencode8bit">adLDAP::encode8bit()</a> in adLdap.php</div>
+							<div class="index-item-description">Convert 8bit characters e.g. accented characters to UTF8 encoded characters</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">encode_password</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodencode_password">adLDAP::encode_password()</a> in adLdap.php</div>
+							<div class="index-item-description">Encode a password for transmission over LDAP</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">exchange_add_address</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodexchange_add_address">adLDAP::exchange_add_address()</a> in adLdap.php</div>
+							<div class="index-item-description">Add an address to Exchange</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">exchange_contact_mailenable</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodexchange_contact_mailenable">adLDAP::exchange_contact_mailenable()</a> in adLdap.php</div>
+							<div class="index-item-description">Mail enable a contact  Allows email to be sent to them through Exchange</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">exchange_create_mailbox</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodexchange_create_mailbox">adLDAP::exchange_create_mailbox()</a> in adLdap.php</div>
+							<div class="index-item-description">Create an Exchange account</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">exchange_del_address</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodexchange_del_address">adLDAP::exchange_del_address()</a> in adLdap.php</div>
+							<div class="index-item-description">Remove an address to Exchange  If you remove a default address the account will no longer have a default,  we recommend changing the default address first</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">exchange_primary_address</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodexchange_primary_address">adLDAP::exchange_primary_address()</a> in adLdap.php</div>
+							<div class="index-item-description">Change the default address</div>
+					</dd>
+		</dl>
+	<a name="f"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">f</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">folder_list</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodfolder_list">adLDAP::folder_list()</a> in adLdap.php</div>
+							<div class="index-item-description">Returns a folder listing for a specific OU  See http://adldap.sourceforge.net/wiki/doku.php?id=api_folder_functions</div>
+					</dd>
+		</dl>
+	<a name="g"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">g</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">getTextSID</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgetTextSID">adLDAP::getTextSID()</a> in adLdap.php</div>
+							<div class="index-item-description">Convert a binary SID to a text SID</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">get_account_suffix</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodget_account_suffix">adLDAP::get_account_suffix()</a> in adLdap.php</div>
+							<div class="index-item-description">Get the account suffix</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">get_ad_password</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodget_ad_password">adLDAP::get_ad_password()</a> in adLdap.php</div>
+							<div class="index-item-description">Get the password of the account with higher priviledges</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">get_ad_username</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodget_ad_username">adLDAP::get_ad_username()</a> in adLdap.php</div>
+							<div class="index-item-description">Get the username of the account with higher priviledges</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">get_domain_controllers</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodget_domain_controllers">adLDAP::get_domain_controllers()</a> in adLdap.php</div>
+							<div class="index-item-description">Get the list of domain controllers</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">get_last_error</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodget_last_error">adLDAP::get_last_error()</a> in adLdap.php</div>
+							<div class="index-item-description">Get last error from Active Directory</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">get_primary_group</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodget_primary_group">adLDAP::get_primary_group()</a> in adLdap.php</div>
+							<div class="index-item-description">Coping with AD not returning the primary group  http://support.microsoft.com/?kbid=321360</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">get_real_primarygroup</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodget_real_primarygroup">adLDAP::get_real_primarygroup()</a> in adLdap.php</div>
+							<div class="index-item-description">Get the real primary group setting</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">get_recursive_groups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodget_recursive_groups">adLDAP::get_recursive_groups()</a> in adLdap.php</div>
+							<div class="index-item-description">Get the recursive groups setting</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">get_use_ssl</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodget_use_ssl">adLDAP::get_use_ssl()</a> in adLdap.php</div>
+							<div class="index-item-description">Get the SSL setting</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">get_use_tls</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodget_use_tls">adLDAP::get_use_tls()</a> in adLdap.php</div>
+							<div class="index-item-description">Get the TLS setting</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">groups_in_group</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgroups_in_group">adLDAP::groups_in_group()</a> in adLdap.php</div>
+							<div class="index-item-description">Return a list of groups in a group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">group_add_contact</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgroup_add_contact">adLDAP::group_add_contact()</a> in adLdap.php</div>
+							<div class="index-item-description">Add a contact to a group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">group_add_group</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgroup_add_group">adLDAP::group_add_group()</a> in adLdap.php</div>
+							<div class="index-item-description">Add a group to a group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">group_add_user</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgroup_add_user">adLDAP::group_add_user()</a> in adLdap.php</div>
+							<div class="index-item-description">Add a user to a group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">group_cn</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgroup_cn">adLDAP::group_cn()</a> in adLdap.php</div>
+							<div class="index-item-description">Coping with AD not returning the primary group  http://support.microsoft.com/?kbid=321360</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">group_create</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgroup_create">adLDAP::group_create()</a> in adLdap.php</div>
+							<div class="index-item-description">Create a group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">group_del_contact</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgroup_del_contact">adLDAP::group_del_contact()</a> in adLdap.php</div>
+							<div class="index-item-description">Remove a contact from a group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">group_del_group</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgroup_del_group">adLDAP::group_del_group()</a> in adLdap.php</div>
+							<div class="index-item-description">Remove a group from a group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">group_del_user</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgroup_del_user">adLDAP::group_del_user()</a> in adLdap.php</div>
+							<div class="index-item-description">Remove a user from a group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">group_info</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgroup_info">adLDAP::group_info()</a> in adLdap.php</div>
+							<div class="index-item-description">Group Information.  Returns an array of information about a group.</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">group_members</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodgroup_members">adLDAP::group_members()</a> in adLdap.php</div>
+							<div class="index-item-description">Return a list of members in a group</div>
+					</dd>
+		</dl>
+	<a name="l"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">l</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">ldap_slashes</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodldap_slashes">adLDAP::ldap_slashes()</a> in adLdap.php</div>
+							<div class="index-item-description">Escape strings for the use in LDAP filters</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">little_endian</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodlittle_endian">adLDAP::little_endian()</a> in adLdap.php</div>
+							<div class="index-item-description">Converts a little-endian hex number to one that hexdec() can convert</div>
+					</dd>
+		</dl>
+	<a name="n"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">n</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">nice_names</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodnice_names">adLDAP::nice_names()</a> in adLdap.php</div>
+							<div class="index-item-description">Take an LDAP query and return the nice names, without all the LDAP prefixes (eg. CN, DN)</div>
+					</dd>
+		</dl>
+	<a name="r"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">r</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">random_controller</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodrandom_controller">adLDAP::random_controller()</a> in adLdap.php</div>
+							<div class="index-item-description">Select a random domain controller from your domain controller array</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">recursive_groups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodrecursive_groups">adLDAP::recursive_groups()</a> in adLdap.php</div>
+							<div class="index-item-description">Return a complete list of &quot;groups in groups&quot;</div>
+					</dd>
+		</dl>
+	<a name="s"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">s</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">search_groups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodsearch_groups">adLDAP::search_groups()</a> in adLdap.php</div>
+							<div class="index-item-description">Returns a complete list of the groups in AD based on a SAM Account Type</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">set_account_suffix</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodset_account_suffix">adLDAP::set_account_suffix()</a> in adLdap.php</div>
+							<div class="index-item-description">Set the account suffix</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">set_ad_password</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodset_ad_password">adLDAP::set_ad_password()</a> in adLdap.php</div>
+							<div class="index-item-description">Set the password of an account with higher priviledges</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">set_ad_username</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodset_ad_username">adLDAP::set_ad_username()</a> in adLdap.php</div>
+							<div class="index-item-description">Set the username of an account with higher priviledges</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">set_domain_controllers</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodset_domain_controllers">adLDAP::set_domain_controllers()</a> in adLdap.php</div>
+							<div class="index-item-description">Set the domain controllers array</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">set_real_primarygroup</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodset_real_primarygroup">adLDAP::set_real_primarygroup()</a> in adLdap.php</div>
+							<div class="index-item-description">Set whether to detect the true primary group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">set_recursive_groups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodset_recursive_groups">adLDAP::set_recursive_groups()</a> in adLdap.php</div>
+							<div class="index-item-description">Set whether to lookup recursive groups</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">set_use_ssl</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodset_use_ssl">adLDAP::set_use_ssl()</a> in adLdap.php</div>
+							<div class="index-item-description">Set whether to use SSL</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">set_use_tls</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methodset_use_tls">adLDAP::set_use_tls()</a> in adLdap.php</div>
+							<div class="index-item-description">Set whether to use TLS</div>
+					</dd>
+		</dl>
+	<a name="u"></a>
+	<div class="index-letter-section">
+		<div style="float: left" class="index-letter-title">u</div>
+		<div style="float: right"><a href="#top">top</a></div>
+		<div style="clear: both"></div>
+	</div>
+	<dl>
+			<dt class="field">
+						<span class="method-title">user_create</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoduser_create">adLDAP::user_create()</a> in adLdap.php</div>
+							<div class="index-item-description">Create a user</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">user_delete</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoduser_delete">adLDAP::user_delete()</a> in adLdap.php</div>
+							<div class="index-item-description">Delete a user account</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">user_disable</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoduser_disable">adLDAP::user_disable()</a> in adLdap.php</div>
+							<div class="index-item-description">Disable a user account</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">user_dn</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoduser_dn">adLDAP::user_dn()</a> in adLdap.php</div>
+							<div class="index-item-description">Obtain the user's distinguished name based on their userid</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">user_enable</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoduser_enable">adLDAP::user_enable()</a> in adLdap.php</div>
+							<div class="index-item-description">Enable a user account</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">user_groups</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoduser_groups">adLDAP::user_groups()</a> in adLdap.php</div>
+							<div class="index-item-description">Groups the user is a member of</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">user_info</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoduser_info">adLDAP::user_info()</a> in adLdap.php</div>
+							<div class="index-item-description">Find information about the users</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">user_ingroup</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoduser_ingroup">adLDAP::user_ingroup()</a> in adLdap.php</div>
+							<div class="index-item-description">Determine if a user is in a specific group</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">user_modify</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoduser_modify">adLDAP::user_modify()</a> in adLdap.php</div>
+							<div class="index-item-description">Modify a user</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">user_password</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoduser_password">adLDAP::user_password()</a> in adLdap.php</div>
+							<div class="index-item-description">Set the password of a user - This must be performed over SSL</div>
+					</dd>
+			<dt class="field">
+						<span class="method-title">user_password_expiry</span>
+					</dt>
+		<dd class="index-item-body">
+			<div class="index-item-details"><a href="adLDAP/adLDAP.html#methoduser_password_expiry">adLDAP::user_password_expiry()</a> in adLdap.php</div>
+							<div class="index-item-description">Determine a user's password expiry date</div>
+					</dd>
+		</dl>
+
+<div class="index-letter-menu">
+	<a class="index-letter" href="elementindex_adLDAP.html#a">a</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#b">b</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#c">c</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#d">d</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#e">e</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#f">f</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#g">g</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#l">l</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#n">n</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#r">r</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#s">s</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#u">u</a>
+	<a class="index-letter" href="elementindex_adLDAP.html#_">_</a>
+</div>	</body>
+</html>
