@@ -123,7 +123,7 @@ class Root extends k_Component {
             $this->url('/restricted/ansatte')  => 'Ansatte',
             $this->url('/restricted/faciliteter')  => 'Faciliteter',
             $this->url('/restricted/filemanager') => 'Dokumenter',
-            $this->url('/restricted/fotogalleri')  => 'H�jdepunkter',
+            $this->url('/restricted/fotogalleri')  => 'Højdepunkter',
             $this->url('/restricted/logout')  => 'Logout');
 
       $tpl = $this->template->create('main');
