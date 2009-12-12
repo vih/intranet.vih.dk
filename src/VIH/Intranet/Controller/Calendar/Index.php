@@ -171,11 +171,12 @@ class VIH_Intranet_Controller_Calendar_Index extends k_Component
         $ical = $gateway->getFromUri('http://www.google.com/calendar/ical/scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com/public/basic.ics');
 
         $this->document->setTitle($ical->getCalendarName());
-        $this->document->options = array($this->url('http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com') => 'Google kalenderen');
+        $this->document->options = array('http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com' => 'Google kalenderen');
 
         foreach ($ical->getSortedEvents() as $event) {
-            $start = new Date($event['DTSTART']['unixtime']);
-            $end = new Date($event['DTEND']['unixtime']);
+
+            $start = new Date($event['DTSTART']);
+            $end = new Date($event['DTEND']);
 
             $events[] = array(
                 'start' => $start->format('%Y-%m-%d %T'),
