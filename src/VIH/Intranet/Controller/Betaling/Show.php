@@ -1,9 +1,6 @@
 <?php
 class VIH_Intranet_Controller_Betaling_Show extends k_Component
 {
-    public $map = array('capture' => 'VIH_Intranet_Controller_Betaling_Capture',
-                        'reverse' => 'VIH_Intranet_Controller_Betaling_Reverse');
-
     protected $template;
 
     function __construct(k_TemplateFactory $template)

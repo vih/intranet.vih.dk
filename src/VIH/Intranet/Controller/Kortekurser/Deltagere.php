@@ -8,17 +8,8 @@ class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Component
         $this->template = $template;
     }
 
-    function getKursus()
-    {
-        return new VIH_Model_KortKursus((int)$this->context->name());
-    }
-
     function renderHtml()
     {
-        if ($this->GET['format'] == 'excel') {
-            return $this->renderXls();
-        }
-
         $kursus = new VIH_Model_KortKursus($this->context->name());
         $deltagere = $kursus->getDeltagere();
         switch ($kursus->get('gruppe_id')) {
@@ -59,7 +50,6 @@ class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Component
         $tpl = $this->template->create('kortekurser/deltagere');
         return '<p>Deltagerantal: ' . count($deltagere) . '</p>' . $tpl->render($this, $data);
     }
-
 
     function renderXls()
     {
@@ -108,5 +98,10 @@ class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Component
         $response->setHeader("Pragma", "public");
         */
         throw $response;
+    }
+
+    function getKursus()
+    {
+        return new VIH_Model_KortKursus((int)$this->context->name());
     }
 }

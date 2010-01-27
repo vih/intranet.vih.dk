@@ -45,7 +45,7 @@ class VIH_Intranet_Controller_Elevforeningen_Index extends k_Component
             $db->query("INSERT INTO elevforeningen_jubilar SET date_created = NOW(), aargange = '".serialize($_POST['jubilar'])."'");
         }
 
-        throw new k_SeeOther($this->url());
+        return new k_SeeOther($this->url());
     }
 }
 /*

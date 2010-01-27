@@ -47,12 +47,12 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Edit extends k_Component
     function postForm()
     {
         if ($this->getForm()->validate()) {
-            $kursus = new VIH_Model_KortKursus($this->POST['kursus_id']);
-            $venteliste = new VIH_Model_Venteliste(1, $kursus->get('id'), $this->POST['id']);
-            if (!$venteliste->save($this->POST->getArrayCopy())) {
+            $kursus = new VIH_Model_KortKursus($this->body('kursus_id'));
+            $venteliste = new VIH_Model_Venteliste(1, $kursus->get('id'), $this->body('id'));
+            if (!$venteliste->save($this->body())) {
                 throw new Excpetion('Kan ikke gemme');
             }
-            throw new k_SeeOther($this->context->url('../'));
+            return new k_SeeOther($this->context->url('../'));
         }
     }
 }

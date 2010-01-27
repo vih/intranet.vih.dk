@@ -13,15 +13,15 @@ class VIH_Intranet_Controller_Materialebestilling_Index extends k_Component
 
     function renderHtml()
     {
-        if (!empty($this->GET['sent'])) {
-            $bestilling = new VIH_Model_MaterialeBestilling((int)$this->GET['sent']);
+        if ($this->query('sent')) {
+            $bestilling = new VIH_Model_MaterialeBestilling((int)$this->query('sent'));
             $bestilling->setSent();
         }
 
         $bestilling = new VIH_Model_MaterialeBestilling;
 
-        if (!empty($this->GET['filter'])) {
-            $bestillinger = $bestilling->getList($this->GET['filter']);
+        if ($this->query('filter')) {
+            $bestillinger = $bestilling->getList($this->query('filter'));
         } else {
             $bestillinger = $bestilling->getList();
         }

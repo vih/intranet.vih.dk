@@ -7,7 +7,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Delete extends k_Componen
         if (!$tilmelding->delete()) {
             trigger_error('Tilmeldingen kunne ikke slettes', E_USER_ERROR);
         } else {
-            throw new k_SeeOther($this->context->url('../'));
+            return new k_SeeOther($this->context->url('../'));
         }
     }
 }

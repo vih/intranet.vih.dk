@@ -58,7 +58,7 @@ class VIH_Intranet_Controller_Fotogalleri_Edit extends k_Component
         if ($this->getForm()->validate()) {
 
             $db = $this->mdb2;
-            $values = $this->POST->getArrayCopy();
+            $values = $this->body();
             if($values['active'] == NULL) $values['active'] = 0;
 
             $sql = 'description = '.$db->quote($values['description'], 'text').', ' .
@@ -72,7 +72,7 @@ class VIH_Intranet_Controller_Fotogalleri_Edit extends k_Component
                     trigger_error($result->getUserInfo(), E_USER_ERROR);
                     exit;
                 }
-                throw new k_SeeOther($this->url('../'));
+                return new k_SeeOther($this->url('../'));
             } else {
                 $result = $db->exec('INSERT INTO fotogalleri SET '.$sql.', date_created = NOW()');
                 if(PEAR::isError($result)) {
@@ -85,7 +85,7 @@ class VIH_Intranet_Controller_Fotogalleri_Edit extends k_Component
                     trigger_error($id->getUserInfo(), E_USER_ERROR);
                     exit;
                 }
-                throw new k_SeeOther($this->context->url($id));
+                return new k_SeeOther($this->context->url($id));
 
             }
         }

@@ -4,9 +4,6 @@
  */
 class VIH_Intranet_Controller_Langekurser_Index extends k_Component
 {
-    public $map = array('periode' => 'VIH_Intranet_Controller_Langekurser_Periode_Index',
-                        'tilmeldinger' => 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index');
-
     protected $template;
 
     function __construct(k_TemplateFactory $template)
@@ -25,10 +22,10 @@ class VIH_Intranet_Controller_Langekurser_Index extends k_Component
                      'kurser' => $kurser);
 
         $tpl = $this->template->create('langekurser/kurser');
-        return $this->render(dirname(__FILE__) . '/../../view/langekurser/kurser-tpl.php', $data);
+        return $tpl->render(dirname(__FILE__) . '/../../view/langekurser/kurser', $data);
     }
 
-    function forward($name)
+    function map($name)
     {
         if ($name == 'create') {
             return 'VIH_Intranet_Controller_Langekurser_Edit';

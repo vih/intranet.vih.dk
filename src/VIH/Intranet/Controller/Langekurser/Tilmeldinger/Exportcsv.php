@@ -25,8 +25,9 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
     function renderHtml()
     {
         $date = date('Y-m-d');
-        if (!empty($this->GET['date'])) {
-            $date = $this->GET['date']['Y'] . '-' . $this->GET['date']['M'] . '-' .$this->GET['date']['d'];
+        if ($this->query('date')) {
+            $get = $this->query('date');
+            $date = $get['Y'] . '-' . $get['M'] . '-' .$get['d'];
         }
 
         $this->getForm()->setDefaults(array('date' => $date));
@@ -41,8 +42,9 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
     function postForm()
     {
         $date = date('Y-m-d');
-        if (!empty($this->POST['date'])) {
-            $date = $this->POST['date']['Y'] . '-' . $this->POST['date']['M'] . '-' .$this->POST['date']['d'];
+        if (!empty($this->body('date'))) {
+            $post = $þhis->body();
+            $date = $post['date']['Y'] . '-' . $post['date']['M'] . '-' .$post['date']['d'];
         }
 
         // Ensures that PEAR uses correct config file.

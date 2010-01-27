@@ -50,7 +50,7 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Component
                     echo $res->getMessage();
                 }
 
-                throw new k_SeeOther($this->url('./'));
+                return new k_SeeOther($this->url('./'));
             }
         }
 

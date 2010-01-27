@@ -14,6 +14,6 @@ class VIH_Intranet_Controller_Protokol_Delete extends k_Component
 
         $res = $db->query('DELETE FROM langtkursus_tilmelding_protokol_item WHERE id = ' . (int)$this->context->name());
 
-        throw new k_SeeOther($this->url('../../../'));
+        return new k_SeeOther($this->url('../../../'));
     }
 }

@@ -46,9 +46,9 @@ class VIH_Intranet_Controller_Fotogalleri_Show extends k_Component
         // HACK end
 
         $appender = new VIH_AppendFile($kernel, 'fotogalleri', $row['id']);
-        if(isset($this->GET['return_redirect_id']) && intval($this->GET['return_redirect_id']) != 0) {
+        if(intval($this->query('return_redirect_id')) != 0) {
             $appender = new VIH_AppendFile($this->kernel, 'fotogalleri', $row['id']);
-            $redirect = Ilib_Redirect::returns($this->SESSION->getSessionId(), $this->pear_db);
+            $redirect = Ilib_Redirect::returns($this->session()->getSessionId(), $this->pear_db);
 
             foreach($redirect->getParameter('file_handler_id') AS $file_id) {
                 $filehandler = new Ilib_FileHandler($kernel, $file_id);
@@ -56,8 +56,8 @@ class VIH_Intranet_Controller_Fotogalleri_Show extends k_Component
             }
         }
 
-        if(isset($this->GET['delete_append_file']) && intval($this->GET['delete_append_file']) != 0) {
-            $appender->delete($this->GET['delete_append_file']);
+        if (intval($this->query('delete_append_file')) != 0) {
+            $appender->delete($this->query('delete_append_file'));
         }
 
         $appender->getDBQuery()->setFilter('order_by', 'name');
@@ -93,13 +93,13 @@ class VIH_Intranet_Controller_Fotogalleri_Show extends k_Component
 
         if ($name == 'deactivate') {
             $this->activate(0);
-            throw new k_SeeOther($this->url('../'));
+            return new k_SeeOther($this->url('../'));
 
         }
 
         if ($name == 'activate') {
             $this->activate();
-            throw new k_SeeOther($this->url('../'));
+            return new k_SeeOther($this->url('../'));
         }
     }
 }

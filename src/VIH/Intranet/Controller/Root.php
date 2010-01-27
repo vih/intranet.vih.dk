@@ -1,71 +1,56 @@
 <?php
-class VIH_Intranet_Controller_Root extends k_Dispatcher
+class VIH_Intranet_Controller_Root extends k_Component
 {
-    public $map = array('admin'               => 'VIH_Intranet_Controller_Index',
-                        'login'               => 'VIH_Intranet_Controller_Login',
-                        'logout'              => 'VIH_Intranet_Controller_Logout',
-                        'langekurser'         => 'VIH_Intranet_Controller_Langekurser_Index',
-                        'kortekurser'         => 'VIH_Intranet_Controller_Kortekurser_Index',
-                        'faciliteter'         => 'VIH_Intranet_Controller_Faciliteter_Index',
-                        'materialebestilling' => 'VIH_Intranet_Controller_Materialebestilling_Index',
-                        'ansatte'             => 'VIH_Intranet_Controller_Ansatte_Index',
-                        'fag'                 => 'VIH_Intranet_Controller_Fag_Index',
-                        'betaling'            => 'VIH_Intranet_Controller_Betaling_Index',
-                        'nyheder'             => 'VIH_Intranet_Controller_Nyheder_Index',
-                        'protokol'            => 'VIH_Intranet_Controller_Protokol_Index',
-                        'fotogalleri'         => 'VIH_Intranet_Controller_Fotogalleri_Index',
-                        'filemanager'         => 'Intraface_Filehandler_Controller_Index',
-                        'file'                => 'Intraface_Filehandler_Controller_Viewer',
-                        'keyword'             => 'Intraface_Keyword_Controller_Index',
-                        'elevforeningen'      => 'VIH_Intranet_Controller_Elevforeningen_Index');
-    public $debug = true;
+    private $template;
 
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+    protected function map($name) {
+        switch ($name) {
+            case 'restricted':
+                return 'VIH_Intranet_Controller_Index';
+            case 'login':
+                return 'VIH_Intranet_Controller_Login';
+            case 'logout':
+                return 'VIH_Intranet_Controller_Logout';
+        }
+    }
 
     function document()
     {
         return $this->document;
     }
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->document->template = dirname(__FILE__) . '/../view/main-tpl.php';
-        $this->document->setTitle('Vejle Idrætshøjskoles Intranet');
-        $this->document->options = array();
-        $this->document->navigation = array(
-            $this->url('/nyheder') => 'Nyheder',
-            $this->url('/langekurser/tilmeldinger')  => 'Lange kurser',
-            $this->url('/kortekurser/tilmeldinger')  => 'Korte kurser',
-            $this->url('/betaling') => 'Betalinger',
-            $this->url('/materialebestilling')  => 'Brochurebestilling',
-            $this->url('/ansatte')  => 'Ansatte',
-            $this->url('/faciliteter')  => 'Faciliteter',
-            $this->url('/filemanager') => 'Dokumenter',
-            $this->url('/fotogalleri')  => 'Højdepunkter',
-            $this->url('/logout')  => 'Logout');
-    }
-
-    function loadUser($username, $password)
-    {
-        $liveuser = $this->registry->get('liveuser');
-        return $liveuser;
-    }
-
-    function forward($name)
-    {
-        if ($name == 'login') {
-            return parent::forward('login');
-        }
-
-        $session = $this->SESSION->get('vih');
-        if (empty($session['logged_in']) OR $session['logged_in'] != 'true') {
-            throw new k_SeeOther($this->url('/login'));
-        }
-        return parent::forward($name);
-    }
-
     function execute()
     {
-        return $this->forward('admin');
+        return $this->wrap(parent::execute());
+    }
+
+    function wrapHtml($content)
+    {
+        $this->document->navigation = array(
+        $this->url('/restricted/nyheder') => 'Nyheder',
+        $this->url('/restricted/langekurser/tilmeldinger')  => 'Lange kurser',
+        $this->url('/restricted/kortekurser/tilmeldinger')  => 'Korte kurser',
+        $this->url('/restricted/betaling') => 'Betalinger',
+        $this->url('/restricted/materialebestilling')  => 'Brochurebestilling',
+        $this->url('/restricted/ansatte')  => 'Ansatte',
+        $this->url('/restricted/faciliteter')  => 'Faciliteter',
+        $this->url('/restricted/filemanager') => 'Dokumenter',
+        $this->url('/restricted/fotogalleri')  => 'Højdepunkter',
+        $this->url('/restricted/logout')  => 'Logout');
+
+        $tpl = $this->template->create('main');
+        return $tpl->render($this, array('content' => $content));
+    }
+
+    function renderHtml()
+    {
+        return sprintf(
+      "<p>Vejle Idrætshøjskoles intranet er blevet opdateret. Klik på <a href='%s'>restricted</a> for at logge ind. Brugernavnet er det samme som du plejer at bruge som password.</p>",
+        htmlspecialchars($this->url('restricted')));
     }
 }

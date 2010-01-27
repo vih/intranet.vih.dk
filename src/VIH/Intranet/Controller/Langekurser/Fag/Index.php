@@ -24,18 +24,19 @@ class VIH_Intranet_Controller_Langekurser_Fag_Index extends k_Component
     {
         $langtkursus = new VIH_Model_LangtKursus($this->context->name());
         $langtkursus->flushFag();
-        foreach ($this->POST['fag'] as $key => $value) {
+        $post = $this->body();
+        foreach ($this->body('fag') as $key => $value) {
             $fag = new VIH_Model_Fag($value);
-            if (empty($this->POST['period'][$key])) {
+            if (empty($post['period'][$key])) {
                 continue;
             }
 
-            foreach ($this->POST['period'][$key] as $key => $value) {
+            foreach ($post['period'][$key] as $key => $value) {
                 $periode = VIH_Model_LangtKursus_Periode::getFromId($this->pdo, $value);
                 $fagperiode = new VIH_Model_LangtKursus_FagPeriode($fag, $periode);
                 $langtkursus->addFag($fagperiode);
             }
         }
-        throw new k_SeeOther($this->url());
+        return new k_SeeOther($this->url());
     }
 }

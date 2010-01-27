@@ -55,7 +55,7 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
         $db = $this->db;
         $row = array();
 
-        if (!empty($this->GET['id'])) {
+        if ($this->query('id')) {
             // hent selve rækken og sæt defaults
             $res = $db->query('SELECT * FROM langtkursus_tilmelding_protokol_item WHERE id = ' . (int)$_GET['id']);
 
@@ -70,7 +70,7 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
                                      'date_end' => $row['date_end'],
                                      'elev_id' => $row['tilmelding_id'],
                                      'type' => $row['type_key'],
-                                     'id' => $this->GET['id']));
+                                     'id' => $this->query('id')));
 
             $elev_id = $this->context->name();
         } else {
@@ -109,7 +109,7 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
                             $date_start['Y'] . '-' . $date_start['m'] . '-' . $date_start['d'] . ' ' . $date_start['H'] . ':' . $date_start['i'],
                             $date_end['Y'] . '-' . $date_end['m'] . '-' . $date_end['d'] . ' ' . $date_end['H'] . ':' . $date_end['i'],
                             $this->getForm()->exportValue('elev_id'),
-                            $this->POST['text'],
+                            $this->body('text'),
                             $this->getform()->exportValue('type'));
 
             if (!empty($_POST['id'])) {
@@ -124,7 +124,7 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
                 echo $res->getMessage();
             }
 
-            throw new k_SeeOther($this->context->url('../'));
+            return new k_SeeOther($this->context->url('../'));
 
         }
     }

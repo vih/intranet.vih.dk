@@ -8,6 +8,7 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Component
     {
         $this->template = $template;
     }
+
     function getForm()
     {
         if ($this->form) {
@@ -47,7 +48,7 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Component
 
     function renderHtml()
     {
-        if (!empty($this->context->name())) {
+        if (is_numeric($this->context->name())) {
             $nyhed = new VIH_News((int)$this->context->name());
         } else {
             $nyhed = new VIH_News;
@@ -88,13 +89,13 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Component
     {
         if ($this->getForm()->validate()) {
             $nyhed = new VIH_News($this->context->name());
-            $input = $this->POST->getArrayCopy();
+            $input = $this->body();
             $input['title'] = vih_handle_microsoft($input['title']);
             $input['tekst'] = vih_handle_microsoft($input['tekst']);
             $input['overskrift'] = vih_handle_microsoft($input['overskrift']);
-            $input['date_publish'] = $this->POST['date_publish'];
+            $input['date_publish'] = $this->body('date_publish');
             $input['date_publish'] = $input['date_publish']['Y'] . '-' . $input['date_publish']['m'] . '-' . $input['date_publish']['d'];
-            $input['date_expire'] = $this->POST['date_expire'];
+            $input['date_expire'] = $this->body('date_expire');
             if (!empty($input['date_expire']['Y'])) {
                 $input['date_expire'] = $input['date_expire']['Y'] . '-' . $input['date_expire']['m'] . '-' . $input['date_expire']['d'];
             } else {
@@ -111,10 +112,10 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Component
                 $appender->addKeywordsByString($input['keyword']);
             }
 
-            throw new k_SeeOther($this->url('/nyheder/' . $id));
+            return new k_SeeOther($this->url('../' . $id));
 
-        } else {
-            return $this->form->toHTML();
         }
+        return $this->render();
+
     }
 }

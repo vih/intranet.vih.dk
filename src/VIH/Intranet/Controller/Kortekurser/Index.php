@@ -20,18 +20,6 @@ class VIH_Intranet_Controller_Kortekurser_Index extends k_Component
         return ($this->form = $form);
     }
 
-    function getContent($kurser)
-    {
-        $this->document->setTitle('Korte kurser');
-        $this->document->options = array($this->url('create') => 'Opret');
-
-        $data = array('caption' => 'Korte kurser',
-                      'kurser' => $kurser);
-
-        $tpl = $this->template->create('kortekurser/kurser');
-        return $this->getForm()->toHTML() . $tpl->render($this, $data);
-    }
-
     function renderHtml()
     {
         if ($this->getForm()->validate()) {
@@ -46,7 +34,15 @@ class VIH_Intranet_Controller_Kortekurser_Index extends k_Component
         }
 
         $kurser = VIH_Model_KortKursus::getList('intranet');
-        return $this->getContent($kurser);
+
+        $this->document->setTitle('Korte kurser');
+        $this->document->options = array($this->url('create') => 'Opret');
+
+        $data = array('caption' => 'Korte kurser',
+                      'kurser' => $kurser);
+
+        $tpl = $this->template->create('kortekurser/kurser');
+        return $this->getForm()->toHTML() . $tpl->render($this, $data);
     }
 
     function map($name)

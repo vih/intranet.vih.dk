@@ -9,8 +9,25 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index extends k_Component
         $this->template = $template;
     }
 
-    function getContent($tilmeldinger)
+    function getForm()
     {
+        if ($this->form) {
+            return $this->form;
+        }
+        $form = new HTML_QuickForm('search', 'GET', $this->url());
+        $form->addElement('text', 'search');
+        $form->addElement('submit', null, 'Søg');
+        return ($this->form = $form);
+    }
+
+    function renderHtml()
+    {
+        if ($this->query('search') AND $this->getForm()->validate()) {
+            $tilmeldinger = VIH_Model_LangtKursus_Tilmelding::search($this->body('search'));
+        } else {
+            $tilmeldinger = VIH_Model_LangtKursus_Tilmelding::getList('nyeste', NULL, 5);
+        }
+
         $data = array('caption' => '5 nyeste tilmeldinger',
                       'tilmeldinger' => $tilmeldinger);
 
@@ -24,34 +41,8 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index extends k_Component
 
         );
 
-        return $this->render('VIH/Intranet/view/langekurser/tilmeldinger-tpl.php', $data) . $this->getForm()->toHTML();
-    }
-
-    function getForm()
-    {
-        if ($this->form) {
-            return $this->form;
-        }
-        $form = new HTML_QuickForm('search', 'POST', $this->url());
-        $form->addElement('text', 'search');
-        $form->addElement('submit', null, 'Søg');
-        return ($this->form = $form);
-    }
-
-    function renderHtml()
-    {
-        $tilmeldinger = VIH_Model_LangtKursus_Tilmelding::getList('nyeste', NULL, 5);
-        return $this->getContent($tilmeldinger);
-    }
-
-    function postForm()
-    {
-        if ($this->getForm()->validate()) {
-            $tilmeldinger = VIH_Model_LangtKursus_Tilmelding::search($this->POST['search']);
-            return $this->getContent($tilmeldinger);
-        } else {
-            return $this->GET();
-        }
+        $tpl = $this->template->create('langekurser/tilmeldinger');
+        return $tpl->render($this, $data) . $this->getForm()->toHTML();
 
     }
 

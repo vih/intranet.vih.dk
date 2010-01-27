@@ -174,7 +174,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Component
     {
         if ($this->getForm()->validate()) {
             $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
-            $input = $this->POST->getArrayCopy();
+            $input = $this->body();
 
             $input['dato_start'] = $input['dato_start']['Y'] . '-' . $input['dato_start']['M'] . '-' . $input['dato_start']['d'];
             $input['dato_slut'] = $input['dato_slut']['Y'] . '-' . $input['dato_slut']['M'] . '-' . $input['dato_slut']['d'];
@@ -183,7 +183,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Component
                 if (!$tilmelding->savePriser($input)) {
                     trigger_error('Kunne ikke opdatere priserne', E_USER_ERROR);
                 }
-                throw new k_SeeOther($this->context->url());
+                return new k_SeeOther($this->context->url());
             } else {
                 trigger_error('Kunne ikke gemme oplysningerne om tilmeldingen', E_USER_ERROR);
             }

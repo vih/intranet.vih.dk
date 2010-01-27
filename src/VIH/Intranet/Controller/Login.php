@@ -2,6 +2,12 @@
 class VIH_Intranet_Controller_Login extends k_Component
 {
     private $form;
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
     function getForm()
     {
@@ -9,47 +15,46 @@ class VIH_Intranet_Controller_Login extends k_Component
             return $this->form;
         }
         $form = new HTML_QuickForm('login', 'POST', $this->url());
-        $form->addElement('text', 'handle', 'Brugernavn');
-        $form->addElement('password', 'passwrd', 'Adgangskode');
+        $form->addElement('text', 'username', 'Brugernavn');
+        $form->addElement('password', 'password', 'Adgangskode');
         //$form->addElement('checkbox', 'remember', '', 'Husk mig');
         $form->addElement('submit', null, 'Login');
         return ($this->form = $form);
     }
 
+    function execute()
+    {
+        $this->url_state->init("continue", $this->url('/'));
+        return parent::execute();
+    }
+
     function renderHtml()
     {
-        $usr = $this->registry->get('liveuser');
-
-        if ($remember = $usr->readRememberCookie()) {
-            $this->getForm()->setDefaults(array(
-                'handle' => $remember['handle'],
-                'passwrd' => $remember['passwd'],
-                'remember' => 1
-            ));
-        }
-
-        if ($usr->isLoggedIn()) {
-            throw new k_SeeOther($this->url('../'));
-        }
-
         $this->document->setTitle('Login');
-        throw new k_http_Response(200, $this->render('VIH/Intranet/view/login-tpl.php', array('content_main' => $this->getForm()->toHTML())));
+        $tpl = $this->template->create('login');
+        return new k_HttpResponse(200, $tpl->render($this, array('content_main' => $this->getForm()->toHTML())));
     }
 
     function postForm()
     {
-        $usr = $this->registry->get('liveuser');
-
         if ($this->getForm()->validate()) {
 
-            $session = & $this->SESSION->get('vih');
-            $session['logged_in'] = true;
-            $usr->login($this->POST['handle'], $this->POST['passwrd']);
-
-            if ($usr->isLoggedIn()) {
-                throw new k_SeeOther($this->context->url());
+            $user = $this->selectUser($this->body('username'), $this->body('password'));
+            if ($user) {
+                $this->session()->set('identity', $user);
+                return new k_SeeOther($this->query('continue'));
             }
         }
-        throw new k_SeeOther($this->url(''));
+        return $this->render();
+    }
+
+    protected function selectUser($username, $password)
+    {
+        $users = array(
+      		'vih' => 'vih'
+        );
+        if (isset($users[$username]) && $users[$username] == $password) {
+          return new k_AuthenticatedUser($username);
+        }
     }
 }

@@ -12,8 +12,8 @@ class VIH_Intranet_Controller_Langekurser_Rater extends k_Component
     {
         $kursus = new VIH_Model_LangtKursus($this->context->name());
 
-        if(isset($this->GET["addrate"])) {
-            if (!$kursus->addRate($this->GET["addrate"])) {
+        if($this->query("addrate")) {
+            if (!$kursus->addRate($this->query("addrate"))) {
                 trigger_error('Kunne ikke tilføje rate.', E_USER_ERROR);
             }
         }
@@ -30,7 +30,8 @@ class VIH_Intranet_Controller_Langekurser_Rater extends k_Component
             $form_html = $form->toHTML();
         } else {
             $data = array('kursus' => $kursus);
-            $form_html = $this->render('VIH/Intranet/view/langekurser/rater_form-tpl.php', $data);
+            $tpl =  $this->template->create('langekurser/rater_form');
+            $form_html = $tpl->render($this, $data);
         }
 
         $this->document->setTitle('Rater for betaling '.$kursus->get('kursusnavn'));
@@ -45,16 +46,15 @@ class VIH_Intranet_Controller_Langekurser_Rater extends k_Component
     {
         $kursus = new VIH_Model_LangtKursus($this->context->name());
 
-        if(isset($this->POST["opret_rater"])) {
-            if (!$kursus->opretRater((int)$this->POST["antal"], $this->POST["foerste_rate_dato"])) {
+        if($this->body("opret_rater")) {
+            if (!$kursus->opretRater((int)$this->body("antal"), $this->body("foerste_rate_dato"))) {
                 trigger_error('Kunne ikke oprette rater', E_USER_ERROR);
             }
-        } elseif(isset($this->POST["opdater_rater"])) {
-            if (!$kursus->updateRater($this->POST["rate"])) {
+        } elseif($this->body("opdater_rater")) {
+            if (!$kursus->updateRater($this->body("rate"))) {
                 trigger_error('Kunne ikke opdatere rater', E_USER_ERROR);
             }
         }
         return new k_SeeOther($this->url());
-
     }
 }

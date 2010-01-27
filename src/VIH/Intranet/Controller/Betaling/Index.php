@@ -13,13 +13,10 @@ class VIH_Intranet_Controller_Betaling_Index extends k_Component
     {
         $this->template = $template;
     }
-    function getForm()
+
+    function map($name)
     {
-        if ($this->form) return $this->form;
-        $form = new HTML_QuickForm('search', 'GET', $this->url());
-        $form->addElement('text', 'search');
-        $form->addElement('submit', null, 'Søg efter bundtnummer');
-        return ($this->form = $form);
+        return 'VIH_Intranet_Controller_Betaling_Show';
     }
 
     function renderHtml()
@@ -29,11 +26,11 @@ class VIH_Intranet_Controller_Betaling_Index extends k_Component
         if ($this->getForm()->validate()) {
             $betalinger = VIH_Model_Betaling::search($this->getForm()->exportValue('search'));
             $data['caption'] = 'Betalinger';
-        } elseif (!empty($this->GET['find']) AND $this->GET['find'] == 'alle') {
+        } elseif ($this->query('find') == 'alle') {
             $betaling = new VIH_Model_Betaling;
             $betalinger = $betaling->getList();
             $data['caption'] = 'Alle betalinger';
-        } elseif (!empty($this->GET['find']) AND $this->GET['find'] == 'elevforeningen') {
+        } elseif ($this->query('find') == 'elevforeningen') {
             $betaling = new VIH_Model_Betaling;
             $betalinger = $betaling->getList('elevforeningen');
             $data['caption'] = 'Elevforeningen';
@@ -53,8 +50,12 @@ class VIH_Intranet_Controller_Betaling_Index extends k_Component
 
     }
 
-    function map($name)
+    function getForm()
     {
-        return 'VIH_Intranet_Controller_Betaling_Show';
+        if ($this->form) return $this->form;
+        $form = new HTML_QuickForm('search', 'GET', $this->url());
+        $form->addElement('text', 'search');
+        $form->addElement('submit', null, 'Søg efter bundtnummer');
+        return ($this->form = $form);
     }
 }

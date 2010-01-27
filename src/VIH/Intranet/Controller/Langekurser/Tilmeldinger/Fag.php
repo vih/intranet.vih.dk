@@ -56,7 +56,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends k_Component
 
         $registration->save();
 
-        throw new k_SeeOther($this->url());
+        return new k_SeeOther($this->url());
     }
 
     function renderHtml()

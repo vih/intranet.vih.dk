@@ -27,8 +27,8 @@ class VIH_Intranet_Controller_Faciliteter_Show extends k_Component
     function renderHtml()
     {
         $facilitet = new VIH_Model_Facilitet($this->name());
-        if (!empty($this->GET['sletbillede']) AND is_numeric($this->GET['sletbillede'])) {
-            if (!$facilitet->deletePicture($this->GET['sletbillede'])) {
+        if (is_numeric($this->query('sletbillede'))) {
+            if (!$facilitet->deletePicture($this->query('sletbillede'))) {
                 trigger_error('Kan ikke slette billedet', E_USER_ERROR);
             }
             $facilitet->load();
@@ -62,7 +62,7 @@ class VIH_Intranet_Controller_Faciliteter_Show extends k_Component
             $file = new VIH_FileHandler;
             if($file->upload('userfile')) {
                 $facilitet->addPicture($file->get('id'));
-                throw new k_SeeOther($this->url());
+                return new k_SeeOther($this->url());
             }
         }
     }

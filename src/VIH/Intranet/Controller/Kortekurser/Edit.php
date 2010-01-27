@@ -95,7 +95,7 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
     {
         if ($this->getForm()->validate()) {
             $kursus = new VIH_Model_KortKursus($this->context->name());
-            $values = $this->POST->getArrayCopy();
+            $values = $this->body();
 
             $values['dato_start'] = $values['dato_start']['Y'] . '-' . $values['dato_start']['M'] . '-' . $values['dato_start']['d'];
             $values['dato_slut'] = $values['dato_slut']['Y'] . '-' . $values['dato_slut']['M'] . '-' . $values['dato_slut']['d'];
@@ -105,7 +105,7 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
             if (empty($values['nyhed'])) $values['nyhed'] = 0;
 
             if ($id = $kursus->save($values)) {
-                throw new k_SeeOther($this->url('../'));
+                return new k_SeeOther($this->url('../'));
             }
         }
         return $this->render();

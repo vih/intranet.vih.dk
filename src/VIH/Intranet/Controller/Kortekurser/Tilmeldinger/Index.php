@@ -20,8 +20,9 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index extends k_Component
         return ($this->form = $form);
     }
 
-    function getContent($tilmeldinger)
+    function renderHtml()
     {
+        $tilmeldinger = VIH_Model_KortKursus_Tilmelding::getList();
         $this->document->setTitle('Korte kurser');
         $this->document->options = array($this->url('/kortekurser/') => 'Se de korte kurser',
                                          $this->url('restance') => 'Se liste over folk i restance');
@@ -33,16 +34,10 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index extends k_Component
         return $tpl->render($this, $data);
     }
 
-    function renderHtml()
-    {
-        $tilmeldinger = VIH_Model_KortKursus_Tilmelding::getList();
-        return $this->getContent($tilmeldinger);
-    }
-
     function postForm()
     {
         if ($this->getForm()->validate()) {
-            $tilmeldinger = VIH_Model_KortKursus_Tilmelding::search($this->POST['search']);
+            $tilmeldinger = VIH_Model_KortKursus_Tilmelding::search($this->body('search'));
             return $this->getContent($tilmeldinger);
         } else {
             return $this->getForm()->toHTML();

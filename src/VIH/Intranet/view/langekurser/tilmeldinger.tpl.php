@@ -1,5 +1,5 @@
 <ul>
-	<li><a href="<?php e(url(null, array('format' => 'excel'))); ?>">Excel</a></li>
+	<li><a href="<?php e(url(null . '.xls')); ?>">Excel</a></li>
 </ul>
 
 <?php if (is_array($tilmeldinger)): ?>
@@ -23,7 +23,7 @@
         <?php else: ?>
             <tr>
         <?php endif; ?>
-        <td><a href="<?php echo url('/langekurser/tilmeldinger/' . $tilmelding->get('id')); ?>"><?php echo $tilmelding->get('id'); ?></a></td>
+        <td><a href="<?php echo url($tilmelding->get('id')); ?>"><?php echo $tilmelding->get('id'); ?></a></td>
         <td><?php echo $tilmelding->get('date_created_dk'); ?></td>
         <td>
             <?php if ($tilmelding->get('active') == 1) echo $tilmelding->get('navn'); else echo '[SLETTET]'; ?>

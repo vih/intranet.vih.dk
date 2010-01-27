@@ -3,11 +3,13 @@ require_once 'fpdf/fpdf.php';
 
 class B_FPDF extends FPDF {
 
-    function b_fpdf($a, $b, $c) {
+    function __construct($a, $b, $c)
+    {
         FPDF::fpdf($a, $b, $c);
     }
 
-    function footer() {
+    function footer()
+    {
         //Go to 1.5 cm from bottom
         $this->SetY(-20);
         //Select Arial italic 8
@@ -17,7 +19,8 @@ class B_FPDF extends FPDF {
         return true;
     }
 
-    function setY($value) {
+    function setY($value)
+    {
         if($value > 0 && $value > $this->fh - 30) {
             $this->addPage();
 
@@ -30,11 +33,11 @@ class B_FPDF extends FPDF {
 
 class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
 {
-    protected $template;
+    protected $templates;
 
     function __construct(k_TemplateFactory $template)
     {
-        $this->template = $template;
+        $this->templates = $template;
     }
 
     function renderHtml()
@@ -44,7 +47,60 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
         $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
         $betalinger = new VIH_Model_Betaling('langekurser', $tilmelding->get("id"));
 
-        if(isset($this->GET['create']) && $this->GET['create'] == 'pdf') {
+        if($this->query('send_pdf')) {
+            $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
+            $historik->save(array('type' => 'betalingsopgørelse', 'comment' => "Sendt via post"));
+            return new k_SeeOther($this->context->url(null, array('download_file' => urlencode($this->url(null . '.pdf')))));
+        }
+
+        $opl_data = array('caption' => 'Tilmeldingsoplysninger',
+                          'tilmelding' =>    $tilmelding);
+
+        $pris_data = array('tilmelding' => $tilmelding);
+
+        $rater_data = array('tilmelding' => $tilmelding);
+
+        $betal_data = array('betalinger' => $betalinger->getList(),
+                            'caption' => 'Betalinger',
+                            'msg_ingen' => '<h2>Betalinger</h2><p>Der er endnu ikke foretaget nogen betalinger.</p>',
+                            'tilmelding' => $tilmelding);
+
+
+        $this->document->setTitle('Betalingsoversigt');
+        $this->document->options = array($this->url(null . '.pdf') => 'Pdf');
+
+        if ($tilmelding->antalRater() > 0 AND $tilmelding->rateDifference() > 0) {
+            return '
+                <h1>Betalingsopgørelsen kan kun når raterne stemmer</h1>
+                <p>Du skal lige rette raterne til, inden du kan lave en betalingsoversigt.</p>
+                <p><a href="'.$this->context->url('rater').'">Ret rater &rarr;</a></p>
+            ';
+        } elseif ($tilmelding->antalRater() > 0) {
+            $opl_tpl = $this->templates->create('langekurser/tilmelding/oplysninger');
+            $rater_tpl = $this->templates->create('langekurser/tilmelding/rater');
+            $pris_tpl = $this->templates->create('langekurser/tilmelding/prisoversigt');
+            $betal_tpl = $this->templates->create('langekurser/tilmelding/betalinger');
+
+            return $opl_tpl->render($this, $opl_data)
+                . $pris_tpl->render($this, $pris_data)
+                . $rater_tpl->render($this, $rater_data)
+                . $betal_tpl->render($this, $betal_data);
+        } else {
+            return '
+                <h1>Betalingsopgørelsen mangler oplysninger om rater</h1>
+                <p>Du skal først have oprettet rater til tilmeldingen, inden du kan lave en betalingsoversigt.</p>
+                <p><a href="'.$this->url('../../../' . $tilmelding->getKursus()->get('id') . '/rater').'">Opret rater &rarr;</a></p>
+            ';
+        }
+
+    }
+
+    function renderPdf()
+    {
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
+        $tilmelding->loadBetaling();
+        $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
+        $betalinger = new VIH_Model_Betaling('langekurser', $tilmelding->get("id"));
 
             $font = 'Arial';
             $size = '12';
@@ -277,51 +333,8 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
             $pdf->Text($pdf->getX(), $pdf->getY(), "tilbage, hvis eleven ikke gennemfører mindst 12 uger af et kursusforløb. Dette beløb skal altså");
             $pdf->setY($pdf->getY() + $line_height);
             $pdf->Text($pdf->getX(), $pdf->getY(), "efterbetales ved afbrydelse af kursus i utide.");
-            $pdf->Output();
+            return $pdf->Output();
             exit;
-        }
-
-        if(isset($this->GET['send_pdf'])) {
-            $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
-            $historik->save(array('type' => 'betalingsopgørelse', 'comment' => "Sendt via post"));
-            throw new k_SeeOther($this->context->url(null, array('download_file' => urlencode($this->url(null, array('create' => 'pdf'))))));
-        }
-
-        $opl_data = array('caption' => 'Tilmeldingsoplysninger',
-                          'tilmelding' =>    $tilmelding);
-
-        $pris_data = array('tilmelding' => $tilmelding);
-
-        $rater_data = array('tilmelding' => $tilmelding);
-
-        $betal_data = array('betalinger' => $betalinger->getList(),
-                            'caption' => 'Betalinger',
-                            'msg_ingen' => '<h2>Betalinger</h2><p>Der er endnu ikke foretaget nogen betalinger.</p>');
-
-
-        $this->document->setTitle('Betalingsoversigt');
-
-        if ($tilmelding->antalRater() > 0 AND $tilmelding->rateDifference() > 0) {
-            return '
-                <h1>Betalingsopgørelsen kan kun når raterne stemmer</h1>
-                <p>Du skal lige rette raterne til, inden du kan lave en betalingsoversigt.</p>
-                <p><a href="'.$this->context->url('rater').'">Ret rater &rarr;</a></p>
-            ';
-        } elseif ($tilmelding->antalRater() > 0) {
-            return '
-                <h1>Betalingsopgørelse</h1>
-                <p><a href="'.$this->url(null, array('send_pdf' => true)).'">Send brev</a>'
-                . $this->render('VIH/Intranet/view/langekurser/tilmelding/oplysninger-tpl.php', $opl_data)
-                . $this->render('VIH/Intranet/view/langekurser/tilmelding/prisoversigt-tpl.php', $pris_data)
-                . $this->render('VIH/Intranet/view/langekurser/tilmelding/rater-tpl.php', $rater_data)
-                . $this->render('VIH/Intranet/view/tilmelding/betalinger-tpl.php', $betal_data);
-        } else {
-            return '
-                <h1>Betalingsopgørelsen mangler oplysninger om rater</h1>
-                <p>Du skal først have oprettet rater til tilmeldingen, inden du kan lave en betalingsoversigt.</p>
-                <p><a href="'.$this->url('../../../' . $tilmelding->getKursus()->get('id') . '/rater').'">Opret rater &rarr;</a></p>
-            ';
-        }
 
     }
 }

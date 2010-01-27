@@ -49,6 +49,6 @@ class VIH_Intranet_Controller_Langekurser_Periode_Edit extends k_Component
             throw $e;
         }
 
-        throw new k_SeeOther($this->url("../.."));
+        return new k_SeeOther($this->url("../.."));
     }
 }

@@ -40,8 +40,9 @@ class VIH_Intranet_Controller_Protokol_Holdliste extends k_Component
     function renderHtml()
     {
         $date = date('Y-m-d');
-        if (!empty($this->GET['date'])) {
-            $date = $this->GET['date']['Y'] . '-' . $this->GET['date']['M'] . '-' .$this->GET['date']['d'];
+        if ($this->query('date')) {
+            $get = $this->query('date');
+            $date = $get['Y'] . '-' . $get['M'] . '-' .$get['d'];
         }
 
         $this->getForm()->setDefaults(array('date' => $date));

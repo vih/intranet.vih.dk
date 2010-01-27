@@ -42,7 +42,7 @@ class VIH_Intranet_Controller_Kortekurser_Kursus extends k_Component
         }
         */
 
-        if (!empty($this->GET['sletbillede']) AND is_numeric($this->GET['sletbillede'])) {
+        if (is_numeric($this->query('sletbillede'))) {
                 $fields = array('date_updated', 'pic_id');
                 $values = array('NOW()', 0);
 
@@ -105,7 +105,7 @@ class VIH_Intranet_Controller_Kortekurser_Kursus extends k_Component
                     echo $res->getMessage();
                 }
 
-                throw new k_SeeOther($this->url());
+                return new k_SeeOther($this->url());
             }
         }
     }

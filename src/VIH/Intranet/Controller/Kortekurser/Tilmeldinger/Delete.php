@@ -5,7 +5,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Delete extends k_Componen
     {
         $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name());
         if ($tilmelding->delete()) {
-            throw new k_SeeOther($this->context->url('../'));
+            return new k_SeeOther($this->context->url('../'));
         }
     }
 }

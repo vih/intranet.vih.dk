@@ -70,7 +70,7 @@ class VIH_Intranet_Controller_Fag_Show extends k_Component
                     throw new Exception($res->getMessage());
                 }
 
-                throw new k_SeeOther($this->url());
+                return new k_SeeOther($this->url());
             }
         }
         return $this->render();

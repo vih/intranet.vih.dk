@@ -4,8 +4,6 @@
  */
 class VIH_Intranet_Controller_Langekurser_Periode_Index extends k_Component
 {
-    public $map = array('create' => 'VIH_Intranet_Controller_Langekurser_Periode_Create');
-
     function renderHtml()
     {
         $this->document->setTitle('Perioder');
@@ -33,7 +31,6 @@ class VIH_Intranet_Controller_Langekurser_Periode_Index extends k_Component
     {
         return $this->registry->get('table:langtkursus_periode');;
     }
-
 
     function map($name)
     {

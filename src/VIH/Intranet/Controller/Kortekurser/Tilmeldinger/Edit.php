@@ -158,39 +158,41 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
             $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name());
             $deltagere = $tilmelding->getDeltagere();
 
-            if ($id = $tilmelding->save($this->POST->getArrayCopy())) {
+            if ($id = $tilmelding->save($this->body())) {
                 $i = 0;
+                $post = $this->body();
+
                 foreach ($deltagere AS $deltager) {
-                    $var['id'] = $this->POST['deltager_id'][$i];
-                    $var['navn'] = $this->POST['navn'][$i];
-                    $var['cpr'] = $this->POST['cpr'][$i];
+                    $var['id'] = $post['deltager_id'][$i];
+                    $var['navn'] = $post['navn'][$i];
+                    $var['cpr'] = $post['cpr'][$i];
 
                     if ($tilmelding->kursus->get('indkvartering') == 'kursuscenteret') {
-                        $var['enevaerelse'] = $this->POST['enevaerelse'][$i];
-                        $var['sambo'] = $this->POST['sambo'][$i];
+                        $var['enevaerelse'] = $post['enevaerelse'][$i];
+                        $var['sambo'] = $post['sambo'][$i];
                     }
 
                     switch ($tilmelding->kursus->get('gruppe_id')) {
 
                         case 1: // golf
-                            $var['handicap'] = $this->POST['handicap'][$i];
-                            $var['klub'] = $this->POST['klub'][$i];
-                            $var['dgu'] = $this->POST['dgu'][$i];
+                            $var['handicap'] = $post['handicap'][$i];
+                            $var['klub'] = $post['klub'][$i];
+                            $var['dgu'] = $post['dgu'][$i];
                         break;
                         case 3: // bridge
-                            $var['niveau'] = $this->POST['niveau'][$i];
+                            $var['niveau'] = $post['niveau'][$i];
                         break;
                         case 4: // golf og bridge
-                            $var['handicap'] = $this->POST['handicap'][$i];
-                            $var['klub'] = $this->POST['klub'][$i];
-                            $var['dgu'] = $this->POST['dgu'][$i];
-                            $var['niveau'] = $this->POST['niveau'][$i];
+                            $var['handicap'] = $post['handicap'][$i];
+                            $var['klub'] = $post['klub'][$i];
+                            $var['dgu'] = $post['dgu'][$i];
+                            $var['niveau'] = $post['niveau'][$i];
                         break;
                         default:
                         break;
                     } // switch
 
-                    $deltager_object = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $this->POST['deltager_id'][$i]);
+                    $deltager_object = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $post['deltager_id'][$i]);
 
                     if (!$deltager_object->save($var)) {
                         // det gik ikke ret godt. Skal der ske noget?
@@ -198,13 +200,9 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
                     $i++;
                 } // foreach
 
-                throw new k_SeeOther($this->context->url());
+                return new k_SeeOther($this->context->url());
             }
-        } else {
-            $this->document->setTitle('Rediger tilmelding');
-            return $this->getForm()->toHTML();
         }
-
+        return $this->render();
     }
-
 }

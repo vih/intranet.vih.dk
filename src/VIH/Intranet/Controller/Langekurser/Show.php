@@ -7,6 +7,7 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
     public $form;
 
     protected $template;
+    protected $doctrine;
 
     function __construct(k_TemplateFactory $template)
     {
@@ -15,9 +16,9 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
 
     function dispatch()
     {
-        $kursus = new VIH_Model_LangtKursus($this->context->name());
+        $kursus = new VIH_Model_LangtKursus($this->name());
         if ($kursus->get("id") == 0) {
-            throw k_PageNotFound();
+            return new k_PageNotFound();
         }
         return parent::dispatch();
     }
@@ -40,8 +41,8 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
     {
         $kursus = new VIH_Model_LangtKursus((int)$this->name());
 
-        if (!empty($this->GET['sletbillede']) AND is_numeric($this->GET['sletbillede'])) {
-            $kursus->deletePicture($this->GET['sletbillede']);
+        if (is_numeric($this->query('sletbillede'))) {
+            $kursus->deletePicture($this->query('sletbillede'));
         }
 
         $pictures = $kursus->getPictures();
@@ -79,14 +80,14 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
 
     function getSubjects()
     {
-        $conn = $this->registry->get('doctrine');
+        $conn = Doctrine_Manager::connection(DB_DSN);
 
         $kursus = new VIH_Model_LangtKursus((int)$this->name());
 
         $data = array('kursus' => $kursus);
 
-
-        return $this->render('VIH/Intranet/view/langekurser/tilmelding/fagcount.tpl.php', $data);
+        $tpl = $this->template->create('langekurser/tilmelding/fagcount');
+        return $tpl->render($this, $data);
         /*
         $conn = $this->registry->get('doctrine');
         $registrations = Doctrine::getTable('VIH_Model_Course_Registration')->findByKursusId($kursus->getId());
@@ -109,16 +110,17 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
         */
     }
 
-    function postForm()
+    function postMultipart()
     {
         $kursus = new VIH_Model_LangtKursus((int)$this->name());
         if ($this->getForm()->validate()) {
             $file = new Ilib_FileHandler;
-            if($file->upload('userfile')) {
+            if ($file->upload('userfile')) {
                 $kursus->addPicture($file->get('id'));
-                throw new k_SeeOther($this->url());
+                return new k_SeeOther($this->url());
             }
         }
+        return $this->render();
     }
 
     function map($name)
@@ -140,7 +142,7 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
         } elseif ($name == 'ministeriumliste') {
             return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Ministeriumliste';
         } elseif ($name == 'elevuger') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Elevugerliste'';
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Elevugerliste';
         }
     }
 }

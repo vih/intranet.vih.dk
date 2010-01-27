@@ -18,8 +18,9 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Component
     function renderHtml()
     {
         $date = date('Y-m-d');
-        if (!empty($this->GET['date'])) {
-            $date = $this->GET['date']['Y'] . '-' . $this->GET['date']['M'] . '-' .$this->GET['date']['d'];
+        if ($this->query('date')) {
+            $get = $this->query('date');
+            $date = $get['date']['Y'] . '-' . $get['date']['M'] . '-' .$get['date']['d'];
         }
 
         $defaults = array('date' => $date);
@@ -67,8 +68,8 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Component
     function getCount($fag)
     {
         $date = date('Y-m-d');
-        if (!empty($this->GET['date'])) {
-            $date = $this->GET['date']['Y'] . '-' . $this->GET['date']['M'] . '-' .$this->GET['date']['d'];
+        if ($get = $this->query('date')) {
+            $date = $get['date']['Y'] . '-' . $get['date']['M'] . '-' .$get['date']['d'];
         }
 
         $this->getForm()->setDefaults(array('date' => $date));

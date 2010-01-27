@@ -7,7 +7,7 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Delete extends k_Component
         if (!$venteliste->delete()) {
             throw new Exeption('Kunne ikke slette ventelisten');
         } else {
-            throw new k_SeeOther($this->context->url('../'));
+            return new k_SeeOther($this->context->url('../'));
         }
 
     }

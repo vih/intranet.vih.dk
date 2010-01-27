@@ -17,10 +17,11 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Component
 
     function renderHtml()
     {
-        if (1==2 AND !empty($this->GET['date']['Y'])) {
-            $date = $this->GET['date']['Y'] . '-' . $this->GET['date']['M'] . '-' .$this->GET['date']['d'];
-        } elseif (!empty($this->GET['date'])) {
-            $date = $this->GET['date'];
+        $get = $this->query();
+        if (1==2 AND !empty($get['date']['Y'])) {
+            $date = $get['date']['Y'] . '-' . $get['date']['M'] . '-' .$get['date']['d'];
+        } elseif (!empty($get['date'])) {
+            $date = $get['date'];
         } else {
             $date = date('Y-m-d');
         }
@@ -69,14 +70,14 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Component
     function postForm()
     {
         $db = new DB_Sql();
-        foreach ($this->POST AS $key=>$value) {
+        foreach ($this->body() AS $key=>$value) {
             foreach ($value AS $id => $hold) {
                 if (!$hold) continue;
                 $db->query("UPDATE langtkursus_tilmelding_x_fag SET hold = ".$hold." WHERE id = " . $id);
             }
         }
 
-        throw new k_SeeOther($this->url());
+        return new k_SeeOther($this->url());
 
     }
 }

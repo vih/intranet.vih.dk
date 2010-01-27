@@ -20,7 +20,7 @@ class VIH_Intranet_Controller_Betaling_Reverse extends k_Component
                     $historik = new VIH_Model_Historik($betaling->get('belong_to'), $betaling->get('belong_to_id'));
                     $historik->save(array('type' => 'dankort', 'comment' => 'Reversal transaktion #' . $betaling->get('transactionnumber')));
                 }
-                throw new k_SeeOther($this->context->url('../'));
+                return new k_SeeOther($this->context->url('../'));
             } else {
                 // An error occured with the capture
                 // Dumping return data for debugging

@@ -26,8 +26,8 @@ class VIH_Intranet_Controller_Nyheder_Show extends k_Component
     {
         $nyhed = new VIH_News($this->name());
 
-        if (!empty($this->GET['sletbillede']) AND is_numeric($this->GET['sletbillede'])) {
-            $nyhed->deletePicture($this->GET['sletbillede']);
+        if (is_numeric($this->query('sletbillede'))) {
+            $nyhed->deletePicture($this->query('sletbillede'));
         }
 
         $pictures = $nyhed->getPictures();
@@ -55,6 +55,6 @@ class VIH_Intranet_Controller_Nyheder_Show extends k_Component
                 $nyhed->addPicture($file->get('id'));
             }
         }
-        throw new k_SeeOther($this->url());
+        return new k_SeeOther($this->url());
     }
 }

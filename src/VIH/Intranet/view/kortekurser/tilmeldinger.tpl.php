@@ -19,7 +19,7 @@
         <?php else: ?>
             <tr>
         <?php endif; ?>
-        <td><a href="<?php echo url('/kortekurser/tilmeldinger/' . $tilmelding->get('id')); ?>"><?php echo $tilmelding->get('id'); ?></a></td>
+        <td><a href="<?php echo url($tilmelding->get('id')); ?>"><?php echo $tilmelding->get('id'); ?></a></td>
         <td><?php echo $tilmelding->get('date_created_dk'); ?></td>
         <td>
             <?php if ($tilmelding->get('active') == 1) echo $tilmelding->get('navn'); else echo '[SLETTET]'; ?>

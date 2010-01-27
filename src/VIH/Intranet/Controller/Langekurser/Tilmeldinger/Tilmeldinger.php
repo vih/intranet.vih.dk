@@ -10,10 +10,6 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Co
 
     function renderHtml()
     {
-        if ($this->GET['format'] == 'excel') {
-            return $this->excel();
-        }
-
         $kursus = new VIH_Model_LangtKursus($this->context->name());
         $tilmeldinger = $kursus->getTilmeldinger();
 
@@ -23,8 +19,8 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Co
         $data = array('tilmeldinger' => $tilmeldinger,
                       'caption' => 'Tilmeldinger');
 
-        return $this->render(dirname(__FILE__) . '/../../../view/langekurser/tilmeldinger-tpl.php', $data);
-
+        $tpl = $this->template->create('langekurser/tilmeldinger');
+        return $tpl->render($this, $data);
     }
 
     function map($name)
@@ -37,7 +33,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Co
         return new VIH_Model_LangtKursus((int)$this->context->name());
     }
 
-    function excel()
+    function renderXls()
     {
         $workbook = new Spreadsheet_Excel_Writer();
 
@@ -85,5 +81,4 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Co
         */
         throw $response;
     }
-
 }

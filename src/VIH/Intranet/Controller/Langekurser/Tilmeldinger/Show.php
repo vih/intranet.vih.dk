@@ -4,22 +4,22 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
     private $template;
     protected $templates;
 
-        function __construct(Template $template, k_TemplateFactory $templates)
+    function __construct(k_TemplateFactory $templates)
     {
-        $this->template = $template;
         $this->templates = $templates;
     }
 
     function renderHtml()
     {
-        if (!empty ($this->GET['get_prices']) AND $this->GET['get_prices']) {
-            $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->GET['get_prices']);
+        if ($this->query('get_prices')) {
+            $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->query('get_prices'));
             if (!$tilmelding->getPriserFromKursus()) {
                 throw new Exception('Tilmeldingen kunne ikke slettes');
             } else {
-                throw new k_SeeOther($this->url());
+                return new k_SeeOther($this->url());
             }
         }
+
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->name());
         if ($tilmelding->get('id') == 0) {
             throw new k_http_Response(404);
@@ -30,7 +30,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
 
         $rater = $tilmelding->getRater();
 
-        if (!empty($this->GET['action']) AND $this->GET['action'] == 'sendemail') {
+        if ($this->query('action') == 'sendemail') {
             if ($tilmelding->sendEmail()) {
                 if (!$historik->save(array('type' => 'kode', 'comment' => 'Kode sendt med e-mail'))) {
                     throw new Exception('Historikken kunne ikke gemmes');
@@ -38,20 +38,20 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
             } else {
                 throw new Exception('E-mailen kunne ikke sendes');
             }
-        } elseif (!empty($this->GET['action']) AND $this->GET['action'] == 'opretrater') {
+        } elseif ($this->query('action') == 'opretrater') {
             if (!$tilmelding->opretRater()) {
                 throw new Exception('Raterne kunne ikke oprettes');
             } else {
-                throw new k_SeeOther($this->url());
+                return new k_SeeOther($this->url());
             }
-        } elseif(!empty($this->GET['registrer_betaling'])) {
-            if($betalinger->save(array('type' => 'giro', 'amount' => $this->GET['beloeb']))) {
+        } elseif($this->query('registrer_betaling')) {
+            if($betalinger->save(array('type' => 'giro', 'amount' => $this->query('beloeb')))) {
                 $betalinger->setStatus('approved');
             } else {
                 throw new Exception("Betalingen kunne ikke gemmes. Det kan skyldes et ugyldigt beløb", E_USER_ERROR);
             }
-        } elseif(isset($this->GET['slet_historik_id'])) {
-            $historik = new VIH_Model_Historik(intval($this->GET['slet_historik_id']));
+        } elseif ($this->query('slet_historik_id')) {
+            $historik = new VIH_Model_Historik(intval($this->query('slet_historik_id')));
             $historik->delete();
         }
 
@@ -69,17 +69,22 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
         $hist_data = array('tilmelding' => $tilmelding,
                            'historik' => $historik->getList());
 
+        $opl_tpl = $this->templates->create('langekurser/tilmelding/oplysninger');
+        $pris_tpl = $this->templates->create('langekurser/tilmelding/prisoversigt');
+        $betal_tpl = $this->templates->create('tilmelding/betalinger');
+        $his_tpl = $this->templates->create('tilmelding/historik');
+
         $data = array('tilmelding' => $tilmelding,
-                      'oplysninger' => $this->render('VIH/Intranet/view/langekurser/tilmelding/oplysninger-tpl.php', $opl_data),
-                      'prisoversigt' => $this->render('VIH/Intranet/view/langekurser/tilmelding/prisoversigt-tpl.php', $pris_data),
-                      'betalinger' => $this->render('VIH/Intranet/view/tilmelding/betalinger-tpl.php', $betal_data),
-                      'historik' => $this->render('VIH/Intranet/view/tilmelding/historik-tpl.php', $hist_data));
+                      'oplysninger' => $opl_tpl->render($this, $opl_data),
+                      'prisoversigt' => $pris_tpl->render($this, $pris_data),
+                      'betalinger' => $betal_tpl->render($this, $betal_data),
+                      'historik' => $his_tpl->render($this, $hist_data));
 
         // rater
         if (count($rater) > 0) {
-            $rater_tpl = $this->template;
-            $rater_tpl->set('tilmelding', $tilmelding);
-            $data['rater'] = $rater_tpl->fetch('langekurser/tilmelding/rater-tpl.php');
+            $rater_tpl = $this->templates->create('langekurser/tilmelding/rater');
+            $rater_data = array('tilmelding' => $tilmelding);
+            $data['rater'] = $rater_tpl->render($this, $rater_data);
         } else {
             if ($tilmelding->kursus->antalRater() > 0) {
                 $data['rater'] = '<p><a href="'.$this->url(null, array('get_prices' => $tilmelding->get('id'))).'">Hent priserne fra kurset</a>. Der er endnu ikke oprettet nogen rater <a href="'.$this->url(null, array('action' => 'opretrater')) . '">Opret &rarr;</a></p>';
@@ -90,15 +95,16 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
 
         $data['message'] = '';
 
-        if(isset($this->GET['download_file']) && $this->GET['download_file'] != "") {
+        if($this->query('download_file') != "") {
             $data['message'] = '
                 <div id="download_file">
-                    <strong>Download:</strong> <a href="' . urldecode($this->GET['download_file']) . '">Hent fil</a> (<a href="' . urldecode($_GET['download_file']) . '">I dette vindue</a>)
+                    <strong>Download:</strong> <a href="' . urldecode($this->query('download_file')) . '">Hent fil</a> (<a href="' . urldecode($this->query('download_file')) . '">I dette vindue</a>)
                 </div>
             ';
         }
 
-        return $this->render('VIH/Intranet/view/langekurser/tilmelding-tpl.php', $data);
+        $tpl = $this->templates->create('langekurser/tilmelding');
+        return $tpl->render($this, $data);
 
     }
 

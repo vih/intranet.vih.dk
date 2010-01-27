@@ -45,6 +45,6 @@ class VIH_Intranet_Controller_Langekurser_Periode_Create extends k_Component
         //    throw new Exception('insert failed');
         //}
         // It would be proper REST to reply with 201, but browsers doesn't understand that
-        throw new k_SeeOther($this->context->url());
+        return new k_SeeOther($this->context->url());
     }
 }

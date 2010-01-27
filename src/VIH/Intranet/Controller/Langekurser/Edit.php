@@ -95,7 +95,7 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Component
     {
         if ($this->getForm()->validate()) {
             $kursus = new VIH_Model_LangtKursus($this->context->name());
-            $var = $this->POST->getArrayCopy();
+            $var = $this->body();
             $var["dato_start"] = $var["dato_start"]['Y']."-".$var["dato_start"]['M']."-".$var["dato_start"]['d'];
             $var["dato_slut"] = $var["dato_slut"]['Y']."-".$var["dato_slut"]['M']."-".$var["dato_slut"]['d'];
             $var['navn'] = vih_handle_microsoft($var['navn']);
@@ -105,7 +105,7 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Component
                 $var['published'] = 0;
             }
             if ($id = $kursus->save($var)) {
-                throw new k_SeeOther($this->url('../'));
+                return new k_SeeOther($this->url('../'));
             }
         }
     }

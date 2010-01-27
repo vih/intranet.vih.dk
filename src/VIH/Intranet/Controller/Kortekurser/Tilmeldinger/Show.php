@@ -1,22 +1,21 @@
 <?php
 class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
 {
-    private $template;
     protected $templates;
 
-    function __construct(Template $template, k_TemplateFactory $templates)
+    function __construct(k_TemplateFactory $templates)
     {
-        $this->template = $template;
+        $this->templates = $templates;
     }
 
     function renderHtml()
     {
         $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->name());
 
-        if (isset($this->GET['sletdeltager']) AND is_numeric($this->GET['sletdeltager'])) {
-            $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $this->GET['sletdeltager']);
+        if (is_numeric($this->query('sletdeltager'))) {
+            $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $this->query('sletdeltager'));
             $deltager->delete();
-        } elseif (!empty($this->GET['action']) AND $this->GET['action'] == 'sendemail') {
+        } elseif ($this->query('action') == 'sendemail') {
             if ($tilmelding->sendEmail()) {
                 $historik = new VIH_Model_Historik('kortekurser', $tilmelding->get('id'));
                 if (!$historik->save(array('type' => 'kode', 'comment' => 'Kode sendt med e-mail'))) {
@@ -27,19 +26,19 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
             }
         }
 
-        if(isset($this->GET['slet_historik_id'])) {
-            $historik = new VIH_Model_Historik(intval($this->GET['slet_historik_id']));
+        if($this->query('slet_historik_id')) {
+            $historik = new VIH_Model_Historik(intval($this->query('slet_historik_id')));
             $historik->delete();
         }
 
         $deltagere = $tilmelding->getDeltagere();
-        $historik = new VIH_Model_Historik('kortekurser', $tilmelding->get("id"));
+        $historik_object = new VIH_Model_Historik('kortekurser', $tilmelding->get("id"));
         $betalinger = new VIH_Model_Betaling('kortekurser', $tilmelding->get("id"));
 
-        if(!empty($this->GET['registrer_betaling'])) {
-            if($betalinger->save(array('type' => 'giro', 'amount' => $_GET['beloeb']))) {
+        if($this->query('registrer_betaling')) {
+            if($betalinger->save(array('type' => 'giro', 'amount' => $this->query('beloeb')))) {
                 $betalinger->setStatus('approved');
-                throw new k_SeeOther($this->url());
+                return new k_SeeOther($this->url());
             } else {
                 throw new Exception("Betalingen kunne ikke gemmes. Det kan skyldes et ugyldigt beløb");
             }
@@ -49,40 +48,41 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
 
         $this->document->setTitle('Tilmelding #' . $tilmelding->getId());
 
-        $tilm_tpl = $this->template;
-        $tilm_data = array('message', '');
-        if(isset($this->GET['download_file']) && $this->GET['download_file'] != "") {
-            $tilm_tpl->set('message', '
-                <div id="download_file">
-                    <strong>Download:</strong> <a href="' . $this->url('sendbrev', array('create' => 'pdf', 'type' => $this->GET['type'])) . '">Hent fil</a>
-                </div>
-            ');
-        }
-
         $data =   array('deltagere' => $deltagere,
         				'indkvartering' => $tilmelding->kursus->get('indkvartering'),
         				'type' => $tilmelding->get('keywords'),
         				'vis_slet' => 'ja');
 
-        $historik = array('historik' => $historik->getList(),
+        $historik = array('historik' => $historik_object->getList(),
         				  'tilmelding' => $tilmelding);
 
-        $betaling_tpl = $this->template;
-        $betaling_tpl->set('caption', 'Afventende betalinger');
-        $betaling_tpl->set('betalinger', $betalinger->getList('not_approved'));
-        $betaling_tpl->set('msg_ingen', 'Der er ingen afventende betalinger.');
+        $historik_tpl = $this->templates->create('tilmelding/historik');
+        $betaling_data = array('caption' => 'Afventende betalinger',
+        					   'betalinger' => $betalinger->getList('not_approved'),
+        					   'msg_ingen', 'Der er ingen afventende betalinger.');
 
-        $prisoversigt_tpl = $this->template;
-        $prisoversigt_tpl->set('tilmelding', $tilmelding);
 
+        $prisoversigt_data = array('tilmelding' => $tilmelding);
+        $prisoversigt_tpl = $this->templates->create('kortekurser/tilmelding/prisoversigt');
+        $deltager_tpl = $this->templates->create('kortekurser/deltagere');
+        $betaling_tpl = $this->templates->create('tilmelding/betalinger');
 
         $tilmelding = array('tilmelding' => $tilmelding,
-        					'historik_object' => $historik,
-        					'deltagere' => $this->render(dirname(__FILE__) . '/../../../view/kortekurser/deltagere-tpl.php', $data),
+        					'historik_object' => $historik_object,
+        					'deltagere' => $deltager_tpl->render($this, $data),
         					'status' => $tilmelding->get('status'),
-                            'prisoversigt' => $prisoversigt_tpl->fetch('kortekurser/tilmelding/prisoversigt-tpl.php'),
-        					'historik' => $this->render(dirname(__FILE__) . '/../../../view/tilmelding/historik-tpl.php', $historik),
-        					'betalinger'=> $betaling_tpl->fetch('tilmelding/betalinger-tpl.php'));
+                            'prisoversigt' => $prisoversigt_tpl->render($this, $prisoversigt_data),
+        					'historik' => $historik_tpl->render($this, $historik),
+        					'betalinger'=> $betaling_tpl->render($this, $betaling_data));
+
+        if($this->query('download_file') != "") {
+            $tilmelding['message'] = '
+                <div id="download_file">
+                    <strong>Download:</strong> <a href="' . $this->url('sendbrev', array('create' => 'pdf', 'type' => $this->query('type'))) . '">Hent fil</a>
+                </div>
+            ';
+        }
+
         $tpl = $this->templates->create('kortekurser/tilmelding');
 
         return $tpl->render($this, $tilmelding);
@@ -103,7 +103,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
         if(!empty($_POST['annuller_tilmelding'])) {
             $tilmelding->setStatus("annulleret");
         }
-        throw new k_SeeOther($this->url());
+        return new k_SeeOther($this->url());
     }
 
     function map($name)

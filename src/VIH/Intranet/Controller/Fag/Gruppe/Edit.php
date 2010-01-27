@@ -48,14 +48,14 @@ class VIH_Intranet_Controller_Fag_Gruppe_Edit extends k_Component
     {
         $faggruppe = new VIH_Model_Fag_Gruppe($this->context->name());
         if ($this->getForm()->validate()) {
-            if (!isset($this->POST['show_description'])) {
-                $this->POST['show_description'] = 0;
+            if ($this->body('show_description')) {
+                $this->body('show_description') = 0;
             }
-            if (!isset($this->POST['published'])) {
-                $this->POST['published'] = 0;
+            if ($this->body('published')) {
+                $this->body('published') = 0;
             }
-            if ($id = $faggruppe->save($this->POST->getArrayCopy())) {
-                throw new k_SeeOther($this->context->url());
+            if ($id = $faggruppe->save($this->body())) {
+                return new k_SeeOther($this->context->url());
             }
         }
 

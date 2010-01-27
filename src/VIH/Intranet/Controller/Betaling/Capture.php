@@ -19,7 +19,7 @@ class VIH_Intranet_Controller_Betaling_Capture extends k_Component
                     $historik = new VIH_Model_Historik($betaling->get('belong_to'), $betaling->get('belong_to_id'));
                     $historik->save(array('type' => 'dankort', 'comment' => 'Capture transaktion #' . $betaling->get('transactionnumber')));
                 }
-                throw new k_SeeOther($this->context->url('../'));
+                return new k_SeeOther($this->context->url('../'));
 
             } else {
                 // An error occured with the capture

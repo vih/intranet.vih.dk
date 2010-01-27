@@ -33,14 +33,15 @@ class VIH_Intranet_Controller_Index extends k_Component
     {
         return $this->map[$name];
     }
-
+    /*
     function dispatch()
     {
         if ($this->identity()->anonymous()) {
-            throw new k_NotAuthorized();
+            return new k_NotAuthorized();
         }
         return parent::dispatch();
     }
+	*/
 
     function renderHtml()
     {

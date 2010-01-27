@@ -1,12 +1,10 @@
 <?php
 class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
 {
-    private $template;
     protected $templates;
 
-    function __construct(Template $template, k_TemplateFactory $templates)
+    function __construct(k_TemplateFactory $templates)
     {
-        $this->template = $template;
         $this->templates = $templates;
     }
 
@@ -19,30 +17,32 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
             trigger_error("Ugyldig tilmelding", E_USER_ERROR);
         }
 
-        if(isset($this->GET["addrate"])) {
-            if ($tilmelding->addRate($this->GET["addrate"])) {
-                throw new k_SeeOther($this->url());
+        if($this->query("addrate")) {
+            if ($tilmelding->addRate($this->query("addrate"))) {
+                return new k_SeeOther($this->url());
             } else {
                 trigger_error('Raten kunne ikke tilføjes', E_USER_ERROR);
             }
-        } elseif(isset($this->GET["delete"])) {
-            if ($tilmelding->deleteRate($this->GET["delete"])) {
-                throw new k_SeeOther($this->url());
+        } elseif($this->query("delete")) {
+            if ($tilmelding->deleteRate($this->query("delete"))) {
+                return new k_SeeOther($this->url());
             } else {
                 trigger_error('Raten kunne ikke slettes', E_USER_ERROR);
             }
         }
 
-        $pris_tpl = $this->template;
-        $pris_tpl->set('tilmelding', $tilmelding);
+        $pris_tpl = $this->templates->create('langekurser/tilmelding/prisoversigt');
+        $pris_data = array('tilmelding' => $tilmelding);
 
         $data = array('tilmelding' => $tilmelding);
 
         $this->document->setTitle('Betalingsrater for ' . $tilmelding->get("navn"));
         $this->document->options = array($this->url(null, array('addrate' => 1)) => 'Tilføj rate');
 
-        return $pris_tpl->fetch('langekurser/tilmelding/prisoversigt-tpl.php') .
-            $this->render('VIH/Intranet/view/langekurser/tilmelding/form_rater-tpl.php', $data);
+        $tpl = $this->templates->create('langekurser/tilmelding/form_rater');
+
+        return $pris_tpl->render($this, $pris_data) .
+            $tpl->render($this, $data);
 
     }
 
@@ -50,8 +50,8 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
     {
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
         if(isset($_POST["opdater_rater"])) {
-            if ($tilmelding->updateRater($this->POST["rate"])) {
-                throw new k_SeeOther($this->url());
+            if ($tilmelding->updateRater($this->body("rate"))) {
+                return new k_SeeOther($this->url());
             } else {
                 trigger_error('Raterne kunne ikke opdateres', E_USER_ERROR);
             }

@@ -78,7 +78,7 @@ class VIH_Intranet_Controller_Fag_Edit extends k_Component
     {
         if ($this->getForm()->validate()) {
             $fag = new VIH_Model_Fag($this->context->name());
-            $input = $this->POST->getArrayCopy();
+            $input = $this->body();
             $input['navn'] = vih_handle_microsoft($input['navn']);
             $input['beskrivelse'] = vih_handle_microsoft($input['beskrivelse']);
             $input['kort_beskrivelse'] = vih_handle_microsoft($input['kort_beskrivelse']);
@@ -88,10 +88,10 @@ class VIH_Intranet_Controller_Fag_Edit extends k_Component
             }
 
             if ($id = $fag->save($input)) {
-                if (!empty($this->POST['underviser'])) {
-                    $fag->addUnderviser($this->POST['underviser']);
+                if (!empty($this->body('underviser'))) {
+                    $fag->addUnderviser($this->body('underviser'));
                 }
-                throw new k_SeeOther($this->url('/fag/' . $fag->get('id')));
+                return new k_SeeOther($this->url('/fag/' . $fag->get('id')));
             }
         }
         return $this->render();

@@ -101,8 +101,8 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Compo
             }
         }
 
-        if (isset($this->POST['fag']) and is_array($this->POST['fag'])) {
-            foreach ($this->POST['fag'] as $key => $post) {
+        if (isset($this->body('fag')) and is_array($this->body('fag'))) {
+            foreach ($this->body('fag') as $key => $post) {
                 $SubjectGroup->Subjects[] = $this->getSubject($post);
             }
         }
@@ -113,7 +113,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Compo
             throw $e;
         }
 
-        throw new k_SeeOther($this->context->url());
+        return new k_SeeOther($this->context->url());
     }
 
 

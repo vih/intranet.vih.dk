@@ -1,5 +1,3 @@
-<h1><?php echo $overskrift; ?></h1>
-
 <p>Følgende tekst vil blive sendt:</p>
 
 <div style="border: 3px solid red; padding: 20px; width: 400px;">

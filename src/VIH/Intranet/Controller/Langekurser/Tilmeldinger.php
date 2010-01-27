@@ -10,10 +10,6 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Component
 
     function renderHtml()
     {
-        if ($this->GET['format'] == 'excel') {
-            return $this->renderElx();
-        }
-
         $kursus = new VIH_Model_LangtKursus($this->context->name());
         $tilmeldinger = $kursus->getTilmeldinger();
 
@@ -79,9 +75,8 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Component
         $response->setHeader("Cache-Control", "Public");
         $response->setHeader("Pragma", "public");
         */
-        throw $response;
+        return $response;
     }
-
 
     function map($name)
     {

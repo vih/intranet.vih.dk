@@ -3,18 +3,15 @@ require_once 'fpdf/fpdf.php';
 
 class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Component
 {
-    private $template;
     protected $templates;
 
-    function __construct(Template $template, k_TemplateFactory $templates)
+    function __construct(k_TemplateFactory $templates)
     {
-        $this->template = $template;
         $this->templates = $templates;
     }
 
     function renderHtml()
     {
-
         $GLOBALS['_global_function_callback_url'] = Array($this, 'url');
         $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name());
 
@@ -25,22 +22,48 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
            'bekraeftelse.php' => 'bekraeftelse',
            'depositumbekraeftelse.php' => 'depositumbekraeftelse');
 
-        $brev_type = $this->GET['type'];
+        $brev_type = $this->query('type');
         $brev_type_key = array_search($brev_type, $allowed_brev_type);
 
         if($brev_type_key === false) {
             throw new Exception("Ugyldig brev type");
         }
 
-        if($tilmelding->get('id') == 0) {
-           throw new Exception("Ugyldig tilmelding");
+        include(dirname(__FILE__) . '/breve/'.$brev_type_key);
+        // returnerer $brev_tekst;
+
+
+        $this->document->setTitle('Send '.$brev_type);
+
+        $send_data = array('tilmelding' => $tilmelding,
+        				   'brev_tekst' => $brev_tekst,
+        				   'brev_type' => $this->query('type'));
+        $tpl = $this->templates->create('kortekurser/send_brev');
+        return $tpl->render($this, $send_data);
+    }
+
+    function renderPdf()
+    {
+        $GLOBALS['_global_function_callback_url'] = Array($this, 'url');
+        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name());
+
+        $allowed_brev_type = array('' => '_fejl_',
+           'rykker.php' => 'rykker',
+           'depositumrykker.php' => 'depositumrykker',
+           'depositum.php' => 'depositum',
+           'bekraeftelse.php' => 'bekraeftelse',
+           'depositumbekraeftelse.php' => 'depositumbekraeftelse');
+
+        $brev_type = $this->query('type');
+        $brev_type_key = array_search($brev_type, $allowed_brev_type);
+
+        if($brev_type_key === false) {
+            throw new Exception("Ugyldig brev type");
         }
 
         include(dirname(__FILE__) . '/breve/'.$brev_type_key);
         // returnerer $brev_tekst;
 
-
-        if(isset($this->GET['create']) && $this->GET['create'] == 'pdf') {
 
            $pdf=new FPDF('P','mm','A4');
            $pdf->Open();
@@ -60,20 +83,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
            $pdf->setY(100);
 
            $pdf->Write(5, $brev_tekst);
-           $pdf->Output(dirname(__FILE__) .'/udsendte_pdf/' . $tilmelding->get('id') . '.pdf', 'F');
-
-           # workaround for at få IE til at forstå noget.
-           throw new k_SeeOther($this->url('/kortekurser/tilmeldinger/udsendte_pdf/'.$tilmelding->get('id').'.pdf'));
-        }
-
-        $this->document->setTitle('Send brev');
-
-        $send_tpl = $this->template;
-        $send_tpl->set('tilmelding', $tilmelding);
-        $send_tpl->set('brev_tekst', $brev_tekst);
-        $send_tpl->set('brev_type', $this->GET['type']);
-        $send_tpl->set('overskrift', 'Send '.$brev_type);
-        return $send_tpl->fetch('kortekurser/send_brev-tpl.php');
+           return $pdf->Output();
     }
 
     function postForm()
@@ -87,7 +97,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
            'bekraeftelse.php' => 'bekraeftelse',
            'depositumbekraeftelse.php' => 'depositumbekraeftelse');
 
-        $brev_type = $this->POST['type'];
+        $brev_type = $this->body('type');
         $brev_type_key = array_search($brev_type, $allowed_brev_type);
 
         if($brev_type_key === false) {
@@ -96,7 +106,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
 
         include(dirname(__FILE__) . '/breve/'.$brev_type_key);
 
-        if(isset($this->POST['send_email'])) {
+        if($this->body('send_email')) {
             $mail = new VIH_Email;
             $mail->setSubject(ucfirst($brev_type)." fra Vejle Idrætshøjskole");
             $mail->setBody($brev_tekst);
@@ -107,12 +117,11 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
             $historik = new VIH_Model_Historik('kortekurser', $tilmelding->get("id"));
             $historik->save(array('type' => $brev_type, 'comment' => "Sendt via e-mail"));
 
-            throw new k_SeeOther($this->context->url());
-        } elseif(isset($this->POST['send_pdf'])) {
-
+            return new k_SeeOther($this->context->url());
+        } elseif($this->body('send_pdf')) {
             $historik = new VIH_Model_Historik('kortekurser', $tilmelding->get("id"));
             $historik->save(array('type' => $brev_type, 'comment' => "Sendt via post"));
-            throw new k_SeeOther($this->context->url(null, array('download_file' => $this->url('sendbrev'), 'type' => $brev_type, 'create' => 'pdf')));
+            return new k_SeeOther($this->url(null . '.pdf', array('type' => $brev_type)));
         }
 
     }
