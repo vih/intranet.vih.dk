@@ -8,9 +8,9 @@ class VIH_Intranet_Controller_Ansatte_Show extends k_Component
 
     function getFileForm()
     {
-       if ($this->file_form) {
-           return $this->file_form;
-       }
+        if ($this->file_form) {
+            return $this->file_form;
+        }
 
         $form = new HTML_QuickForm('ansatte', 'POST', $this->url());
         $form->addElement('file', 'userfile', 'Fil');
@@ -26,7 +26,7 @@ class VIH_Intranet_Controller_Ansatte_Show extends k_Component
         $file->loadInstance('small');
 
         $this->document->setTitle('Ansat: ' . $ansat->get('navn'));
-        //$this->document->options = array($this->url('edit') => 'Ret');
+        $this->document->options = array($this->url('edit') => 'Ret');
 
         return $file->getImageHtml(). $this->getFileForm()->toHTML();
     }
@@ -65,14 +65,14 @@ class VIH_Intranet_Controller_Ansatte_Show extends k_Component
                               'maxYear' => date('Y'),
                               'addEmptyOption' => 'true',
                               'emptyOptionValue' => '',
-                              'emptyOptionText' => 'Vælg');
+                              'emptyOptionText' => 'Vï¿½lg');
 
         $this->form = new HTML_QuickForm('fag', 'POST', $this->url(null, array($this->subview())));
         $this->form->addElement('text', 'navn', 'Navn');
         $this->form->addElement('text', 'adresse', 'Adresse');
         $this->form->addElement('text', 'postnr', 'Postnr');
         $this->form->addElement('text', 'postby', 'Postby');
-        $this->form->addElement('date', 'date_birthday', 'Fødselsdag', $date_options);
+        $this->form->addElement('date', 'date_birthday', 'Fï¿½dselsdag', $date_options);
         $this->form->addElement('date', 'date_ansat', 'Ansat', $date_options);
         $this->form->addElement('date', 'date_stoppet', 'Stoppet', $date_options);
         $this->form->addElement('text', 'titel', 'Titel');

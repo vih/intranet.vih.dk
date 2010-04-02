@@ -33,7 +33,7 @@ class VIH_Intranet_Controller_Index extends k_Component
     {
         return $this->map[$name];
     }
-    /*
+
     function dispatch()
     {
         if ($this->identity()->anonymous()) {
@@ -41,26 +41,25 @@ class VIH_Intranet_Controller_Index extends k_Component
         }
         return parent::dispatch();
     }
-	*/
 
     function renderHtml()
     {
         $hilsener = array(
-            'Stræk armene op over hovedet og råb jubii.',
-            'Kør hånden gennem håret og sig: Gud, hvor har jeg lækkert hår.',
+            'Strï¿½k armene op over hovedet og rï¿½b jubii.',
+            'Kï¿½r hï¿½nden gennem hï¿½ret og sig: Gud, hvor har jeg lï¿½kkert hï¿½r.',
             'Dupont er ikke ret stor, men han er stadig meget flink.',
-            'Det var dog en usædvanlig dejlig dag i dag.',
-            'Sæt dig da ned et minuts tid og nyd livet. Det er skønt.',
-            'Når du kan høre fuglene fløjte, må det være en vidunderlig dag.',
-            'Stræk den ene arm over på ryggen og klap dig selv på skulderen.',
-            'Skynd dig over på kontoret - de har slik og gaver til dig i dag.',
+            'Det var dog en usï¿½dvanlig dejlig dag i dag.',
+            'Sï¿½t dig da ned et minuts tid og nyd livet. Det er skï¿½nt.',
+            'Nï¿½r du kan hï¿½re fuglene flï¿½jte, mï¿½ det vï¿½re en vidunderlig dag.',
+            'Strï¿½k den ene arm over pï¿½ ryggen og klap dig selv pï¿½ skulderen.',
+            'Skynd dig over pï¿½ kontoret - de har slik og gaver til dig i dag.',
             'Faktisk er vi nok alt for seje.',
-            'Det går den rigtige vej.',
-            'Det er ikke så ringe endda.',
-            'Mon køkkenet serverer hindbærsnitter i dag?',
+            'Det gï¿½r den rigtige vej.',
+            'Det er ikke sï¿½ ringe endda.',
+            'Mon kï¿½kkenet serverer hindbï¿½rsnitter i dag?',
             'Har du rost en anden i dag',
-            'VIH er landets bedste idrætshøjskole',
-            'Der er ingen grænser for, hvad vi kan opnå.'
+            'VIH er landets bedste idrï¿½tshï¿½jskole',
+            'Der er ingen grï¿½nser for, hvad vi kan opnï¿½.'
         );
 
         $special_data = array('special_days' => VIH_Model_Ansat::getBirthdays());
@@ -72,7 +71,7 @@ class VIH_Intranet_Controller_Index extends k_Component
         return $special_day_tpl->render($this, $special_data) . '<ul class="navigation-frontpage">
                 <li><a href="'.$this->url('/protokol').'">Protokol</a></li>
                 <li><a href="https://mail.vih.dk/exchange/">Tjek din e-mail</a></li>
-                <li><a href="http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com">Højskolens kalender</a></li>
+                <li><a href="http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com">Hï¿½jskolens kalender</a></li>
             </ul>
             ' . sprintf("<form method='post' action='%s'><p><input type='submit' value='Log out' /></p></form>", htmlspecialchars($this->url('/logout')));
     }

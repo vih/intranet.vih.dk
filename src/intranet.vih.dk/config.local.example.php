@@ -1,6 +1,5 @@
 <?php
 define('PATH_ROOT', dirname(__FILE__) . '/../');
-define('PATH_INCLUDE', dirname(__FILE__) . '/../' . PATH_SEPARATOR . dirname(__FILE__) . '/../../../../hojskole/src/' . PATH_SEPARATOR . get_include_path());
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');
@@ -13,3 +12,4 @@ define('PATH_UPLOAD_INSTANCE', PATH_UPLOAD . 'devel\instance\\');
 define('PATH_INCLUDE', dirname(__FILE__) . '/../../../hojskole/src/' . PATH_SEPARATOR . dirname(__FILE__) . '/../' . PATH_SEPARATOR . dirname(__FILE__)."/../../hojskole/src/" . PATH_SEPARATOR .ini_get('include_path'));
 define('FILE_VIEWER', '/hojskole/src/vih.dk/file.php');
 
+set_include_path(PATH_INCLUDE);

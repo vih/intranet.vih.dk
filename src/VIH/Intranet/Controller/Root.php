@@ -40,7 +40,7 @@ class VIH_Intranet_Controller_Root extends k_Component
         $this->url('/restricted/ansatte')  => 'Ansatte',
         $this->url('/restricted/faciliteter')  => 'Faciliteter',
         $this->url('/restricted/filemanager') => 'Dokumenter',
-        $this->url('/restricted/fotogalleri')  => 'Højdepunkter',
+        $this->url('/restricted/fotogalleri')  => 'Hï¿½jdepunkter',
         $this->url('/restricted/logout')  => 'Logout');
 
         $tpl = $this->template->create('main');
@@ -50,7 +50,7 @@ class VIH_Intranet_Controller_Root extends k_Component
     function renderHtml()
     {
         return sprintf(
-      "<p>Vejle Idrætshøjskoles intranet er blevet opdateret. Klik på <a href='%s'>restricted</a> for at logge ind. Brugernavnet er det samme som du plejer at bruge som password.</p>",
+      "<p>Vejle IdrÃ¦tshÃ¸jskoles intranet er blevet opdateret. Klik pÃ¥ <a href='%s'>restricted</a> for at logge ind. Brugernavnet er det samme som du plejer at bruge som password.</p>",
         htmlspecialchars($this->url('restricted')));
     }
 }

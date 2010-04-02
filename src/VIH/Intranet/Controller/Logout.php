@@ -1,8 +1,8 @@
 <?php
 class VIH_Intranet_Controller_Logout extends k_Component
 {
-
-    function execute() {
+    function execute()
+    {
         $this->url_state->init("continue", $this->url('/'));
         return parent::execute();
     }

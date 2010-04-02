@@ -1,7 +1,5 @@
 <?php
 require_once 'config.local.php';
-
-set_include_path(PATH_INCLUDE);
 /*
 require_once 'VIH/errorhandler.php';
 set_error_handler('vih_error_handler');
