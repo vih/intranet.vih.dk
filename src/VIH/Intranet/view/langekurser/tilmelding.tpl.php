@@ -11,9 +11,9 @@
         <li><a href="<?php echo url('/langekurser/' . $tilmelding->kursus->get('id')); ?>">Til kursus</a></li>
         <li><a href="<?php echo url('/langekurser/'.$tilmelding->kursus->get('id') . '/tilmeldinger'); ?>">Tilmeldinger</a></li>
         <li><a href="<?php echo url('edit'); ?>">Ret</a></li>
-        <li><a href="<?php echo url('delete'); ?>" onclick="return confirm('Er du sikker på, at du vil slette?');">Slet</a></li>
+        <li><a href="<?php echo url('delete'); ?>" onclick="return confirm('Er du sikker pÃ¥, at du vil slette?');">Slet</a></li>
         <li><a href="<?php echo url('/protokol/holdliste/' . $tilmelding->get('id')); ?>">Protokol</a></li>
-        <li><a href="<?php echo url('brev'); ?>">Betalingsopgørelse</a></li>
+        <li><a href="<?php echo url('brev'); ?>">BetalingsopgÃ¸relse</a></li>
         <li><a href="<?php echo url('fag'); ?>">Fag</a></li>
         <li><a href="<?php echo url('diplom'); ?>">Udskriv diplom</a></li>
         <li><a href="<?php echo LANGEKURSER_LOGIN_URI . $tilmelding->get('code'); ?>">Kundens side</a></li>
@@ -22,9 +22,9 @@
     <!--
     <ul class="navigation-sub">
         <li><a href="<?php echo LANGEKURSER_LOGIN_URI . $tilmelding->get('code'); ?>">Kundens side</a></li>
-        <li><a href="send_brev.php?id=<?php echo $tilmelding->get('id'); ?>">Betalingsopgørelse</a></li>
+        <li><a href="send_brev.php?id=<?php echo $tilmelding->get('id'); ?>">Betalingsopgï¿½relse</a></li>
         <?php if ($tilmelding->get('email')): ?>
-        <li><a href="tilmelding.php?action=sendemail&amp;id=<?php echo $tilmelding->get('id'); ?>" onclick="return confirm('Er du sikker på, at du vil sende bekræftelsese-mailen igen?');">Send e-mail</a></li>
+        <li><a href="tilmelding.php?action=sendemail&amp;id=<?php echo $tilmelding->get('id'); ?>" onclick="return confirm('Er du sikker pï¿½, at du vil sende bekrï¿½ftelsese-mailen igen?');">Send e-mail</a></li>
         <?php endif; ?>
 
 
@@ -48,7 +48,7 @@
     <?php echo $prisoversigt; ?>
 
     <?php if ($tilmelding->antalRater() > 0): ?>
-    <p><a href="<?php print(url('rater')); ?>">Ændre rater</a></p>
+    <p><a href="<?php print(url('rater')); ?>">Ã†ndre rater</a></p>
     <?php endif; ?>
 
     <?php echo $betalinger; ?>
@@ -57,10 +57,10 @@
 
 
     <?php if($tilmelding->get('skyldig') != 0): ?>
-    <form action="<?php echo $this->url(); ?>" method="get">
+    <form action="<?php e(url()); ?>" method="get">
     <fieldset>
         <legend>Registrer betaling</legend>
-            <label>Beløb
+            <label>BelÃ¸b
                 <input type="text" name="beloeb" size="8" />
             </label>
             <input type="submit" name="registrer_betaling" value="Betalt" />
