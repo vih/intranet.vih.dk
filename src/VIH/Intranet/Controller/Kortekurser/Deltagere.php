@@ -16,7 +16,7 @@ class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Component
             case 1: // golf
                 $keywords[] = 'golf';
             break;
-            case 2: // øvrige
+            case 2: // ï¿½vrige
                 $keywords[] = 'familie';
             break;
             case 3: // bridge
@@ -26,21 +26,23 @@ class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Component
                 $keywords[] = 'golf';
                 $keywords[] = 'bridge';
             break;
+            case 5: // camp
+                $keywords[] = 'camp';
+            break;
+
             default:
                 $keywords = array();
             break;
         }
 
-        $this->document->setTitle('Deltagere på ' . $kursus->getKursusNavn());
-
-        $this->document->options = array(
-            $this->url('../tilmeldinger') => 'Gå til tilmeldingerne',
-                $this->url('../deltagerliste') => 'Deltagerliste',
-                $this->url('../adresselabels') => 'Adresselabels',
-                $this->url('../drikkevareliste') => 'Drikkevareliste',
-                $this->url('../navneskilte') => 'Navneskilte (pdf)',
-                $this->url('../ministeriumliste') => 'Ministerium'
-        );
+        $this->document->setTitle('Deltagere pÃ¥ ' . $kursus->getKursusNavn());
+        $this->document->addOption('Tilmeldingerne', $this->url('../tilmeldinger'));
+        $this->document->addOption('Deltagerliste', $this->url('../deltagerliste'));
+        $this->document->addOption('Adresselabels', $this->url('../adresselabels'));
+        $this->document->addOption('Drikkevareliste', $this->url('../drikkevareliste'));
+        $this->document->addOption('Navneskilte', $this->url('../navneskilte'));
+        $this->document->addOption('Ministerium', $this->url('../ministeriumliste'));
+        $this->document->addOption('Excel', $this->url('./', array('format' => 'excel')));
 
         $data = array('vis_tilmelding' => 'ja',
                       'deltagere' => $deltagere,
@@ -73,7 +75,7 @@ class VIH_Intranet_Controller_Kortekurser_Deltagere extends k_Component
         $format->setSize(8);
 
         $i = 0;
-        $worksheet->write($i, 0, 'Vejle Idrætshøjskole: ' . $this->getKursus()->getKursusNavn(), $format_bold);
+        $worksheet->write($i, 0, 'Vejle Idrï¿½tshï¿½jskole: ' . $this->getKursus()->getKursusNavn(), $format_bold);
 
         $i = 2;
     	foreach ($this->getKursus()->getDeltagere() AS $deltager) {

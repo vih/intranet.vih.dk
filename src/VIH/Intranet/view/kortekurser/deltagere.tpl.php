@@ -1,18 +1,14 @@
-<ul>
-	<li><a href="<?php e(url('./', array('format' => 'excel'))); ?>">Excel</a></li>
-</ul>
-
 <?php if (is_array($deltagere)): ?>
     <table id="deltagere">
-    <caption>Deltagere<caption>
+    <caption>Deltagere</caption>
     <tr>
         <?php if (!empty($vis_tilmelding) AND $vis_tilmelding == 'ja'): ?>
         <th>Tilmelding</th>
         <?php endif; ?>
         <th>Navn</th>
         <th>CPR-nummer</th>
-        <?php if (!empty($indkvartering) AND $indkvartering == 'kursuscenteret' OR $indkvartering == "højskole og kursuscenter"):?>
-            <th>Eneværelse</th>
+        <?php if (!empty($indkvartering) AND $indkvartering == 'kursuscenteret' OR $indkvartering == "hï¿½jskole og kursuscenter"):?>
+            <th>EnevÃ¦relse</th>
             <th>Sambo</th>
         <?php endif; ?>
         <?php if(in_array('golf', $type)): ?>
@@ -26,6 +22,10 @@
         <?php if(in_array('familie', $type)): ?>
             <th>Alder</th>
         <?php endif; ?>
+        <?php if(in_array('camp', $type)): ?>
+            <th>Fag</th>
+        <?php endif; ?>
+
         <?php if (!empty($vis_slet) AND $vis_slet == 'ja'): ?>
             <th></th>
         <?php endif; ?>
@@ -38,7 +38,7 @@
             <?php endif; ?>
             <td><?php echo $deltager->get('navn'); ?></td>
             <td><?php echo $deltager->get("cpr"); ?></td>
-            <?php if (!empty($indkvartering) AND $indkvartering == "kursuscenteret" OR $indkvartering == "højskole og kursuscenter"):?>
+            <?php if (!empty($indkvartering) AND $indkvartering == "kursuscenteret" OR $indkvartering == "hï¿½jskole og kursuscenter"):?>
                 <td><?php echo ucfirst($deltager->get("enevaerelse")); ?></td>
                 <td><?php if ($deltager->get("sambo")) echo $deltager->get("sambo"); else echo 'Ingen valgt';?></td>
             <?php endif; ?>
@@ -53,8 +53,12 @@
             <?php if(in_array('familie', $type)): ?>
                 <td><?php echo $deltager->get('alder'); ?></td>
             <?php endif; ?>
+            <?php if(in_array('camp', $type)): ?>
+                <td><?php e($deltager->get('speciale')); ?></td>
+            <?php endif; ?>
+
             <?php if (!empty($vis_slet) AND $vis_slet == 'ja'): ?>
-                <td><a href="<?php echo url(null, array('sletdeltager' => $deltager->get('id'))); ?>" onclick="return confirm('Er du sikker på, at du vil slette deltageren?');">Slet</a></td>
+                <td><a href="<?php echo url(null, array('sletdeltager' => $deltager->get('id'))); ?>" onclick="return confirm('Er du sikker pï¿½, at du vil slette deltageren?');">Slet</a></td>
             <?php endif; ?>
 
         </tr>
