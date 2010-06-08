@@ -77,9 +77,8 @@ class Login extends k_Component
 
     protected function selectUser($username, $password)
     {
-        $users = array(
-            'vih' => 'vih'
-        );
+        $users = $GLOBALS['users'];
+
         if (isset($users[$username]) && $users[$username] == $password) {
             return new k_AuthenticatedUser($username);
         }

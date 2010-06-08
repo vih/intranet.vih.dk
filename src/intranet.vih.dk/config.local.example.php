@@ -13,3 +13,8 @@ define('PATH_INCLUDE', dirname(__FILE__) . '/../../../hojskole/src/' . PATH_SEPA
 define('FILE_VIEWER', '/hojskole/src/vih.dk/file.php');
 
 set_include_path(PATH_INCLUDE);
+
+
+$GLOBALS['users'] = array(
+            'test' => 'test'
+        );
