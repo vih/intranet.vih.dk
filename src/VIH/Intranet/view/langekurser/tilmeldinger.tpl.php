@@ -1,7 +1,3 @@
-<ul>
-	<li><a href="<?php e(url(null . '.xls')); ?>">Excel</a></li>
-</ul>
-
 <?php if (is_array($tilmeldinger)): ?>
 <table>
     <caption><?php echo $caption; ?></caption>
