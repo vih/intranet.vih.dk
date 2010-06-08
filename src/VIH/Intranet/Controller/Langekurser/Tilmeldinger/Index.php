@@ -37,6 +37,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index extends k_Component
         $this->document->addOption('Fag', $this->url('../../fag'));
         $this->document->addOption('Exporter adresseliste som CSV', $this->url('exportcsv'));
         $this->document->addOption('Restance', $this->url('restance'));
+        $this->document->addOption('Excel', $this->url(null . '.xls'));
 
         $tpl = $this->template->create('langekurser/tilmeldinger');
         return $tpl->render($this, $data) . $this->getForm()->toHTML();

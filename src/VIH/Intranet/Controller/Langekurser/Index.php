@@ -29,7 +29,6 @@ class VIH_Intranet_Controller_Langekurser_Index extends k_Component
         $this->document->setTitle('Lange Kurser');
         $this->document->addOption('Fag', $this->url('../fag'));
         $this->document->addOption('Opret kursus', $this->url('create'));
-        $this->document->addOption('Excel', $this->url(null . '.xls'));
 
         $data = array('caption' => 'Lange kurser',
                      'kurser' => $kurser);
