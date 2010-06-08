@@ -40,13 +40,20 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
                 $betalinger->setStatus('approved');
                 return new k_SeeOther($this->url());
             } else {
-                throw new Exception("Betalingen kunne ikke gemmes. Det kan skyldes et ugyldigt beløb");
+                throw new Exception("Betalingen kunne ikke gemmes. Det kan skyldes et ugyldigt belï¿½b");
             }
         }
 
         $tilmelding->loadBetaling();
 
         $this->document->setTitle('Tilmelding #' . $tilmelding->getId());
+        $this->document->addOption('Tilbage til liste', $this->url('../'));
+        $this->document->addOption('Ret', $this->url('edit'));
+        $this->document->addOption('Slet', $this->url('delete'));
+        if ($tilmelding->get('email')) {
+            $this->document->addOption('E-mail', $this->url('email'));
+        }
+        $this->document->addOption('Kundens side', KORTEKURSER_LOGIN_URI . $tilmelding->get('code'));
 
         $data =   array('deltagere' => $deltagere,
         				'indkvartering' => $tilmelding->kursus->get('indkvartering'),
@@ -110,6 +117,10 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
     {
         if ($name == 'sendbrev') {
             return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev';
+        } elseif ($name == 'edit') {
+            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit';
+        } elseif ($name == 'delete') {
+            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Delete';
         }
     }
 

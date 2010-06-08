@@ -14,7 +14,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Co
         $tilmeldinger = $kursus->getTilmeldinger();
 
         $this->document->setTitle('Tilmeldinger til ' . $kursus->getKursusNavn());
-        $this->document->options = array($this->url('/langekurser') => 'Alle kurser');
+        $this->document->addOption('Alle kurser', $this->url('/langekurser'));
 
         $data = array('tilmeldinger' => $tilmeldinger,
                       'caption' => 'Tilmeldinger');
@@ -55,7 +55,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Co
         $format->setSize(8);
 
         $i = 0;
-        $worksheet->write($i, 0, 'Vejle Idrætshøjskole: ' . $this->getKursus()->getKursusNavn(), $format_bold);
+        $worksheet->write($i, 0, 'Vejle IdrÃ¦tshÃ¸jskole: ' . $this->getKursus()->getKursusNavn(), $format_bold);
 
         $i = 2;
     	foreach ($this->getKursus()->getTilmeldinger() AS $deltager) {

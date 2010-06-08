@@ -48,10 +48,10 @@
                 <td><?php echo $deltager->get('dgu'); ?></td>
             <?php endif; ?>
             <?php if(in_array('bridge', $type)): ?>
-                <td><?php echo $deltager->get('niveau'); ?></td>
+                <td><?php e($deltager->get('niveau')); ?></td>
             <?php endif; ?>
             <?php if(in_array('familie', $type)): ?>
-                <td><?php echo $deltager->get('alder'); ?></td>
+                <td><?php e($deltager->get('alder')); ?></td>
             <?php endif; ?>
             <?php if(in_array('camp', $type)): ?>
                 <td><?php e($deltager->get('speciale')); ?></td>

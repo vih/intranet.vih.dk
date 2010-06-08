@@ -4,7 +4,7 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Component
     private $db;
     protected $template;
 
-    function __construct(DB $db, k_TemplateFactory $template)
+    function __construct(DB_common $db, k_TemplateFactory $template)
     {
         $this->db = $db;
         $this->template = $template;
@@ -14,21 +14,19 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Component
     {
         $type_key = $this->context->getTypeKeys();
 
-        $db = $this->db;
-        # delete
         if (!empty($_GET['delete']) AND is_numeric($_GET['delete'])) {
-            $res =& $db->query('DELETE FROM langtkursus_tilmelding_protokol_item WHERE id = ' . $_GET['delete']);
+            $res =& $this->db->query('DELETE FROM langtkursus_tilmelding_protokol_item WHERE id = ' . $_GET['delete']);
         }
 
         if (!empty($_GET['sletbillede']) AND is_numeric($_GET['sletbillede'])) {
             $fields = array('date_updated', 'pic_id');
             $values = array('NOW()', 0);
 
-            $sth = $db->autoPrepare('langtkursus_tilmelding', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $_GET['id']);
-            $res = $db->execute($sth, $values);
+            $sth = $this->db->autoPrepare('langtkursus_tilmelding', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $_GET['id']);
+            $res = $this->db->execute($sth, $values);
 
             if (PEAR::isError($res)) {
-                echo $res->getMessage();
+                throw new Exception($res->getMessage());
             }
         }
 
@@ -43,11 +41,11 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Component
                 $fields = array('date_updated', 'pic_id');
                 $values = array('NOW()', $file->get('id'));
 
-                $sth = $db->autoPrepare('langtkursus_tilmelding', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $form->exportValue('id'));
-                $res = $db->execute($sth, $values);
+                $sth = $this->db->autoPrepare('langtkursus_tilmelding', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $form->exportValue('id'));
+                $res = $this->db->execute($sth, $values);
 
                 if (PEAR::isError($res)) {
-                    echo $res->getMessage();
+                    throw new Exception($res->getMessage());
                 }
 
                 return new k_SeeOther($this->url('./'));
@@ -73,10 +71,10 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Component
             $extra_html .= ' <br /><a href="'.$stor.'">stor</a> <a href="'.url('./') . '?sletbillede=' .$this->name().'" onclick="return confirm(\'Er du sikker\');">slet billede</a>';
         }
 
-        $res =& $db->query('SELECT *, DATE_FORMAT(date_start, "%d-%m %H:%i") AS date_start_dk, DATE_FORMAT(date_end, "%d-%m %H:%i") AS date_end_dk FROM langtkursus_tilmelding_protokol_item WHERE tilmelding_id = ' . (int)$this->name() . ' ORDER BY date_start DESC, date_end DESC');
+        $res = $this->db->query('SELECT *, DATE_FORMAT(date_start, "%d-%m %H:%i") AS date_start_dk, DATE_FORMAT(date_end, "%d-%m %H:%i") AS date_end_dk FROM langtkursus_tilmelding_protokol_item WHERE tilmelding_id = ' . (int)$this->name() . ' ORDER BY date_start DESC, date_end DESC');
 
         if (PEAR::isError($res)) {
-            die($res->getMessage());
+            throw new Exception($res->getMessage());
         }
 
         $data = array('items' => $res,
@@ -84,20 +82,17 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Component
                       'vis_navn' => false);
 
         $this->document->setTitle($tilmelding->get('navn'));
-        $this->document->options = array(
-            $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id')) => 'Ret',
-            $this->url('indtast') => 'Indtast',
-            $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id')) => 'Tilmelding',
-            $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id') . '/fag') => 'Fag',
-            $this->context->url() => 'Holdliste',
-            $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id') . '/diplom') => 'Diplom'
-        );
+        $this->document->addOption('Ret', $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id')));
+        $this->document->addOption('Indtast', $this->url('indtast'));
+        $this->document->addOption('Tilmelding', $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id')));
+        $this->document->addOption('Fag', $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id') . '/fag'));
+        $this->document->addOption('Holdliste', $this->context->url());
+        $this->document->addOption('Diplom', $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id') . '/diplom'));
 
         $tpl = $this->template->create('protokol/liste');
 
         return '<div style="border: 1px solid #ccc; padding: 0.5em; float: right;">' .   $extra_html . '</div>
             ' . $tpl->render($this, $data);
-
     }
 
     function map($name)

@@ -1,7 +1,7 @@
 <html>
     <head>
         <title><?php e($context->document()->title()); ?></title>
-        <meta http-equiv="content-type" content="text/html; charset=<?php e($encoding); ?>" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <style type="text/css">
             html {
                 font-size: 80%;
@@ -274,8 +274,8 @@
             <div id="content">
                 <h1><?php e($context->document()->title()); ?> <span><?php e($context->document()->help()); ?></span></h1>
                 <ul id="navigation-sub">
-                    <?php foreach($context->document()->options() as $url => $name): ?>
-                    <li><a href="<?php e($url); ?>"><?php e($name); ?></a></li>
+                    <?php foreach($context->document()->options() as $option): ?>
+                    <li><a href="<?php e($option['url']); ?>"><?php e($option['title']); ?></a></li>
                     <?php endforeach; ?>
                 </ul>
 

@@ -12,7 +12,7 @@ class VIH_Intranet_Controller_Nyheder_Index extends k_Component
     function renderHtml()
     {
         $this->document->setTitle('Nyheder');
-        $this->document->options = array($this->url('create') => 'Opret');
+        $this->document->addOption('Opret', $this->url('create'));
 
         $data = array('nyheder' => VIH_News::getList('', 100));
 

@@ -11,20 +11,6 @@ class VIH_Intranet_Controller_Langekurser_Index extends k_Component
         $this->template = $template;
     }
 
-    function renderHtml()
-    {
-        $kurser = VIH_Model_LangtKursus::getList('intranet');
-
-        $this->document->setTitle('Lange Kurser');
-        $this->document->options = array($this->url('/fag') => 'Fag', $this->url('create') => 'Opret kursus');
-
-        $data = array('caption' => 'Lange kurser',
-                     'kurser' => $kurser);
-
-        $tpl = $this->template->create('langekurser/kurser');
-        return $tpl->render(dirname(__FILE__) . '/../../view/langekurser/kurser', $data);
-    }
-
     function map($name)
     {
         if ($name == 'create') {
@@ -34,5 +20,20 @@ class VIH_Intranet_Controller_Langekurser_Index extends k_Component
         } else {
             return 'VIH_Intranet_Controller_Langekurser_Show';
         }
+    }
+
+    function renderHtml()
+    {
+        $kurser = VIH_Model_LangtKursus::getList('intranet');
+
+        $this->document->setTitle('Lange Kurser');
+        $this->document->addOption('Fag', $this->url('../fag'));
+        $this->document->addOption('Opret kursus', $this->url('create'));
+
+        $data = array('caption' => 'Lange kurser',
+                     'kurser' => $kurser);
+
+        $tpl = $this->template->create('langekurser/kurser');
+        return $tpl->render(dirname(__FILE__) . '/../../view/langekurser/kurser', $data);
     }
 }

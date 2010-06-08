@@ -1,4 +1,4 @@
-<form action="<?php echo $this->url(); ?>" method="POST">
+<form action="<?php e(url()); ?>" method="POST">
     <fieldset>
         <legend>Rater</legend>
 
@@ -7,20 +7,17 @@
             <tr>
                 <td>Nr.</td>
                 <td>Dato</td>
-                <td>Beløb</td>
+                <td>BelÃ¸b</td>
             </tr>
             </thead>
 
             <tbody>
             <?php
-
             $rater = $kursus->getRater();
             $samlet_rater = 0;
 
-
             for($i = 0, $max = count($rater); $i < $max; $i++) {
                 $samlet_rater += $rater[$i]["beloeb"];
-
                 ?>
                 <tr>
                     <td><?php print($i + 1); ?></td>
@@ -51,9 +48,6 @@
 
             </tbody>
         </table>
-
-        <input type="submit" name="opdater_rater" value="Opdater" /> <a href="<?php echo $this->url(null, array('addrate' => 1)); ?>">Tilføj rate</a> <a href="<?php print $this->url(null, array('addrate' => -1)) ?>">Fjern rate</a>
-
+        <input type="submit" name="opdater_rater" value="Opdater" /> <a href="<?php e(url(null, array('addrate' => 1))); ?>">TilfÃ¸j rate</a> <a href="<?php e(url(null, array('addrate' => -1))); ?>">Fjern rate</a>
     </fieldset>
-
     </form>

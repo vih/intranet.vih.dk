@@ -1,6 +1,13 @@
 <?php
 class VIH_Intranet_Controller_Kortekurser_Lister_Ministerium extends k_Component
 {
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
     function renderHtml()
     {
         $kursus = new VIH_Model_KortKursus($this->context->name());
@@ -8,6 +15,7 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Ministerium extends k_Component
         $data = array('kursus' => $kursus,
                       'deltagere' => $kursus->getDeltagere());
 
-        return $this->render('vih/list/templates/ministerium.tpl.php', $data);
+        $tpl = $this->template->create('VIH/List/templates/ministerium.tpl.php');
+        return $tpl->render($this, $data);
     }
 }

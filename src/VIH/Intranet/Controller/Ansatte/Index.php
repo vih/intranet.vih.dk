@@ -18,7 +18,7 @@ class VIH_Intranet_Controller_Ansatte_Index extends k_Component
         $ansatte = $ansat->getList();
 
         $this->document->setTitle('Ansatte');
-        $this->document->options = array($this->url(null, array('create')) => 'Opret');
+        $this->document->addOption('Opret', $this->url(null, array('create')));
 
         $data = array('list' => $ansatte);
 

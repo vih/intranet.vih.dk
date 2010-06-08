@@ -16,9 +16,7 @@ class VIH_Intranet_Controller_Fotogalleri_Index extends k_Component
 
     function renderHtml()
     {
-        $db = $this->db;
-
-        $result = $db->query('SELECT id, description, DATE_FORMAT(date_created, "%d-%m-%Y") AS dk_date_created, active FROM fotogalleri ORDER BY date_created DESC');
+        $result = $this->db->query('SELECT id, description, DATE_FORMAT(date_created, "%d-%m-%Y") AS dk_date_created, active FROM fotogalleri ORDER BY date_created DESC');
         if (PEAR::isError($result)) {
             throw new Exception($result->getUserInfo());
         }
@@ -32,8 +30,7 @@ class VIH_Intranet_Controller_Fotogalleri_Index extends k_Component
             if($row['active'] == 1) {
                 $list['gallerier'][$i]['url_active'] = $this->url($row['id'].'/deactivate');
                 $list['gallerier'][$i]['active'] = 'Aktiv';
-            }
-            else {
+            } else {
                 $list['gallerier'][$i]['url_active'] = $this->url($row['id'].'/activate');
                 $list['gallerier'][$i]['active'] = 'Inaktiv';
             }
@@ -42,7 +39,7 @@ class VIH_Intranet_Controller_Fotogalleri_Index extends k_Component
         }
 
         $this->document->setTitle('Fotogalleri');
-        $this->document->options = array($this->url('create') => 'Tilføj');
+        $this->document->addOption('TilfÃ¸j', $this->url('create'));
         $tpl = $this->template->create('fotogalleri/gallerier');
 
         return '<h2>Gallerier</h2>

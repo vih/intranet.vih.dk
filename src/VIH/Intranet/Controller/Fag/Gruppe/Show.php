@@ -14,11 +14,10 @@ class VIH_Intranet_Controller_Fag_Gruppe_Show extends k_Component
         $faggruppe = new VIH_Model_Fag_Gruppe($this->name());
 
         $this->document->setTitle('Faggruppe: ' . $faggruppe->get('navn'));
-        $this->document->options = array(
-            $this->context->url('../') => 'Fagoversigt',
-            $this->context->url() => 'Alle faggrupperne',
-            $this->url('edit') => 'Ret'
-        );
+        $this->document->addOption('Fagoversigt', $this->context->url('../'));
+        $this->document->addOption('Alle faggrupperne', $this->context->url());
+        $this->document->addOption('Ret', $this->url('edit'));
+
         return '<p>'.$faggruppe->get('beskrivelse').'</p>';
     }
 }

@@ -20,10 +20,8 @@ class VIH_Intranet_Controller_Fag_Gruppe_Index extends k_Component
     function renderHtml()
     {
         $this->document->setTitle('Faggrupper');
-        $this->document->options = array(
-            $this->url('create') => 'Opret',
-            $this->url('../') => 'Tilbage til fag'
-        );
+        $this->document->addOption('Opret', $this->url('create'));
+        $this->document->addOption('Tilbage til fag', $this->url('../'));
 
         $data = array('faggrupper' => VIH_Model_Fag_Gruppe::getList());
 

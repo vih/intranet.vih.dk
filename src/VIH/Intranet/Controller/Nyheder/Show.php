@@ -11,10 +11,18 @@ class VIH_Intranet_Controller_Nyheder_Show extends k_Component
     {
         $this->template = $template;
     }
+
+    function map($name)
+    {
+        return $this->map[$name];
+    }
+
     function getForm()
     {
-        if ($this->form) return $this->form;
-        $this->form = new HTML_QuickForm('nyhed', 'post', $this->url('./'));
+        if ($this->form) {
+            return $this->form;
+        }
+        $this->form = new HTML_QuickForm('nyhed', 'post', $this->url(null));
         $this->form->addElement('hidden', 'id');
         $this->form->addElement('file', 'userfile', 'Fil');
         $this->form->addElement('submit', null, 'Upload');
@@ -32,7 +40,7 @@ class VIH_Intranet_Controller_Nyheder_Show extends k_Component
 
         $pictures = $nyhed->getPictures();
         $pic_html = '';
-        foreach($pictures AS $pic) {
+        foreach ($pictures AS $pic) {
             $file = new VIH_FileHandler($pic['file_id']);
             if ($file->get('id')) {
                 $file->loadInstance('small');
@@ -41,20 +49,20 @@ class VIH_Intranet_Controller_Nyheder_Show extends k_Component
         }
 
         $this->document->setTitle('Nyhed: ' . $nyhed->get('overskrift'));
-        $this->document->options = array($this->url('edit') => 'Ret');
+        $this->document->addOption('Ret', $this->url('edit'));
         // $tpl->set('title', 'Nyhed');
         return '<div>'.vih_autoop($nyhed->get('tekst')).'</div> ' . $this->getForm()->toHTML() . $pic_html . $nyhed->get('date_updated');
     }
 
-    function postForm()
+    function postMultipart()
     {
         $nyhed = new VIH_News($this->name());
         if ($this->getForm()->validate()) {
             $file = new VIH_FileHandler;
-            if($file->upload('userfile')) {
+            if ($file->upload('userfile')) {
                 $nyhed->addPicture($file->get('id'));
             }
         }
-        return new k_SeeOther($this->url());
+        return $this->render();
     }
 }

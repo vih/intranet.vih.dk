@@ -45,21 +45,21 @@ class VIH_Intranet_Controller_Index extends k_Component
     function renderHtml()
     {
         $hilsener = array(
-            'Str�k armene op over hovedet og r�b jubii.',
-            'K�r h�nden gennem h�ret og sig: Gud, hvor har jeg l�kkert h�r.',
+            'Stræk armene op over hovedet og råb jubii.',
+            'Kør hånden gennem håret og sig: Gud, hvor har jeg lækkert hår.',
             'Dupont er ikke ret stor, men han er stadig meget flink.',
-            'Det var dog en us�dvanlig dejlig dag i dag.',
-            'S�t dig da ned et minuts tid og nyd livet. Det er sk�nt.',
-            'N�r du kan h�re fuglene fl�jte, m� det v�re en vidunderlig dag.',
-            'Str�k den ene arm over p� ryggen og klap dig selv p� skulderen.',
-            'Skynd dig over p� kontoret - de har slik og gaver til dig i dag.',
+            'Det var dog en usædvanlig dejlig dag i dag.',
+            'Sæt dig da ned et minuts tid og nyd livet. Det er skønt.',
+            'Når du kan høre fuglene fløjte, må det være en vidunderlig dag.',
+            'Stræk den ene arm over på ryggen og klap dig selv på skulderen.',
+            'Skynd dig over på kontoret - de har slik og gaver til dig i dag.',
             'Faktisk er vi nok alt for seje.',
-            'Det g�r den rigtige vej.',
-            'Det er ikke s� ringe endda.',
-            'Mon k�kkenet serverer hindb�rsnitter i dag?',
+            'Det går den rigtige vej.',
+            'Det er ikke så ringe endda.',
+            'Mon køkkenet serverer hindbærsnitter i dag?',
             'Har du rost en anden i dag',
-            'VIH er landets bedste idr�tsh�jskole',
-            'Der er ingen gr�nser for, hvad vi kan opn�.'
+            'VIH er landets bedste idrætshøjskole',
+            'Der er ingen grænser for, hvad vi kan opnå.'
         );
 
         $special_data = array('special_days' => VIH_Model_Ansat::getBirthdays());
@@ -69,7 +69,7 @@ class VIH_Intranet_Controller_Index extends k_Component
 
         $special_day_tpl = $this->templates->create('special_day');
         return $special_day_tpl->render($this, $special_data) . '<ul class="navigation-frontpage">
-                <li><a href="'.$this->url('/protokol').'">Protokol</a></li>
+                <li><a href="'.$this->url('protokol').'">Protokol</a></li>
                 <li><a href="https://mail.vih.dk/exchange/">Tjek din e-mail</a></li>
                 <li><a href="http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com">H�jskolens kalender</a></li>
             </ul>

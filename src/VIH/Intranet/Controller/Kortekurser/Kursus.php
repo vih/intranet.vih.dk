@@ -83,9 +83,9 @@ class VIH_Intranet_Controller_Kortekurser_Kursus extends k_Component
         }
 
         $this->document->setTitle($kursus->get('navn'));
-        $this->document->options = array($this->url('../', array('filter' => $kursus->get('gruppe_id'))) => 'Tilbage til kurser',
-                                         $this->url('edit') => 'Ret',
-                                         $this->url('copy') => 'Kopier');
+        $this->document->addOption('Tilbage til kurser', $this->url('../', array('filter' => $kursus->get('gruppe_id'))));
+        $this->document->addOption('Ret', $this->url('edit'));
+        $this->document->addOption('Kopier', $this->url('copy'));
 
         return nl2br($kursus->get('beskrivelse')) . $extra_text . $extra_html;
 

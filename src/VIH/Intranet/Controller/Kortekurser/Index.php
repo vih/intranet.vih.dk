@@ -30,13 +30,12 @@ class VIH_Intranet_Controller_Kortekurser_Index extends k_Component
             } else {
                 $kurser = VIH_Model_KortKursus::getList('intranet');
             }
-            return $this->getContent($kurser);
         }
 
         $kurser = VIH_Model_KortKursus::getList('intranet');
 
         $this->document->setTitle('Korte kurser');
-        $this->document->options = array($this->url('create') => 'Opret');
+        $this->document->addOption('Opret', $this->url('create'));
 
         $data = array('caption' => 'Korte kurser',
                       'kurser' => $kurser);

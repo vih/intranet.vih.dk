@@ -57,20 +57,16 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
         }
 
         $this->document->setTitle($kursus->getKursusNavn());
-        $this->document->options = array(
-                $this->url('../') => 'Kurser',
-                $this->url('edit') => 'Ret',
-                $this->url('copy') => 'Lav en kopi',
-                $this->url('delete') => 'Slet',
-                $this->url('rater') => 'Rater',
-                // $this->url('fag') => 'Fag',
-                $this->url('periode') => 'Perioder',
-                $this->url('ministeriumliste') => 'Ministerium',
-                $this->url('elevuger') => 'Elevuger',
-                $this->url('tilmeldinger') => 'Tilmeldinger',
-                $this->url('/holdliste') => 'Holdlister'
-        );
-
+        $this->document->addOption('Kurser', $this->url('../'));
+        $this->document->addOption('Ret', $this->url('edit'));
+        $this->document->addOption('Lav en kopi', $this->url('copy'));
+        $this->document->addOption('Slet', $this->url('delete'));
+        $this->document->addOption('Rater', $this->url('rater'));
+        $this->document->addOption('Perioder', $this->url('periode'));
+        $this->document->addOption('Ministerium', $this->url('ministeriumliste'));
+        $this->document->addOption('Elevuger', $this->url('elevuger'));
+        $this->document->addOption('Tilmeldinger', $this->url('tilmeldinger'));
+        $this->document->addOption('Holdlister', $this->url('../holdliste'));
 
         $data = array('kursus' => $kursus, 'subjects' => $this->getSubjects());
 

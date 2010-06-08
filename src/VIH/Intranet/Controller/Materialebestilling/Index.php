@@ -27,7 +27,7 @@ class VIH_Intranet_Controller_Materialebestilling_Index extends k_Component
         }
 
         $this->document->setTitle('Materialebestilling');
-        $this->document->options = array($this->url(null, array('filter' => 'all')) =>'Alle');
+        $this->document->addOption('Alle', $this->url(null, array('filter' => 'all')));
 
         $data = array('headline' => 'Materialebestilling',
                       'bestillinger' => $bestillinger);

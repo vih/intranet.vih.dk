@@ -31,10 +31,8 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Adresseliste
         }
 
         $this->document->setTitle('Adresseliste');
-        $this->document->options = array();
 
         $data = array('elever' => $list);
-
 
         return '<p>Antal elever: ' . $db->numRows() . '</p>'
             . $this->render(dirname(__FILE__) . '/../../view/langekurser/adresseliste-tpl.php');

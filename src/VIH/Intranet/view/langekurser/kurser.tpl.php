@@ -1,10 +1,8 @@
 <?php $tjekaar = ''; if (is_array($kurser)): ?>
 
     <table>
-    <caption><?php echo $caption; ?></caption>
-
+    <caption><?php e($caption); ?></caption>
     <tr>
-
         <th>Kursusnavn</th>
         <th>Starter</th>
         <th>Slutter</th>
@@ -15,7 +13,7 @@
         <th></th>
     </tr>
 
-    <?php foreach($kurser AS $kursus): ?>
+    <?php foreach ($kurser AS $kursus): ?>
 
         <?php
         if ($kursus->getYear() != $tjekaar):
@@ -23,7 +21,6 @@
             $tjekaar = $kursus->getYear();
         endif;
         ?>
-
         <tr>
             <td><a href="<?php e(url($kursus->get('id'))); ?>"><?php e($kursus->getKursusNavn()); ?></a></td>
             <td><?php e($kursus->getDateStart()->format('%d-%m-%Y'));  ?></td>

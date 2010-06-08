@@ -1,9 +1,9 @@
 <?php
 /**
- * Bevis til eleverne når de slutter
+ * Bevis til eleverne nï¿½r de slutter
  *
- * Formålet er at skrive et diplom til eleverne for opholdet på Vejle
- * Idrætshøjskole. Diplomet skal indeholder følgende:
+ * Formï¿½let er at skrive et diplom til eleverne for opholdet pï¿½ Vejle
+ * Idrï¿½tshï¿½jskole. Diplomet skal indeholder fï¿½lgende:
  *
  * - navn
  * - antal uger
@@ -14,7 +14,7 @@
  *
  * @author Sune Jensen <sj@sunet.dk>
  */
-require_once 'fpdf/fpdf.php';
+require_once 'fpdf.php';
 
 class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Component
 {
@@ -22,7 +22,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
     {
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
 
-        $forstander_navn = 'Lars Kjærsgaard';
+        $forstander_navn = 'Lars Kjï¿½rsgaard';
         $navn = $tilmelding->get('navn');
         $mdr = array('januar', 'februar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december');
         $dato_start = $tilmelding->get('dato_start_dk_streng');
@@ -32,12 +32,12 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
         if ($tilmelding->get('tekst_diplom')) {
         	$overskrift_tekst = $tilmelding->get('ugeantal') . ' ugers ' . $tilmelding->get('tekst_diplom');
         } else {
-            $overskrift_tekst = $tilmelding->get('ugeantal') . ' ugers højskoleophold';
+            $overskrift_tekst = $tilmelding->get('ugeantal') . ' ugers hï¿½jskoleophold';
         }
 
-        $overskrift_tekst .= " på\nVejle Idrætshøjskole"; // skal være der
+        $overskrift_tekst .= " pï¿½\nVejle Idrï¿½tshï¿½jskole"; // skal vï¿½re der
 
-        // Array med fag. Deles ligeligt på to kolonner. Ingen opdeling af almene og idræt,
+        // Array med fag. Deles ligeligt pï¿½ to kolonner. Ingen opdeling af almene og idrï¿½t,
         // men betegnelserne bibeholdes fra tidligere version.
 
         $fag = $tilmelding->getFag();
@@ -60,9 +60,9 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
 
         $pdf = new FPDF();
         $pdf->SetTitle('Diplom');
-        $pdf->SetSubject('Diplom fra Vejle Idrætshøjskole');
-        $pdf->SetAuthor('Lars Olesen, Vejle Idrætshøjskole');
-        $pdf->SetCreator('Lars Olesen, Vejle Idrætshøjskole');
+        $pdf->SetSubject('Diplom fra Vejle Idrï¿½tshï¿½jskole');
+        $pdf->SetAuthor('Lars Olesen, Vejle Idrï¿½tshï¿½jskole');
+        $pdf->SetCreator('Lars Olesen, Vejle Idrï¿½tshï¿½jskole');
         $pdf->SetDisplayMode('fullpage', 'single');
         $pdf->SetKeywords('Diplom VIH');
 
@@ -81,7 +81,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
         $pdf->Cell(0, 10, $navn, 0, 2, "C");
 
         $pdf->SetFontSize(14);
-        $pdf->Cell(0, 20, 'har gennemført', 0, 2, "C");
+        $pdf->Cell(0, 20, 'har gennemfï¿½rt', 0, 2, "C");
 
         $pdf->SetFontSize(24);
         $pdf->MultiCell(0, 10, $overskrift_tekst, 0, 'C');
@@ -100,7 +100,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
         }
         $pdf->Image(dirname(__FILE__) . '/rektangel2.png', $margin_left + 10, $pdf->y, $image_width, $image_height , "PNG");
         // $pdf->Image("rektangel.png", $margin_left + 10, $pdf->y);
-        // $pdf->Rect($pdf->x, $pdf->y, $content_width, 80); // sidste parameter er kassens højde
+        // $pdf->Rect($pdf->x, $pdf->y, $content_width, 80); // sidste parameter er kassens hï¿½jde
 
         if (count($fag) > 20) {
            $pdf->setY(135); // Y hvor indhold i kassen starter

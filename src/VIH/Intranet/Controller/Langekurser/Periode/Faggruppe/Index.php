@@ -4,32 +4,40 @@
  */
 class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Index extends k_Component
 {
-    public $map = array('create' => 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create');
+    protected $doctrine;
+    protected $template;
+
+    function map($name)
+    {
+        if ($name == 'create') {
+            return 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create';
+        }
+        return 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show';
+    }
+
+    function __construct(Doctrine_Connection_Common $doctrine, k_TemplateFactory $template)
+    {
+        $this->doctrine = $doctrine;
+        $this->template = $template;
+    }
 
     function renderHtml()
     {
-        $this->document->setTitle('Faggrupper på perioden ' . $this->context->getModel()->getName());
+        $this->document->setTitle('Faggrupper pÃ¥ perioden ' . $this->context->getModel()->getName());
 
-        $this->document->options = array(
-            $this->url('create') => 'Opret faggruppe',
-            $this->url('../') => 'Luk'
-        );
-        $doctrine = $this->registry->get('doctrine');
+        $this->document->addOption('Luk', $this->url('../'));
+        $this->document->addOption('Opret faggruppe', $this->url('create'));
+;
         $groups = Doctrine::getTable('VIH_Model_Course_SubjectGroup')->findByPeriodId($this->getPeriodId());
 
         $data = array('period' => $this->context->getModel(), 'faggrupper' => $groups);
 
-        return $this->render('VIH/Intranet/view/langekurser/periode/faggrupper.tpl.php', $data);
-
+        $tpl = $this->template->create('VIH/Intranet/view/langekurser/periode/faggrupper');
+        return $tpl->render($this, $data);
     }
 
     function getPeriodId()
     {
         return $this->context->name();
-    }
-
-    function forward($name)
-    {
-        return 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show'';
     }
 }

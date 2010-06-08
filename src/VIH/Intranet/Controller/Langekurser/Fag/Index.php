@@ -2,10 +2,12 @@
 class VIH_Intranet_Controller_Langekurser_Fag_Index extends k_Component
 {
     private $pdo;
+    protected $template;
 
-    function __construct(pdoext_Connection $pdo)
+    function __construct(pdoext_Connection $pdo, k_TemplateFactory $template)
     {
         $this->pdo = $pdo;
+        $this->template = $template;
     }
 
     function renderHtml()
@@ -17,7 +19,9 @@ class VIH_Intranet_Controller_Langekurser_Fag_Index extends k_Component
         $data = array('fag' => $fag,
                       'selected' => $selected,
                       'periods' => VIH_Model_LangtKursus_Periode::getFromKursusId($this->pdo, $this->context->name()));
-        return $this->render('VIH/Intranet/view/langekurser/fag-tpl.php', $data);
+
+        $tpl = $this->template->create('VIH/Intranet/view/langekurser/fag');
+        return $this->render($this, $data);
     }
 
     function postForm()

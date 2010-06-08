@@ -5,9 +5,13 @@ class VIH_Intranet_Controller_Langekurser_Periode_Show extends k_Component
                         'delete' => 'VIH_Intranet_Controller_Langekurser_Periode_Delete',
                         'faggruppe' => 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Index');
 
-    function getDatasource()
+    protected $doctrine;
+    protected $template;
+
+    function __construct(Doctrine_Connection_Common $doctrine, k_TemplateFactory $template)
     {
-        return $this->context->getDatasource();
+        $this->doctrine = $doctrine;
+        $this->template = $template;
     }
 
     function getLangtKursusId()
@@ -22,13 +26,11 @@ class VIH_Intranet_Controller_Langekurser_Periode_Show extends k_Component
 
     function getModel()
     {
-        $this->registry->get('doctrine');
         return Doctrine::getTable('VIH_Model_Course_Period')->findOneById($this->name());
     }
 
     function getSubjectGroup()
     {
-        $this->registry->get('doctrine');
         return Doctrine::getTable('VIH_Model_Course_SubjectGroup')->findByPeriodId($this->name());
     }
 
@@ -36,12 +38,11 @@ class VIH_Intranet_Controller_Langekurser_Periode_Show extends k_Component
     {
         $periode = $this->getModel();
         $this->document->setTitle($this->getModel()->getName() . $this->getModel()->getDateStart()->format('%d-%m-%Y') . ' til ' . $this->getModel()->getDateEnd()->format('%d-%m-%Y'));
-        $this->document->options = array(
-            $this->url('faggruppe/create') => 'Opret faggruppe',
-            $this->url('../') => 'Luk'
-        );
+        $this->document->addOption('Opret faggruppe', $this->url('faggruppe/create'));
+        $this->document->addOption('Luk', $this->url('../'));
 
-        return $this->render('VIH/Intranet/view/langekurser/periode/show.tpl.php', array('periode' => $periode, 'faggrupper' => $this->getSubjectGroup()));
+        $tpl = $this->template->create('VIH/Intranet/view/langekurser/periode/show');
+        return $tpl->render($this, array('periode' => $periode, 'faggrupper' => $this->getSubjectGroup()));
     }
 
 }

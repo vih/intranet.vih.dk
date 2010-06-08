@@ -16,7 +16,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index extends k_Component
         }
         $form = new HTML_QuickForm('search', 'GET', $this->url());
         $form->addElement('text', 'search');
-        $form->addElement('submit', null, 'Søg');
+        $form->addElement('submit', null, 'SÃ¸g');
         return ($this->form = $form);
     }
 
@@ -32,14 +32,11 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index extends k_Component
                       'tilmeldinger' => $tilmeldinger);
 
         $this->document->setTitle('Lange Kurser');
-        $this->document->options = array(
-            $this->url('/langekurser') => 'Vis kurser',
-            $this->url('/protokol') => 'Protokol',
-            $this->url('/fag') => 'Fag',
-            $this->url('exportcsv') => 'Exporter adresseliste som CSV',
-            $this->url('restance') => 'Restance'
-
-        );
+        $this->document->addOption('Vis kurser', $this->url('../'));
+        $this->document->addOption('Protokol', $this->url('../../protokol'));
+        $this->document->addOption('Fag', $this->url('../../fag'));
+        $this->document->addOption('Exporter adresseliste som CSV', $this->url('exportcsv'));
+        $this->document->addOption('Restance', $this->url('restance'));
 
         $tpl = $this->template->create('langekurser/tilmeldinger');
         return $tpl->render($this, $data) . $this->getForm()->toHTML();

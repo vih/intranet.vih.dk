@@ -3,10 +3,12 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
 {
     private $form;
     protected $template;
+    protected $db;
 
-    function __construct(k_TemplateFactory $template)
+    function __construct(k_TemplateFactory $template, DB_common $db)
     {
         $this->template = $template;
+        $this->db = $db;
     }
     function getForm()
     {
@@ -24,7 +26,7 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
 
         $radio[0] =& HTML_QuickForm::createElement('radio', null, null, 'fri', '1');
         $radio[1] =& HTML_QuickForm::createElement('radio', null, null, 'syg', '2');
-        $radio[2] =& HTML_QuickForm::createElement('radio', null, null, 'fraværende', '3');
+        $radio[2] =& HTML_QuickForm::createElement('radio', null, null, 'fravÃ¦rende', '3');
         $radio[5] =& HTML_QuickForm::createElement('radio', null, null, 'henstilling', '6');
         $radio[3] =& HTML_QuickForm::createElement('radio', null, null, 'mundtlig advarsel', '4');
         $radio[4] =& HTML_QuickForm::createElement('radio', null, null, 'skriftlig advarsel', '5');
@@ -43,24 +45,16 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
 
     }
 
-    private $db;
-
-    function __construct(DB $db)
-    {
-        $this->db = $db;
-    }
-
     function renderHtml()
     {
-        $db = $this->db;
         $row = array();
 
         if ($this->query('id')) {
-            // hent selve rækken og sæt defaults
-            $res = $db->query('SELECT * FROM langtkursus_tilmelding_protokol_item WHERE id = ' . (int)$_GET['id']);
+            // hent selve rï¿½kken og sï¿½t defaults
+            $res = $this->db->query('SELECT * FROM langtkursus_tilmelding_protokol_item WHERE id = ' . (int)$_GET['id']);
 
             if (PEAR::isError($res)) {
-                die($res->getMessage());
+                throw new Exception($res->getMessage());
             }
 
             $res->fetchInto($row, DB_FETCHMODE_ASSOC);
@@ -96,8 +90,6 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
 
     function postForm()
     {
-        $db = $this->db;
-
         if ($this->getForm()->validate()) {
             $date_start = $this->getForm()->exportValue('date_start');
             $date_end = $this->getForm()->exportValue('date_end');
@@ -113,15 +105,15 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
                             $this->getform()->exportValue('type'));
 
             if (!empty($_POST['id'])) {
-                $sth = $db->autoPrepare('langtkursus_tilmelding_protokol_item', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $_POST['id']);
+                $sth = $this->db->autoPrepare('langtkursus_tilmelding_protokol_item', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $_POST['id']);
             } else {
-                $sth = $db->autoPrepare('langtkursus_tilmelding_protokol_item', $fields, DB_AUTOQUERY_INSERT);
+                $sth = $this->db->autoPrepare('langtkursus_tilmelding_protokol_item', $fields, DB_AUTOQUERY_INSERT);
             }
 
-            $res = $db->execute($sth, $values);
+            $res = $this->db->execute($sth, $values);
 
             if (PEAR::isError($res)) {
-                echo $res->getMessage();
+                throw new Exception($res->getMessage());
             }
 
             return new k_SeeOther($this->context->url('../'));
@@ -134,4 +126,3 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
         return 'VIH_Intranet_Controller_Protokol_Show';
     }
 }
-

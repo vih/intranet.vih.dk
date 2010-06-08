@@ -21,7 +21,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
             if ($tilmelding->addRate($this->query("addrate"))) {
                 return new k_SeeOther($this->url());
             } else {
-                trigger_error('Raten kunne ikke tilføjes', E_USER_ERROR);
+                trigger_error('Raten kunne ikke tilfÃ¸jes', E_USER_ERROR);
             }
         } elseif($this->query("delete")) {
             if ($tilmelding->deleteRate($this->query("delete"))) {
@@ -37,7 +37,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
         $data = array('tilmelding' => $tilmelding);
 
         $this->document->setTitle('Betalingsrater for ' . $tilmelding->get("navn"));
-        $this->document->options = array($this->url(null, array('addrate' => 1)) => 'Tilføj rate');
+        $this->document->addOption('TilfÃ¸j rate', $this->url(null, array('addrate' => 1)));
 
         $tpl = $this->templates->create('langekurser/tilmelding/form_rater');
 
@@ -56,5 +56,6 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
                 trigger_error('Raterne kunne ikke opdateres', E_USER_ERROR);
             }
         }
+        return $this->render();
     }
 }

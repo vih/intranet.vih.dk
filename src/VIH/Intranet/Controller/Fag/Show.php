@@ -48,9 +48,9 @@ class VIH_Intranet_Controller_Fag_Show extends k_Component
         }
 
         $this->document->setTitle('Fag: ' . $fag->get('navn'));
-        $this->document->options = array($this->url('/langekurser') => 'Kurser',
-                                         $this->context->url() => 'Fagoversigt',
-                                         $this->url('edit') => 'Ret');
+        $this->document->addOption('Kurser', $this->url('../../langekurser'));
+        $this->document->addOption('Fagoversigt', $this->context->url());
+        $this->document->addOption('Ret', $this->url('edit'));
 
         return '<div>'.vih_autoop($fag->get('beskrivelse')).'</div>' . $extra_html;
     }
@@ -93,14 +93,14 @@ class VIH_Intranet_Controller_Fag_Show extends k_Component
     {
         $fag = new VIH_Model_Fag($this->name());
 
-        // beskrivelsen skal deles op og regnes ud, hvor meget, der kan være på hver side.
-        // det der ikke kan være på midtersiderne skal være på bagsiden.
+        // beskrivelsen skal deles op og regnes ud, hvor meget, der kan vï¿½re pï¿½ hver side.
+        // det der ikke kan vï¿½re pï¿½ midtersiderne skal vï¿½re pï¿½ bagsiden.
 
         $pdf = new VIH_PdfBrochure();
         $pdf->SetTitle($fag->get('navn'));
         $pdf->SetSubject('Fagbeskrivelse: ' . $fag->get('navn'));
-        $pdf->SetAuthor('Lars Olesen, Vejle Idrætshøjskole');
-        $pdf->SetCreator('Lars Olesen, Vejle Idrætshøjskole');
+        $pdf->SetAuthor('Lars Olesen, Vejle Idrï¿½tshï¿½jskole');
+        $pdf->SetCreator('Lars Olesen, Vejle Idrï¿½tshï¿½jskole');
         $pdf->SetDisplayMode('fullpage', 'two');
         $pdf->SetKeywords('keyword');
         $pdf->VIHContent($fag->get('beskrivelse'));

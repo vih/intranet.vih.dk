@@ -8,19 +8,20 @@ class VIH_Intranet_Controller_Fotogalleri_Show extends k_Component
     private $kernel;
     private $pear_db;
     protected $template;
+    protected $db_sql;
 
-    function __construct(k_TemplateFactory $template, DB $pear_db, MDB2_Driver_Common $db, VIH_Intraface_Kernel $kernel)
+    function __construct(k_TemplateFactory $template, DB_Sql $db_sql, DB_common $pear_db, MDB2_Driver_Common $db, VIH_Intraface_Kernel $kernel)
     {
         $this->db = $db;
         $this->kernel = $kernel;
         $this->pear_db = $pear_db;
         $this->template = $template;
+        $this->db_sql = $db_sql;
     }
 
     function activate($active = 1)
     {
-        $db = $this->db;
-        $result = $db->query('UPDATE fotogalleri SET active = '.intval($active).' WHERE id = '.intval($this->name()));
+        $result = $this->db->query('UPDATE fotogalleri SET active = '.intval($active).' WHERE id = '.intval($this->name()));
         if (PEAR::isError($result)) {
             throw new Exception($result->getUserInfo());
         }
@@ -29,8 +30,7 @@ class VIH_Intranet_Controller_Fotogalleri_Show extends k_Component
 
     function renderHtml()
     {
-        $db = $this->db;
-        $result = $db->query('SELECT id, description, DATE_FORMAT(date_created, "%d-%m-%Y") AS dk_date_created, active FROM fotogalleri WHERE id = '.intval($this->name()));
+        $result = $this->db->query('SELECT id, description, DATE_FORMAT(date_created, "%d-%m-%Y") AS dk_date_created, active FROM fotogalleri WHERE id = '.intval($this->name()));
         if (PEAR::isError($result)) {
             throw new Exception($result->getUserInfo());
         }
@@ -48,7 +48,7 @@ class VIH_Intranet_Controller_Fotogalleri_Show extends k_Component
         $appender = new VIH_AppendFile($kernel, 'fotogalleri', $row['id']);
         if(intval($this->query('return_redirect_id')) != 0) {
             $appender = new VIH_AppendFile($this->kernel, 'fotogalleri', $row['id']);
-            $redirect = Ilib_Redirect::returns($this->session()->getSessionId(), $this->pear_db);
+            $redirect = Ilib_Redirect::returns($this->session()->getSessionId(), $this->db_sql);
 
             foreach($redirect->getParameter('file_handler_id') AS $file_id) {
                 $filehandler = new Ilib_FileHandler($kernel, $file_id);
@@ -77,9 +77,9 @@ class VIH_Intranet_Controller_Fotogalleri_Show extends k_Component
         $url = $redirect->setDestination($this->url('/filemanager/selectfile', array('images' => 1)), $this->url());
         $redirect->askParameter('file_handler_id', 'multiple');
 
-        $this->document->setTitle('Tilføj billeder til galleriet' . $row['description']);
-        $this->document->options = array($url => 'Tilføj billeder',
-                                         $this->url('../'), 'Tilbage');
+        $this->document->setTitle('TilfÃ¸j billeder til galleriet' . $row['description']);
+        $this->document->addOption('TilfÃ¸j billeder', $url);
+        $this->document->addOption('Tilbage', $this->url('../'));
 
         $tpl = $this->template->create('fotogalleri/fotoliste');
         return $tpl->render($data, $list);

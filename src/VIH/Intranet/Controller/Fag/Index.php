@@ -23,13 +23,12 @@ class VIH_Intranet_Controller_Fag_Index extends k_Component
     function renderHtml()
     {
         $this->document->setTitle('Fag');
-        $this->document->options = array($this->url('create') => 'Opret',
-                                         $this->url('faggrupper') => 'Faggrupper');
+        $this->document->addOption('Opret', $this->url('create'));
+        $this->document->addOption('Faggrupper', $this->url('faggrupper'));
 
         $data = array('list' => VIH_Model_Fag::getList());
 
         $tpl = $this->template->create('fag/liste');
         return $tpl->render($this, $data);
     }
-
 }

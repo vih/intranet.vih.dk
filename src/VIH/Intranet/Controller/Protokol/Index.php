@@ -7,19 +7,23 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Component
     public $map = array('holdliste' => 'VIH_Intranet_Controller_Protokol_Holdliste',
                         'elev'      => 'VIH_Intranet_Controller_Protokol_Elev',
                         'indtast'   => 'VIH_Intranet_Controller_Protokol_Indtast');
-    private $form;
+    protected $form;
     protected $template;
+    protected $db;
 
-    function __construct(k_TemplateFactory $template)
+
+    function __construct(k_TemplateFactory $template, DB_common $db)
     {
         $this->template = $template;
+        $this->db = $db;
     }
+
     function getTypeKeys()
     {
-        return        $type_key = array(1 => 'fri', // fri
+        return $type_key = array(1 => 'fri', // fri
                           2 => 'syg', // syg
-                          3 => 'fra', // fravær
-                          4 => 'mun', // mundtlig advarsel
+                          3 => 'fra', // fravï¿½r
+                          4 => 'mun', // mundtlig advars       el
                           5 => 'skr', // skriftlig advarsel
                           6 => 'hen', // henstilling
                           7 => 'hje',  // hjemsendt
@@ -46,19 +50,10 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Component
         return ($this->form = $form);
     }
 
-    private $db;
-
-    function __construct(DB $db)
-    {
-        $this->db = $db;
-    }
-
 
     function renderHtml()
     {
         $type_key = $this->getTypeKeys();
-
-        $db = $this->db;
 
         if ($this->getForm()->validate()) {
             $date = $this->getForm()->exportValue('date');
@@ -81,14 +76,13 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Component
                     AND DATE_FORMAT(item.date_end, "%Y-%m-%d") >= '. $date_graense .'
                     AND active = 1
                 ORDER BY tilmelding.id ASC, date_start ASC, date_end ASC';
-        $res = $db->query($sql);
+
+        $res = $this->db->query($sql);
 
         // Always check that result is not an error
         if (PEAR::isError($res)) {
-            die($res->getMessage());
+            throw new Exception($res->getMessage());
         }
-
-        $this->document->setTitle('Protokol');
 
         $list = array('vis_navn' => 'true', 'items' => $res, 'type_key' => $type_key);
 
@@ -106,11 +100,11 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Component
                     AND active = 1 AND type_key = 1
                 ORDER BY date_start ASC, date_end ASC';
 
-        $res = $db->query($sql);
+        $res = $this->db->query($sql);
 
         // Always check that result is not an error
         if (PEAR::isError($res)) {
-            die($res->getMessage());
+            throw new Exception($res->getMessage());
         }
 
         $list1 = array('vis_navn' => 'true',
@@ -143,11 +137,11 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Component
         */
 
         $this->document->setTitle('Protokol');
-        $this->document->options = array($this->url('holdliste') => 'Holdliste');
+        $this->document->addOption('Holdliste', $this->url('holdliste'));
 
         $tpl = $this->template->create('protokol/liste');
 
-        return '<h2>Fraværende</h2>
+        return '<h2>FravÃ¦rende</h2>
             '.$this->getForm()->toHTML().'
             ' .$tpl->render('VIH/Intranet/view/protokol/liste-tpl.php', $list) .
             '<h2>Fritagelser indtil dato</h2>'

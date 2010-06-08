@@ -15,7 +15,7 @@ class VIH_Intranet_Controller_Fag_Edit extends k_Component
             $faggruppelist[$grp->get('id')] = $grp->get('navn');
         }
 
-        $undervisere = VIH_Model_Ansat::getList('lærere');
+        $undervisere = VIH_Model_Ansat::getList('lÃ¦rere');
 
         $form = new HTML_QuickForm('fag', 'POST', $this->url());
         $form->addElement('hidden', 'id');
@@ -25,10 +25,10 @@ class VIH_Intranet_Controller_Fag_Edit extends k_Component
         $form->addElement('textarea', 'kort_beskrivelse', 'Kort beskrivelse', array('cols' => 80, 'rows' => 5));
         $form->addElement('textarea', 'beskrivelse', 'Beskrivelse', array('cols' => 80, 'rows' => 20));
         $form->addElement('textarea', 'udvidet_beskrivelse', 'Udvidet beskrivelse', array('cols' => 80, 'rows' => 20));
-        $form->addElement('header', null, 'Til søgemaskinerne');
+        $form->addElement('header', null, 'Til sÃ¸gemaskinerne');
         $form->addElement('text', 'title', 'Titel');
         $form->addElement('textarea', 'description', 'Beskrivelse');
-        $form->addElement('textarea', 'keywords', 'Nøgleord');
+        $form->addElement('textarea', 'keywords', 'NÃ¸gleord');
         foreach ($undervisere AS $underviser) {
             $underviserlist[] = HTML_QuickForm::createElement('checkbox', $underviser->get('id'), null, $underviser->get('navn'));
         }
@@ -47,6 +47,8 @@ class VIH_Intranet_Controller_Fag_Edit extends k_Component
         }
 
         $fag = new VIH_Model_Fag($this->context->name());
+
+        $underviser_selected = array();
 
         if ($fag->get('id') > 0) {
             $undervisere = $fag->getUndervisere();
@@ -88,7 +90,7 @@ class VIH_Intranet_Controller_Fag_Edit extends k_Component
             }
 
             if ($id = $fag->save($input)) {
-                if (!empty($this->body('underviser'))) {
+                if ($this->body('underviser')) {
                     $fag->addUnderviser($this->body('underviser'));
                 }
                 return new k_SeeOther($this->url('/fag/' . $fag->get('id')));

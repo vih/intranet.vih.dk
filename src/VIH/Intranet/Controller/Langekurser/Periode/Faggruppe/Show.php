@@ -3,6 +3,14 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Compo
 {
     public $map = array('edit'   => 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Edit',
                         'delete' => 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Delete');
+    protected $doctrine;
+    protected $template;
+
+    function __construct(Doctrine_Connection_Common $doctrine, k_TemplateFactory $template)
+    {
+        $this->doctrine = $doctrine;
+        $this->template = $template;
+    }
 
     function getDatasource()
     {
@@ -21,13 +29,11 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Compo
 
     function getModel()
     {
-        $this->registry->get('doctrine');
         return Doctrine::getTable('VIH_Model_Course_SubjectGroup')->findOneById($this->name());
     }
 
     function getSubjects()
     {
-        $this->registry->get('doctrine');
         return Doctrine::getTable('VIH_Model_Subject')->findAll();
 
         /*
@@ -64,17 +70,14 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Compo
 
     function getSubject($id)
     {
-        $this->registry->get('doctrine');
         return Doctrine::getTable('VIH_Model_Subject')->findOneById($id);
     }
 
     function renderHtml()
     {
         $this->document->setTitle('Faggruppe: ' . $this->getModel()->getName());
-        $this->document->options = array(
-            $this->url('../create') => 'Opret',
-            $this->url('../../') => 'Tilbage til perioden'
-        );
+        $this->document->addOption('Opret', $this->url('../create'));
+        $this->document->addOption('Tilbage til perioden', $this->url('../../'));
 
         $chosen = array();
         foreach ($this->getModel()->Subjects as $subject) {
@@ -84,7 +87,9 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Compo
         $data = array('fag'       => $this->getSubjects(),
                       'faggruppe' => $this->getModel(),
                       'chosen'    => $chosen);
-        return $this->render('VIH/Intranet/view/langekurser/periode/faggruppe.tpl.php', $data);
+
+        $tpl = $this->template->create('VIH/Intranet/view/langekurser/periode/faggruppe');
+        return $tpl->render($this, $data);
     }
 
     function postForm()

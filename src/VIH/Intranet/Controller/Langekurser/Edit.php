@@ -19,7 +19,7 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Component
         $date_options = array('minYear' => date('Y') - 10, 'maxYear' => date('Y') + 5);
 
         $liste_ansvarlige = array();
-        $ansvarlige = VIH_Model_Ansat::getList('lærere');
+        $ansvarlige = VIH_Model_Ansat::getList('lÃ¦rere');
         foreach ($ansvarlige AS $ansvarlig) {
             $liste_ansvarlige[$ansvarlig->get('id')] = $ansvarlig->get('navn');
         }
@@ -27,7 +27,7 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Component
         $this->form = new HTML_QuickForm('langekurser', 'POST', $this->url('./'));
         $this->form->addElement('header', null, 'Oplysninger om kurset');
         $this->form->addElement('text', 'navn', 'Navn');
-        $this->form->addElement('text', 'shorturl', 'Søgestreng');
+        $this->form->addElement('text', 'shorturl', 'SÃ¸gestreng');
         $this->form->addElement('textarea', 'tekst_diplom', 'Tekst til diplomet');
         $this->form->addElement('select', 'ansat_id', 'Ansvarlig', $liste_ansvarlige);
         $this->form->addElement('textarea', 'beskrivelse', 'Beskrivelse', array('rows' => 20, 'cols' => 80));
@@ -35,17 +35,17 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Component
         $this->form->addElement('text', 'ugeantal', 'Uger');
         $this->form->addElement('date', 'dato_start', 'Startdato', $date_options);
         $this->form->addElement('date', 'dato_slut', 'Slutdato', $date_options);
-        $this->form->addElement('header', null, 'Søgemaskinerne');
+        $this->form->addElement('header', null, 'SÃ¸gemaskinerne');
         $this->form->addElement('text', 'title', 'Titel');
         $this->form->addElement('textarea', 'description', 'Kort beskrivelse');
-        $this->form->addElement('textarea', 'keywords', 'Nøgleord');
+        $this->form->addElement('textarea', 'keywords', 'NÃ¸gleord');
         $this->form->addElement('header', null, 'Priser');
         $this->form->addElement('text', 'pris_uge', 'Ugepris');
         $this->form->addElement('text', 'pris_materiale', 'Materialepris');
         $this->form->addElement('text', 'pris_rejsedepositum', 'Rejsedepositum');
-        $this->form->addElement('text', 'pris_rejserest', 'Restbeløb til rejse');
+        $this->form->addElement('text', 'pris_rejserest', 'RestbelÃ¸b til rejse');
         $this->form->addElement('text', 'pris_rejselinje', 'Rejselinje'); // afrikalinjen
-        $this->form->addElement('text', 'pris_noegledepositum', 'Nøgledepositum'); // afrikalinjen
+        $this->form->addElement('text', 'pris_noegledepositum', 'NÃ¸gledepositum'); // afrikalinjen
         $this->form->addElement('text', 'pris_tilmeldingsgebyr', 'Tilmeldingsgebyr'); // afrikalinjen
         $this->form->addElement('checkbox', 'published', 'Udgivet');
         $this->form->addElement('submit', null, 'Gem');
@@ -87,7 +87,7 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Component
         }
 
         $this->document->setTitle('Rediger kursus');
-        $this->document->options = array($this->url('../') => 'Luk uden at gemme');
+        $this->document->addOption('Luk uden at gemme', $this->url('../'));
         return $this->getForm()->toHTML();
     }
 

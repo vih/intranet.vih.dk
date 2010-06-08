@@ -33,7 +33,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
         $this->getForm()->setDefaults(array('date' => $date));
 
         $this->document->setTitle('Eksporter CSV');
-        $this->document->options = array($this->url('../') => 'Tilmeldinger');
+        $this->document->addOption('Tilmeldinger', $this->url('../'));
 
         return $this->getForm()->toHTML();
 
@@ -43,7 +43,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
     {
         $date = date('Y-m-d');
         if (!empty($this->body('date'))) {
-            $post = $þhis->body();
+            $post = $this->body();
             $date = $post['date']['Y'] . '-' . $post['date']['M'] . '-' .$post['date']['d'];
         }
 

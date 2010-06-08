@@ -23,22 +23,22 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Component
                               'maxYear' => date('Y') + 5,
                               'addEmptyOption' => 'true',
                               'emptyOptionValue' => '',
-                              'emptyOptionText' => 'Vælg');
+                              'emptyOptionText' => 'Vï¿½lg');
 
         $this->form = new HTML_QuickForm('news', '', $this->url('./'));
         $this->form->addElement('text', 'overskrift', 'Overskrift');
         $this->form->addElement('textarea', 'tekst', 'Tekst', array('cols' => 80, 'rows' => 20));
         $this->form->addElement('checkbox', 'published', 'Udgivet');
         $this->form->addElement('date', 'date_publish', 'Udgivelsesdato', $date_options);
-        $this->form->addElement('date', 'date_expire', 'Udløbsdato', $date_options);
-        //$this->form->addElement('select', 'kategori_id', 'Kategori', $nyhed->kategori, array('addEmptyOption' => 'true', 'emptyOptionValue' => '', 'emptyOptionText' => 'Vælg'));
-        $this->form->addElement('select', 'type_id', 'Type', $nyhed->type, array('addEmptyOption' => 'true', 'emptyOptionValue' => '', 'emptyOptionText' => 'Vælg'));
-        //$this->form->addElement('select', 'prioritet_id', 'Prioritet', $nyhed->prioritet, array('addEmptyOption' => 'true', 'emptyOptionValue' => '', 'emptyOptionText' => 'Vælg'));
+        $this->form->addElement('date', 'date_expire', 'Udlï¿½bsdato', $date_options);
+        //$this->form->addElement('select', 'kategori_id', 'Kategori', $nyhed->kategori, array('addEmptyOption' => 'true', 'emptyOptionValue' => '', 'emptyOptionText' => 'Vï¿½lg'));
+        $this->form->addElement('select', 'type_id', 'Type', $nyhed->type, array('addEmptyOption' => 'true', 'emptyOptionValue' => '', 'emptyOptionText' => 'Vï¿½lg'));
+        //$this->form->addElement('select', 'prioritet_id', 'Prioritet', $nyhed->prioritet, array('addEmptyOption' => 'true', 'emptyOptionValue' => '', 'emptyOptionText' => 'Vï¿½lg'));
         $this->form->addElement('textarea', 'keyword', 'Keywords (fx lange-kurser, haandbold, fodbold)', array('cols' => 80, 'rows' => 5));
-        $this->form->addElement('header', null, 'Søgemaskineguf');
+        $this->form->addElement('header', null, 'Sï¿½gemaskineguf');
         $this->form->addElement('text', 'title', 'Titel', array('size' => 80));
         $this->form->addElement('textarea', 'description', 'Description', array('cols' => 80, 'rows' => 3));
-        $this->form->addElement('textarea', 'keywords', 'Nøgleord', array('cols' => 80, 'rows' => 2));
+        $this->form->addElement('textarea', 'keywords', 'Nï¿½gleord', array('cols' => 80, 'rows' => 2));
         $this->form->addElement('submit', null, 'Gem');
 
         $this->form->addRule('overskrift', 'Du skal skrive en overskrift', 'required');
@@ -112,6 +112,9 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Component
                 $appender->addKeywordsByString($input['keyword']);
             }
 
+            if (is_numeric($this->context->name())) {
+                return new k_SeeOther($this->url('../'));
+            }
             return new k_SeeOther($this->url('../' . $id));
 
         }

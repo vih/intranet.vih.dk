@@ -24,7 +24,7 @@ class VIH_Intranet_Controller_Faciliteter_Index extends k_Component
     function renderHtml()
     {
         $this->document->setTitle('Faciliteter');
-        $this->document->options = array($this->url('edit') => 'Opret');
+        $this->document->addOption('Opret', $this->url('edit'));
 
         $data = array('faciliteter' => VIH_Model_Facilitet::getList('all'));
 

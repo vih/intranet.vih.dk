@@ -50,7 +50,7 @@ class VIH_Intranet_Controller_Faciliteter_Show extends k_Component
         }
 
         $this->document->setTitle($facilitet->get('navn'));
-        $this->document->options = array($this->url('edit') => 'Ret');
+        $this->document->addOption('Ret', $this->url('edit'));
 
         return '<div>'.nl2br($facilitet->get('beskrivelse')).'</div>   ' . $extra_html;
     }
@@ -65,5 +65,15 @@ class VIH_Intranet_Controller_Faciliteter_Show extends k_Component
                 return new k_SeeOther($this->url());
             }
         }
+        return $this->render();
+    }
+
+    function renderHtmlDelete()
+    {
+        $facilitet = new VIH_Model_Facilitet($this->name());
+        if ($facilitet->delete()) {
+            return new k_SeeOther($this->context->url('../'));
+        }
+        throw new Exception('Could not delete');
     }
 }

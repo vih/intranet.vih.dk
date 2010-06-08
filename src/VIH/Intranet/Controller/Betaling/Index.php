@@ -1,6 +1,6 @@
 <?php
 /**
- * Formålet med denne side er at hæve (capture) betalinger lavet med Dankort.
+ * Formï¿½let med denne side er at hï¿½ve (capture) betalinger lavet med Dankort.
  *
  * @author Lars Olesen <lars@legestue.net>
  */
@@ -42,8 +42,8 @@ class VIH_Intranet_Controller_Betaling_Index extends k_Component
 
         $data['betalinger'] = $betalinger;
 
-        $this->document->options = array($this->url(null, array('find'=>'alle')) => 'Alle',
-                                         $this->url(null, array('find'=>'elevforeningen')) => 'Elevforeningen');
+        $this->document->addOption('Alle', $this->url(null, array('find'=>'alle')));
+        $this->document->addOption('Elevforeningen', $this->url(null, array('find'=>'elevforeningen')));
 
       $tpl = $this->template->create('betalinger/betalinger');
       return $tpl->render($this, $data);
@@ -55,7 +55,7 @@ class VIH_Intranet_Controller_Betaling_Index extends k_Component
         if ($this->form) return $this->form;
         $form = new HTML_QuickForm('search', 'GET', $this->url());
         $form->addElement('text', 'search');
-        $form->addElement('submit', null, 'Søg efter bundtnummer');
+        $form->addElement('submit', null, 'SÃ¸g efter bundtnummer');
         return ($this->form = $form);
     }
 }

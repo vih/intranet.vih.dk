@@ -16,10 +16,9 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends VIH_Controlle
 
     function renderHtml()
     {
-
-        $this->document->setTitle($this->getRegistration()->get('navn').' fag på '.$this->getRegistration()->getKursus()->getKursusNavn());
-        $this->document->options = array($this->url('../') => 'Tilmeldingen',
-                                         $this->url('../diplom') => 'Diplom (pdf)');
+        $this->document->setTitle($this->getRegistration()->get('navn').' fag pÃ¥ '.$this->getRegistration()->getKursus()->getKursusNavn());
+        $this->document->addOption('Tilmeldingen', $this->url('../'));
+        $this->document->addOption('Diplom (pdf)', $this->url('../diplom'));
     	return parent::GET();
     }
 }
@@ -66,7 +65,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends k_Component
 
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
 
-        $this->document->setTitle($tilmelding->get('navn').' fag på '.$tilmelding->getKursus()->getKursusNavn();
+        $this->document->setTitle($tilmelding->get('navn').' fag pï¿½ '.$tilmelding->getKursus()->getKursusNavn();
         $this->document->options = array($this->url('../') => 'Tilmeldingen',
                                          $this->url('../diplom') => 'Diplom (pdf)');
 

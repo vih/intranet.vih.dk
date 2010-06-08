@@ -2,6 +2,12 @@
 class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Component
 {
     private $form;
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
     function getForm()
     {
@@ -30,7 +36,7 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Component
 
         $db = new DB_Sql();
 
-        // Trækker alle ud på den pågældende holdliste
+        // Trï¿½kker alle ud pï¿½ den pï¿½gï¿½ldende holdliste
 
         $db->query("SELECT DISTINCT(tilmelding.id) AS id, x_fag.hold, x_fag.id AS hold_id
             FROM langtkursus_tilmelding tilmelding
@@ -56,15 +62,16 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Show extends k_Component
 
         $fag = new VIH_Model_Fag($this->name());
 
-        // skal hente holdnumrene for den pågældende tilmelding
+        // skal hente holdnumrene for den pï¿½gï¿½ldende tilmelding
         $data = array('tilmeldinger' => $list);
 
         // $this->getForm()->toHTML()
         // echo $date;
 
         $this->document->setTitle($fag->get('navn'));
+        $tpl = $this->template->create('VIH/Intranet/view/holdlister/holdliste');
 
-        return '<p>'.count($list).'</p>' . $date . $this->render('VIH/Intranet/view/holdlister/holdliste-tpl.php', $data);
+        return '<p>'.count($list).'</p>' . $date . $this->render($this, $data);
     }
 
     function postForm()

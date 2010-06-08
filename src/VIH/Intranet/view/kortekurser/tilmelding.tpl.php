@@ -2,27 +2,10 @@
 <div id="content-left">
 
     <div id="tilmeldingsoplysninger">
-        <!--  <h1>Tilmelding #<?php e($tilmelding->get('id')); ?></h1> -->
         <p><strong>Kursus:</strong> <?php e($tilmelding->kursus->get('kursusnavn')); ?></p>
         <p><strong>Tilmeldingsdato:</strong> <?php e($tilmelding->get("date_created_dk")); ?></p>
         <p><strong>Periode</strong>: <?php e($tilmelding->kursus->get('dato_start_dk')); ?> til <?php e($tilmelding->kursus->get('dato_end_dk')); ?></p>
-
-        <!--
-        <p><strong>Depositum forfalden:</strong> <?php echo $tilmelding->get("dato_forfalden_depositum_dk"); ?></p>
-        <p><strong>Forfalden:</strong> <?php echo $tilmelding->get("dato_forfalden_dk"); ?></p>
-        <p><strong>Forfalden:</strong> <?php echo $tilmelding->get("forfalden"); ?></p>
-        -->
     </div>
-
-    <ul id="navigation-sub">
-        <li><a href="<?php echo url('../'); ?>">Tilbage til liste</a></li>
-        <li><a href="<?php echo url('edit'); ?>">Ret tilmelding</a></li>
-        <li><a href="<?php echo url('delete'); ?>" onclick="return confirm('Er du sikker på, at du vil slette tilmeldingen?');">Slet tilmeldingen</a></li>
-        <?php if ($tilmelding->get('email')): ?>
-        <li><a href="<?php echo url(null, array('action' => 'sendemail')); ?>" onclick="return confirm('Er du sikker på, at du vil sende en e-mail med koden tilmeldingen?');">Send koden med e-mail</a></li>
-        <?php endif; ?>
-        <li><a href="<?php echo KORTEKURSER_LOGIN_URI . $tilmelding->get('code'); ?>">Kundens side</a></li>
-    </ul>
 
     <?php echo $message; ?>
 
@@ -39,7 +22,7 @@
 
     <div id="besked">
         <?php if ($tilmelding->get("hvilkettidligerekursus") != ''): ?>
-            <p><strong>Tidligere deltaget på kursus:</strong> <?php print(ucfirst($tilmelding->get("hvilkettidligerekursus"))); ?></p>
+            <p><strong>Tidligere deltaget pï¿½ kursus:</strong> <?php print(ucfirst($tilmelding->get("hvilkettidligerekursus"))); ?></p>
         <?php endif; ?>
 
         <?php if ($tilmelding->get("besked") != ''): ?>
@@ -52,7 +35,7 @@
 
     <?php echo $deltagere; ?>
 
-    <p><a href="<?php echo url('/kortekurser/' . $tilmelding->kursus->get("id") . '/deltagere'); ?>">Se alle deltagere på kurset</a></p>
+    <p><a href="<?php echo url('/kortekurser/' . $tilmelding->kursus->get("id") . '/deltagere'); ?>">Se alle deltagere pï¿½ kurset</a></p>
 
     <?php echo $historik; ?>
 
@@ -70,7 +53,7 @@
 
     <fieldset>
         <legend>Registrer betaling</legend>
-        <p>Beløb: <input type="text" name="beloeb" value="" />
+        <p>Belï¿½b: <input type="text" name="beloeb" value="" />
         <input type="submit" name="registrer_betaling" value="Betalt"  /></p>
     </fieldset>
 <?php if($tilmelding->get('skyldig') == 0): ?>
@@ -83,9 +66,9 @@
 
 <ul>
     <?php if($tilmelding->get('skyldig_depositum') <= 0 && $historik_object->findType("depositumbekraeftelse") == 0 && $tilmelding->get('status') != 'afsluttet'): ?>
-        <li><a href="<?php echo url('sendbrev', array('type' => 'depositumbekraeftelse')); ?>">Send bekræftelse for depositum</a></li>
+        <li><a href="<?php echo url('sendbrev', array('type' => 'depositumbekraeftelse')); ?>">Send bekrï¿½ftelse for depositum</a></li>
     <?php elseif ((int)$tilmelding->get('skyldig') <= 0 && $historik_object->findType("bekraeftelse") == 0): ?>
-        <li><a href="<?php echo url('sendbrev', array('type' => 'bekraeftelse')); ?>">Send bekræftelse</a></li>
+        <li><a href="<?php echo url('sendbrev', array('type' => 'bekraeftelse')); ?>">Send bekrï¿½ftelse</a></li>
     <?php endif; ?>
 
     <?php if($tilmelding->get("forfalden_depositum")):?>

@@ -25,7 +25,7 @@
                 <a href="<?php e(url('indtast', array('id' => $row['id']))); ?>">Ret</a>
             </td>
             <td>
-                <a href="<?php e(url('indtast/' . $row['id'] . '/delete')); ?>" onclick="return confirm('Har du nu tænkt dig grundigt om?')">Slet</a>
+                <a href="<?php e(url('indtast/' . $row['id'] . '/delete')); ?>" onclick="return confirm('Har du nu tï¿½nkt dig grundigt om?')">Slet</a>
             </td>
         </tr>
     <?php endwhile; ?>

@@ -2,6 +2,16 @@
 class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Component
 {
     private $form;
+    protected $template;
+    protected $mdb2;
+    protected $db_sql;
+
+    function __construct(k_TemplateFactory $template, MDB2_Driver_Common $mdb2, DB_Sql $db_sql)
+    {
+        $this->template = $template;
+        $this->mdb2 = $mdb2;
+        $this->db_sql = $db_sql;
+    }
 
     function getForm()
     {
@@ -27,11 +37,10 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Component
 
         $this->getForm()->setDefaults($defaults);
 
-        // find alle registrations der er på skolen på en given dato
-        // tjek hvilke fag de har hver især
+        // find alle registrations der er pï¿½ skolen pï¿½ en given dato
+        // tjek hvilke fag de har hver isï¿½r
 
-        $db = new DB_Sql();
-        $db->query("SELECT DISTINCT(fag.id)
+        $this->db_sql->query("SELECT DISTINCT(fag.id)
             FROM langtkursus_tilmelding tilmelding
                 INNER JOIN langtkursus
                     ON langtkursus.id = tilmelding.kursus_id
@@ -55,14 +64,15 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Component
 
         $list = array();
         while($db->nextRecord()) {
-            $list[] = new VIH_Model_Fag($db->f('id'));
+            $list[] = new VIH_Model_Fag($this->db_sql->f('id'));
         }
 
         $data = array('fag' => $list, 'date' => $date);
 
         $this->document->setTitle('Holdlister');
 
-        return $this->getForm()->toHTML() . $this->render('VIH/Intranet/view/holdlister/holdlister-tpl.php', $data);
+        $tpl = $this->template->create('VIH/Intranet/view/holdlister/holdlister');
+        return $this->getForm()->toHTML() . $this->render($this, $data);
     }
 
     function getCount($fag)
@@ -74,12 +84,7 @@ class VIH_Intranet_Controller_Langekurser_Holdlister_Index extends k_Component
 
         $this->getForm()->setDefaults(array('date' => $date));
 
-        $db = MDB2::factory(DB_DSN);
-        if (PEAR::isError($db)) {
-            throw new Exception($db->getUserInfo());
-        }
-
-        $result = $db->query("SELECT DISTINCT(tilmelding.id)
+        $result = $this->mdb2->query("SELECT DISTINCT(tilmelding.id)
             FROM langtkursus_tilmelding tilmelding
                 INNER JOIN langtkursus
                     ON langtkursus.id = tilmelding.kursus_id

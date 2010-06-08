@@ -22,7 +22,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
 
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->name());
         if ($tilmelding->get('id') == 0) {
-            throw new k_http_Response(404);
+            throw new k_PageNotFound();
         }
 
         $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
@@ -48,7 +48,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
             if($betalinger->save(array('type' => 'giro', 'amount' => $this->query('beloeb')))) {
                 $betalinger->setStatus('approved');
             } else {
-                throw new Exception("Betalingen kunne ikke gemmes. Det kan skyldes et ugyldigt beløb", E_USER_ERROR);
+                throw new Exception("Betalingen kunne ikke gemmes. Det kan skyldes et ugyldigt belï¿½b", E_USER_ERROR);
             }
         } elseif ($this->query('slet_historik_id')) {
             $historik = new VIH_Model_Historik(intval($this->query('slet_historik_id')));
@@ -57,7 +57,16 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
 
         $tilmelding->loadBetaling();
 
-        $this->document->setTitle('Tilmelding');
+        $this->document->setTitle('Tilmelding #' . $tilmelding->get('id'));
+        $this->document->addOption('Til kursus', $this->url('../../' . $tilmelding->kursus->get('id')));
+        $this->document->addOption('Tilmeldinger', $this->url('../../'.$tilmelding->kursus->get('id') . '/tilmeldinger'));
+        $this->document->addOption('Ret', $this->url('edit'));
+        $this->document->addOption('Delete', $this->url('delete'));
+        $this->document->addOption('Protokol', $this->url('../../protokol/holdliste/' . $tilmelding->get('id')));
+        $this->document->addOption('Brev', $this->url('brev'));
+        $this->document->addOption('Fag', $this->url('fag'));
+        $this->document->addOption('Diplom', $this->url('diplom'));
+        $this->document->addOption('Kundens side', LANGEKURSER_LOGIN_URI . $tilmelding->get('code'));
 
         $opl_data = array('tilmelding' => $tilmelding);
 
@@ -89,7 +98,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
             if ($tilmelding->kursus->antalRater() > 0) {
                 $data['rater'] = '<p><a href="'.$this->url(null, array('get_prices' => $tilmelding->get('id'))).'">Hent priserne fra kurset</a>. Der er endnu ikke oprettet nogen rater <a href="'.$this->url(null, array('action' => 'opretrater')) . '">Opret &rarr;</a></p>';
             } else {
-                $data['rater'] = '<p>Der er endnu ikke oprettet rater på selve kurset. Dem skal du lige oprette først <a href="'.$this->url('../../'.$tilmelding->getKursus()->get('id').'/rater').'">Opret &rarr;</a></p>';
+                $data['rater'] = '<p>Der er endnu ikke oprettet rater pï¿½ selve kurset. Dem skal du lige oprette fï¿½rst <a href="'.$this->url('../../'.$tilmelding->getKursus()->get('id').'/rater').'">Opret &rarr;</a></p>';
             }
         }
 

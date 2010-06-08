@@ -13,6 +13,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Elevugerliste extends k_C
         $kursus = new VIH_Model_LangtKursus($this->context->name());
 
         $data = array('kursus' => $kursus, 'tilmeldinger' => $kursus->getTilmeldinger());
-        return $this->render('VIH/Intranet/view/langekurser/elevuger.tpl.php', $data);
+        $tpl = $this->template->create('VIH/Intranet/view/langekurser/elevuger');
+        return $this->render($this, $data);
     }
 }

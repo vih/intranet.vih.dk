@@ -1,5 +1,5 @@
 <?php
-require_once 'fpdf/fpdf.php';
+require_once 'fpdf.php';
 
 class VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte extends k_Component
 {

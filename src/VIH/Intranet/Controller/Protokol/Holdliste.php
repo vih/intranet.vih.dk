@@ -15,9 +15,9 @@ class VIH_Intranet_Controller_Protokol_Holdliste extends k_Component
 
     static public function getTypeKeys()
     {
-        return        $type_key = array(1 => 'fri', // fri
+        return $type_key = array(1 => 'fri', // fri
                           2 => 'syg', // syg
-                          3 => 'fra', // fravær
+                          3 => 'fra', // fravï¿½r
                           4 => 'mun', // mundtlig advarsel
                           5 => 'skr', // skriftlig advarsel
                           6 => 'hen', // henstilling
@@ -47,9 +47,7 @@ class VIH_Intranet_Controller_Protokol_Holdliste extends k_Component
 
         $this->getForm()->setDefaults(array('date' => $date));
 
-
-        $db = $this->db;
-        $db->query("SELECT tilmelding.id, tilmelding.dato_slut
+        $this->db->query("SELECT tilmelding.id, tilmelding.dato_slut
             FROM langtkursus_tilmelding tilmelding
                 INNER JOIN langtkursus ON langtkursus.id = tilmelding.kursus_id
                 INNER JOIN adresse ON tilmelding.adresse_id = adresse.id
@@ -61,21 +59,19 @@ class VIH_Intranet_Controller_Protokol_Holdliste extends k_Component
             ORDER BY adresse.fornavn ASC, adresse.efternavn ASC");
 
         $list = array();
-        while($db->nextRecord()) {
-            $list[] = new VIH_Model_LangtKursus_Tilmelding($db->f('id'));
+        while ($this->db->nextRecord()) {
+            $list[] = new VIH_Model_LangtKursus_Tilmelding($this->db->f('id'));
         }
 
         $data = array('elever' => $list);
 
         $this->document->setTitle('Holdliste');
-        $this->document->options = array(
-            $this->url('../') => 'Protokol'
-        );
+        $this->document->addOption('Protokol', $this->url('../'));
 
         $tpl = $this->template->create('protokol/holdliste');
 
         return $this->getForm()->toHTML().'
-            <p>Antal elever: ' . $db->numRows() . '</p>'
+            <p>Antal elever: ' . $this->db->numRows() . '</p>'
             . $tpl->render($this, $data);
     }
 
