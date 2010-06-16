@@ -12,7 +12,7 @@
         <tr>
             <td><a href="<?php echo url($fag->get('id')); ?>"><?php echo $fag->get('navn'); ?></a></td>
             <td><a href="<?php echo url($fag->get('id') . '/edit'); ?>">Ret</a></td>
-            <td><a href="<?php echo url($fag->get('id') . '/delete'); ?>" onclick="return confirm('Er du sikker?');">Slet</a></td>
+            <td><a href="<?php echo url($fag->get('id'), array('delete')); ?>" onclick="return confirm('Er du sikker?');">Slet</a></td>
             <!--<td><a href="<?php echo $fag->get('id'); ?>" class="pdf">Pdf</a></td>-->
         </tr>
     <?php endforeach; ?>

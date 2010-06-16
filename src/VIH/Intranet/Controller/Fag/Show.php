@@ -55,6 +55,14 @@ class VIH_Intranet_Controller_Fag_Show extends k_Component
         return '<div>'.vih_autoop($fag->get('beskrivelse')).'</div>' . $extra_html;
     }
 
+    function renderHtmlDelete()
+    {
+        $fag = new VIH_Model_Fag($this->name());
+        if ($fag->delete()) {
+            return new k_SeeOther($this->url('../'));
+        }
+    }
+
     function postForm()
     {
         $db = $this->db;

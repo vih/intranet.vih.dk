@@ -49,7 +49,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
         $this->document->setTitle('Tilmelding #' . $tilmelding->getId());
         $this->document->addOption('Tilbage til liste', $this->url('../'));
         $this->document->addOption('Ret', $this->url('edit'));
-        $this->document->addOption('Slet', $this->url('delete'));
+        $this->document->addOption('Slet', $this->url(null, array('delete')));
         if ($tilmelding->get('email')) {
             $this->document->addOption('E-mail', $this->url('email'));
         }
@@ -104,6 +104,14 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
 
     }
 
+    function renderHtmlDelete()
+    {
+        $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->name());
+        if ($tilmelding->delete()) {
+            return new k_SeeOther($this->context->url('../'));
+        }
+    }
+
     function postForm()
     {
         $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->name());
@@ -119,8 +127,6 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
             return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev';
         } elseif ($name == 'edit') {
             return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit';
-        } elseif ($name == 'delete') {
-            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Delete';
         }
     }
 

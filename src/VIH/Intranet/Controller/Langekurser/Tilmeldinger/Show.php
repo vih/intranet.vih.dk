@@ -61,7 +61,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
         $this->document->addOption('Til kursus', $this->url('../../' . $tilmelding->kursus->get('id')));
         $this->document->addOption('Tilmeldinger', $this->url('../../'.$tilmelding->kursus->get('id') . '/tilmeldinger'));
         $this->document->addOption('Ret', $this->url('edit'));
-        $this->document->addOption('Delete', $this->url('delete'));
+        $this->document->addOption('Delete', $this->url(null, array('delete')));
         $this->document->addOption('Protokol', $this->url('../../protokol/holdliste/' . $tilmelding->get('id')));
         $this->document->addOption('Brev', $this->url('brev'));
         $this->document->addOption('Fag', $this->url('fag'));
@@ -114,7 +114,16 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
 
         $tpl = $this->templates->create('langekurser/tilmelding');
         return $tpl->render($this, $data);
+    }
 
+    function renderHtmlDelete()
+    {
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->name());
+        if (!$tilmelding->delete()) {
+            trigger_error('Tilmeldingen kunne ikke slettes', E_USER_ERROR);
+        } else {
+            return new k_SeeOther($this->context->url('../'));
+        }
     }
 
     function map($name)
@@ -129,8 +138,6 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
             return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom';
         } elseif ($name == 'edit') {
             return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit';
-        } elseif ($name == 'delete') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Delete';
         }
     }
 }

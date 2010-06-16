@@ -54,6 +54,14 @@ class VIH_Intranet_Controller_Nyheder_Show extends k_Component
         return '<div>'.vih_autoop($nyhed->get('tekst')).'</div> ' . $this->getForm()->toHTML() . $pic_html . $nyhed->get('date_updated');
     }
 
+    function renderHtmlDelete()
+    {
+        $nyhed= new VIH_News($this->name());
+        if ($nyhed->delete()) {
+            return new k_SeeOther($this->context->url('../'));
+        }
+    }
+
     function postMultipart()
     {
         $nyhed = new VIH_News($this->name());

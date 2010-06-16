@@ -31,7 +31,7 @@
                 ?>
             </td>
             <td><a href="<?php e(url($kursus->get('id') . '/edit')); ?>">ret</a></td>
-            <!--<td><a href="<?php e(url($kursus->get('id') . '/delete')); ?>" onclick="return confirm('Er du sikker?');">slet</a></td>-->
+            <!--<td><a href="<?php e(url($kursus->get('id'), array('delete'))); ?>" onclick="return confirm('Er du sikker?');">slet</a></td>-->
             <td><a href="<?php e(url($kursus->get('id') . '/tilmeldinger')); ?>">tilmeldinger</a></td>
             <!--<td><a href="<?php echo url($kursus->get('id'), array('output'=>'pdf')); ?>" class="pdf">Pdf</a></td>
             <td><a href="<?php e(url($kursus->get('id') . '/rater')); ?>">Rater</a></td>-->

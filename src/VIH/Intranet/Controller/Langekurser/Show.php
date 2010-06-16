@@ -23,6 +23,14 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
         return parent::dispatch();
     }
 
+    function renderHtmlDelete()
+    {
+        $kursus = new VIH_Model_LangtKursus($this->name());
+        if ($kursus->delete()) {
+            return new k_SeeOther($this->url('../'));
+        }
+    }
+
     function getForm()
     {
         if ($this->form) {
