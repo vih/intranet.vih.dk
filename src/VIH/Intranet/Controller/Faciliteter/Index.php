@@ -18,7 +18,6 @@ class VIH_Intranet_Controller_Faciliteter_Index extends k_Component
         } elseif ($name == 'edit') {
             return 'VIH_Intranet_Controller_Faciliteter_Edit';
         }
-
     }
 
     function renderHtml()

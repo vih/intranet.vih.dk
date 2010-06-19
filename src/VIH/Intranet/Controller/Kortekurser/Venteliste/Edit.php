@@ -50,11 +50,9 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Edit extends k_Component
             $kursus = new VIH_Model_KortKursus($this->body('kursus_id'));
             $venteliste = new VIH_Model_Venteliste(1, $kursus->get('id'), $this->body('id'));
             if (!$venteliste->save($this->body())) {
-                throw new Excpetion('Kan ikke gemme');
+                throw new Exception('Kan ikke gemme');
             }
             return new k_SeeOther($this->context->url('../'));
         }
     }
 }
-
-?>

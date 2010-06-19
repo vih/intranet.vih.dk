@@ -8,6 +8,11 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Index extends k_Component
         $this->template = $template;
     }
 
+    function map($name)
+    {
+        return 'VIH_Intranet_Controller_Kortekurser_Venteliste_Show';
+    }
+
     function renderHtml()
     {
         $kursus = new VIH_Model_KortKursus($this->context->name());
@@ -31,11 +36,5 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Index extends k_Component
     {
         return $this->context->name();
     }
-
-    function map($name)
-    {
-        return 'VIH_Intranet_Controller_Kortekurser_Venteliste_Show';
-    }
-
 }
 
