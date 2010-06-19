@@ -1,17 +1,16 @@
 <?php
 require_once 'config.local.php';
-
-require_once 'VIH/errorhandler.php';
-set_error_handler('vih_error_handler');
-
 require_once 'Ilib/ClassLoader.php';
 require_once 'VIH/functions.php';
 require_once 'VIH/configuration.php';
+require_once 'konstrukt/konstrukt.inc.php';
+require_once 'bucket.inc.php';
+
 require_once('Doctrine/lib/Doctrine.php');
 spl_autoload_register(array('Doctrine', 'autoload'));
 
-require_once 'konstrukt/konstrukt.inc.php';
-require_once 'lib/bucket.inc.php';
+require_once 'VIH/errorhandler.php';
+set_error_handler('vih_error_handler');
 
 class k_SessionIdentityLoader implements k_IdentityLoader
 {
@@ -32,182 +31,17 @@ class NotAuthorizedComponent extends k_Component
     }
 }
 
-class Login extends k_Component
-{
-    function execute()
-    {
-        $this->url_state->init("continue", $this->url('/restricted'));
-        return parent::execute();
-    }
-
-    function renderHtml()
-    {
-        $response = new k_HtmlResponse(
-      "<html><head><title>Authentication required</title></head><body><form method='post' action='" . htmlspecialchars($this->url()) . "'>
-  <h1>Authentication required</h1>
-  <p>
-    <label>
-      username:
-      <input type='text' name='username' />
-    </label>
-  </p>
-  <p>
-    <label>
-      password:
-      <input type='password' name='password' />
-    </label>
-  </p>
-  <p>
-    <input type='submit' value='Login' />
-  </p>
-</form></body></html>");
-        $response->setStatus(401);
-        return $response;
-    }
-
-    function postForm()
-    {
-        $user = $this->selectUser($this->body('username'), $this->body('password'));
-        if ($user) {
-            $this->session()->set('identity', $user);
-            return new k_SeeOther($this->query('continue'));
-        }
-        return $this->render();
-    }
-
-    protected function selectUser($username, $password)
-    {
-        $users = $GLOBALS['users'];
-
-        if (isset($users[$username]) && $users[$username] == $password) {
-            return new k_AuthenticatedUser($username);
-        }
-    }
-}
-
-class Logout extends k_Component
-{
-    function execute()
-    {
-        $this->url_state->init("continue", $this->url('/'));
-        return parent::execute();
-    }
-
-    function postForm()
-    {
-        $this->session()->set('identity', null);
-        return new k_SeeOther($this->query('continue'));
-    }
-}
-
-class Root extends k_Component
-{
-    private $template;
-
-    function __construct(k_TemplateFactory $template)
-    {
-        $this->template = $template;
-    }
-
-    protected function map($name)
-    {
-        switch ($name) {
-            case 'restricted':
-                return 'VIH_Intranet_Controller_Index';
-            case 'login':
-                return 'Login';
-            case 'logout':
-                return 'Logout';
-        }
-    }
-
-    function document()
-    {
-        return $this->document;
-    }
-
-    function execute()
-    {
-        return $this->wrap(parent::execute());
-    }
-
-    function wrapHtml($content)
-    {
-        $this->document->navigation = array(
-        $this->url('/restricted/nyheder') => 'Nyheder',
-        $this->url('/restricted/langekurser/tilmeldinger')  => 'Lange kurser',
-        $this->url('/restricted/kortekurser/tilmeldinger')  => 'Korte kurser',
-        $this->url('/restricted/betaling') => 'Betalinger',
-        $this->url('/restricted/materialebestilling')  => 'Brochurebestilling',
-        $this->url('/restricted/ansatte')  => 'Ansatte',
-        $this->url('/restricted/faciliteter')  => 'Faciliteter',
-        $this->url('/restricted/filemanager') => 'Dokumenter',
-        $this->url('/restricted/fotogalleri')  => 'Højdepunkter',
-        $this->url('/restricted/logout')  => 'Logout');
-
-        $tpl = $this->template->create('main');
-        return $tpl->render($this, array('content' => $content));
-    }
-
-    function renderHtml()
-    {
-        return new k_SeeOther($this->url('login'));
-    }
-}
-
 $factory = new VIH_Intranet_Factory();
 $container = new bucket_Container($factory);
 
-class VIH_Document extends k_Document
-{
-    public $navigation;
-    public $help;
-
-    protected $crumbtrail = array();
-    public $options = array();
-
-    function crumbtrail()
-    {
-        return $this->crumbtrail;
-    }
-
-    function addCrumb($title, $url)
-    {
-        return $this->crumbtrail[] = array('title' => $title, 'url' => $url);
-    }
-
-    function navigation()
-    {
-        return $this->navigation;
-    }
-
-    function addOption($title, $url)
-    {
-        return $this->options[] = array('title' => $title, 'url' => $url);
-    }
-
-    function options()
-    {
-        if (empty($this->options)) {
-            return array();
-        }
-        return $this->options;
-    }
-
-    function help()
-    {
-        return $this->help;
-    }
-}
-
 if (realpath($_SERVER['SCRIPT_FILENAME']) == __FILE__) {
-    $components = new k_InjectorAdapter($container, new VIH_Document);
+    $components = new k_InjectorAdapter($container, new VIH_Intranet_Document);
     $components->setImplementation('k_DefaultNotAuthorizedComponent', 'NotAuthorizedComponent');
     $identity_loader = new k_SessionIdentityLoader();
     k()
     ->setComponentCreator($components)
     ->setIdentityLoader($identity_loader)
-    ->run('Root')
+    ->run('VIH_Intranet_Controller_Root')
     ->out();
 }
 

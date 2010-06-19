@@ -263,13 +263,15 @@
 
     <body>
         <div id="container">
-            <h1 id="branding">Vejle IdrÃ¦tshÃ¸jskoles Intranet</h1>
+            <h1 id="branding">Vejle Idrætshøjskoles Intranet</h1>
 
             <ul id="navigation-main">
                 <?php foreach($context->document()->navigation() as $url => $name): ?>
                 <li><a href="<?php e($url); ?>"><?php e($name); ?></a></li>
                 <?php endforeach; ?>
             </ul>
+
+			<form method='post' action="<?php e(url('/logout')); ?>"><p><input type='submit' value='Log out' /></p></form>
 
             <div id="content">
                 <h1><?php e($context->document()->title()); ?> <span><?php e($context->document()->help()); ?></span></h1>

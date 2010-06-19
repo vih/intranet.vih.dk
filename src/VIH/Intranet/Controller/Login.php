@@ -1,6 +1,60 @@
 <?php
 class VIH_Intranet_Controller_Login extends k_Component
 {
+    function execute()
+    {
+        $this->url_state->init("continue", $this->url('/restricted'));
+        return parent::execute();
+    }
+
+    function renderHtml()
+    {
+        $response = new k_HtmlResponse(
+      "<html><head><title>Authentication required</title></head><body><form method='post' action='" . htmlspecialchars($this->url()) . "'>
+  <h1>Authentication required</h1>
+  <p>
+    <label>
+      username:
+      <input type='text' name='username' />
+    </label>
+  </p>
+  <p>
+    <label>
+      password:
+      <input type='password' name='password' />
+    </label>
+  </p>
+  <p>
+    <input type='submit' value='Login' />
+  </p>
+</form></body></html>");
+        $response->setStatus(401);
+        return $response;
+    }
+
+    function postForm()
+    {
+        $user = $this->selectUser($this->body('username'), $this->body('password'));
+        if ($user) {
+            $this->session()->set('identity', $user);
+            return new k_SeeOther($this->query('continue'));
+        }
+        return $this->render();
+    }
+
+    protected function selectUser($username, $password)
+    {
+        $users = $GLOBALS['users'];
+
+        if (isset($users[$username]) && $users[$username] == $password) {
+            return new k_AuthenticatedUser($username);
+        }
+    }
+}
+
+/*
+class VIH_Intranet_Controller_Login extends k_Component
+{
     private $form;
     protected $template;
 
@@ -58,3 +112,4 @@ class VIH_Intranet_Controller_Login extends k_Component
         }
     }
 }
+*/
