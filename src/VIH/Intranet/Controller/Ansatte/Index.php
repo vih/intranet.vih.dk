@@ -12,9 +12,14 @@ class VIH_Intranet_Controller_Ansatte_Index extends k_Component
         $this->template = $template;
     }
 
+    function map($name)
+    {
+        return 'VIH_Intranet_Controller_Ansatte_Show';
+    }
+
     function renderHtml()
     {
-        $ansat = new VIH_Model_Ansat;
+        $ansat = $this->getAnsat();
         $ansatte = $ansat->getList();
 
         $this->document->setTitle('Ansatte');
@@ -26,19 +31,38 @@ class VIH_Intranet_Controller_Ansatte_Index extends k_Component
         return $template->render($this, $data);
     }
 
-    function getAnsat()
-    {
-        return new VIH_Model_Ansat();
-    }
-
     function renderHtmlCreate()
     {
+        $this->document->setTitle('Opret ansat');
+
         return $this->getForm()->toHtml();
     }
 
-    function map($name)
+    function postForm()
     {
-        return 'VIH_Intranet_Controller_Ansatte_Show';
+        if ($this->getForm()->validate()) {
+            $ansat = $this->getAnsat();
+            $input = $this->body();
+            $input['date_stoppet'] = $this->body('date_stoppet');
+            $input['date_stoppet'] = $input['date_stoppet']['Y'] . '-' . $input['date_stoppet']['M'] . '-' . $input['date_stoppet']['d'];
+
+            $input['date_ansat'] = $this->body('date_ansat');
+            $input['date_ansat'] = $input['date_ansat']['Y'] . '-' . $input['date_ansat']['M'] . '-' . $input['date_ansat']['d'];
+
+            $input['date_birthday'] = $this->body('date_birthday');
+            $input['date_birthday'] = $input['date_birthday']['Y'] . '-' . $input['date_birthday']['M'] . '-' . $input['date_birthday']['d'];
+            if ($id = $ansat->save($input)) {
+                return new k_SeeOther($this->url($id));
+            }
+
+        }
+
+        return $this->render();
+    }
+
+    function getAnsat()
+    {
+        return new VIH_Model_Ansat();
     }
 
     public function getForm()
@@ -58,7 +82,7 @@ class VIH_Intranet_Controller_Ansatte_Index extends k_Component
         $this->form->addElement('text', 'adresse', 'Adresse');
         $this->form->addElement('text', 'postnr', 'Postnr');
         $this->form->addElement('text', 'postby', 'Postby');
-        $this->form->addElement('date', 'date_birthday', 'Fï¿½dselsdag', $date_options);
+        $this->form->addElement('date', 'date_birthday', 'Fødselsdag', $date_options);
         $this->form->addElement('date', 'date_ansat', 'Ansat', $date_options);
         $this->form->addElement('date', 'date_stoppet', 'Stoppet', $date_options);
         $this->form->addElement('text', 'titel', 'Titel');
@@ -73,27 +97,5 @@ class VIH_Intranet_Controller_Ansatte_Index extends k_Component
         $this->form->addElement('submit', null, 'Gem');
 
         return ($this->form);
-    }
-
-    function postForm()
-    {
-        if ($this->getForm()->validate()) {
-            $ansat = new VIH_Model_Ansat($this->name());
-            $input = $this->body();
-            $input['date_stoppet'] = $this->body('date_stoppet');
-            $input['date_stoppet'] = $input['date_stoppet']['Y'] . '-' . $input['date_stoppet']['M'] . '-' . $input['date_stoppet']['d'];
-
-            $input['date_ansat'] = $this->body('date_ansat');
-            $input['date_ansat'] = $input['date_ansat']['Y'] . '-' . $input['date_ansat']['M'] . '-' . $input['date_ansat']['d'];
-
-            $input['date_birthday'] = $this->body('date_birthday');
-            $input['date_birthday'] = $input['date_birthday']['Y'] . '-' . $input['date_birthday']['M'] . '-' . $input['date_birthday']['d'];
-            if ($id = $ansat->save($input)) {
-                return new k_SeeOther($this->url($id));
-            }
-
-        }
-
-        return $this->render();
     }
 }
