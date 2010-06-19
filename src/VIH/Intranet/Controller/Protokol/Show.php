@@ -8,7 +8,7 @@ class VIH_Intranet_Controller_Protokol_Show extends k_Component
         $this->db = $db;
     }
 
-    function renderHtml()
+    function renderHtmlDelete()
     {
         $res = $this->db->query('DELETE FROM langtkursus_tilmelding_protokol_item WHERE id = ' . (int)$this->context->name());
 
