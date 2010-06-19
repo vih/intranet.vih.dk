@@ -1,9 +1,7 @@
 <?php
 class VIH_Intranet_Controller_Fag_Show extends k_Component
 {
-    public $map = array('edit' => 'VIH_Intranet_Controller_Fag_Edit',
-                        'delete' => 'VIH_Intranet_Controller_Fag_Delete');
-
+    public $map = array('edit' => 'VIH_Intranet_Controller_Fag_Edit');
     private $form;
     private $db;
 
