@@ -275,13 +275,6 @@ if (realpath($_SERVER['SCRIPT_FILENAME']) == __FILE__) {
  'return Doctrine_Manager::connection(DB_DSN);'
  ));
 
- $application->registry->registerConstructor('template', create_function(
- '$className, $args, $registry',
- 'require_once "Template/Template.php";
- return new Template(PATH_INCLUDE . "/VIH/Intranet/view/");
- '
- ));
-
  $application->registry->registerConstructor('intraface:filehandler:gateway', create_function(
  '$className, $args, $registry',
  'return new Ilib_Filehandler_Gateway($registry->get("intraface:kernel"));'

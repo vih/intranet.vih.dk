@@ -15,7 +15,7 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Ministerium extends k_Component
         $data = array('kursus' => $kursus,
                       'deltagere' => $kursus->getDeltagere());
 
-        $tpl = $this->template->create('VIH/List/templates/ministerium.tpl.php');
+        $tpl = $this->template->create('list/ministerium');
         return $tpl->render($this, $data);
     }
 }

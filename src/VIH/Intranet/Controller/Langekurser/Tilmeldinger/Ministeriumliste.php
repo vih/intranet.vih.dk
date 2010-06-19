@@ -11,10 +11,8 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Ministeriumliste extends 
     function renderHtml()
     {
         $kursus = new VIH_Model_LangtKursus($this->context->name());
-        $list = new VIH_List_Ministerium();
-        $list->update($kursus, $kursus->getTilmeldinger());
+        $tpl = $this->template->create('list/ministerium');
 
-        throw new k_http_Response(200, $list->fetch());
-
+        throw new k_http_Response(200, $tpl->render($this, array('course' => $kursus, 'participants' => $kursus->getTilmeldinger())));
     }
 }

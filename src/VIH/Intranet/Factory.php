@@ -54,10 +54,4 @@ class VIH_Intranet_Factory
         $kernel->user = new VIH_Intraface_User;
         return $kernel;
     }
-
-    function new_Template($c)
-    {
-        require_once "Template/Template.php";
-        return new Template(PATH_INCLUDE . "/VIH/Intranet/view/");
-    }
 }
