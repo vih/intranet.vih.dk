@@ -14,7 +14,7 @@ class VIH_Intranet_Controller_Langekurser_Rater extends k_Component
 
         if($this->query("addrate")) {
             if (!$kursus->addRate($this->query("addrate"))) {
-                trigger_error('Kunne ikke tilfÃ¸je rate.', E_USER_ERROR);
+                throw new Exception('Kunne ikke tilføje rate.', E_USER_ERROR);
             }
         }
 
@@ -48,11 +48,11 @@ class VIH_Intranet_Controller_Langekurser_Rater extends k_Component
 
         if($this->body("opret_rater")) {
             if (!$kursus->opretRater((int)$this->body("antal"), $this->body("foerste_rate_dato"))) {
-                trigger_error('Kunne ikke oprette rater', E_USER_ERROR);
+                throw new Exception('Kunne ikke oprette rater');
             }
         } elseif($this->body("opdater_rater")) {
             if (!$kursus->updateRater($this->body("rate"))) {
-                trigger_error('Kunne ikke opdatere rater', E_USER_ERROR);
+                throw new Exception('Kunne ikke opdatere rater');
             }
         }
         return new k_SeeOther($this->url());

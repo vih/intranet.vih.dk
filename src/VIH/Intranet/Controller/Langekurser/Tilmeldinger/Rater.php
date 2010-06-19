@@ -21,13 +21,13 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
             if ($tilmelding->addRate($this->query("addrate"))) {
                 return new k_SeeOther($this->url());
             } else {
-                trigger_error('Raten kunne ikke tilfÃ¸jes', E_USER_ERROR);
+                throw new Exception('Raten kunne ikke tilføjes');
             }
         } elseif($this->query("delete")) {
             if ($tilmelding->deleteRate($this->query("delete"))) {
                 return new k_SeeOther($this->url());
             } else {
-                trigger_error('Raten kunne ikke slettes', E_USER_ERROR);
+                throw new Exception('Raten kunne ikke slettes');
             }
         }
 
@@ -53,7 +53,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
             if ($tilmelding->updateRater($this->body("rate"))) {
                 return new k_SeeOther($this->url());
             } else {
-                trigger_error('Raterne kunne ikke opdateres', E_USER_ERROR);
+                throw new Exception('Raterne kunne ikke opdateres');
             }
         }
         return $this->render();

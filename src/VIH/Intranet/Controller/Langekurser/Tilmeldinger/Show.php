@@ -120,9 +120,9 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
     {
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->name());
         if (!$tilmelding->delete()) {
-            trigger_error('Tilmeldingen kunne ikke slettes', E_USER_ERROR);
+            throw new Exception('Tilmeldingen kunne ikke slettes');
         } else {
-            return new k_SeeOther($this->context->url('../'));
+            return new k_SeeOther($this->url('../'));
         }
     }
 

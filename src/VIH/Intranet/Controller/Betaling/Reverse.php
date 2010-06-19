@@ -35,10 +35,10 @@ class VIH_Intranet_Controller_Betaling_Reverse extends k_Component
 
                 $betaling->setStatus('invalid');
 
-                trigger_error('Betalingen kunne ikke annulleres, formentlig fordi den er ugyldig', E_USER_ERROR);
+                throw new Exception('Betalingen kunne ikke annulleres, formentlig fordi den er ugyldig');
             }
         } else {
-            trigger_error('Der var en kommunikationsfejl med Onlinebetalingen', E_ERROR);
+            throw new Exception('Der var en kommunikationsfejl med Onlinebetalingen');
         }
 
     }

@@ -183,11 +183,11 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Component
 
             if ($id = $tilmelding->save($input)) {
                 if (!$tilmelding->savePriser($input)) {
-                    trigger_error('Kunne ikke opdatere priserne', E_USER_ERROR);
+                    throw new Exception('Kunne ikke opdatere priserne');
                 }
                 return new k_SeeOther($this->context->url());
             } else {
-                trigger_error('Kunne ikke gemme oplysningerne om tilmeldingen', E_USER_ERROR);
+                throw new Exception('Kunne ikke gemme oplysningerne om tilmeldingen');
             }
         } else {
             return $this->getForm()->toHTML();

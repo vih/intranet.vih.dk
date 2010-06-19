@@ -32,10 +32,10 @@ class VIH_Intranet_Controller_Betaling_Capture extends k_Component
                 $historik = new VIH_Model_Historik($betaling->get('belong_to'), $betaling->get('belong_to_id'));
                 $historik->save(array('type' => 'dankort', 'comment' => 'Fejl ved capture af transaktion #' . $betaling->get('transactionnumber')));
 
-                trigger_error('Betalingen kunne ikke hæves, formentlig fordi den er ugyldig', E_USER_ERROR);
+                throw new Exception('Betalingen kunne ikke hæves, formentlig fordi den er ugyldig');
             }
         } else {
-            trigger_error('Der var en kommunikationsfejl med Onlinebetalingen', E_USER_ERROR);
+            throw new Exception('Der var en kommunikationsfejl med Onlinebetalingen');
         }
 
         return 'error';

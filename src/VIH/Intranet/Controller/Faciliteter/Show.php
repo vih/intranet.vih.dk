@@ -28,7 +28,7 @@ class VIH_Intranet_Controller_Faciliteter_Show extends k_Component
         $facilitet = new VIH_Model_Facilitet($this->name());
         if (is_numeric($this->query('sletbillede'))) {
             if (!$facilitet->deletePicture($this->query('sletbillede'))) {
-                trigger_error('Kan ikke slette billedet', E_USER_ERROR);
+                throw new Exception('Kan ikke slette billedet');
             }
             $facilitet->load();
         }

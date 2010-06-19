@@ -101,7 +101,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
         $brev_type_key = array_search($brev_type, $allowed_brev_type);
 
         if($brev_type_key === false) {
-           trigger_error("Ugyldig brev type", E_USER_ERROR);
+           throw new Exception("Ugyldig brev type");
         }
 
         include(dirname(__FILE__) . '/breve/'.$brev_type_key);
@@ -112,7 +112,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
             $mail->setBody($brev_tekst);
             $mail->addAddress($tilmelding->get('email'), $tilmelding->get('navn'));
             if(!$mail->send()) {
-                trigger_error("Email blev ikke sendt. Der opstod en fejl. Du kan forsøge igen eller kontakte ham den dovne webmaster", E_USER_ERROR);
+                throw new Exception("Email blev ikke sendt. Der opstod en fejl. Du kan forsøge igen eller kontakte ham den dovne webmaster");
             }
             $historik = new VIH_Model_Historik('kortekurser', $tilmelding->get("id"));
             $historik->save(array('type' => $brev_type, 'comment' => "Sendt via e-mail"));
