@@ -54,4 +54,12 @@ class VIH_Intranet_Factory
         $kernel->user = new VIH_Intraface_User;
         return $kernel;
     }
+
+    function new_Intraface_Contact_XMLRPC_Client($c)
+    {
+        XML_RPC2_Backend::setBackend('php');
+        $credentials = array('private_key' => $GLOBALS['elevforeningen_intraface_private_key'], 'session_id' => session_id());
+        $debug = false;
+        return $contact_client = new IntrafacePublic_Contact_XMLRPC_Client($credentials, $debug);
+    }
 }
