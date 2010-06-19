@@ -17,6 +17,15 @@ class VIH_Intranet_Controller_Nyheder_Show extends k_Component
         return $this->map[$name];
     }
 
+    function dispatch()
+    {
+        $nyhed = new VIH_News($this->name());
+        if ($nyhed->get('id') == 0) {
+            throw new k_PageNotFound();
+        }
+        return parent::dispatch();
+    }
+
     function getForm()
     {
         if ($this->form) {
