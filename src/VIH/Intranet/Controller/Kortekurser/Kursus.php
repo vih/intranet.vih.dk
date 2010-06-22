@@ -9,38 +9,47 @@ class VIH_Intranet_Controller_Kortekurser_Kursus extends k_Component
     function __construct(DB_common $db, k_TemplateFactory $template)
     {
         $this->db = $db;
-         $this->template = $template;
+        $this->template = $template;
     }
 
-    function getForm()
+    function dispatch()
     {
-        if ($this->form) {
-            return $this->form;
+        if ($this->getCourse()->get('id') == 0) {
+            throw new k_PageNotFound();
         }
+        return parent::dispatch();
+    }
 
-        $form = new HTML_QuickForm;
-        $form->addElement('hidden', 'id', $this->name());
-        $form->addElement('file', 'userfile', 'Fil');
-        $form->addElement('submit', null, 'Upload');
-
-        return ($this->form = $form);
-
+    function map($name)
+    {
+        if ($name == 'edit') {
+            return 'VIH_Intranet_Controller_Kortekurser_Edit';
+        } elseif ($name == 'copy') {
+            return 'VIH_Intranet_Controller_Kortekurser_Copy';
+        } elseif ($name == 'tilmeldinger') {
+            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger';
+        } elseif ($name == 'deltagere') {
+            return 'VIH_Intranet_Controller_Kortekurser_Deltagere';
+        } elseif ($name == 'venteliste') {
+            return 'VIH_Intranet_Controller_Kortekurser_Venteliste_Index';
+        } elseif ($name == 'adresselabels') {
+            return 'VIH_Intranet_Controller_Kortekurser_Lister_Adresselabels';
+        } elseif ($name == 'deltagerliste') {
+            return 'VIH_Intranet_Controller_Kortekurser_Lister_Deltagerliste';
+        } elseif ($name == 'drikkevareliste') {
+            return 'VIH_Intranet_Controller_Kortekurser_Lister_Drikkevareliste';
+        } elseif ($name == 'ministeriumliste') {
+            return 'VIH_Intranet_Controller_Kortekurser_Lister_Ministerium';
+        } elseif ($name == 'navneskilte') {
+            return 'VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte';
+        } elseif ($name == 'begyndere') {
+            return 'VIH_Intranet_Controller_Kortekurser_Lister_Begyndere';
+        }
     }
 
     function renderHtml()
     {
         $db = $this->db;
-
-        /*
-        if (!empty($_GET['copy'])) {
-            $kursus = new VIH_Model_KortKursus($_GET['copy']);
-            $new_kursus = new KortKursus();
-            if ($id = $new_kursus->copy($kursus)) {
-                header('Location: edit_kursus.php?id='.$id);
-                exit;
-            }
-        }
-        */
 
         if (is_numeric($this->query('sletbillede'))) {
                 $fields = array('date_updated', 'pic_id');
@@ -85,7 +94,7 @@ class VIH_Intranet_Controller_Kortekurser_Kursus extends k_Component
         $this->document->setTitle($kursus->get('navn'));
         $this->document->addOption('Tilbage til kurser', $this->url('../', array('filter' => $kursus->get('gruppe_id'))));
         $this->document->addOption('Ret', $this->url('edit'));
-        $this->document->addOption('Kopier', $this->url('copy'));
+        $this->document->addOption('Kopier', $this->url(null, array('copy')));
 
         return nl2br($kursus->get('beskrivelse')) . $extra_text . $extra_html;
 
@@ -108,32 +117,36 @@ class VIH_Intranet_Controller_Kortekurser_Kursus extends k_Component
                 return new k_SeeOther($this->url());
             }
         }
+        return $this->render();
     }
 
-    function map($name)
+    function renderHtmlCopy()
     {
-        if ($name == 'edit') {
-            return 'VIH_Intranet_Controller_Kortekurser_Edit';
-        } elseif ($name == 'copy') {
-            return 'VIH_Intranet_Controller_Kortekurser_Copy';
-        } elseif ($name == 'tilmeldinger') {
-            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger';
-        } elseif ($name == 'deltagere') {
-            return 'VIH_Intranet_Controller_Kortekurser_Deltagere';
-        } elseif ($name == 'venteliste') {
-            return 'VIH_Intranet_Controller_Kortekurser_Venteliste_Index';
-        } elseif ($name == 'adresselabels') {
-            return 'VIH_Intranet_Controller_Kortekurser_Lister_Adresselabels';
-        } elseif ($name == 'deltagerliste') {
-            return 'VIH_Intranet_Controller_Kortekurser_Lister_Deltagerliste';
-        } elseif ($name == 'drikkevareliste') {
-            return 'VIH_Intranet_Controller_Kortekurser_Lister_Drikkevareliste';
-        } elseif ($name == 'ministeriumliste') {
-            return 'VIH_Intranet_Controller_Kortekurser_Lister_Ministerium';
-        } elseif ($name == 'navneskilte') {
-            return 'VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte';
-        } elseif ($name == 'begyndere') {
-            return 'VIH_Intranet_Controller_Kortekurser_Lister_Begyndere';
+        $kursus = new VIH_Model_KortKursus($this->name());
+        $new_kursus = new VIH_Model_KortKursus();
+        if ($id = $new_kursus->copy($kursus)) {
+            return new k_SeeOther($this->context->url('../' . $id));
         }
+        throw new Exception('Could not copy course');
+    }
+
+
+    function getForm()
+    {
+        if ($this->form) {
+            return $this->form;
+        }
+
+        $form = new HTML_QuickForm;
+        $form->addElement('hidden', 'id', $this->name());
+        $form->addElement('file', 'userfile', 'Fil');
+        $form->addElement('submit', null, 'Upload');
+
+        return ($this->form = $form);
+    }
+
+    function getCourse()
+    {
+        return new VIH_Model_KortKursus($this->name());
     }
 }
