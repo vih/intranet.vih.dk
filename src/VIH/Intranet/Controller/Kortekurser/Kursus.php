@@ -107,8 +107,8 @@ class VIH_Intranet_Controller_Kortekurser_Kursus extends k_Component
             if($file->upload('userfile')) {
                 $fields = array('date_updated', 'pic_id');
                 $values = array('NOW()', $file->get('id'));
-                $sth = $db->autoPrepare('kortkursus', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $form->exportValue('id'));
-                $res = $db->execute($sth, $values);
+                $sth = $this->db->autoPrepare('kortkursus', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $form->exportValue('id'));
+                $res = $this->db->execute($sth, $values);
 
                 if (PEAR::isError($res)) {
                     echo $res->getMessage();
