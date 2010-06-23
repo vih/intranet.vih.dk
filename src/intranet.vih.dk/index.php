@@ -9,9 +9,6 @@ require_once 'bucket.inc.php';
 require_once('Doctrine/lib/Doctrine.php');
 spl_autoload_register(array('Doctrine', 'autoload'));
 
-require_once 'VIH/errorhandler.php';
-set_error_handler('vih_error_handler');
-
 class k_SessionIdentityLoader implements k_IdentityLoader
 {
     function load(k_Context $context)

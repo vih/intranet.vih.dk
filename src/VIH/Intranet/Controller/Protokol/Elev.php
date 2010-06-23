@@ -14,15 +14,15 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Component
     {
         $type_key = $this->context->getTypeKeys();
 
-        if (!empty($_GET['delete']) AND is_numeric($_GET['delete'])) {
-            $res =& $this->db->query('DELETE FROM langtkursus_tilmelding_protokol_item WHERE id = ' . $_GET['delete']);
+        if (is_numeric($this->query('delete'))) {
+            $res = $this->db->query('DELETE FROM langtkursus_tilmelding_protokol_item WHERE id = ' . $this->query('delete'));
         }
 
-        if (!empty($_GET['sletbillede']) AND is_numeric($_GET['sletbillede'])) {
+        if (is_numeric($this->query('sletbillede'))) {
             $fields = array('date_updated', 'pic_id');
             $values = array('NOW()', 0);
 
-            $sth = $this->db->autoPrepare('langtkursus_tilmelding', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $_GET['id']);
+            $sth = $this->db->autoPrepare('langtkursus_tilmelding', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $this->query('id'));
             $res = $this->db->execute($sth, $values);
 
             if (PEAR::isError($res)) {

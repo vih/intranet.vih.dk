@@ -1,197 +1,77 @@
 <?php
-//if you use ISO-8601 dates, switch to PearDate engine
-define('CALENDAR_ENGINE', 'PearDate');
-
-require_once 'Calendar/Calendar.php';
-require_once 'Calendar/Month/Weekdays.php';
-require_once 'Calendar/Day.php';
-require_once 'Calendar/Decorator.php';
-
-
-// accepts multiple entries
-class DiaryEvent extends Calendar_Decorator
-{
-    private $entries = array();
-
-    function __construct($calendar) {
-        Calendar_Decorator::Calendar_Decorator($calendar);
-    }
-
-    function addEntry($entry) {
-        $this->entries[] = $entry;
-    }
-
-    function getEntry() {
-        $entry = each($this->entries);
-        if ($entry) {
-            return $entry['value'];
-        } else {
-            reset($this->entries);
-            return false;
-        }
-    }
-}
-
-class MonthPayload_Decorator extends Calendar_Decorator
-{
-    //Calendar engine
-    public $cE;
-    public $tableHelper;
-
-    public $year;
-    public $month;
-    public $firstDay = false;
-
-    function build($events=array())
-    {
-        $this->tableHelper = new Calendar_Table_Helper($this, $this->firstDay);
-        $this->cE = & $this->getEngine();
-        $this->year  = $this->thisYear();
-        $this->month = $this->thisMonth();
-
-        $daysInMonth = $this->cE->getDaysInMonth($this->year, $this->month);
-        for ($i=1; $i<=$daysInMonth; $i++) {
-            $Day = new Calendar_Day(2000,1,1); // Create Day with dummy values
-            $Day->setTimeStamp($this->cE->dateToStamp($this->year, $this->month, $i));
-            $this->children[$i] = new DiaryEvent($Day);
-        }
-        if (count($events) > 0) {
-            $this->setSelection($events);
-        }
-        /*
-        Calendar_Month_Weekdays::buildEmptyDaysBefore();
-        Calendar_Month_Weekdays::shiftDays();
-        Calendar_Month_Weekdays::buildEmptyDaysAfter();
-        Calendar_Month_Weekdays::setWeekMarkers();
-        */
-        return true;
-    }
-
-    function setSelection($events)
-    {
-        $daysInMonth = $this->cE->getDaysInMonth($this->year, $this->month);
-        for ($i=1; $i<=$daysInMonth; $i++) {
-            $stamp1 = $this->cE->dateToStamp($this->year, $this->month, $i);
-            $stamp2 = $this->cE->dateToStamp($this->year, $this->month, $i+1);
-            foreach ($events as $event) {
-                if (($stamp1 >= $event['start'] && $stamp1 < $event['end']) ||
-                    ($stamp2 > $event['start'] && $stamp2 < $event['end']) ||
-                    ($stamp1 <= $event['start'] && $stamp2 > $event['end'])
-                ) {
-                    $this->children[$i]->addEntry($event);
-                    $this->children[$i]->setSelected();
-                }
-            }
-        }
-    }
-
-    function fetch()
-    {
-        $child = each($this->children);
-        if ($child) {
-            return $child['value'];
-        } else {
-            reset($this->children);
-            return false;
-        }
-    }
-}
-
-class Calendar_Render_MonthlyAgenda_HTML
-{
-    function __construct() {}
-
-    function toHTML($decorator)
-    {
-        $table = new HTML_Table(array('class' => 'calendar'));
-        $table->setCaption($decorator->thisMonth().' / '.$decorator->thisYear());
-
-        $week_test = 0;
-        while ($day = $decorator->fetch()) {
-
-            $data = array();
-            $datehelper = new Date($day->thisDay('timestamp'));
-
-            if ($week_test != $datehelper->getWeekOfYear()) {
-                $data[0] = $datehelper->getWeekOfYear();
-            } else {
-                $data[0] = '&nbsp;';
-            }
-            $week_test = $datehelper->getWeekOfYear();
-
-            $data[1] = $day->thisDay();
-            $data[2] = $datehelper->getDayName();
-
-            if ($day->isEmpty()) {
-                $data[3] = '&nbsp;';
-            } else {
-                $i = 0;
-                while ($entry = $day->getEntry()) {
-                    $i++;
-
-                    $start = new Date($entry['start']);
-                    $data[3][$i] = '';
-                    if ($start->format('%R') != '00:00') {
-                        $data[3][$i] = $start->format('%R') . ' ';
-                    }
-                    $data[3][$i] .= $entry['desc'];
-                    // you can print the time range as well
-                }
-
-            }
-            $table->addRow($data);
-        }
-
-        return $table->toHTML();
-    }
-}
-
 class VIH_Intranet_Controller_Calendar_Index extends k_Component
 {
-    private $form;
-
-    function getForm()
-    {
-        if ($this->form) return $this->form;
-
-        $form = new HTML_QuickForm('calendar', 'get', $this->url());
-        $form->addElement('date', 'date', '', array('format' => 'M Y'));
-        $defaults = array('date' => date('Y-m-d'));
-        $form->setDefaults($defaults);
-        $form->addElement('submit', null, 'Hent');
-
-        return ($this->form = $form);
-    }
+    protected $form;
+    protected $template;
 
     function renderHtml()
     {
-        $cal = new Calendar;
+        $this->document->setTitle('Kalender');
+        $this->document->addOption('Google kalenderen', 'http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com');
 
+        return $this->getForm()->toHtml();
+    }
+
+    function getUserData()
+    {
+        require_once '/home/lsolesen/workspace/structures-ical/src/Structures/Ical.php';
         $gateway = new Structures_IcalGateway;
         $ical = $gateway->getFromUri('http://www.google.com/calendar/ical/scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com/public/basic.ics');
 
-        $this->document->setTitle($ical->getCalendarName());
-        $this->document->addOption('Google kalenderen', 'http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com');
+        $return = '';
 
         foreach ($ical->getSortedEvents() as $event) {
-
             $start = new Date($event['DTSTART']);
             $end = new Date($event['DTEND']);
 
-            $events[] = array(
-                'start' => $start->format('%Y-%m-%d %T'),
-                'end'   => $end->format('%Y-%m-%d %T'),
-                'desc'  => $event['SUMMARY']
-            );
+            if ($start->format('%Y') < date('Y')) {
+                continue;
+            }
+
+            if ($start->format('%Y-%m-%d') != $end->format('%Y-%m-%d')) {
+                $return .= 'fra ' . $start->format('%d.%m.%Y') . ' til ' .  $end->format('%d.%m.%Y') . ': ' . ' ' . $event['SUMMARY'] . "\n";
+            } elseif ($start->format('%R') == '00:00') {
+                $return .= $start->format('%d.%m.%Y') . ': ' . $event['SUMMARY'] . "\n";
+            } elseif ($start->format('%R') == $end->format('%R')) {
+                $return .= $start->format('%d.%m.%Y') . ': ' . $start->format('%R') . ' ' . $event['SUMMARY'] . "\n";
+
+            } else {
+                $return .= $start->format('%d.%m.%Y') . ': ' . $start->format('%R') . '-' . $end->format('%R') . ' ' . $event['SUMMARY'] . "\n";
+            }
+
         }
-
-        $date = $this->getForm()->exportValue('date');
-        $month = new Calendar_Month_Weekdays($date['Y'], $date['M']);
-        $month_decorator = new MonthPayload_Decorator($month);
-        $month_decorator->build($events);
-
-        $render = new Calendar_Render_MonthlyAgenda_HTML();
-        return $this->getForm()->toHtml() . $render->toHTML($month_decorator);
+        return $return;
     }
 
+    function getForm()
+    {
+        if ($this->form) {
+            return $this->form;
+        }
+
+        $form = new HTML_QuickForm('calendar', 'post', 'http://kalendersiden.dk/generate.php');
+        $form->addElement('text', 'month', 'Første måned');
+        $form->addElement('text', 'months', 'Antal måneder');
+        $form->addElement('text', 'year', 'Årstal');
+        $form->addElement('hidden', 'pages');
+        $form->addElement('hidden', 'format');
+        $form->addElement('hidden', 'head');
+        $form->addElement('hidden', 'color');
+        $form->addElement('hidden', 'weeks');
+        $form->addElement('hidden', 'userdata');
+        $form->setDefaults(array(
+            'month' => date('m'),
+            'months' => 6,
+            'year' => date('Y'),
+            'pages' => 2,
+            'format' => 'portrait',
+            'head' => 'Vejle Idrætshøjskole',
+            'color' => '90 90 100:100 100 100:',
+            'weeks' => 't',
+            'userdata' => $this->getUserData()
+        ));
+        $form->addElement('submit', null, 'Hent kalender');
+
+        return ($this->form = $form);
+    }
 }
