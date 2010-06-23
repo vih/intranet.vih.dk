@@ -3,10 +3,12 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Component
 {
     private $form;
     protected $template;
+    protected $twitter;
 
-    function __construct(k_TemplateFactory $template)
+    function __construct(k_TemplateFactory $template, Services_Twitter $twitter)
     {
         $this->template = $template;
+        $this->twitter = $twitter;
     }
 
     function getForm()
@@ -112,9 +114,15 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Component
                 $appender->addKeywordsByString($input['keyword']);
             }
 
+            if ($nyhed->isPublished()) {
+                $this->twitter->statuses->update('"' . $input['overskrift'] . '" kan læses på http://vih.dk/nyheder/' . $id);
+                $this->twitter->account->end_session();
+            }
+
             if (is_numeric($this->context->name())) {
                 return new k_SeeOther($this->url('../'));
             }
+
             return new k_SeeOther($this->url('../' . $id));
 
         }

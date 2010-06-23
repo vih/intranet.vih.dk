@@ -62,4 +62,9 @@ class VIH_Intranet_Factory
         $debug = false;
         return $contact_client = new IntrafacePublic_Contact_XMLRPC_Client($credentials, $debug);
     }
+
+    function new_Services_Twitter()
+    {
+        return new Services_Twitter($GLOBALS['twitter_username'], $GLOBALS['twitter_password']);
+    }
 }
