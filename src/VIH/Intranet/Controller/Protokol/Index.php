@@ -18,6 +18,11 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Component
         $this->db = $db;
     }
 
+    function map($name)
+    {
+        return $this->map[$name];
+    }
+
     function getTypeKeys()
     {
         return $type_key = array(1 => 'fri', // fri
