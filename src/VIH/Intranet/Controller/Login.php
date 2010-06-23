@@ -42,6 +42,24 @@ class VIH_Intranet_Controller_Login extends k_Component
         return $this->render();
     }
 
+    function selectUserFromLdap($username, $password)
+    {
+        try {
+            $adldap = new adLDAP();
+            $adldap->set_account_suffix('@vejleidraetsefterskole.local');
+            $adldap->set_domain_controllers(array('mail.vih.dk'));
+         } catch (adLDAPException $e) {
+            echo $e;
+            exit();
+         }
+         $authUser = $adldap->authenticate($username, $password);
+         if ($authUser === true) {
+             return new k_AuthenticatedUser($username);
+         } else {
+             throw new Exception('User authentication unsuccessful. ' . $adldap->get_last_error());
+        }
+    }
+
     protected function selectUser($username, $password)
     {
         $users = $GLOBALS['users'];
