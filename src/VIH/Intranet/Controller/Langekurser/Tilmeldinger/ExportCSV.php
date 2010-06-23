@@ -3,12 +3,13 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
 {
     private $form;
     protected $template;
+    protected $db;
 
-    function __construct(k_TemplateFactory $template)
+    function __construct(k_TemplateFactory $template, DB_Sql $db)
     {
         $this->template = $template;
+        $this->db = $db;
     }
-
 
     function getForm()
     {
@@ -36,13 +37,12 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
         $this->document->addOption('Tilmeldinger', $this->url('../'));
 
         return $this->getForm()->toHTML();
-
     }
 
     function postForm()
     {
         $date = date('Y-m-d');
-        if (!empty($this->body('date'))) {
+        if ($this->body('date')) {
             $post = $this->body();
             $date = $post['date']['Y'] . '-' . $post['date']['M'] . '-' .$post['date']['d'];
         }
@@ -50,8 +50,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
         // Ensures that PEAR uses correct config file.
         PEAR_Config::singleton(PATH_ROOT.'.pearrc');
 
-        $db = $this->db;
-        $db->query("SELECT tilmelding.id, tilmelding.dato_slut
+        $this->db->query("SELECT tilmelding.id, tilmelding.dato_slut
             FROM langtkursus_tilmelding tilmelding
                 INNER JOIN langtkursus ON langtkursus.id = tilmelding.kursus_id
                 INNER JOIN adresse ON tilmelding.adresse_id = adresse.id
@@ -64,8 +63,8 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
 
         $list = array();
         $i = 0;
-        while($db->nextRecord()) {
-            $t = new VIH_Model_LangtKursus_Tilmelding($db->f('id'));
+        while($this->db->nextRecord()) {
+            $t = new VIH_Model_LangtKursus_Tilmelding($this->db->f('id'));
 
             /**
              * strange way to do it, but only way to get the header match data!
@@ -135,10 +134,5 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
         header('Content-Type: ' . $csv_builder->mime);
         echo $csv_builder->result;
         exit;
-    }
-
-    function map($name)
-    {
-        return 'VIH_Intranet_Controller_Protokol_Elev';
     }
 }
