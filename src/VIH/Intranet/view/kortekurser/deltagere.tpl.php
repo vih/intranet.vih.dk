@@ -34,7 +34,7 @@
     <?php foreach($deltagere AS $deltager): ?>
         <tr>
             <?php if (!empty($vis_tilmelding) AND $vis_tilmelding == 'ja'): ?>
-            <td><a href="<?php echo url('/kortekurser/tilmeldinger/' . $deltager->tilmelding->get('id')); ?>"><?php echo $deltager->tilmelding->get('id'); ?></a></td>
+            <td><a href="<?php echo url('../../tilmeldinger/' . $deltager->tilmelding->get('id')); ?>"><?php echo $deltager->tilmelding->get('id'); ?></a></td>
             <?php endif; ?>
             <td><?php echo $deltager->get('navn'); ?></td>
             <td><?php echo $deltager->get("cpr"); ?></td>

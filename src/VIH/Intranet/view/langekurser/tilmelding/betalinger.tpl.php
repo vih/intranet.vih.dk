@@ -1,18 +1,18 @@
 <?php
 if($tilmelding->antalRater() > 0) {
 
-	$rater_samlet = $tilmelding->kursus->get("depositum"); // vi lægger depositummet på samtælling fra starten.
-	
+	$rater_samlet = $tilmelding->kursus->get("depositum"); // vi lï¿½gger depositummet pï¿½ samtï¿½lling fra starten.
+
 	?>
 	<br />
 	<table id="historik">
 		<caption>Betalingsrater</caption>
-		
+
 		<tr>
 			<th>Nr.</th>
 			<th>Betalingsdato</th>
 			<th>Status</th>
-			<th>Beløb</th>
+			<th>BelÃ¸b</th>
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
@@ -20,16 +20,16 @@ if($tilmelding->antalRater() > 0) {
 			<td>
 				<?php
 				if($betalt >= $rater_samlet) {
-					print("Betalt");
+					e("Betalt");
 				}
 				elseif($tilmelding->get("date_created") < date("Y-m-d", time() - (60 * 60 * 24 * 14))) { // 14 dage
 					print("<p class='red'>Forfalden</p>");
 				}
 				?>
-			</td>	
-			<td align="right"><?php echo $tilmelding->kursus->get("depositum"); ?></td>
+			</td>
+			<td align="right"><?php e($tilmelding->kursus->get("depositum")); ?></td>
 		</tr>
-		
+
 		<?php
 		$rater = $tilmelding->getRater();
 		$rater_samlet = $tilmelding->kursus->get('depositum');
@@ -37,28 +37,27 @@ if($tilmelding->antalRater() > 0) {
 			$rater_samlet += $rater[$i]["beloeb"];
 			?>
 			<tr>
-				<td><?php print($i +1); ?></td>
-				<td><?php print($rater[$i]["dk_betalingsdato"]); ?></td>
+				<td><?php e($i +1); ?></td>
+				<td><?php e($rater[$i]["dk_betalingsdato"]); ?></td>
 				<td>
 					<?php
 					if($betalt >= $rater_samlet) {
-						print("Betalt");
-					}
-					elseif($rater[$i]["betalingsdato"] < date("Y-m-d")) {
+						e("Betalt");
+					} elseif($rater[$i]["betalingsdato"] < date("Y-m-d")) {
 						print("<span class='red'>Forfalden</span>");
 					}
 					?>
 				</td>
-				<td align="right"><?php print($rater[$i]["beloeb"]); ?></td>
+				<td align="right"><?php e($rater[$i]["beloeb"]); ?></td>
 			</tr>
 			<?php
 		}
 		?>
-		
+
 		<tr>
 			<td>&nbsp;</td>
 			<td colspan="2"><strong>I alt rater</strong></td>
-			<td align="right"><?php print($rater_samlet); ?></td>
+			<td align="right"><?php e($rater_samlet); ?></td>
 		</tr>
 		<?php
 		$rate_difference = $tilmelding->rateDifference();
@@ -66,14 +65,14 @@ if($tilmelding->antalRater() > 0) {
 			?>
 			<tr>
 				<td>&nbsp;</td>
-				<td colspan="2"><strong class="red">Differende i forhold til Total</strong></td>
-				<td align="right"><?php print($rate_difference); ?></td>
+				<td colspan="2"><strong class="red">Difference ift. total</strong></td>
+				<td align="right"><?php e($rate_difference); ?></td>
 			</tr>
 			<?php
 		}
 		?>
-		
+
 	</table>
 	<?php
 }
-?>	
+?>

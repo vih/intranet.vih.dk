@@ -1,7 +1,7 @@
 <?php
 class VIH_Intranet_Controller_Protokol_Elev extends k_Component
 {
-    private $db;
+    protected $db;
     protected $template;
 
     function __construct(DB_common $db, k_TemplateFactory $template)
@@ -10,13 +10,16 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Component
         $this->template = $template;
     }
 
+    function map($name)
+    {
+        if ($name == 'indtast') {
+            return 'VIH_Intranet_Controller_Protokol_Item';
+        }
+    }
+
     function renderHtml()
     {
         $type_key = $this->context->getTypeKeys();
-
-        if (is_numeric($this->query('delete'))) {
-            $res = $this->db->query('DELETE FROM langtkursus_tilmelding_protokol_item WHERE id = ' . $this->query('delete'));
-        }
 
         if (is_numeric($this->query('sletbillede'))) {
             $fields = array('date_updated', 'pic_id');
@@ -93,12 +96,5 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Component
 
         return '<div style="border: 1px solid #ccc; padding: 0.5em; float: right;">' .   $extra_html . '</div>
             ' . $tpl->render($this, $data);
-    }
-
-    function map($name)
-    {
-        if ($name == 'indtast') {
-            return 'VIH_Intranet_Controller_Protokol_Indtast';
-        }
     }
 }

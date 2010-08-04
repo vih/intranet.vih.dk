@@ -33,6 +33,7 @@ class VIH_Intranet_Controller_Root extends k_Component
     function wrapHtml($content)
     {
         $this->document->navigation = array(
+        $this->url('/restricted/') => 'Forside',
         $this->url('/restricted/nyheder') => 'Nyheder',
         $this->url('/restricted/langekurser/tilmeldinger')  => 'Lange kurser',
         $this->url('/restricted/kortekurser/tilmeldinger')  => 'Korte kurser',

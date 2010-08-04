@@ -1,9 +1,8 @@
 <?php
 class VIH_Intranet_Controller_Kortekurser_Kursus extends k_Component
 {
-    private $form;
-
-    private $db;
+    protected $form;
+    protected $db;
     protected $template;
 
     function __construct(DB_common $db, k_TemplateFactory $template)

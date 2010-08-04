@@ -82,14 +82,6 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
         					'historik' => $historik_tpl->render($this, $historik),
         					'betalinger'=> $betaling_tpl->render($this, $betaling_data));
 
-        if($this->query('download_file') != "") {
-            $tilmelding['message'] = '
-                <div id="download_file">
-                    <strong>Download:</strong> <a href="' . $this->url('sendbrev', array('create' => 'pdf', 'type' => $this->query('type'))) . '">Hent fil</a>
-                </div>
-            ';
-        }
-
         $tpl = $this->templates->create('kortekurser/tilmelding');
 
         return $tpl->render($this, $tilmelding);

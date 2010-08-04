@@ -1,16 +1,9 @@
 <?php
-/**
- * Controller for the intranet
- */
 class VIH_Intranet_Controller_Protokol_Index extends k_Component
 {
-    public $map = array('holdliste' => 'VIH_Intranet_Controller_Protokol_Holdliste',
-                        'elev'      => 'VIH_Intranet_Controller_Protokol_Elev',
-                        'indtast'   => 'VIH_Intranet_Controller_Protokol_Indtast');
     protected $form;
     protected $template;
     protected $db;
-
 
     function __construct(k_TemplateFactory $template, DB_common $db)
     {
@@ -20,7 +13,7 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Component
 
     function map($name)
     {
-        return $this->map[$name];
+        return 'VIH_Intranet_Controller_Protokol_Holdliste';
     }
 
     function getTypeKeys()
@@ -35,26 +28,6 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Component
                           8 => 'and');
 
     }
-
-    function postForm()
-    {
-
-    }
-
-    function getForm()
-    {
-        if ($this->form) {
-            return $this->form;
-        }
-
-        $form = new HTML_QuickForm('protokol', 'GET', $this->url());
-        $form->addElement('date', 'date', 'Dato');
-        $form->addElement('submit', null, 'Hent');
-        $form->setDefaults(array('date' => date('Y-m-d')));
-
-        return ($this->form = $form);
-    }
-
 
     function renderHtml()
     {
@@ -143,14 +116,33 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Component
 
         $this->document->setTitle('Protokol');
         $this->document->addOption('Holdliste', $this->url('holdliste'));
+        $this->document->addOption('Hurtig indtastning', $this->url('holdliste/batch'));
 
         $tpl = $this->template->create('protokol/liste');
 
         return '<h2>Fraværende</h2>
             '.$this->getForm()->toHTML().'
-            ' .$tpl->render('VIH/Intranet/view/protokol/liste-tpl.php', $list) .
+            ' .$tpl->render($this, $list) .
             '<h2>Fritagelser indtil dato</h2>'
-            . $tpl->render('VIH/Intranet/view/protokol/liste-tpl.php', $list1);
+            . $tpl->render($this, $list1);
+    }
 
+    function postForm()
+    {
+
+    }
+
+    function getForm()
+    {
+        if ($this->form) {
+            return $this->form;
+        }
+
+        $form = new HTML_QuickForm('protokol', 'GET', $this->url());
+        $form->addElement('date', 'date', 'Dato');
+        $form->addElement('submit', null, 'Hent');
+        $form->setDefaults(array('date' => date('Y-m-d')));
+
+        return ($this->form = $form);
     }
 }

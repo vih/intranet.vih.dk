@@ -1,5 +1,5 @@
 <?php
-require_once 'fpdf/fpdf.php';
+require_once 'fpdf.php';
 
 class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Component
 {
@@ -12,7 +12,6 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
 
     function renderHtml()
     {
-        $GLOBALS['_global_function_callback_url'] = Array($this, 'url');
         $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name());
 
         $allowed_brev_type = array('' => '_fejl_',
@@ -30,8 +29,6 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
         }
 
         include(dirname(__FILE__) . '/breve/'.$brev_type_key);
-        // returnerer $brev_tekst;
-
 
         $this->document->setTitle('Send '.$brev_type);
 
@@ -44,7 +41,6 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
 
     function renderPdf()
     {
-        $GLOBALS['_global_function_callback_url'] = Array($this, 'url');
         $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->context->name());
 
         $allowed_brev_type = array('' => '_fejl_',
@@ -108,11 +104,11 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev extends k_Compon
 
         if($this->body('send_email')) {
             $mail = new VIH_Email;
-            $mail->setSubject(ucfirst($brev_type)." fra Vejle Idrætshøjskole");
+            $mail->setSubject(ucfirst($brev_type)." fra Vejle Idrï¿½tshï¿½jskole");
             $mail->setBody($brev_tekst);
             $mail->addAddress($tilmelding->get('email'), $tilmelding->get('navn'));
             if(!$mail->send()) {
-                throw new Exception("Email blev ikke sendt. Der opstod en fejl. Du kan forsøge igen eller kontakte ham den dovne webmaster");
+                throw new Exception("Email blev ikke sendt. Der opstod en fejl. Du kan forsï¿½ge igen eller kontakte ham den dovne webmaster");
             }
             $historik = new VIH_Model_Historik('kortekurser', $tilmelding->get("id"));
             $historik->save(array('type' => $brev_type, 'comment' => "Sendt via e-mail"));

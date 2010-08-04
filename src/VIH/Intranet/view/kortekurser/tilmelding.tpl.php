@@ -7,7 +7,7 @@
         <p><strong>Periode</strong>: <?php e($tilmelding->kursus->get('dato_start_dk')); ?> til <?php e($tilmelding->kursus->get('dato_end_dk')); ?></p>
     </div>
 
-    <?php echo $message; ?>
+    <?php e($context->query('flare')); ?>
 
     <div id="kontaktperson">
         <?php echo $tilmelding->get("navn"); ?><br />
@@ -22,7 +22,7 @@
 
     <div id="besked">
         <?php if ($tilmelding->get("hvilkettidligerekursus") != ''): ?>
-            <p><strong>Tidligere deltaget p� kursus:</strong> <?php print(ucfirst($tilmelding->get("hvilkettidligerekursus"))); ?></p>
+            <p><strong>Tidligere deltaget på kursus:</strong> <?php print(ucfirst($tilmelding->get("hvilkettidligerekursus"))); ?></p>
         <?php endif; ?>
 
         <?php if ($tilmelding->get("besked") != ''): ?>
@@ -35,7 +35,7 @@
 
     <?php echo $deltagere; ?>
 
-    <p><a href="<?php echo url('/kortekurser/' . $tilmelding->kursus->get("id") . '/deltagere'); ?>">Se alle deltagere p� kurset</a></p>
+    <p><a href="<?php echo url('../../' . $tilmelding->kursus->get("id") . '/deltagere'); ?>">Se alle deltagere på kurset</a></p>
 
     <?php echo $historik; ?>
 

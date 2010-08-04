@@ -24,9 +24,13 @@ class VIH_Intranet_Controller_Index extends k_Component
                         'keyword'             => 'Intraface_Keyword_Controller_Index',
                         'elevforeningen'      => 'VIH_Intranet_Controller_Elevforeningen_Index');
 
-    function __construct(k_TemplateFactory $templates)
+    protected $templates;
+    protected $twitter;
+
+    function __construct(k_TemplateFactory $templates, Services_Twitter $twitter)
     {
         $this->templates = $templates;
+        $this->twitter = $twitter;
     }
 
     function map($name)
@@ -49,9 +53,23 @@ class VIH_Intranet_Controller_Index extends k_Component
         $this->document->setTitle('Forside: Velkommen');
         $this->document->addOption('Protokol', $this->url('protokol'));
         $this->document->addOption('Tjek din e-mail', 'https://mail.vih.dk/exchange/');
-        $this->document->addOption('Højskolens kalender', 'http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com');
+        $this->document->addOption('HÃ¸jskolens kalender', 'http://www.google.com/calendar/embed?src=scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com');
 
         $special_day_tpl = $this->templates->create('special_day');
-        return $special_day_tpl->render($this, $special_data);
+        $content = $special_day_tpl->render($this, $special_data);
+
+        $tpl = $this->templates->create('index');
+        return $tpl->render($this) . $content;
+    }
+
+    function postForm()
+    {
+        try {
+            $this->twitter->statuses->update($this->body('twitter'));
+            return new k_SeeOther($this->url());
+        } catch (Exception $e) {
+            throw $e;
+        }
+        return $this->render();
     }
 }

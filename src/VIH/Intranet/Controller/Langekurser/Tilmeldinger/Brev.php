@@ -1,8 +1,8 @@
 <?php
 require_once 'fpdf.php';
 
-class B_FPDF extends FPDF {
-
+class B_FPDF extends FPDF
+{
     function __construct($a, $b, $c)
     {
         FPDF::fpdf($a, $b, $c);
@@ -47,27 +47,17 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
         $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
         $betalinger = new VIH_Model_Betaling('langekurser', $tilmelding->get("id"));
 
-        if($this->query('send_pdf')) {
-            $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
-            $historik->save(array('type' => 'betalingsopg�relse', 'comment' => "Sendt via post"));
-            return new k_SeeOther($this->context->url(null, array('download_file' => urlencode($this->url(null . '.pdf')))));
-        }
-
         $opl_data = array('caption' => 'Tilmeldingsoplysninger',
                           'tilmelding' =>    $tilmelding);
-
         $pris_data = array('tilmelding' => $tilmelding);
-
         $rater_data = array('tilmelding' => $tilmelding);
-
         $betal_data = array('betalinger' => $betalinger->getList(),
                             'caption' => 'Betalinger',
                             'msg_ingen' => '<h2>Betalinger</h2><p>Der er endnu ikke foretaget nogen betalinger.</p>',
-                            'tilmelding' => $tilmelding);
-
+                            'tilmelding' => $tilmelding,
+                            'betalt' => 0);
 
         $this->document->setTitle('Betalingsoversigt');
-        $this->document->addOption('Pdf', $this->url(null . '.pdf'));
 
         if ($tilmelding->antalRater() > 0 AND $tilmelding->rateDifference() > 0) {
             return '
@@ -80,11 +70,13 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
             $rater_tpl = $this->templates->create('langekurser/tilmelding/rater');
             $pris_tpl = $this->templates->create('langekurser/tilmelding/prisoversigt');
             $betal_tpl = $this->templates->create('langekurser/tilmelding/betalinger');
+            $brev_tpl = $this->templates->create('langekurser/tilmelding/brev');
 
             return $opl_tpl->render($this, $opl_data)
                 . $pris_tpl->render($this, $pris_data)
                 . $rater_tpl->render($this, $rater_data)
-                . $betal_tpl->render($this, $betal_data);
+                . $betal_tpl->render($this, $betal_data)
+                . $brev_tpl->render($this);
         } else {
             return '
                 <h1>Betalingsopgørelsen mangler oplysninger om rater</h1>
@@ -95,11 +87,22 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
 
     }
 
+    function postForm()
+    {
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
+        $tilmelding->loadBetaling();
+
+        $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
+        $historik->save(array('type' => 'betalingsopgørelse', 'comment' => "Sendt via post"));
+
+        return new k_SeeOther($this->url(null) . '.pdf');
+    }
+
     function renderPdf()
     {
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
         $tilmelding->loadBetaling();
-        $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
+
         $betalinger = new VIH_Model_Betaling('langekurser', $tilmelding->get("id"));
 
             $font = 'Arial';
@@ -190,13 +193,13 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
             }
             if ($tilmelding->get('pris_rejserest') > 0) {
                 $pdf->setY($pdf->getY() + $line_height);
-                $pdf->Text($pdf->getX(), $pdf->getY(), 'Restbel�b til rejse');
+                $pdf->Text($pdf->getX(), $pdf->getY(), 'Restbeløb til rejse');
                 $pdf->Text($pris_width - $pdf->getStringWidth($tilmelding->get('pris_rejserest')), $pdf->getY(), $tilmelding->get('pris_rejserest'));
                 $pdf->Line($pdf->getX(), $pdf->getY() + 2, $pris_width, $pdf->getY() + 2);
             }
             if ($tilmelding->get('pris_noegledepositum') > 0) {
                 $pdf->setY($pdf->getY() + $line_height);
-                $pdf->Text($pdf->getX(), $pdf->getY(), 'N�gledepositum');
+                $pdf->Text($pdf->getX(), $pdf->getY(), 'Nøgledepositum');
                 $pdf->Text($pris_width - $pdf->getStringWidth($tilmelding->get('pris_noegledepositum')), $pdf->getY(), $tilmelding->get('pris_noegledepositum'));
                 $pdf->Line($pdf->getX(), $pdf->getY() + 2, $pris_width, $pdf->getY() + 2);
             }
@@ -210,35 +213,35 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
 
             if ($tilmelding->get('aktiveret_tillaeg') > 0) {
                 $pdf->setY($pdf->getY() + $line_height);
-                $pdf->Text($pdf->getX(), $pdf->getY(), 'Statsst�tte aktiveret');
+                $pdf->Text($pdf->getX(), $pdf->getY(), 'Statsstøtte aktiveret');
                 $pdf->Text($pris_width - $pdf->getStringWidth(round($tilmelding->get('aktiveret_tillaeg'))), $pdf->getY(), round($tilmelding->get('aktiveret_tillaeg')));
                 $pdf->Line($pdf->getX(), $pdf->getY() + 2, $pris_width, $pdf->getY() + 2);
             }
 
             if ($tilmelding->get('statsstotte') > 0) {
                 $pdf->setY($pdf->getY() + $line_height);
-                $pdf->Text($pdf->getX(), $pdf->getY(), '- Indvandrerst�tte');
+                $pdf->Text($pdf->getX(), $pdf->getY(), '- Indvandrerstøtte');
                 $pdf->Text($pris_width - $pdf->getStringWidth('- ' . $tilmelding->get('statsstotte') * $tilmelding->get('ugeantal')), $pdf->getY(), '- ' . $tilmelding->get('statsstotte') * $tilmelding->get('ugeantal'));
                 $pdf->Line($pdf->getX(), $pdf->getY() + 2, $pris_width, $pdf->getY() + 2);
             }
 
             if ($tilmelding->get('kompetencestotte') > 0) {
                 $pdf->setY($pdf->getY() + $line_height);
-                $pdf->Text($pdf->getX(), $pdf->getY(), '- Kompetencest�tte');
+                $pdf->Text($pdf->getX(), $pdf->getY(), '- Kompetencestøtte');
                 $pdf->Text($pris_width - $pdf->getStringWidth($tilmelding->get('kompetencestotte') * $tilmelding->get('ugeantal')), $pdf->getY(), $tilmelding->get('kompetencestotte') * $tilmelding->get('ugeantal'));
                 $pdf->Line($pdf->getX(), $pdf->getY() + 2, $pris_width, $pdf->getY() + 2);
             }
 
             if ($tilmelding->get('elevstotte') > 0) {
                 $pdf->setY($pdf->getY() + $line_height);
-                $pdf->Text($pdf->getX(), $pdf->getY(), '- Elevst�tte');
+                $pdf->Text($pdf->getX(), $pdf->getY(), '- Elevstøtte');
                 $pdf->Text($pris_width - $pdf->getStringWidth($tilmelding->get('elevstotte') * $tilmelding->get('ugeantal')), $pdf->getY(), $tilmelding->get('ugeantal_elevstotte') * $tilmelding->get('elevstotte'));
                 $pdf->Line($pdf->getX(), $pdf->getY() + 2, $pris_width, $pdf->getY() + 2);
             }
 
             if ($tilmelding->get('kommunestotte') > 0) {
                 $pdf->setY($pdf->getY() + $line_height);
-                $pdf->Text($pdf->getX(), $pdf->getY(), '- Kommunest�tte');
+                $pdf->Text($pdf->getX(), $pdf->getY(), '- Kommunestøtte');
                 $pdf->Text($pris_width - $pdf->getStringWidth($tilmelding->get('kommunestotte')), $pdf->getY(), $tilmelding->get('kommunestotte'));
                 $pdf->Line($pdf->getX(), $pdf->getY() + 2, $pris_width, $pdf->getY() + 2);
             }
@@ -315,22 +318,22 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
             $pdf->Text($pdf->getX(), $pdf->getY(), 'Betalingsoplysninger');
             $pdf->SetFont($font,'', $size_tabel);
             $pdf->setY($pdf->getY() + $line_height);
-            $pdf->Text($pdf->getX(), $pdf->getY(), "Du kan indbetale raterne ved kontooverf�rsel til vores konto i Jyske Bank: 7244-1469664");
+            $pdf->Text($pdf->getX(), $pdf->getY(), "Du kan indbetale raterne ved kontooverførsel til vores konto i Jyske Bank: 7244-1469664");
             $pdf->setY($pdf->getY() + $line_height);
-            $pdf->Text($pdf->getX(), $pdf->getY(), "eller vha. Dankort p� " . LANGEKURSER_LOGIN_URI . $tilmelding->get('code'));
+            $pdf->Text($pdf->getX(), $pdf->getY(), "eller vha. Dankort på " . LANGEKURSER_LOGIN_URI . $tilmelding->get('code'));
             $pdf->setY($pdf->getY() + $line_height);
-            $pdf->Text($pdf->getX(), $pdf->getY(), "(husk forskel p� sm� og store bogstaver)");
+            $pdf->Text($pdf->getX(), $pdf->getY(), "(husk forskel på små og store bogstaver)");
             $pdf->setY($pdf->getY() + $line_height);
             $pdf->SetFont($font,'B', $size);
             $pdf->setY($pdf->getY() + $line_height);
-            $pdf->Text($pdf->getX(), $pdf->getY(), 'Bem�rkninger');
+            $pdf->Text($pdf->getX(), $pdf->getY(), 'Bemærkninger');
             $pdf->SetFont($font,'', $size_tabel);
             $pdf->setY($pdf->getY() + $line_height);
-            $pdf->Text($pdf->getX(), $pdf->getY(), "Bem�rk at individuel supplerende elevst�tte og kommunest�tte er skattepligtig B-indkomst.");
+            $pdf->Text($pdf->getX(), $pdf->getY(), "Bemærk at individuel supplerende elevstøtte og kommunestøtte er skattepligtig B-indkomst.");
             $pdf->setY($pdf->getY() + $line_height);
-            $pdf->Text($pdf->getX(), $pdf->getY(), "I henhold til lovgivningen tr�kkes tilsagn om kommunest�tte, indvandrerst�tte og kompetencest�tte");
+            $pdf->Text($pdf->getX(), $pdf->getY(), "I henhold til lovgivningen trækkes tilsagn om kommunestøtte, indvandrerstøtte og kompetencestøtte");
             $pdf->setY($pdf->getY() + $line_height);
-            $pdf->Text($pdf->getX(), $pdf->getY(), "tilbage, hvis eleven ikke gennemf�rer mindst 12 uger af et kursusforl�b. Dette bel�b skal alts�");
+            $pdf->Text($pdf->getX(), $pdf->getY(), "tilbage, hvis eleven ikke gennemfører mindst 12 uger af et kursusforløb. Dette beløb skal altså");
             $pdf->setY($pdf->getY() + $line_height);
             $pdf->Text($pdf->getX(), $pdf->getY(), "efterbetales ved afbrydelse af kursus i utide.");
             return $pdf->Output();

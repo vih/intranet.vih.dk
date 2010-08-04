@@ -62,7 +62,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
         $this->document->addOption('Tilmeldinger', $this->url('../../'.$tilmelding->kursus->get('id') . '/tilmeldinger'));
         $this->document->addOption('Ret', $this->url('edit'));
         $this->document->addOption('Delete', $this->url(null, array('delete')));
-        $this->document->addOption('Protokol', $this->url('../../protokol/holdliste/' . $tilmelding->get('id')));
+        $this->document->addOption('Protokol', $this->url('../../../protokol/holdliste/' . $tilmelding->get('id')));
         $this->document->addOption('Brev', $this->url('brev'));
         $this->document->addOption('Fag', $this->url('fag'));
         $this->document->addOption('Diplom', $this->url('diplom'));
@@ -98,19 +98,11 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
             if ($tilmelding->kursus->antalRater() > 0) {
                 $data['rater'] = '<p><a href="'.$this->url(null, array('get_prices' => $tilmelding->get('id'))).'">Hent priserne fra kurset</a>. Der er endnu ikke oprettet nogen rater <a href="'.$this->url(null, array('action' => 'opretrater')) . '">Opret &rarr;</a></p>';
             } else {
-                $data['rater'] = '<p>Der er endnu ikke oprettet rater p� selve kurset. Dem skal du lige oprette f�rst <a href="'.$this->url('../../'.$tilmelding->getKursus()->get('id').'/rater').'">Opret &rarr;</a></p>';
+                $data['rater'] = '<p>Der er endnu ikke oprettet rater på selve kurset. Dem skal du lige oprette først <a href="'.$this->url('../../'.$tilmelding->getKursus()->get('id').'/rater').'">Opret &rarr;</a></p>';
             }
         }
 
         $data['message'] = '';
-
-        if($this->query('download_file') != "") {
-            $data['message'] = '
-                <div id="download_file">
-                    <strong>Download:</strong> <a href="' . urldecode($this->query('download_file')) . '">Hent fil</a> (<a href="' . urldecode($this->query('download_file')) . '">I dette vindue</a>)
-                </div>
-            ';
-        }
 
         $tpl = $this->templates->create('langekurser/tilmelding');
         return $tpl->render($this, $data);

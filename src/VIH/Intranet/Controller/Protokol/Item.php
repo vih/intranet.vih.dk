@@ -1,7 +1,7 @@
 <?php
-class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
+class VIH_Intranet_Controller_Protokol_Item extends k_Component
 {
-    private $form;
+    protected $form;
     protected $template;
     protected $db;
 
@@ -20,26 +20,7 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
     {
         $row = array();
 
-        if ($this->query('id')) {
-            // hent selve r�kken og s�t defaults
-            $res = $this->db->query('SELECT * FROM langtkursus_tilmelding_protokol_item WHERE id = ' . (int)$_GET['id']);
-
-            if (PEAR::isError($res)) {
-                throw new Exception($res->getMessage());
-            }
-
-            $res->fetchInto($row, DB_FETCHMODE_ASSOC);
-
-            $this->getForm()->setDefaults(array('text' => $row['text'],
-                                     'date_start' => $row['date_start'],
-                                     'date_end' => $row['date_end'],
-                                     'elev_id' => $row['tilmelding_id'],
-                                     'type' => $row['type_key'],
-                                     'id' => $this->query('id')));
-
-            $elev_id = $this->context->name();
-        } else {
-            $this->getForm()->setDefaults(array('elev_id' => (int)$this->context->name(),
+        $this->getForm()->setDefaults(array('elev_id' => (int)$this->context->name(),
                                      'date_start' => array('Y' => date('Y'),
                                                            'm' => date('m'),
                                                            'd' => date('d'),
@@ -49,16 +30,13 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
                                                          'd' => date('d'),
                                                          'H' => 8,
                                                          'i' => 30)));
-        }
 
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
 
 
         $this->document->setTitle('Indtast ' . $tilmelding->get('navn'));
         return $this->getForm()->toHTML();
-
     }
-
 
     function postForm()
     {
@@ -76,11 +54,7 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
                             $this->body('text'),
                             $this->getform()->exportValue('type'));
 
-            if (!empty($_POST['id'])) {
-                $sth = $this->db->autoPrepare('langtkursus_tilmelding_protokol_item', $fields, DB_AUTOQUERY_UPDATE, 'id = ' . $_POST['id']);
-            } else {
-                $sth = $this->db->autoPrepare('langtkursus_tilmelding_protokol_item', $fields, DB_AUTOQUERY_INSERT);
-            }
+            $sth = $this->db->autoPrepare('langtkursus_tilmelding_protokol_item', $fields, DB_AUTOQUERY_INSERT);
 
             $res = $this->db->execute($sth, $values);
 
@@ -91,6 +65,8 @@ class VIH_Intranet_Controller_Protokol_Indtast extends k_Component
             return new k_SeeOther($this->context->url('../'));
 
         }
+
+        return $this->render();
     }
 
 
