@@ -1,42 +1,6 @@
 <?php
 class VIH_Intranet_Controller_Fag_Edit extends k_Component
 {
-    private $form;
-
-    function getForm()
-    {
-        if ($this->form) {
-            return $this->form;
-        }
-
-        $faggruppe = VIH_Model_Fag_Gruppe::getList();
-
-        foreach($faggruppe AS $grp) {
-            $faggruppelist[$grp->get('id')] = $grp->get('navn');
-        }
-
-        $undervisere = VIH_Model_Ansat::getList('lærere');
-
-        $form = new HTML_QuickForm('fag', 'POST', $this->url());
-        $form->addElement('hidden', 'id');
-        $form->addElement('text', 'navn', 'Navn');
-        $form->addElement('select', 'faggruppe_id', 'Faggruppe', $faggruppelist);
-        $form->addElement('text', 'identifier', 'Identifier');
-        $form->addElement('textarea', 'kort_beskrivelse', 'Kort beskrivelse', array('cols' => 80, 'rows' => 5));
-        $form->addElement('textarea', 'beskrivelse', 'Beskrivelse', array('cols' => 80, 'rows' => 20));
-        $form->addElement('textarea', 'udvidet_beskrivelse', 'Udvidet beskrivelse', array('cols' => 80, 'rows' => 20));
-        $form->addElement('header', null, 'Til søgemaskinerne');
-        $form->addElement('text', 'title', 'Titel');
-        $form->addElement('textarea', 'description', 'Beskrivelse');
-        $form->addElement('textarea', 'keywords', 'Nøgleord');
-        foreach ($undervisere AS $underviser) {
-            $underviserlist[] = HTML_QuickForm::createElement('checkbox', $underviser->get('id'), null, $underviser->get('navn'));
-        }
-        $form->addGroup($underviserlist, 'underviser', 'Underviser', '<br />');
-        $form->addElement('checkbox', 'published', 'Udgivet');
-        $form->addElement('submit', null, 'Gem');
-        return ($this->form = $form);
-    }
 
 
     function renderHtml()
