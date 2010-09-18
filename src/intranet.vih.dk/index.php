@@ -6,7 +6,7 @@ require_once 'VIH/configuration.php';
 require_once 'konstrukt/konstrukt.inc.php';
 require_once 'bucket.inc.php';
 
-require_once('Doctrine/lib/Doctrine.php');
+require_once('Doctrine.php');
 spl_autoload_register(array('Doctrine', 'autoload'));
 
 class k_SessionIdentityLoader implements k_IdentityLoader
@@ -30,6 +30,8 @@ class NotAuthorizedComponent extends k_Component
 
 $factory = new VIH_Intranet_Factory();
 $container = new bucket_Container($factory);
+$db = $container->get('db_common');
+$db = $container->get('mdb2_driver_common');
 
 if (realpath($_SERVER['SCRIPT_FILENAME']) == __FILE__) {
     $components = new k_InjectorAdapter($container, new VIH_Intranet_Document);
