@@ -11,7 +11,7 @@
     <property name="reports.coverage.dir" value="../../build/logs/coverage" />
     <property name="api.dir" value="../build/api" />
 
-    <property name="version" value="1.4.4" />
+    <property name="version" value="2.0.0" />
     <property name="stability" value="stable" />
     <property name="package-filename" value="${package-name}-${version}.tgz" />
 	
@@ -24,12 +24,12 @@
 
     <target name="checkout">
         <echo msg="Exporting SVN files" />
-        <exec command="svn export ${source.dir}src ${build.dir}" />
+        <exec command="git clone git://github.com/vih/intranet.vih.dk.git ${build.dir}" />
 
         <mkdir dir="${build.dir}/package/${package-name}-${version}" />
         <copy todir="${build.dir}/package/${package-name}-${version}">
-            <fileset dir="${build.dir}">
-                <include name="vih/**" />
+            <fileset dir="${build.dir}/src">
+                <include name="VIH/**" />
                 <include name="intranet.vih.dk/**" />
                 <exclude name="www/*.htm" />
                 <exclude name="www/config.local.php" />
@@ -50,17 +50,17 @@
     <target name="php-documentor">
         <delete dir="${api.dir}" />
         <mkdir dir="${api.dir}" />
-        <exec dir="${source.dir}/" command="phpdoc -ue on -t ${api.dir} -d ./src/vih" passthru="true" />
+        <exec dir="${source.dir}/" command="phpdoc -ue on -t ${api.dir} -d ./src/VIH" passthru="true" />
     </target>
 
     <target name="pear" depends="build">
             <d51pearpkg2 dir="${build.dir}/package/${package-name}-${version}" baseinstalldir="/">
                 <name>${package-name}</name>
-                <summary>VIH</summary>
+                <summary>Vejle Idrætshøjskoles Intranet</summary>
                 <channel>public.intraface.dk</channel>
                 <description>
                     <!--        Don't exceed this width         -->
-                    VIH
+                    Vejle Idrætshøjskoles Intranet
                 </description>
 
                 <lead user="lsolesen" name="Lars Olesen" email="lars@legestue.net" />
@@ -69,7 +69,7 @@
                 <version release="${version}" api="${version}" />
                 <stability release="${stability}" api="${stability}" />
 
-                <dirroles key="intranet.vih.dk">web</dirroles>
+                <dirroles key="intranet.vih.dk">www</dirroles>
 
                 <release>
                 </release>
@@ -177,7 +177,7 @@
                              minimum_version="1.2.3" />                	
                     </dependencies>
                 <notes>
-                    * Bugfixes
+                    * Changed to konstrukt2
                 </notes>
             </d51pearpkg2>
     
