@@ -80,8 +80,11 @@
                     <pear minimum_version="1.6.0"
                              recommended_version="1.6.1" />
                     <package name="konstrukt"
-                             channel="public.intraface.dk"
-                             minimum_version="0.4.0" />
+                             channel="pearhub.org"
+                             minimum_version="2.3.1" />
+                    <package name="bucket"
+                             channel="pearhub.org"
+                             minimum_version="1.1.1" />                 
                     <package name="Contact_AddressBook"
                              channel="pear.php.net"
                              minimum_version="0.5.0" />
@@ -107,8 +110,8 @@
                              channel="public.intraface.dk"
                              minimum_version="0.1.0" />
                 	<package name="fpdf"
-                             channel="public.intraface.dk"
-                             minimum_version="1.53.2" />
+                             channel="pearhub.org"
+                             minimum_version="1.6.0" />
                 	<package name="Config"
                              channel="pear.php.net"
                              minimum_version="1.10.11" />
@@ -139,9 +142,6 @@
                     <package name="antispambot"
                              channel="public.intraface.dk"
                              minimum_version="0.1.0" />
-                    <package name="Template"
-                             channel="public.intraface.dk"
-                             minimum_version="0.2.1" />
                     <package name="Ilib_ClassLoader"
                              channel="public.intraface.dk"
                              minimum_version="0.1.1" />
@@ -172,6 +172,9 @@
                 	<package name="IntrafacePublic_Newsletter_Controller"
                              channel="public.intraface.dk"
                              minimum_version="0.1.2" />
+                    <package name="Doctrine"
+                             channel="pear.doctrine-project.org"
+                             minimum_version="1.2.3" />                	
                     </dependencies>
                 <notes>
                     * Bugfixes
