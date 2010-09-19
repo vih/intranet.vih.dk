@@ -50,7 +50,7 @@ class VIH_Intranet_Controller_Fag_Show extends k_Component
         $this->document->addOption('Fagoversigt', $this->context->url());
         $this->document->addOption('Ret', $this->url('edit'));
 
-        return '<div>'.vih_autoop($fag->get('beskrivelse')).'</div>' . $extra_html;
+        return '<div>'.autoop($fag->get('beskrivelse')).'</div>' . $extra_html;
     }
 
     function renderHtmlDelete()

@@ -60,7 +60,7 @@ class VIH_Intranet_Controller_Nyheder_Show extends k_Component
         $this->document->setTitle('Nyhed: ' . $nyhed->get('overskrift'));
         $this->document->addOption('Ret', $this->url('edit'));
         // $tpl->set('title', 'Nyhed');
-        return '<div>'.vih_autoop($nyhed->get('tekst')).'</div> ' . $this->getForm()->toHTML() . $pic_html . $nyhed->get('date_updated');
+        return '<div>'.autoop($nyhed->get('tekst')).'</div> ' . $this->getForm()->toHTML() . $pic_html . $nyhed->get('date_updated');
     }
 
     function renderHtmlDelete()
