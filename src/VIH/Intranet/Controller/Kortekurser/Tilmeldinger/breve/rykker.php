@@ -1,5 +1,5 @@
 <?php
-// oplysningert til indsættelse i teksten
+// oplysningert til indsï¿½ttelse i teksten
 
 $navn = $tilmelding->get('navn');
 $ordrenummer = $tilmelding->get("id");
@@ -8,25 +8,25 @@ $tilmelding->loadBetaling();
 $pris = intval($tilmelding->get('pris'));
 $skyldig =  intval($tilmelding->get('skyldig'));
 $afsendernavn = "";
-$onlinebetaling = 'eller online på adressen '.KORTEKURSER_LOGIN_URI.$tilmelding->get('code');
+$onlinebetaling = 'eller online pÃ¥ adressen '.KORTEKURSER_LOGIN_URI.$tilmelding->get('code');
 
 $brev_tekst = <<<EODTEKST
-Kære $navn
+KÃ¦re $navn
 
 Ved gennemgang af vort bogholderi har vi konstateret, at du endnu mangler at indbetale $skyldig kroner for $kursus.
 
 Dit ordrenummer er: $ordrenummer
 
-Pengene bedes overført til vores konto i Jyske Bank: 7244-1469664 $onlinebetaling.
+Pengene bedes overfÃ¸rt til vores konto i Jyske Bank: 7244-1469664 $onlinebetaling.
 
-Såfremt beløbet er betalt, må du meget gerne ringe til os og oplyse, hvilken dato pengene er blevet indbetalt.
+SÃ¥fremt belÃ¸bet er betalt, mÃ¥ du meget gerne ringe til os og oplyse, hvilken dato pengene er blevet indbetalt.
 
-Hvis vi ikke hører fra dig, går vi ud fra at du ikke ønsker at opretholde din tilmelding.
+Hvis vi ikke hÃ¸rer fra dig, gÃ¥r vi ud fra at du ikke Ã¸nsker at opretholde din tilmelding.
 
 Med venlig hilsen
 
 $afsendernavn
-Vejle Idrætshøjskole
+Vejle IdrÃ¦tshÃ¸jskole
 Telefon: 75820811
 
 EODTEKST;

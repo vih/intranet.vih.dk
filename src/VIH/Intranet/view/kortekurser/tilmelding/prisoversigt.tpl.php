@@ -45,6 +45,6 @@
         <td><?php echo $tilmelding->get('skyldig'); ?></td>
     </tr>
 </table>
-<?php if (!empty($mark)) echo '<p class="notice">* Der er afventende betalinger. Oversigten opdateres, når vi har hævet pengene.</p>'; ?>
+<?php if (!empty($mark)) echo '<p class="notice">* Der er afventende betalinger. Oversigten opdateres, nÃ¥r vi har hÃ¦vet pengene.</p>'; ?>
 
 <?php endif; ?>

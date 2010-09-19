@@ -25,7 +25,7 @@ class VIH_Intranet_Controller_Fotogalleri_Edit extends k_Component
         $form->addElement('hidden', 'id');
         $form->addElement('text', 'description', 'Beskrivelse');
         $form->addElement('checkbox', 'active', '', 'Aktiv');
-        $form->addElement('submit', null, 'Gem og tilf�j billeder');
+        $form->addElement('submit', null, 'Gem og tilføj billeder');
         return ($this->form = $form);
     }
 

@@ -4,7 +4,7 @@
 		<table>
 			<?php foreach ($special_days AS $ansat): ?>
 				<tr>
-					<td><?php echo $ansat->get('navn'); ?> har fødselsdag i dag.</td>
+					<td><?php echo $ansat->get('navn'); ?> har fÃ¸dselsdag i dag.</td>
 				</tr>
 			<?php endforeach; ?>
 		</table>

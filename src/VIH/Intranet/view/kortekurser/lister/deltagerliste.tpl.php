@@ -2,7 +2,7 @@
             <caption>Deltagerliste: <?php echo $kursus->get("kursusnavn"); ?></caption>
             <tr>
                 <th>Navn</th>
-                <th>Bopæl</th>
+                <th>BopÃ¦l</th>
                 <th></th>
                 <th></th>
                 <th></th>

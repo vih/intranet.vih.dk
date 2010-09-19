@@ -24,9 +24,9 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
         $form->addElement('text', 'postnr', 'Postnummer');
         $form->addElement('text', 'postby', 'By');
         $form->addElement('text', 'telefonnummer', 'Telefonnummer');
-        $form->addElement('text', 'arbejdstelefon', 'Arbejdstelefon', 'Telefonnummer hvor du kan træffes mellem 8 og 16');
+        $form->addElement('text', 'arbejdstelefon', 'Arbejdstelefon', 'Telefonnummer hvor du kan trÃ¦ffes mellem 8 og 16');
         $form->addElement('text', 'mobil', 'Mobil');
-        $form->addElement('text', 'email', 'E-mail'); // 'Bekræftelse sendes til denne e-mail-adresse. Hvis den udelades bruger vi Post Danmark.'
+        $form->addElement('text', 'email', 'E-mail'); // 'Bekrï¿½ftelse sendes til denne e-mail-adresse. Hvis den udelades bruger vi Post Danmark.'
         $form->addElement('header', null, 'Vil du tegne afbestillingsforsikring');
         $form->addElement('radio', 'afbestillingsforsikring', 'Afbestillingsforsikring', 'Ja', 'Ja');
         $form->addElement('radio', 'afbestillingsforsikring', '', 'Nej', 'Nej');
@@ -38,7 +38,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
         //$form->addRule('telefon', 'Skriv venligst din telefonnummer', 'required');
         //$form->addRule('arbejdstelefon', 'Skriv venligst din arbejdstelefon', 'required');
         //$form->addRule('email', 'Den e-mail du har indtastet er ikke gyldig', 'e-mail');
-        //$form->addRule('afbestillingsforsikring', 'Du skal vælge, om du vil have en afbestillingsforsikring', 'required');
+        //$form->addRule('afbestillingsforsikring', 'Du skal vï¿½lge, om du vil have en afbestillingsforsikring', 'required');
 
         $form->setDefaults(array(
             'kontaktnavn' => $tilmelding->get('navn'),
@@ -60,7 +60,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
             $form->addElement('header', null, 'Deltager ' .  $deltager_nummer);
             $form->addElement('hidden', 'deltager_id['.$i.']');
             $form->addElement('text', 'navn['.$i.']', 'Navn');
-            $form->addElement('text', 'cpr['.$i.']', 'CPR-nummer', '(ddmmåå-xxxx)', null);
+            $form->addElement('text', 'cpr['.$i.']', 'CPR-nummer', '(ddmmÃ¥Ã¥-xxxx)', null);
 
             //$form->addRule('navn['.$i.']', 'Du skal skrive et navn', 'required');
             //$form->addRule('cpr['.$i.']', 'Du skal skrive et cpr-nummer', 'required');
@@ -74,10 +74,10 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
 
             $radio = array();
             if ($tilmelding->kursus->get('indkvartering') == 'kursuscenteret') {
-                $form->addElement('radio', 'enevaerelse['.$i.']', 'Eneværelse', 'Ja', 'ja');
+                $form->addElement('radio', 'enevaerelse['.$i.']', 'EnevÃ¦relse', 'Ja', 'ja');
                 $form->addElement('radio', 'enevaerelse['.$i.']', '', 'Nej', 'nej');
-                $form->addElement('text', 'sambo['.$i.']', 'Jeg ønsker at dele toilet og bad med?');
-                //$form->addRule('enevaerelse['.$i.']', 'Du skal vælge om du vil have eneværelse', 'required');
+                $form->addElement('text', 'sambo['.$i.']', 'Jeg Ã¸nsker at dele toilet og bad med?');
+                //$form->addRule('enevaerelse['.$i.']', 'Du skal vï¿½lge om du vil have enevï¿½relse', 'required');
                 // $form->addRule('sambo['.$i.']', 'Hvem vil du dele toilet og bad med?', 'required');
 
                 $form->setDefaults(array(
@@ -92,7 +92,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
                         $form->addElement('text', 'handicap['.$i.']', 'Golfhandicap', '(begynder &rarr; skriv 99)');
                         $form->addElement('text', 'klub['.$i.']', 'Klub');
                         $form->addElement('text', 'dgu['.$i.']', 'DGU-medlem', null, null, 'ja');
-                        //$form->addRule('handicap['.$i.']', 'Du skal vælge dit handicap', 'required');
+                        //$form->addRule('handicap['.$i.']', 'Du skal vï¿½lge dit handicap', 'required');
                         //$form->addRule('klub['.$i.']', 'Du skal skrive en klub', 'required');
 
                         $form->setDefaults(array(
@@ -103,7 +103,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
                     break;
 
                 case 3: // bridge
-                        $niveau = array('Begynder' => 'Begynder', 'Let øvet' => 'Let øvet', 'Øvet' => 'Øvet', 'Meget øvet' => 'Meget øvet');
+                        $niveau = array('Begynder' => 'Begynder', 'Let Ã¸vet' => 'Let Ã¸vet', 'Ã˜vet' => 'Ã˜vet', 'Meget Ã¸vet' => 'Meget Ã¸vet');
                         $form->addElement('select', 'niveau['.$i.']', 'Bridgeniveau', $niveau);
                         //$form->addRule('niveau['.$i.']', 'Hvilket bridgeniveau har du?', 'required');
                         $form->setDefaults(array(
@@ -111,12 +111,12 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
                         ));
                     break;
                 case 4: // golf og bridge
-                        $form->addElement('text', 'handicap['.$i.']', 'Golfhandicap', '(ingen spillere med handicap større end 50)');
+                        $form->addElement('text', 'handicap['.$i.']', 'Golfhandicap', '(ingen spillere med handicap stÃ¸rre end 50)');
                         $form->addElement('text', 'klub['.$i.']', 'Klub');
-                        $form->addElement('text', 'dgu['.$i.']', 'DGU-medlem', 'Du skal være dgu-medlem for at deltage på kurset', null, 'ja');
-                        $niveau = array('Let øvet' => 'Let øvet', 'Øvet' => 'Øvet', 'Meget øvet' => 'Meget øvet');
+                        $form->addElement('text', 'dgu['.$i.']', 'DGU-medlem', 'Du skal vÃ¦re dgu-medlem for at deltage pÃ¥ kurset', null, 'ja');
+                        $niveau = array('Let Ã¸vet' => 'Let Ã¸vet', 'Ã˜vet' => 'Ã˜vet', 'Meget Ã¸vet' => 'Meget Ã¸vet');
                         $form->addElement('select', 'niveau['.$i.']', 'Bridgeniveau', $niveau);
-                        //$form->addRule('handicap['.$i.']', 'Du skal vælge dit handicap', 'required');
+                        //$form->addRule('handicap['.$i.']', 'Du skal vï¿½lge dit handicap', 'required');
                         //$form->addRule('klub['.$i.']', 'Hvem vil skrive en klub', 'required');
                         //$form->addRule('niveau['.$i.']', 'Hvilket bridgeniveau har du?', 'required');
                         $form->setDefaults(array(
@@ -134,7 +134,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
             $i++;
         } // foreach
 
-        $form->addElement('header', null, 'Øvrige oplysninger');
+        $form->addElement('header', null, 'Ã˜vrige oplysninger');
         $form->addElement('textarea', 'besked', 'Besked');
         $form->addElement('submit', null, 'Videre >>');
 

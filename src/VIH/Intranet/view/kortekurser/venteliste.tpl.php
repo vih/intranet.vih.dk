@@ -43,5 +43,5 @@
 </table>
 
 <?php else: ?>
-<p>Der er sørme slet ikke nogen på venteliste.</p>
+<p>Der er sÃ¸rme slet ikke nogen pÃ¥ venteliste.</p>
 <?php endif; ?>

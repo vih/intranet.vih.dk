@@ -1,5 +1,5 @@
 
-		
+
 		<table id="prisoversigt">
 			<caption>Priser</caption>
 			<tr>
@@ -9,7 +9,7 @@
 			<tr>
 				<td>Ugepris</td>
 				<td align="right"><?php print($kursus->get("pris_uge")); ?></td>
-			</tr>		
+			</tr>
 			<tr>
 				<td>Materialepris</td>
 				<td align="right"><?php print($kursus->get("pris_materiale")); ?></td>
@@ -30,13 +30,13 @@
 			</tr>
 			<?php endif; ?>
 			<tr>
-				<td>Nøgledepositum</td>
+				<td>NÃ¸gledepositum</td>
 				<td align="right"><?php print($kursus->get("pris_noegledepositum")); ?></td>
 			</tr>
 			<tr>
 				<td>Tilmeldingsgebyr</td>
 				<td align="right"><?php print($kursus->get("pris_tilmeldingsgebyr")); ?></td>
-			</tr>			
+			</tr>
 			<tr>
 				<td>Samlet pris</td>
 				<td align="right"><?php print($kursus->get('pris_total')); ?></td>

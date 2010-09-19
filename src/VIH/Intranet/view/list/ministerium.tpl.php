@@ -15,15 +15,15 @@
     <body>
         <h1>Elevliste - frie kostskoler</h1>
         <table cellspacing="0">
-            <tr><th>Skolekode</th><td>631303</td><th colspan="5" rowspan="2">Kursuslængde</th></tr>
-            <tr><th>Skolens navn</th><td>Vejle Idrætshøjskole</td></tr>
-            <tr><th>Kursusnavn</th><td><?php echo $kursus->get("kursusnavn"); ?></td><th>v/ kurser på en hel uge og derover</th><td colspan="4">&nbsp;</td></tr>
+            <tr><th>Skolekode</th><td>631303</td><th colspan="5" rowspan="2">KursuslÃ¦ngde</th></tr>
+            <tr><th>Skolens navn</th><td>Vejle IdrÃ¦tshÃ¸jskole</td></tr>
+            <tr><th>Kursusnavn</th><td><?php echo $kursus->get("kursusnavn"); ?></td><th>v/ kurser pÃ¥ en hel uge og derover</th><td colspan="4">&nbsp;</td></tr>
             <tr>
                 <th>Dato for kursets begyndelse</th>
-                <td><?php echo $kursus->get("dato_start"); ?></td><th>+ evt. afkortede uger</th><td>Antal døgn (begynd.)</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Antal døgn (begynd.)</td>
+                <td><?php echo $kursus->get("dato_start"); ?></td><th>+ evt. afkortede uger</th><td>Antal dÃ¸gn (begynd.)</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Antal dÃ¸gn (begynd.)</td>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
             </tr>
-            <tr><th>Dato for kursets afslutning</th><td><?php echo $kursus->get("dato_slut"); ?></td><th>v/ kurser under en hel uge</th><td>Antal døgn</td><td colspan="3">&nbsp;</td></tr>
+            <tr><th>Dato for kursets afslutning</th><td><?php echo $kursus->get("dato_slut"); ?></td><th>v/ kurser under en hel uge</th><td>Antal dÃ¸gn</td><td colspan="3">&nbsp;</td></tr>
         </table>
 
         <table cellspacing="0">
@@ -35,7 +35,7 @@
                 <th colspan="2">Elevtype</th>
                 <th colspan="3">Statsborgerskab</th>
                 <th rowspan="2">Nationalitetskode</th>
-                <th colspan="2">Antal tilskudsløsende uger</th>
+                <th colspan="2">Antal tilskudslÃ¸sende uger</th>
                 <th colspan="2">For elever, som ikke har fulgt hele kurset</th>
             </tr>
             <tr>
@@ -46,8 +46,8 @@
                 <th>Andet</th>
                 <th>Hele uger</th>
                 <th>Afkort./korte uger</th>
-                <th>Påbegyndt</th>
-                <th>Ophørt</th>
+                <th>PÃ¥begyndt</th>
+                <th>OphÃ¸rt</th>
             </tr>
             <?php foreach($deltagere AS $deltager):
                 // kun deltagere over 17,5 skal opgives, da kun de er tilskudsberettigede

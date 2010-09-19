@@ -22,7 +22,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
     {
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
 
-        $forstander_navn = 'Lars Kj�rsgaard';
+        $forstander_navn = 'Ole Damgaard';
         $navn = $tilmelding->get('navn');
         $mdr = array('januar', 'februar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december');
         $dato_start = $tilmelding->get('dato_start_dk_streng');
@@ -32,10 +32,10 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
         if ($tilmelding->get('tekst_diplom')) {
         	$overskrift_tekst = $tilmelding->get('ugeantal') . ' ugers ' . $tilmelding->get('tekst_diplom');
         } else {
-            $overskrift_tekst = $tilmelding->get('ugeantal') . ' ugers h�jskoleophold';
+            $overskrift_tekst = $tilmelding->get('ugeantal') . ' ugers højskoleophold';
         }
 
-        $overskrift_tekst .= " p�\nVejle Idr�tsh�jskole"; // skal v�re der
+        $overskrift_tekst .= " på\nVejle Idrætshøjskole"; // skal v�re der
 
         // Array med fag. Deles ligeligt p� to kolonner. Ingen opdeling af almene og idr�t,
         // men betegnelserne bibeholdes fra tidligere version.
@@ -60,9 +60,9 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
 
         $pdf = new FPDF();
         $pdf->SetTitle('Diplom');
-        $pdf->SetSubject('Diplom fra Vejle Idr�tsh�jskole');
-        $pdf->SetAuthor('Lars Olesen, Vejle Idr�tsh�jskole');
-        $pdf->SetCreator('Lars Olesen, Vejle Idr�tsh�jskole');
+        $pdf->SetSubject('Diplom fra Vejle Idrætshøjskole');
+        $pdf->SetAuthor('Lars Olesen, Vejle Idrætshøjskole');
+        $pdf->SetCreator('Lars Olesen, Vejle Idrætshøjskole');
         $pdf->SetDisplayMode('fullpage', 'single');
         $pdf->SetKeywords('Diplom VIH');
 
@@ -81,7 +81,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
         $pdf->Cell(0, 10, $navn, 0, 2, "C");
 
         $pdf->SetFontSize(14);
-        $pdf->Cell(0, 20, 'har gennemf�rt', 0, 2, "C");
+        $pdf->Cell(0, 20, 'har gennemført', 0, 2, "C");
 
         $pdf->SetFontSize(24);
         $pdf->MultiCell(0, 10, $overskrift_tekst, 0, 'C');

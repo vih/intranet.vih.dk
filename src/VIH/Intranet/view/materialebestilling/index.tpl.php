@@ -44,5 +44,5 @@
     </tbody>
 </table>
 <?php else: ?>
-    <p>Der er i øjeblikket ikke nogen bestillinger, der mangler at blive sendt ud.</p>
+    <p>Der er i Ã¸jeblikket ikke nogen bestillinger, der mangler at blive sendt ud.</p>
 <?php endif; ?>

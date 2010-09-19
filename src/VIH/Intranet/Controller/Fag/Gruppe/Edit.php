@@ -14,7 +14,7 @@ class VIH_Intranet_Controller_Fag_Gruppe_Edit extends k_Component
         $form->addElement('text', 'navn', 'Navn');
         $form->addElement('textarea', 'beskrivelse', 'Beskrivelse', array('cols'=>80, 'rows' => 20));
         $form->addElement('checkbox', 'valgfag', 'Valgfag');
-        $form->addElement('checkbox', 'vis_diplom', 'Vis på diplomet');
+        $form->addElement('checkbox', 'vis_diplom', 'Vis pÃ¥ diplomet');
         $form->addElement('checkbox', 'show_description', 'Vis beskrivelse');
         $form->addElement('checkbox', 'published', 'Vis');
         $form->addElement('submit', null, 'Gem');

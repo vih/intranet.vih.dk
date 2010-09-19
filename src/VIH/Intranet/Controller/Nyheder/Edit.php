@@ -34,7 +34,7 @@ class VIH_Intranet_Controller_Nyheder_Edit extends k_Component
         $this->form->addElement('date', 'date_publish', 'Udgivelsesdato', $date_options);
         $this->form->addElement('date', 'date_expire', 'Udløbsdato', $date_options);
         //$this->form->addElement('select', 'kategori_id', 'Kategori', $nyhed->kategori, array('addEmptyOption' => 'true', 'emptyOptionValue' => '', 'emptyOptionText' => 'V�lg'));
-        $this->form->addElement('select', 'type_id', 'Type', $nyhed->type, array('addEmptyOption' => 'true', 'emptyOptionValue' => '', 'emptyOptionText' => 'V�lg'));
+        $this->form->addElement('select', 'type_id', 'Type', $nyhed->type, array('addEmptyOption' => 'true', 'emptyOptionValue' => '', 'emptyOptionText' => 'Vælg'));
         //$this->form->addElement('select', 'prioritet_id', 'Prioritet', $nyhed->prioritet, array('addEmptyOption' => 'true', 'emptyOptionValue' => '', 'emptyOptionText' => 'V�lg'));
         $this->form->addElement('textarea', 'keyword', 'Keywords (fx lange-kurser, haandbold, fodbold)', array('cols' => 80, 'rows' => 5));
         $this->form->addElement('header', null, 'Søgemaskineguf');

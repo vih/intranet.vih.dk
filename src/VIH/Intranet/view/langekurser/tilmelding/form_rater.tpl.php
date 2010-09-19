@@ -8,7 +8,7 @@
     <tr>
         <th>Nr.</th>
         <th>Dato</th>
-        <th>Beløb</th>
+        <th>BelÃ¸b</th>
     </tr>
     <tr>
         <td>&nbsp;</td>

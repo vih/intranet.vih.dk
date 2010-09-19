@@ -14,7 +14,7 @@ class VIH_Intranet_Controller_Langekurser_Rater extends k_Component
 
         if($this->query("addrate")) {
             if (!$kursus->addRate($this->query("addrate"))) {
-                throw new Exception('Kunne ikke tilføje rate.', E_USER_ERROR);
+                throw new Exception('Kunne ikke tilfÃ¸je rate.', E_USER_ERROR);
             }
         }
 

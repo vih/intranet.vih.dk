@@ -6,8 +6,8 @@
         <thead>
             <tr>
                 <th>Dato</th>
-                <th>Beløb</th>
-                <th>#</td>
+                <th>BelÃ¸b</th>
+                <th>#</th>
                 <th></th>
                 <th></th>
 
@@ -19,8 +19,8 @@
                 <td><?php echo $betaling->get('amount'); ?></td>
                 <?php if ($betaling->get('type') == 1): // quickpay ?>
                 <td><?php echo $betaling->get('transactionnumber'); ?></td>
-                <td><a href="<?php echo url('/betaling/' . $betaling->get('id') . '/capture'); ?>" onclick="return confirm('Er du sikker på, at du vil gennemføre betalingen?');">Gennemfør</a></td>
-                <td><a href="<?php echo url('/betaling/' . $betaling->get('id') . '/reverse'); ?>" onclick="return confirm('Er du sikker på, at du vil annullere betalingen?');">Annuller</a></td>
+                <td><a href="<?php echo url('/betaling/' . $betaling->get('id') . '/capture'); ?>" onclick="return confirm('Er du sikker pÃ¥, at du vil gennemfÃ¸re betalingen?');">GennemfÃ¸r</a></td>
+                <td><a href="<?php echo url('/betaling/' . $betaling->get('id') . '/reverse'); ?>" onclick="return confirm('Er du sikker pÃ¥, at du vil annullere betalingen?');">Annuller</a></td>
                 <?php else: ?>
                 <td></td>
                 <td></td>

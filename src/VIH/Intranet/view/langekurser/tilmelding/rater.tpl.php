@@ -1,18 +1,18 @@
 	<table id="betalingsrater">
 		<caption>Betalingsrater</caption>
-		
+
 		<tr>
 			<th>Nr.</th>
 			<th>Betalingsdato</th>
 			<th>Status</th>
-			<th>Beløb</th>
+			<th>BelÃ¸b</th>
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
 			<td>Tilmeldingsgebyr</td>
 			<td>
 				<?php
-				$rater_samlet = $tilmelding->get("pris_tilmeldingsgebyr"); // vi lægger depositummet på samtælling fra starten.				
+				$rater_samlet = $tilmelding->get("pris_tilmeldingsgebyr"); // vi lï¿½gger depositummet pï¿½ samtï¿½lling fra starten.
 				if($tilmelding->get('betalt') >= $rater_samlet) {
 					print("Betalt");
 				}
@@ -20,10 +20,10 @@
 					print("<p class='red'>Forfalden</p>");
 				}
 				?>
-			</td>	
+			</td>
 			<td align="right"><?php echo $tilmelding->get("pris_tilmeldingsgebyr"); ?></td>
 		</tr>
-		
+
 		<?php
 		$rater = $tilmelding->getRater();
 		for($i = 0, $max = count($rater); $i < $max; $i++) {
@@ -47,7 +47,7 @@
 			<?php
 		}
 		?>
-		
+
 		<tr>
 			<td>&nbsp;</td>
 			<td colspan="2"><strong>I alt rater</strong></td>
@@ -65,5 +65,5 @@
 			<?php
 		}
 		?>
-		
-	</table>	
+
+	</table>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Formålet med denne side er at hæve (capture) betalinger lavet med Dankort.
+ * Formï¿½let med denne side er at hï¿½ve (capture) betalinger lavet med Dankort.
  *
  * @author Lars Olesen <lars@legestue.net>
  */
@@ -32,7 +32,7 @@ class VIH_Intranet_Controller_Betaling_Capture extends k_Component
                 $historik = new VIH_Model_Historik($betaling->get('belong_to'), $betaling->get('belong_to_id'));
                 $historik->save(array('type' => 'dankort', 'comment' => 'Fejl ved capture af transaktion #' . $betaling->get('transactionnumber')));
 
-                throw new Exception('Betalingen kunne ikke hæves, formentlig fordi den er ugyldig');
+                throw new Exception('Betalingen kunne ikke hÃ¦ves, formentlig fordi den er ugyldig');
             }
         } else {
             throw new Exception('Der var en kommunikationsfejl med Onlinebetalingen');

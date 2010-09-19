@@ -48,7 +48,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
             if($betalinger->save(array('type' => 'giro', 'amount' => $this->query('beloeb')))) {
                 $betalinger->setStatus('approved');
             } else {
-                throw new Exception("Betalingen kunne ikke gemmes. Det kan skyldes et ugyldigt bel�b", E_USER_ERROR);
+                throw new Exception("Betalingen kunne ikke gemmes. Det kan skyldes et ugyldigt beløb", E_USER_ERROR);
             }
         } elseif ($this->query('slet_historik_id')) {
             $historik = new VIH_Model_Historik(intval($this->query('slet_historik_id')));

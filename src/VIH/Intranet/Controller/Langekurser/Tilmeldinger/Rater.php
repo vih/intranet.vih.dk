@@ -21,7 +21,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
             if ($tilmelding->addRate($this->query("addrate"))) {
                 return new k_SeeOther($this->url());
             } else {
-                throw new Exception('Raten kunne ikke tilføjes');
+                throw new Exception('Raten kunne ikke tilfÃ¸jes');
             }
         } elseif($this->query("delete")) {
             if ($tilmelding->deleteRate($this->query("delete"))) {

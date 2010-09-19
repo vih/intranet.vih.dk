@@ -53,7 +53,7 @@
 
     <fieldset>
         <legend>Registrer betaling</legend>
-        <p>Bel�b: <input type="text" name="beloeb" value="" />
+        <p>Beløb: <input type="text" name="beloeb" value="" />
         <input type="submit" name="registrer_betaling" value="Betalt"  /></p>
     </fieldset>
 <?php if($tilmelding->get('skyldig') == 0): ?>
@@ -66,9 +66,9 @@
 
 <ul>
     <?php if($tilmelding->get('skyldig_depositum') <= 0 && $historik_object->findType("depositumbekraeftelse") == 0 && $tilmelding->get('status') != 'afsluttet'): ?>
-        <li><a href="<?php echo url('sendbrev', array('type' => 'depositumbekraeftelse')); ?>">Send bekr�ftelse for depositum</a></li>
+        <li><a href="<?php echo url('sendbrev', array('type' => 'depositumbekraeftelse')); ?>">Send bekræftelse for depositum</a></li>
     <?php elseif ((int)$tilmelding->get('skyldig') <= 0 && $historik_object->findType("bekraeftelse") == 0): ?>
-        <li><a href="<?php echo url('sendbrev', array('type' => 'bekraeftelse')); ?>">Send bekr�ftelse</a></li>
+        <li><a href="<?php echo url('sendbrev', array('type' => 'bekraeftelse')); ?>">Send bekræftelse</a></li>
     <?php endif; ?>
 
     <?php if($tilmelding->get("forfalden_depositum")):?>

@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-// oplysningert til indsættelse i teksten
+// oplysningert til indsï¿½ttelse i teksten
 
 
 $navn = $tilmelding->get('navn');
@@ -23,23 +23,23 @@ if ($tilmelding->get('afbestillingsforsikring') == 'Ja') {
 
 
 $brev_tekst = <<<EODTEKST
-Kære $navn
+KÃ¦re $navn
 
-Tak for tilmeldingen til $kursus. Vi har noteret, at der er indbetalt $betalt kroner, som dækker$forsikring kursusprisen.
+Tak for tilmeldingen til $kursus. Vi har noteret, at der er indbetalt $betalt kroner, som dÃ¦kker$forsikring kursusprisen.
 
 Dit tilmeldingsnummer er: $ordrenummer
 
-Vi kan bekræfte, at $stedord er optaget på kurset.
+Vi kan bekrÃ¦fte, at $stedord er optaget pÃ¥ kurset.
 
-Vi sender programmet ud cirka to uger før kurset starter.
+Vi sender programmet ud cirka to uger fÃ¸r kurset starter.
 
-På gensyn i Vejle.
+PÃ¥ gensyn i Vejle.
 
 Med venlig hilsen
 
 
 $afsendernavn
-Vejle Idrætshøjskole
+Vejle IdrÃ¦tshÃ¸jskole
 Telefon: 75820811
 EODTEKST;
 

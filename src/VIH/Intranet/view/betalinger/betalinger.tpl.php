@@ -1,7 +1,7 @@
 <?php $saldo = 0; if (is_array($betalinger)): ?>
 
     <p style="background: orange; border: 2px solid red; color: white; padding: 0.8em;">
-        <strong>Advarsel:</strong> Betalinger til elevforeningen må ikke hæves. Det klarer de selv.
+        <strong>Advarsel:</strong> Betalinger til elevforeningen mÃ¥ ikke hÃ¦ves. Det klarer de selv.
     </p>
 
     <?php if (count($betalinger) > 0): ?>
@@ -10,7 +10,7 @@
 
             <th>Dato</th>
             <th>Transaktionsnummer</th>
-            <th>Beløb</th>
+            <th>BelÃ¸b</th>
             <th></th>
             <th></th>
             <th></th>
@@ -29,13 +29,13 @@
             <td><?php echo $betaling->get('amount'); ?></td>
             <td><?php echo $betaling->get('belong_to'); ?></td>
             <?php if ($betaling->get('status') < 2 AND $betaling->get('belong_to') != 'elevforeningen'): ?>
-            <td><a href="<?php echo url($betaling->get('id') . '/capture'); ?>" onclick="return confirm('Er ud sikker?');">Gennemfør</a></td>
+            <td><a href="<?php echo url($betaling->get('id') . '/capture'); ?>" onclick="return confirm('Er ud sikker?');">GennemfÃ¸r</a></td>
             <td><a href="<?php echo url($betaling->get('id') . '/reverse'); ?>" onclick="return confirm('Er ud sikker?');">Annuller</a></td>
             <?php else: ?>
             <td><?php echo $betaling->get('status_string'); ?></td>
             <td></td>
             <?php endif; ?>
-            <td><a href="<?php echo url('/' .$betaling->get('belong_to') . '/tilmeldinger/' . $betaling->get('belong_to_id')); ?>">Gå til tilmeldingen</a></td>
+            <td><a href="<?php echo url('/' .$betaling->get('belong_to') . '/tilmeldinger/' . $betaling->get('belong_to_id')); ?>">GÃ¥ til tilmeldingen</a></td>
         </tr>
         <?php endforeach; ?>
     </table>

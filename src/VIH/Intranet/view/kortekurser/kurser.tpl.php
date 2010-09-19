@@ -6,7 +6,7 @@
         <th>Kursusnavn</th>
         <th>Pladser</th>
         <th>Ledige pladser</th>
-        <th>Ift. mål</th>
+        <th>Ift. mÃ¥l</th>
         <th></th>
         <th></th>
     </tr>

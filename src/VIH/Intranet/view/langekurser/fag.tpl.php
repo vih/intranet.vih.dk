@@ -3,7 +3,7 @@ $tjekfaggruppe = '';
 $i = 0;
 ?>
 
-<h1>Vælg fag</h1>
+<h1>VÃ¦lg fag</h1>
 
 <p><a href="<?php echo url('../'); ?>">Til kursus</a></p>
 

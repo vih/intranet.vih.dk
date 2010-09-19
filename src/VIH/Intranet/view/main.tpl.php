@@ -263,7 +263,7 @@
 
     <body>
         <div id="container">
-            <h1 id="branding">Vejle Idrætshøjskoles Intranet</h1>
+            <h1 id="branding">Vejle IdrÃ¦tshÃ¸jskoles Intranet</h1>
 
             <ul id="navigation-main">
                 <?php foreach($context->document()->navigation() as $url => $name): ?>

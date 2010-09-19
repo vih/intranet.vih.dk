@@ -105,8 +105,8 @@ class VIH_Intranet_Controller_Fag_Show extends k_Component
         $pdf = new VIH_PdfBrochure();
         $pdf->SetTitle($fag->get('navn'));
         $pdf->SetSubject('Fagbeskrivelse: ' . $fag->get('navn'));
-        $pdf->SetAuthor('Lars Olesen, Vejle Idr�tsh�jskole');
-        $pdf->SetCreator('Lars Olesen, Vejle Idr�tsh�jskole');
+        $pdf->SetAuthor('Lars Olesen, Vejle Idrætshøjskole');
+        $pdf->SetCreator('Lars Olesen, Vejle Idrætshøjskole');
         $pdf->SetDisplayMode('fullpage', 'two');
         $pdf->SetKeywords('keyword');
         $pdf->VIHContent($fag->get('beskrivelse'));

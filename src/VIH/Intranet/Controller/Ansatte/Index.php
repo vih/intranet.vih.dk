@@ -75,14 +75,14 @@ class VIH_Intranet_Controller_Ansatte_Index extends k_Component
                               'maxYear' => date('Y'),
                               'addEmptyOption' => 'true',
                               'emptyOptionValue' => '',
-                              'emptyOptionText' => 'V�lg');
+                              'emptyOptionText' => 'Vælg');
 
         $this->form = new HTML_QuickForm('fag', 'POST', $this->url(null, array($this->subview())));
         $this->form->addElement('text', 'navn', 'Navn');
         $this->form->addElement('text', 'adresse', 'Adresse');
         $this->form->addElement('text', 'postnr', 'Postnr');
         $this->form->addElement('text', 'postby', 'Postby');
-        $this->form->addElement('date', 'date_birthday', 'F�dselsdag', $date_options);
+        $this->form->addElement('date', 'date_birthday', 'Fødselsdag', $date_options);
         $this->form->addElement('date', 'date_ansat', 'Ansat', $date_options);
         $this->form->addElement('date', 'date_stoppet', 'Stoppet', $date_options);
         $this->form->addElement('text', 'titel', 'Titel');

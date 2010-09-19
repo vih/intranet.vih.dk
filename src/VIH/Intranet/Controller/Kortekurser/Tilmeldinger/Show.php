@@ -40,7 +40,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
                 $betalinger->setStatus('approved');
                 return new k_SeeOther($this->url());
             } else {
-                throw new Exception("Betalingen kunne ikke gemmes. Det kan skyldes et ugyldigt bel�b");
+                throw new Exception("Betalingen kunne ikke gemmes. Det kan skyldes et ugyldigt beløb");
             }
         }
 

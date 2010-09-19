@@ -17,7 +17,7 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
         $kursus = new VIH_Model_KortKursus;
 
         $ansat = new VIH_Model_Ansat;
-        $ansatte = $ansat->getList('lærere');
+        $ansatte = $ansat->getList('lÃ¦rere');
 
         foreach ($ansatte AS $ansat) {
             $ansatte_list[$ansat->get('id')] = $ansat->get('navn');
@@ -36,11 +36,11 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
         $form->addElement('text', 'begyndere', 'Begyndere');
         $form->addElement('select', 'indkvartering_key', 'Indkvartering', $kursus->indkvartering);
         $form->addElement('text', 'pladser', 'Antal pladser');
-        $form->addElement('text', 'vaerelser', 'Antal værelser');
+        $form->addElement('text', 'vaerelser', 'Antal vÃ¦relser');
         $form->addElement('text', 'minimumsalder', 'Minimumsalder');
         $form->addElement('header', null, 'Priser');
         $form->addElement('text', 'pris', 'Pris');
-        $form->addElement('text', 'pris_boern', 'Børnepris');
+        $form->addElement('text', 'pris_boern', 'BÃ¸rnepris');
         $form->addElement('text', 'pris_depositum', 'Depositum');
         $form->addElement('text', 'pris_afbestillingsforsikring', 'Afbestillingsforsikring');
         $form->addElement('header', null, 'Beskrivelse');
@@ -48,10 +48,10 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
         $form->addElement('checkbox', 'tilmeldingsmulighed', '', 'Tilmeldingsmulighed');
         $form->addElement('checkbox', 'nyhed', '', 'Marker som nyhed');
         $form->addElement('checkbox', 'published', '', 'Udgivet');
-        $form->addElement('header', null, 'Til søgemaskinerne');
+        $form->addElement('header', null, 'Til sÃ¸gemaskinerne');
         $form->addElement('textarea', 'title', 'Title');
         $form->addElement('textarea', 'description', 'Beskrivelse');
-        $form->addElement('textarea', 'keywords', 'Nøgleord');
+        $form->addElement('textarea', 'keywords', 'NÃ¸gleord');
         $form->addElement('submit', null, 'Gem');
         return ($this->form = $form);
     }

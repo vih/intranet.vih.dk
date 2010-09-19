@@ -17,7 +17,7 @@ class VIH_Intranet_Controller_Faciliteter_Edit extends k_Component
         $this->form->addElement('text', 'title', 'Titel');
         $this->form->addElement('text', 'identifier', 'Identifier');
         $this->form->addElement('textarea', 'description', 'Description');
-        $this->form->addElement('textarea', 'keywords', 'Nøgleord');
+        $this->form->addElement('textarea', 'keywords', 'NÃ¸gleord');
         $this->form->addElement('checkbox', 'published', 'Udgivet');
         $this->form->addElement('submit', null, 'Gem');
         return $this->form;

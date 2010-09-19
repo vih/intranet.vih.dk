@@ -3,9 +3,9 @@
             <caption>Drikkevarer til <?php echo $kursus->get("kursusnavn"); ?></caption>
             <tr>
                 <th>Navn</th>
-                <th>Øl 16 kr</th>
-                <th>Fadøl 20 kr</th>
-                <th>Rødvin 75 kr</th>
+                <th>Ã˜l 16 kr</th>
+                <th>FadÃ¸l 20 kr</th>
+                <th>RÃ¸dvin 75 kr</th>
                 <th>Hvidvin 75 kr</th>
                 <th>Sodavand 16 kr</th>
                 <th>Andet</th>

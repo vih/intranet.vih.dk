@@ -1,6 +1,6 @@
 <?php
 
-// oplysningert til indsættelse i teksten
+// oplysningert til indsï¿½ttelse i teksten
 
 $navn = $tilmelding->get('navn');
 $ordrenummer = $tilmelding->get("id");
@@ -14,7 +14,7 @@ $forsikring = "";
 if ($tilmelding->get('afbestillingsforsikring') == 'Ja') {
     $forsikring = " afbestillingsforsikring og";
 }
-$onlinebetaling = 'eller online på adressen ' . KORTEKURSER_LOGIN_URI . $tilmelding->get('code');
+$onlinebetaling = 'eller online pÃ¥ adressen ' . KORTEKURSER_LOGIN_URI . $tilmelding->get('code');
 
 $deltagere = count($tilmelding->getDeltagere());
 if ($deltagere == 1) {
@@ -25,20 +25,20 @@ else {
 }
 
 $brev_tekst = <<<EODTEKST
-Kære $navn
+KÃ¦re $navn
 
-Hermed bekræfter vi, at vi har modtaget din betaling på $betalt kroner. Den dækker$forsikring depositum for kurset $kursus.
+Hermed bekrÃ¦fter vi, at vi har modtaget din betaling pÃ¥ $betalt kroner. Den dÃ¦kker$forsikring depositum for kurset $kursus.
 
 Dit ordrenummer er: $ordrenummer
 
-Derved træder $stedord i kraft. Husk at betale det resterende beløb $skyldig kroner senest $forfaldsdato.
+Derved trÃ¦der $stedord i kraft. Husk at betale det resterende belÃ¸b $skyldig kroner senest $forfaldsdato.
 
-Pengene bedes overført til vores konto i Jyske Bank: 7244-1469664 $onlinebetaling.
+Pengene bedes overfÃ¸rt til vores konto i Jyske Bank: 7244-1469664 $onlinebetaling.
 
 Med venlig hilsen
 
 $afsendernavn
-Vejle Idrætshøjskole
+Vejle IdrÃ¦tshÃ¸jskole
 Telefon: 75820811
 EODTEKST;
 

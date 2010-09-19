@@ -51,7 +51,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Component
         $format->setSize(8);
 
         $i = 0;
-        $worksheet->write($i, 0, 'Vejle Idr�tsh�jskole: ' . $this->getKursus()->getKursusNavn(), $format_bold);
+        $worksheet->write($i, 0, 'Vejle Idrætshøjskole: ' . $this->getKursus()->getKursusNavn(), $format_bold);
 
         $i = 2;
     	foreach ($this->getKursus()->getTilmeldinger() AS $deltager) {
