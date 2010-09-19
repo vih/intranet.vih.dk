@@ -7,7 +7,8 @@ class VIH_Intranet_Controller_Ansatte_Show extends k_Component
 
     function dispatch()
     {
-        if ($this->ansat = $this->getAnsat()->get('id') == 0) {
+        $this->ansat = $this->getAnsat();
+        if ($this->getAnsat()->get('id') == 0) {
             throw new k_PageNotFound();
         }
         return parent::dispatch();
