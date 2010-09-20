@@ -1,8 +1,6 @@
 <?php
 class VIH_Intranet_Controller_Fag_Edit extends k_Component
 {
-
-
     function renderHtml()
     {
         $fag = VIH_Model_Fag::getList();
@@ -32,18 +30,18 @@ class VIH_Intranet_Controller_Fag_Edit extends k_Component
                               'faggruppe_id' => $fag->get('faggruppe_id'),
                               'underviser' => $underviser_selected);
 
-            $this->getForm()->setDefaults($defaults);
+            $this->context->context->getForm()->setDefaults($defaults);
 
         }
         $this->document->setTitle('Rediger fag');
 
-        return $this->getForm()->toHTML();
+        return $this->context->context->getForm()->toHTML();
     }
 
     function postForm()
     {
-        if ($this->getForm()->validate()) {
-            $fag = new VIH_Model_Fag($this->context->name());
+        if ($this->context->context->getForm()->validate()) {
+            $fag = new VIH_Model_Fag($this->context->context->name());
             $input = $this->body();
             $input['navn'] = vih_handle_microsoft($input['navn']);
             $input['beskrivelse'] = vih_handle_microsoft($input['beskrivelse']);
