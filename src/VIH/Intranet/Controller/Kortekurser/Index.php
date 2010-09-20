@@ -9,15 +9,15 @@ class VIH_Intranet_Controller_Kortekurser_Index extends k_Component
         $this->template = $template;
     }
 
-    function getForm()
+    function map($name)
     {
-        if ($this->form) {
-            return $this->form;
+        if ($name == 'tilmeldinger') {
+            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index';
+        } elseif ($name == 'create') {
+            return 'VIH_Intranet_Controller_Kortekurser_Edit';
         }
-        $form = new HTML_QuickForm('korte', 'GET', $this->url());
-        $form->addElement('select', 'filter', 'Filter', array('alle'=>'alle','golf' => 'golf', 'old' => 'gamle'));
-        $form->addElement('submit', 'submit', 'Afsted');
-        return ($this->form = $form);
+
+        return 'VIH_Intranet_Controller_Kortekurser_Kursus';
     }
 
     function renderHtml()
@@ -44,14 +44,14 @@ class VIH_Intranet_Controller_Kortekurser_Index extends k_Component
         return $this->getForm()->toHTML() . $tpl->render($this, $data);
     }
 
-    function map($name)
+    function getForm()
     {
-        if ($name == 'tilmeldinger') {
-            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Index';
-        } elseif ($name == 'create') {
-            return 'VIH_Intranet_Controller_Kortekurser_Edit';
+        if ($this->form) {
+            return $this->form;
         }
-
-        return 'VIH_Intranet_Controller_Kortekurser_Kursus';
+        $form = new HTML_QuickForm('korte', 'GET', $this->url());
+        $form->addElement('select', 'filter', 'Filter', array('alle'=>'alle','golf' => 'golf', 'old' => 'gamle'));
+        $form->addElement('submit', 'submit', 'Afsted');
+        return ($this->form = $form);
     }
 }
