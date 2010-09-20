@@ -15,23 +15,8 @@
 				<td align="right"><?php print($kursus->get("pris_materiale")); ?></td>
 			</tr>
 			<tr>
-				<td>Rejsedepositum</td>
+				<td>Rejsebetaling</td>
 				<td align="right"><?php print($kursus->get("pris_rejsedepositum")); ?></td>
-			</tr>
-			<tr>
-				<td>Rejserest</td>
-				<td align="right"><?php print($kursus->get("pris_rejserest")); ?></td>
-			</tr>
-
-			<?php if ($kursus->get("pris_rejselinje") > 0): ?>
-			<tr>
-				<td>Rejsepris</td>
-				<td align="right"><?php print($kursus->get("pris_rejselinje")); ?></td>
-			</tr>
-			<?php endif; ?>
-			<tr>
-				<td>Nøgledepositum</td>
-				<td align="right"><?php print($kursus->get("pris_noegledepositum")); ?></td>
 			</tr>
 			<tr>
 				<td>Tilmeldingsgebyr</td>

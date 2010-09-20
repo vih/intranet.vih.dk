@@ -73,10 +73,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Component
         $form->addElement('text', 'pris_tilmeldingsgebyr', 'Tilmeldingsgebyr');
         $form->addElement('text', 'pris_uge', 'Ugepris');
         $form->addElement('text', 'pris_materiale', 'Materialer');
-        $form->addElement('text', 'pris_noegledepositum', 'Nøgledepositum');
         $form->addElement('text', 'pris_rejsedepositum', 'Rejsedepositum');
-        $form->addElement('text', 'pris_rejserest', 'Rejserestpris');
-        $form->addElement('text', 'pris_rejselinje', 'Rejselinjepris');
         $form->addElement('header', null, 'Støtte');
         $form->addElement('text', 'elevstotte', 'Elevstøtte');
         $form->addElement('text', 'ugeantal_elevstotte', 'Elevstøtte antal uger');
@@ -152,10 +149,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Component
             'pris_uge' => $tilmelding->get('pris_uge'),
             'pris_tilmeldingsgebyr' => $tilmelding->get('pris_tilmeldingsgebyr'),
             'pris_materiale' => $tilmelding->get('pris_materiale'),
-            'pris_noegledepositum' => $tilmelding->get('pris_noegledepositum'),
             'pris_rejsedepositum' => $tilmelding->get('pris_rejsedepositum'),
-            'pris_rejserest' => $tilmelding->get('pris_rejserest'),
-            'pris_rejselinje' => $tilmelding->get('pris_rejselinje'),
             'pris_afbrudt_ophold' => $tilmelding->get('pris_afbrudt_ophold'),
             'kompetencestotte' => $tilmelding->get('kompetencestotte'),
             'elevstotte' => $tilmelding->get('elevstotte'),

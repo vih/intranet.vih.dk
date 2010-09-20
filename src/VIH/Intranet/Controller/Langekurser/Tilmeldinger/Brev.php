@@ -187,23 +187,10 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
 
             if ($tilmelding->get('pris_rejsedepositum') > 0) {
                 $pdf->setY($pdf->getY() + $line_height);
-                $pdf->Text($pdf->getX(), $pdf->getY(), 'Rejseforudbetaling');
+                $pdf->Text($pdf->getX(), $pdf->getY(), 'Rejsebetaling');
                 $pdf->Text($pris_width - $pdf->getStringWidth($tilmelding->get('pris_rejsedepositum')), $pdf->getY(), $tilmelding->get('pris_rejsedepositum'));
                 $pdf->Line($pdf->getX(), $pdf->getY() + 2, $pris_width, $pdf->getY() + 2);
             }
-            if ($tilmelding->get('pris_rejserest') > 0) {
-                $pdf->setY($pdf->getY() + $line_height);
-                $pdf->Text($pdf->getX(), $pdf->getY(), 'Restbeløb til rejse');
-                $pdf->Text($pris_width - $pdf->getStringWidth($tilmelding->get('pris_rejserest')), $pdf->getY(), $tilmelding->get('pris_rejserest'));
-                $pdf->Line($pdf->getX(), $pdf->getY() + 2, $pris_width, $pdf->getY() + 2);
-            }
-            if ($tilmelding->get('pris_noegledepositum') > 0) {
-                $pdf->setY($pdf->getY() + $line_height);
-                $pdf->Text($pdf->getX(), $pdf->getY(), 'Nøgledepositum');
-                $pdf->Text($pris_width - $pdf->getStringWidth($tilmelding->get('pris_noegledepositum')), $pdf->getY(), $tilmelding->get('pris_noegledepositum'));
-                $pdf->Line($pdf->getX(), $pdf->getY() + 2, $pris_width, $pdf->getY() + 2);
-            }
-
             if ($tilmelding->get('pris_afbrudt_ophold') > 0) {
                 $pdf->setY($pdf->getY() + $line_height);
                 $pdf->Text($pdf->getX(), $pdf->getY(), 'Afbrudt ophold');

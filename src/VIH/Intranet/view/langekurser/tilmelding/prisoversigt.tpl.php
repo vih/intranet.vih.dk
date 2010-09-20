@@ -24,22 +24,8 @@
         <td><?php e(number_format($tilmelding->get("pris_materiale"), 0, ',', '.')); ?></td>
     </tr>
     <tr>
-        <th>Rejseforudbetaling</th>
+        <th>Rejsebetaling</th>
         <td><?php e(number_format($tilmelding->get("pris_rejsedepositum"), 0, ',', '.')); ?></td>
-    </tr>
-    <tr>
-        <th>Restbeløb rejse 1)</th>
-        <td><?php e(number_format((float)$tilmelding->get("pris_rejserest"), 0, ',', '.')); ?></td>
-    </tr>
-    <?php if ($tilmelding->get("pris_rejselinje") > 0): ?>
-    <tr>
-        <th>Rejselinje</th>
-        <td><?php e(number_format($tilmelding->get("pris_rejselinje"), 0, ',', '.')); ?></td>
-    </tr>
-    <?php endif; ?>
-    <tr>
-        <th>Nøgledepositum</th>
-        <td><?php e(number_format((float)$tilmelding->get("pris_noegledepositum"), 0, ',', '.')); ?></td>
     </tr>
   <?php if ($tilmelding->get("aktiveret_tillaeg") > 0): ?>
     <tr>

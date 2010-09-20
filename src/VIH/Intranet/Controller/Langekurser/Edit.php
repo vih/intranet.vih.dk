@@ -43,9 +43,6 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Component
         $this->form->addElement('text', 'pris_uge', 'Ugepris');
         $this->form->addElement('text', 'pris_materiale', 'Materialepris');
         $this->form->addElement('text', 'pris_rejsedepositum', 'Rejsedepositum');
-        $this->form->addElement('text', 'pris_rejserest', 'Restbeløb til rejse');
-        $this->form->addElement('text', 'pris_rejselinje', 'Rejselinje'); // afrikalinjen
-        $this->form->addElement('text', 'pris_noegledepositum', 'Nøgledepositum'); // afrikalinjen
         $this->form->addElement('text', 'pris_tilmeldingsgebyr', 'Tilmeldingsgebyr'); // afrikalinjen
         $this->form->addElement('checkbox', 'published', 'Udgivet');
         $this->form->addElement('submit', null, 'Gem');
@@ -74,9 +71,6 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Component
                               'pris_uge' => $kursus->get('pris_uge'),
                               'pris_materiale' => $kursus->get('pris_materiale'),
                               'pris_rejsedepositum' => $kursus->get('pris_rejsedepositum'),
-                              'pris_rejserest' => $kursus->get('pris_rejserest'),
-                              'pris_rejselinje' => $kursus->get('pris_rejselinje'), // afrikalinjen
-                              'pris_noegledepositum' => $kursus->get('pris_noegledepositum'),
                               'pris_tilmeldingsgebyr' => $kursus->get('pris_tilmeldingsgebyr'),
                               'published' => $kursus->get('published')
             );
@@ -108,5 +102,6 @@ class VIH_Intranet_Controller_Langekurser_Edit extends k_Component
                 return new k_SeeOther($this->url('../'));
             }
         }
+        return $this->render();
     }
 }
