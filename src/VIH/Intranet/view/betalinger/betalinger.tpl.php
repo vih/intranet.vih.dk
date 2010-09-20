@@ -35,7 +35,7 @@
             <td><?php echo $betaling->get('status_string'); ?></td>
             <td></td>
             <?php endif; ?>
-            <td><a href="<?php echo url('/' .$betaling->get('belong_to') . '/tilmeldinger/' . $betaling->get('belong_to_id')); ?>">Gå til tilmeldingen</a></td>
+            <td><a href="<?php echo url('../' .$betaling->get('belong_to') . '/tilmeldinger/' . $betaling->get('belong_to_id')); ?>">Gå til tilmeldingen</a></td>
         </tr>
         <?php endforeach; ?>
     </table>
