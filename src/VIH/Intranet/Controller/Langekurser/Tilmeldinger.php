@@ -8,6 +8,15 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Component
         $this->template = $template;
     }
 
+    function map($name)
+    {
+        if ($name == 'adresseliste') {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Adresseliste';
+        } else {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show';
+        }
+    }
+
     function renderHtml()
     {
         $kursus = new VIH_Model_LangtKursus($this->context->name());
@@ -76,14 +85,5 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Component
         $response->setHeader("Pragma", "public");
         */
         return $response;
-    }
-
-    function map($name)
-    {
-        if ($name == 'adresseliste') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Adresseliste';
-        } else {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show';
-        }
     }
 }

@@ -23,16 +23,16 @@ class VIH_Intranet_Controller_Kortekurser_Index extends k_Component
     function renderHtml()
     {
         if ($this->getForm()->validate()) {
-            if ($this->getForm()->exportValue('filter') == 'old') {
+            if ($this->query('filter') == 'old') {
                 $kurser = VIH_Model_KortKursus::getList('old');
-            } elseif($this->getForm()->exportValue('filter') == 'golf') {
+            } elseif($this->query('filter') == 'golf') {
                 $kurser = VIH_Model_KortKursus::getList('intranet', 'golf');
             } else {
                 $kurser = VIH_Model_KortKursus::getList('intranet');
             }
+        } else {
+            $kurser = VIH_Model_KortKursus::getList('intranet');
         }
-
-        $kurser = VIH_Model_KortKursus::getList('intranet');
 
         $this->document->setTitle('Korte kurser');
         $this->document->addOption('Opret', $this->url('create'));

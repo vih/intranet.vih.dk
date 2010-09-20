@@ -9,21 +9,21 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index extends k_Component
         $this->template = $template;
     }
 
-    function getForm()
+    function map($name)
     {
-        if ($this->form) {
-            return $this->form;
+        if ($name == 'exportcsv') {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV';
+        }  elseif ($name == 'restance') {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Restance';
+        } else {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show';
         }
-        $form = new HTML_QuickForm('search', 'GET', $this->url());
-        $form->addElement('text', 'search');
-        $form->addElement('submit', null, 'Søg');
-        return ($this->form = $form);
     }
 
     function renderHtml()
     {
         if ($this->query('search') AND $this->getForm()->validate()) {
-            $tilmeldinger = VIH_Model_LangtKursus_Tilmelding::search($this->body('search'));
+            $tilmeldinger = VIH_Model_LangtKursus_Tilmelding::search($this->query('search'));
         } else {
             $tilmeldinger = VIH_Model_LangtKursus_Tilmelding::getList('nyeste', NULL, 5);
         }
@@ -44,14 +44,14 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Index extends k_Component
 
     }
 
-    function map($name)
+    function getForm()
     {
-        if ($name == 'exportcsv') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV';
-        }  elseif ($name == 'restance') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Restance';
-        } else {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show';
+        if ($this->form) {
+            return $this->form;
         }
+        $form = new HTML_QuickForm('search', 'GET', $this->url());
+        $form->addElement('text', 'search');
+        $form->addElement('submit', null, 'Søg');
+        return ($this->form = $form);
     }
 }
