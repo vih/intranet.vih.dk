@@ -69,4 +69,12 @@ class VIH_Intranet_Factory
     {
         return new Services_Twitter($GLOBALS['twitter_username'], $GLOBALS['twitter_password']);
     }
+
+    function new_Doctrine_Connection_Common()
+    {
+        $conn = Doctrine_Manager::connection(DB_DSN);
+        Doctrine_Manager::getInstance()->setAttribute("model_loading", "conservative");
+        return $conn;
+    }
+
 }
