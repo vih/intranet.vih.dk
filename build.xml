@@ -11,7 +11,7 @@
     <property name="reports.coverage.dir" value="../../build/logs/coverage" />
     <property name="api.dir" value="../build/api" />
 
-    <property name="version" value="2.0.0" />
+    <property name="version" value="2.0.1" />
     <property name="stability" value="stable" />
     <property name="package-filename" value="${package-name}-${version}.tgz" />
 	
@@ -174,10 +174,13 @@
                              minimum_version="0.1.2" />
                     <package name="Doctrine"
                              channel="pear.doctrine-project.org"
-                             minimum_version="1.2.3" />                	
+                             minimum_version="1.2.3" />
+                        <package name="Services_Twitter"
+                                 channel="pear.php.net"
+                                 minimum_version="0.1.0" />                   	
                     </dependencies>
                 <notes>
-                    * Changed to konstrukt2
+                    * Bugfixes
                 </notes>
             </d51pearpkg2>
     
