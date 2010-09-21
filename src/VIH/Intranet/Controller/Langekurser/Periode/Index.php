@@ -13,6 +13,11 @@ class VIH_Intranet_Controller_Langekurser_Periode_Index extends k_Component
         $this->template = $template;
     }
 
+    function map($name)
+    {
+        return 'VIH_Intranet_Controller_Langekurser_Periode_Show';
+    }
+
     function renderHtml()
     {
         $this->document->setTitle('Perioder');
@@ -31,10 +36,5 @@ class VIH_Intranet_Controller_Langekurser_Periode_Index extends k_Component
     function getLangtKursusId()
     {
         return $this->context->name();
-    }
-
-    function map($name)
-    {
-        return 'VIH_Intranet_Controller_Langekurser_Periode_Show'';
     }
 }
