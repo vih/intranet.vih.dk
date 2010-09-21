@@ -20,7 +20,7 @@ class VIH_Intranet_Controller_Ansatte_Show extends k_Component
         $file->loadInstance('small');
 
         $this->document->setTitle('Ansat: ' . $this->ansat->get('navn'));
-        $this->document->addOption('Ret', $this->url('edit'));
+        $this->document->addOption('Ret', $this->url(null, array('edit')));
 
         return $file->getImageHtml(). $this->getFileForm()->toHTML();
     }
