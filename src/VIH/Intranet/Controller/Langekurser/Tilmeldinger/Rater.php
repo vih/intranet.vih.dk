@@ -13,17 +13,20 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding(intval($this->context->name()));
         $tilmelding->loadBetaling();
 
-        if($tilmelding->get("id") == 0) {
+        $this->document->setTitle('Betalingsrater for ' . $tilmelding->get("navn"));
+        $this->document->addOption('Tilføj rate', $this->url(null, array('addrate' => 1)));
+
+        if ($tilmelding->get("id") == 0) {
             trigger_error("Ugyldig tilmelding", E_USER_ERROR);
         }
 
-        if($this->query("addrate")) {
+        if ($this->query("addrate")) {
             if ($tilmelding->addRate($this->query("addrate"))) {
                 return new k_SeeOther($this->url());
             } else {
                 throw new Exception('Raten kunne ikke tilføjes');
             }
-        } elseif($this->query("delete")) {
+        } elseif ($this->query("delete")) {
             if ($tilmelding->deleteRate($this->query("delete"))) {
                 return new k_SeeOther($this->url());
             } else {
@@ -34,12 +37,8 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
         $pris_tpl = $this->templates->create('langekurser/tilmelding/prisoversigt');
         $pris_data = array('tilmelding' => $tilmelding);
 
-        $data = array('tilmelding' => $tilmelding);
-
-        $this->document->setTitle('Betalingsrater for ' . $tilmelding->get("navn"));
-        $this->document->addOption('Tilføj rate', $this->url(null, array('addrate' => 1)));
-
         $tpl = $this->templates->create('langekurser/tilmelding/form_rater');
+        $data = array('tilmelding' => $tilmelding);
 
         return $pris_tpl->render($this, $pris_data) .
             $tpl->render($this, $data);
@@ -49,7 +48,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
     function postForm()
     {
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
-        if(isset($_POST["opdater_rater"])) {
+        if (isset($_POST["opdater_rater"])) {
             if ($tilmelding->updateRater($this->body("rate"))) {
                 return new k_SeeOther($this->url());
             } else {

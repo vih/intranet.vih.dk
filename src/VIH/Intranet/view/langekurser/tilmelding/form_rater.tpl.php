@@ -1,4 +1,4 @@
-<form action="<?php echo $this->url(); ?>" method="POST">
+<form action="<?php e(url()); ?>" method="POST">
 
 <fieldset>
 <legend>Rater</legend>
