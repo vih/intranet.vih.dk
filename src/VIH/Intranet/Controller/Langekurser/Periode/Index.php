@@ -29,7 +29,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Index extends k_Component
         //$perioder = VIH_Model_LangtKursus_Periode::getFromKursusId($this->registry->get('database'), $this->getLangtKursusId());
         $data = array('perioder' => $periods);
 
-        $tpl = $this->template->create('VIH/Intranet/view/langekurser/perioder');
+        $tpl = $this->template->create('langekurser/perioder');
         return $tpl->render($this, $data);
     }
 

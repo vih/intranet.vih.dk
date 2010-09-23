@@ -41,7 +41,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Show extends k_Component
         $this->document->addOption('Opret faggruppe', $this->url('faggruppe/create'));
         $this->document->addOption('Luk', $this->url('../'));
 
-        $tpl = $this->template->create('VIH/Intranet/view/langekurser/periode/show');
+        $tpl = $this->template->create('langekurser/periode/show');
         return $tpl->render($this, array('periode' => $periode, 'faggrupper' => $this->getSubjectGroup()));
     }
 
