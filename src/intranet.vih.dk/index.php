@@ -9,6 +9,77 @@ require_once 'bucket.inc.php';
 require_once('Doctrine.php');
 spl_autoload_register(array('Doctrine', 'autoload'));
 
+$GLOBALS['konstrukt_content_types']['application/ms-excel'] = 'xls';
+$GLOBALS['konstrukt_content_types']['text/x-vcard'] = 'vcf';
+$GLOBALS['konstrukt_content_types']['text/plain'] = 'txt';
+$GLOBALS['konstrukt_content_types']['xml/oioxml'] = 'oioxml';
+
+class k_PdfResponse extends k_ComplexResponse
+{
+    function contentType()
+    {
+        return 'application/pdf';
+    }
+
+    protected function marshal()
+    {
+        return $this->content;
+    }
+}
+
+class k_XlsResponse extends k_ComplexResponse
+{
+    function contentType()
+    {
+        return 'application/excel';
+    }
+
+    protected function marshal()
+    {
+        return $this->content;
+    }
+}
+
+class k_TxtResponse extends k_ComplexResponse
+{
+    function contentType()
+    {
+        return 'text/plain';
+    }
+
+    protected function marshal()
+    {
+        return $this->content;
+    }
+}
+
+
+class k_VcfResponse extends k_ComplexResponse
+{
+    function contentType()
+    {
+        return 'text/x-vcard';
+    }
+
+    protected function marshal()
+    {
+        return $this->content;
+    }
+}
+
+class k_OioxmlResponse extends k_ComplexResponse
+{
+    function contentType()
+    {
+        return 'xml/oioxml';
+    }
+
+    protected function marshal()
+    {
+        return $this->content;
+    }
+}
+
 class k_SessionIdentityLoader implements k_IdentityLoader
 {
     function load(k_Context $context)

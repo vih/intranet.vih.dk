@@ -1,7 +1,7 @@
 <?php
 class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
 {
-    private $template;
+    protected $template;
     protected $templates;
 
     function __construct(k_TemplateFactory $templates)
