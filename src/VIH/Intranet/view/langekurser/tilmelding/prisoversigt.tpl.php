@@ -94,8 +94,6 @@
     ?>
 </table>
 
-<p class="noter">1) Restbeløbet for rejsen fastlægges først, når den endelige pris for rejsen foreligger.</p>
-
 <?php if ($tilmelding->get('betalt_not_approved') > 0): ?>
     <p class="notice">* Der er afventende betalinger. Oversigten opdateres, når vi hæver dem.</p>
 <?php endif; ?>

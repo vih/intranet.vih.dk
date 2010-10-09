@@ -85,12 +85,12 @@ class VIH_Intranet_Controller_Protokol_Elev extends k_Component
                       'vis_navn' => false);
 
         $this->document->setTitle($tilmelding->get('navn'));
-        $this->document->addOption('Ret', $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id')));
+        $this->document->addOption('Ret', $this->url('../../../langekurser/tilmeldinger/' . $tilmelding->get('id')));
         $this->document->addOption('Indtast', $this->url('indtast'));
-        $this->document->addOption('Tilmelding', $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id')));
-        $this->document->addOption('Fag', $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id') . '/fag'));
+        $this->document->addOption('Tilmelding', $this->url('../../../langekurser/tilmeldinger/' . $tilmelding->get('id')));
+        $this->document->addOption('Fag', $this->url('../../../langekurser/tilmeldinger/' . $tilmelding->get('id') . '/fag'));
         $this->document->addOption('Holdliste', $this->context->url());
-        $this->document->addOption('Diplom', $this->url('/langekurser/tilmeldinger/' . $tilmelding->get('id') . '/diplom'));
+        $this->document->addOption('Diplom', $this->url('../../../langekurser/tilmeldinger/' . $tilmelding->get('id') . '/diplom'));
 
         $tpl = $this->template->create('protokol/liste');
 

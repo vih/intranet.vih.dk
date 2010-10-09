@@ -1,7 +1,7 @@
 <?php
 class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
 {
-    private $template;
+    protected $template;
     protected $templates;
 
     function __construct(k_TemplateFactory $templates)
@@ -9,20 +9,41 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
         $this->templates = $templates;
     }
 
-    function renderHtml()
+    function map($name)
     {
-        if ($this->query('get_prices')) {
-            $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->query('get_prices'));
-            if (!$tilmelding->getPriserFromKursus()) {
-                throw new Exception('Tilmeldingen kunne ikke slettes');
-            } else {
-                return new k_SeeOther($this->url());
-            }
+        if ($name == 'rater') {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater';
+        } elseif ($name == 'fag') {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag';
+        } elseif ($name == 'brev') {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev';
+        } elseif ($name == 'diplom') {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom';
+        } elseif ($name == 'edit') {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit';
         }
+    }
 
+    function dispatch()
+    {
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->name());
         if ($tilmelding->get('id') == 0) {
             throw new k_PageNotFound();
+        }
+
+        return parent::dispatch();
+    }
+
+    function renderHtml()
+    {
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->name());
+
+        if ($this->query('get_prices')) {
+            if (!$tilmelding->getPriserFromKursus()) {
+                throw new Exception('Priser kunne ikke hentes');
+            } else {
+                return new k_SeeOther($this->url());
+            }
         }
 
         $historik = new VIH_Model_Historik('langekurser', $tilmelding->get("id"));
@@ -115,21 +136,6 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
             throw new Exception('Tilmeldingen kunne ikke slettes');
         } else {
             return new k_SeeOther($this->url('../'));
-        }
-    }
-
-    function map($name)
-    {
-        if ($name == 'rater') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater';
-        } elseif ($name == 'fag') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag';
-        } elseif ($name == 'brev') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev';
-        } elseif ($name == 'diplom') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom';
-        } elseif ($name == 'edit') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit';
         }
     }
 }
