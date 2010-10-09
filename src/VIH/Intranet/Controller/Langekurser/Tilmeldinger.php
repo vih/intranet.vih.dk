@@ -46,17 +46,17 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Component
         $workbook->send($this->getKursus()->getKursusNavn());
 
         // Creating a worksheet
-        $worksheet =& $workbook->addWorksheet('Deltagere');
+        $worksheet = $workbook->addWorksheet('Deltagere');
 
-        $format_bold =& $workbook->addFormat();
+        $format_bold = $workbook->addFormat();
         $format_bold->setBold();
         $format_bold->setSize(8);
 
-        $format_italic =& $workbook->addFormat();
+        $format_italic = $workbook->addFormat();
         $format_italic->setItalic();
         $format_italic->setSize(8);
 
-        $format =& $workbook->addFormat();
+        $format = $workbook->addFormat();
         $format->setSize(8);
 
         $i = 0;
@@ -74,7 +74,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger extends k_Component
         // Let's send the file
         $data = $workbook->close();
 
-        $response = new k_http_Response(200, $data);
+        $response = new k_HttpResponse(200, $data);
         $response->setEncoding(NULL);
         $response->setContentType("application/excel");
         /*

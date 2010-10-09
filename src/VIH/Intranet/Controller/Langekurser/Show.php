@@ -5,13 +5,33 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
                         'delete' => 'VIH_Intranet_Controller_Langekurser_Delete');
 
     public $form;
-
     protected $template;
     protected $doctrine;
 
     function __construct(k_TemplateFactory $template)
     {
         $this->template = $template;
+    }
+
+    function map($name)
+    {
+        if ($name == 'edit') {
+            return 'VIH_Intranet_Controller_Langekurser_Edit';
+        } elseif ($name == 'copy') {
+            return 'VIH_Intranet_Controller_Langekurser_Copy';
+        } elseif ($name == 'periode') {
+            return 'VIH_Intranet_Controller_Langekurser_Periode_Index';
+        } elseif ($name == 'tilmeldinger') {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger';
+        } elseif ($name == 'rater') {
+            return 'VIH_Intranet_Controller_Langekurser_Rater';
+        } elseif ($name == 'fag') {
+            return 'VIH_Intranet_Controller_Langekurser_Fag_Index';
+        } elseif ($name == 'ministeriumliste') {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Ministeriumliste';
+        } elseif ($name == 'elevuger') {
+            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Elevugerliste';
+        }
     }
 
     function dispatch()
@@ -21,28 +41,6 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
             return new k_PageNotFound();
         }
         return parent::dispatch();
-    }
-
-    function renderHtmlDelete()
-    {
-        $kursus = new VIH_Model_LangtKursus($this->name());
-        if ($kursus->delete()) {
-            return new k_SeeOther($this->url('../'));
-        }
-    }
-
-    function getForm()
-    {
-        if ($this->form) {
-            return $this->form;
-        }
-        $kursus = new VIH_Model_LangtKursus((int)$this->name());
-
-        $form = new HTML_QuickForm('show', 'POST', $this->url());
-        $form->addElement('hidden', 'id', $kursus->get('id'));
-        $form->addElement('file', 'userfile', 'Fil');
-        $form->addElement('submit', null, 'Upload');
-        return ($this->form = $form);
     }
 
     function renderHtml()
@@ -82,6 +80,41 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
         return $tpl->render($this, $data) . $this->getForm()->toHTML() . $pic_html;
     }
 
+    function postMultipart()
+    {
+        $kursus = new VIH_Model_LangtKursus((int)$this->name());
+        if ($this->getForm()->validate()) {
+            $file = new Ilib_FileHandler;
+            if ($file->upload('userfile')) {
+                $kursus->addPicture($file->get('id'));
+                return new k_SeeOther($this->url());
+            }
+        }
+        return $this->render();
+    }
+
+    function renderHtmlDelete()
+    {
+        $kursus = new VIH_Model_LangtKursus($this->name());
+        if ($kursus->delete()) {
+            return new k_SeeOther($this->url('../'));
+        }
+    }
+
+    function getForm()
+    {
+        if ($this->form) {
+            return $this->form;
+        }
+        $kursus = new VIH_Model_LangtKursus((int)$this->name());
+
+        $form = new HTML_QuickForm('show', 'POST', $this->url());
+        $form->addElement('hidden', 'id', $kursus->get('id'));
+        $form->addElement('file', 'userfile', 'Fil');
+        $form->addElement('submit', null, 'Upload');
+        return ($this->form = $form);
+    }
+
     function getSubjects()
     {
         $conn = Doctrine_Manager::connection(DB_DSN);
@@ -112,41 +145,5 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
         }
         return $subjects;
         */
-    }
-
-    function postMultipart()
-    {
-        $kursus = new VIH_Model_LangtKursus((int)$this->name());
-        if ($this->getForm()->validate()) {
-            $file = new Ilib_FileHandler;
-            if ($file->upload('userfile')) {
-                $kursus->addPicture($file->get('id'));
-                return new k_SeeOther($this->url());
-            }
-        }
-        return $this->render();
-    }
-
-    function map($name)
-    {
-        if ($name == 'edit') {
-            return 'VIH_Intranet_Controller_Langekurser_Edit';
-        } elseif ($name == 'delete') {
-            return 'VIH_Intranet_Controller_Langekurser_Delete';
-        } elseif ($name == 'copy') {
-            return 'VIH_Intranet_Controller_Langekurser_Copy';
-        } elseif ($name == 'periode') {
-            return 'VIH_Intranet_Controller_Langekurser_Periode_Index';
-        } elseif ($name == 'tilmeldinger') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger';
-        } elseif ($name == 'rater') {
-            return 'VIH_Intranet_Controller_Langekurser_Rater';
-        } elseif ($name == 'fag') {
-            return 'VIH_Intranet_Controller_Langekurser_Fag_Index';
-        } elseif ($name == 'ministeriumliste') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Ministeriumliste';
-        } elseif ($name == 'elevuger') {
-            return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Elevugerliste';
-        }
     }
 }

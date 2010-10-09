@@ -8,6 +8,11 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Co
         $this->template = $template;
     }
 
+    function map($name)
+    {
+        return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show';
+    }
+
     function renderHtml()
     {
         $kursus = new VIH_Model_LangtKursus($this->context->name());
@@ -23,11 +28,6 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Co
         return $tpl->render($this, $data);
     }
 
-    function map($name)
-    {
-        return 'VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show';
-    }
-
     function getKursus()
     {
         return new VIH_Model_LangtKursus((int)$this->context->name());
@@ -41,13 +41,13 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Co
         $workbook->send($this->getKursus()->getKursusNavn());
 
         // Creating a worksheet
-        $worksheet =& $workbook->addWorksheet('Deltagere');
+        $worksheet = $workbook->addWorksheet('Deltagere');
 
-        $format_bold =& $workbook->addFormat();
+        $format_bold = $workbook->addFormat();
         $format_bold->setBold();
         $format_bold->setSize(8);
 
-        $format_italic =& $workbook->addFormat();
+        $format_italic = $workbook->addFormat();
         $format_italic->setItalic();
         $format_italic->setSize(8);
 
@@ -69,7 +69,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Tilmeldinger extends k_Co
         // Let's send the file
         $data = $workbook->close();
 
-        $response = new k_http_Response(200, $data);
+        $response = new k_HttpResponse(200, $data);
         $response->setEncoding(NULL);
         $response->setContentType("application/excel");
         /*
