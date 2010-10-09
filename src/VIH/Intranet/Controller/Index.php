@@ -41,7 +41,7 @@ class VIH_Intranet_Controller_Index extends k_Component
     function dispatch()
     {
         if ($this->identity()->anonymous()) {
-            return new k_NotAuthorized();
+            throw new k_NotAuthorized();
         }
         return parent::dispatch();
     }
