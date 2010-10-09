@@ -17,7 +17,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Rater extends k_Component
         $this->document->addOption('Tilføj rate', $this->url(null, array('addrate' => 1)));
 
         if ($tilmelding->get("id") == 0) {
-            trigger_error("Ugyldig tilmelding", E_USER_ERROR);
+            throw new Exception("Ugyldig tilmelding");
         }
 
         if ($this->query("addrate")) {

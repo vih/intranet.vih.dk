@@ -14,7 +14,6 @@ class VIH_Intranet_Controller_Calendar_Index extends k_Component
 
     function getUserData()
     {
-        require_once '/home/lsolesen/workspace/structures-ical/src/Structures/Ical.php';
         $gateway = new Structures_IcalGateway;
         $ical = $gateway->getFromUri('http://www.google.com/calendar/ical/scv5aba9r3r5qcs1m6uddskjic%40group.calendar.google.com/public/basic.ics');
 
