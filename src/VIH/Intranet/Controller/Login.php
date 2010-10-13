@@ -11,7 +11,7 @@ class VIH_Intranet_Controller_Login extends k_Component
     {
         $this->document->setTitle('Login');
         $response = new k_HtmlResponse(
-      "
+      "<form method='post' action='" . htmlspecialchars($this->url()) . "'>
   <p>
     <label>
       Brugernavn
@@ -27,7 +27,8 @@ class VIH_Intranet_Controller_Login extends k_Component
   <p>
     <input type='submit' value='Login' />
   </p>
-</form>");
+</form>
+");
         $response->setStatus(401);
         return $response;
     }
