@@ -9,25 +9,25 @@ class VIH_Intranet_Controller_Login extends k_Component
 
     function renderHtml()
     {
+        $this->document->setTitle('Login');
         $response = new k_HtmlResponse(
-      "<html><head><title>Authentication required</title></head><body><form method='post' action='" . htmlspecialchars($this->url()) . "'>
-  <h1>Authentication required</h1>
+      "
   <p>
     <label>
-      username:
+      Brugernavn
       <input type='text' name='username' />
     </label>
   </p>
   <p>
     <label>
-      password:
+      Adgangskode
       <input type='password' name='password' />
     </label>
   </p>
   <p>
     <input type='submit' value='Login' />
   </p>
-</form></body></html>");
+</form>");
         $response->setStatus(401);
         return $response;
     }
