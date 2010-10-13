@@ -7,18 +7,18 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Index extends k_Comp
     protected $doctrine;
     protected $template;
 
+    function __construct(Doctrine_Connection_Common $doctrine, k_TemplateFactory $template)
+    {
+        $this->doctrine = $doctrine;
+        $this->template = $template;
+    }
+
     function map($name)
     {
         if ($name == 'create') {
             return 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create';
         }
         return 'VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show';
-    }
-
-    function __construct(Doctrine_Connection_Common $doctrine, k_TemplateFactory $template)
-    {
-        $this->doctrine = $doctrine;
-        $this->template = $template;
     }
 
     function renderHtml()
@@ -32,7 +32,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Index extends k_Comp
 
         $data = array('period' => $this->context->getModel(), 'faggrupper' => $groups);
 
-        $tpl = $this->template->create('VIH/Intranet/view/langekurser/periode/faggrupper');
+        $tpl = $this->template->create('langekurser/periode/faggrupper');
         return $tpl->render($this, $data);
     }
 

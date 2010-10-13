@@ -1,29 +1,36 @@
 <?php
 class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Edit extends k_Component
 {
-    function __construct(k_iContext $parent, $name = "")
+    protected $doctrine;
+    protected $template;
+
+    function __construct(Doctrine_Connection_Common $doctrine, k_TemplateFactory $template)
     {
-        parent::__construct($parent, $name);
-        $descriptors = array();
-        $descriptors[] = array('name' => 'name', 'filters' => array('trim'));
-        $descriptors[] = array('name' => 'description', 'filters' => array('trim'));
-        $descriptors[] = array('name' => 'elective_course', 'filters' => array('trim'));
-        $this->form = new k_FormBehaviour($this, 'VIH/Intranet/view/form-tpl.php');
-        $this->form->descriptors = $descriptors;
+        $this->doctrine = $doctrine;
+        $this->template = $template;
     }
 
-    function getDefaultValues()
+    function renderHtml()
+    {
+        $this->document->setTitle('Rediger faggruppe');
+
+        $descriptors = array();
+        $descriptors[] = array('name' => 'name', 'filters' => array('trim'), 'default' => $this->getDefaultValue('name'));
+        $descriptors[] = array('name' => 'description', 'filters' => array('trim'), 'default' => $this->getDefaultValue('description'));
+        $descriptors[] = array('name' => 'elective_course', 'filters' => array('trim'), 'default' => $this->getDefaultValue('elective_course'));
+
+        $tpl = $this->template->create('form');
+        return $tpl->render($this, array('descriptors' => $descriptors));
+    }
+
+    function getDefaultValue($key)
     {
         $model = $this->context->getModel();
-        return array('name' => $model->getName(), 
-                     'electice_course' => (string)$model->isElectiveCourse(), 
+        $defaults = array('name' => $model->getName(),
+                     'electice_course' => (string)$model->isElectiveCourse(),
                      'description' => $model->getDescription());
-    }
+        return $defaults[$key];
 
-    function execute()
-    {
-        $this->form->execute();
-        return $this->form->execute();
     }
 
     function validate($values)
@@ -31,9 +38,9 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Edit extends k_Compo
         return TRUE;
     }
 
-    function validHandler($values)
+    function postForm()
     {
-        $this->registry->get('doctrine');
+        $values = $this->body();
         $group = Doctrine::getTable('VIH_Model_Course_SubjectGroup')->findOneById($this->context->name());
         $group->name = $values['name'];
         $group->description = $values['description'];

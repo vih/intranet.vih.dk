@@ -8,9 +8,10 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
     protected $template;
     protected $doctrine;
 
-    function __construct(k_TemplateFactory $template)
+    function __construct(k_TemplateFactory $template, Doctrine_Connection_Common $doctrine)
     {
         $this->template = $template;
+        $þhis->doctrine = $doctrine;
     }
 
     function map($name)
@@ -117,8 +118,6 @@ class VIH_Intranet_Controller_Langekurser_Show extends k_Component
 
     function getSubjects()
     {
-        $conn = Doctrine_Manager::connection(DB_DSN);
-
         $kursus = new VIH_Model_LangtKursus((int)$this->name());
 
         $data = array('kursus' => $kursus);

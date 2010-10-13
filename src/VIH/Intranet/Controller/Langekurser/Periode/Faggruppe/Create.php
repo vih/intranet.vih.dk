@@ -1,19 +1,24 @@
 <?php
 class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create extends k_Component
 {
-    function __construct(k_iContext $parent, $name = '')
+    protected $doctrine;
+    protected $template;
+
+    function __construct(Doctrine_Connection_Common $doctrine, k_TemplateFactory $template)
     {
-        parent::__construct($parent, $name);
+        $this->doctrine = $doctrine;
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $descriptors = array();
         $descriptors[] = array('name' => 'name', 'filters' => array('trim'));
         $descriptors[] = array('name' => 'description', 'filters' => array('trim'));
         $descriptors[] = array('name' => 'elective_course', 'filters' => array('trim'));
-        $this->form = new k_FormBehaviour($this, 'VIH/Intranet/view/form-tpl.php');
-        $this->form->descriptors = $descriptors;
-    }
 
-    function execute()
-    {
-        return $this->form->execute();
+        $tpl = $this->template->create('form');
+        return $tpl->render($this, array('descriptors' => $descriptors));
     }
 
     function validate($values)
@@ -21,10 +26,9 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create extends k_Com
         return TRUE;
     }
 
-    function validHandler($values)
+    function postForm()
     {
-        $doctrine = $this->registry->get('doctrine');
-
+        $values = $this->body();
         $period = Doctrine::getTable('VIH_Model_Course_Period')->findOneById($this->context->getPeriodId());
 
         $group = new VIH_Model_Course_SubjectGroup();
@@ -32,7 +36,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create extends k_Com
         $group->name = $values['name'];
         $group->elective_course = $values['elective_course'];
         $group->description = $values['description'];
-        
+
         $course = $period->Course;
         $course->SubjectGroups[] = $group;
         $course->save();

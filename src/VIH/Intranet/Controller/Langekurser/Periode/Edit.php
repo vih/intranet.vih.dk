@@ -1,42 +1,48 @@
 <?php
 class VIH_Intranet_Controller_Langekurser_Periode_Edit extends k_Component
 {
-    function __construct(k_iContext $parent, $name = "")
-    {
-        parent::__construct($parent, $name);
-        $descriptors = Array();
-        $descriptors[] = array('name' => 'name', 'filters' => array('trim'));
-        $descriptors[] = array('name' => 'description', 'filters' => array('trim'));
-        $descriptors[] = array('name' => 'date_start', 'filters' => array('trim'));
-        $descriptors[] = array('name' => 'date_end', 'filters' => array('trim'));
+    protected $doctrine;
+    protected $template;
 
-        $this->form = new k_FormBehaviour($this, 'VIH/Intranet/view/form-tpl.php');
-        $this->form->descriptors = $descriptors;
+    function __construct(k_TemplateFactory $template, Doctrine_Connection_Common $connection)
+    {
+        $this->doctrine = $doctrine;
+        $this->template = $template;
     }
 
-    function getDefaultValues()
+    function renderHtml()
+    {
+        $this->document->setTitle('Rediger periode');
+
+        $descriptors = Array();
+        $descriptors[] = array('name' => 'name', 'filters' => array('trim'), 'default' => $this->getDefaultValue('name'));
+        $descriptors[] = array('name' => 'description', 'filters' => array('trim'), 'default' => $this->getDefaultValue('description'));
+        $descriptors[] = array('name' => 'date_start', 'filters' => array('trim'), 'default' => $this->getDefaultValue('date_start'));
+        $descriptors[] = array('name' => 'date_end', 'filters' => array('trim'), 'default' => $this->getDefaultValue('date_end'));
+
+        $tpl = $this->template->create('form');
+        return $tpl->render($this, array('descriptors' => $descriptors));
+    }
+
+    function getDefaultValue($key)
     {
         $model = $this->context->getModel();
-        return array('name' => $model->getName(),
+        $defaults = array('name' => $model->getName(),
                      'description' => $model->getDescription(),
                      'date_start' => $model->getDateStart()->format('%Y-%m-%d'),
                      'date_end' => $model->getDateEnd()->format('%Y-%m-%d'));
+        return $defaults[$key];
     }
 
-    function execute()
-    {
-        $this->form->execute();
-        return $this->form->execute();
-    }
 
-    function validate($values)
+    function validate()
     {
         return TRUE;
     }
 
-    function validHandler($values)
+    function postForm()
     {
-        $this->registry->get('doctrine');
+        $values = $this->body();
         $period = Doctrine::getTable('VIH_Model_Course_Period')->findOneById($this->context->name());
         $period->name = $values['name'];
         $period->description = $values['description'];

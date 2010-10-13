@@ -88,7 +88,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Compo
                       'faggruppe' => $this->getModel(),
                       'chosen'    => $chosen);
 
-        $tpl = $this->template->create('VIH/Intranet/view/langekurser/periode/faggruppe');
+        $tpl = $this->template->create('langekurser/periode/faggruppe');
         return $tpl->render($this, $data);
     }
 
@@ -106,7 +106,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Compo
             }
         }
 
-        if (isset($this->body('fag')) and is_array($this->body('fag'))) {
+        if (is_array($this->body('fag'))) {
             foreach ($this->body('fag') as $key => $post) {
                 $SubjectGroup->Subjects[] = $this->getSubject($post);
             }
