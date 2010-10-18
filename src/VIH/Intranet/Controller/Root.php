@@ -42,7 +42,7 @@ class VIH_Intranet_Controller_Root extends k_Component
         $this->url('/restricted/ansatte')  => 'Ansatte',
         $this->url('/restricted/faciliteter')  => 'Faciliteter',
         $this->url('/restricted/filemanager') => 'Dokumenter',
-        $this->url('/restricted/fotogalleri')  => 'HÃ¸jdepunkter',
+        $this->url('/restricted/fotogalleri')  => 'Højdepunkter',
         $this->url('/restricted/logout')  => 'Logout');
 
         $tpl = $this->template->create('main');
