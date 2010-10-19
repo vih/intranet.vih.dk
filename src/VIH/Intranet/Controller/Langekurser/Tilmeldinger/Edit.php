@@ -1,12 +1,85 @@
 <?php
 class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Component
 {
-    private $form;
+    protected $form;
     protected $template;
 
     function __construct(k_TemplateFactory $template)
     {
         $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
+
+        $this->getForm()->setDefaults(array(
+            'id' => $tilmelding->get('id'),
+            'kursus_id' => $tilmelding->get('kursus_id'),
+            'vaerelse' => $tilmelding->get('vaerelse'),
+            'navn' => $tilmelding->get('navn'),
+            'adresse' => $tilmelding->get('adresse'),
+            'cpr' => $tilmelding->get('cpr'),
+            'telefonnummer' => $tilmelding->get('telefon'),
+            'postnr' => $tilmelding->get('postnr'),
+            'postby' => $tilmelding->get('postby'),
+            'nationalitet' => $tilmelding->get('nationalitet'),
+            'kommune' => $tilmelding->get('kommune'),
+            'email' => $tilmelding->get('email'),
+            'kontakt_navn' => $tilmelding->get('kontakt_navn'),
+            'kontakt_adresse' => $tilmelding->get('kontakt_adresse'),
+            'kontakt_postnr' => $tilmelding->get('kontakt_postnr'),
+            'kontakt_postby' => $tilmelding->get('kontakt_postby'),
+            'kontakt_telefon' => $tilmelding->get('kontakt_telefon'),
+            'kontakt_arbejdstelefon' => $tilmelding->get('kontakt_arbejdstelefon'),
+            'kontakt_email' => $tilmelding->get('kontakt_email'),
+            'ryger' => $tilmelding->get('ryger'),
+            'betaling' => $tilmelding->get('betaling_key'),
+            'uddannelse' =>$tilmelding->get('uddannelse_key'),
+            'besked' =>$tilmelding->get('besked'),
+            'ugeantal' => $tilmelding->get('ugeantal'),
+            'dato_start' => $tilmelding->get('dato_start'),
+            'dato_slut' => $tilmelding->get('dato_slut'),
+            'pris_uge' => $tilmelding->get('pris_uge'),
+            'pris_tilmeldingsgebyr' => $tilmelding->get('pris_tilmeldingsgebyr'),
+            'pris_materiale' => $tilmelding->get('pris_materiale'),
+            'pris_rejsedepositum' => $tilmelding->get('pris_rejsedepositum'),
+            'pris_afbrudt_ophold' => $tilmelding->get('pris_afbrudt_ophold'),
+            'kompetencestotte' => $tilmelding->get('kompetencestotte'),
+            'elevstotte' => $tilmelding->get('elevstotte'),
+            'ugeantal_elevstotte' => $tilmelding->get('ugeantal_elevstotte'),
+            'statsstotte' => $tilmelding->get('statsstotte'),
+            'kommunestotte' => $tilmelding->get('kommunestotte'),
+            'tekst_diplom' => $tilmelding->get('tekst_diplom'),
+            'aktiveret_tillaeg' => $tilmelding->get('aktiveret_tillaeg'),
+            'sex' => $tilmelding->get('sex')
+        ));
+
+        $this->document->setTitle('Tilmelding');
+        return $this->getForm()->toHTML();
+
+    }
+
+    function postForm()
+    {
+        if ($this->getForm()->validate()) {
+            $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
+            $input = $this->body();
+
+            $input['dato_start'] = $input['dato_start']['Y'] . '-' . $input['dato_start']['M'] . '-' . $input['dato_start']['d'];
+            $input['dato_slut'] = $input['dato_slut']['Y'] . '-' . $input['dato_slut']['M'] . '-' . $input['dato_slut']['d'];
+
+            if ($id = $tilmelding->save($input)) {
+                if (!$tilmelding->savePriser($input)) {
+                    throw new Exception('Kunne ikke opdatere priserne');
+                }
+                return new k_SeeOther($this->context->url());
+            } else {
+                throw new Exception('Kunne ikke gemme oplysningerne om tilmeldingen');
+            }
+        } else {
+            return $this->getForm()->toHTML();
+        }
     }
 
     function getForm()
@@ -112,80 +185,5 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Edit extends k_Component
         $form->addGroupRule('betaling', 'Du skal vælge, hvordan du betaler', 'required', null);
 
         return ($this->form = $form);
-    }
-
-    function renderHtml()
-    {
-
-        $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
-
-        $this->getForm()->setDefaults(array(
-            'id' => $tilmelding->get('id'),
-            'kursus_id' => $tilmelding->get('kursus_id'),
-            'vaerelse' => $tilmelding->get('vaerelse'),
-            'navn' => $tilmelding->get('navn'),
-            'adresse' => $tilmelding->get('adresse'),
-            'cpr' => $tilmelding->get('cpr'),
-            'telefonnummer' => $tilmelding->get('telefon'),
-            'postnr' => $tilmelding->get('postnr'),
-            'postby' => $tilmelding->get('postby'),
-            'nationalitet' => $tilmelding->get('nationalitet'),
-            'kommune' => $tilmelding->get('kommune'),
-            'email' => $tilmelding->get('email'),
-            'kontakt_navn' => $tilmelding->get('kontakt_navn'),
-            'kontakt_adresse' => $tilmelding->get('kontakt_adresse'),
-            'kontakt_postnr' => $tilmelding->get('kontakt_postnr'),
-            'kontakt_postby' => $tilmelding->get('kontakt_postby'),
-            'kontakt_telefon' => $tilmelding->get('kontakt_telefon'),
-            'kontakt_arbejdstelefon' => $tilmelding->get('kontakt_arbejdstelefon'),
-            'kontakt_email' => $tilmelding->get('kontakt_email'),
-            'ryger' => $tilmelding->get('ryger'),
-            'betaling' => $tilmelding->get('betaling_key'),
-            'uddannelse' =>$tilmelding->get('uddannelse_key'),
-            'besked' =>$tilmelding->get('besked'),
-            'ugeantal' => $tilmelding->get('ugeantal'),
-            'dato_start' => $tilmelding->get('dato_start'),
-            'dato_slut' => $tilmelding->get('dato_slut'),
-            'pris_uge' => $tilmelding->get('pris_uge'),
-            'pris_tilmeldingsgebyr' => $tilmelding->get('pris_tilmeldingsgebyr'),
-            'pris_materiale' => $tilmelding->get('pris_materiale'),
-            'pris_rejsedepositum' => $tilmelding->get('pris_rejsedepositum'),
-            'pris_afbrudt_ophold' => $tilmelding->get('pris_afbrudt_ophold'),
-            'kompetencestotte' => $tilmelding->get('kompetencestotte'),
-            'elevstotte' => $tilmelding->get('elevstotte'),
-            'ugeantal_elevstotte' => $tilmelding->get('ugeantal_elevstotte'),
-            'statsstotte' => $tilmelding->get('statsstotte'),
-            'kommunestotte' => $tilmelding->get('kommunestotte'),
-            'tekst_diplom' => $tilmelding->get('tekst_diplom'),
-            'aktiveret_tillaeg' => $tilmelding->get('aktiveret_tillaeg'),
-            'sex' => $tilmelding->get('sex')
-        ));
-
-        $this->document->setTitle('Tilmelding');
-        return $this->getForm()->toHTML();
-
-    }
-
-    function postForm()
-    {
-        if ($this->getForm()->validate()) {
-            $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
-            $input = $this->body();
-
-            $input['dato_start'] = $input['dato_start']['Y'] . '-' . $input['dato_start']['M'] . '-' . $input['dato_start']['d'];
-            $input['dato_slut'] = $input['dato_slut']['Y'] . '-' . $input['dato_slut']['M'] . '-' . $input['dato_slut']['d'];
-
-            if ($id = $tilmelding->save($input)) {
-                if (!$tilmelding->savePriser($input)) {
-                    throw new Exception('Kunne ikke opdatere priserne');
-                }
-                return new k_SeeOther($this->context->url());
-            } else {
-                throw new Exception('Kunne ikke gemme oplysningerne om tilmeldingen');
-            }
-        } else {
-            return $this->getForm()->toHTML();
-        }
-
     }
 }

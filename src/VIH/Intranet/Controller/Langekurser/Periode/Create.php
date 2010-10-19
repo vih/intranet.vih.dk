@@ -1,31 +1,36 @@
 <?php
 class VIH_Intranet_Controller_Langekurser_Periode_Create extends k_Component
 {
-    function __construct(k_iContext $parent, $name = '')
+    protected $doctrine;
+    protected $template;
+
+    function __construct(Doctrine_Connection_Common $doctrine, k_TemplateFactory $template)
     {
-        parent::__construct($parent, $name);
+        $this->template = $template;
+        $this->doctrine = $doctrine;
+    }
+
+    function renderHtml()
+    {
         $descriptors[] = array('name' => 'name', 'filters' => array('trim'));
         $descriptors[] = array('name' => 'description', 'filters' => array('trim'));
         $descriptors[] = array('name' => 'date_start', 'filters' => array('trim'));
         $descriptors[] = array('name' => 'date_end', 'filters' => array('trim'));
-        $this->form = new k_FormBehaviour($this, 'VIH/Intranet/view/form-tpl.php');
-        $this->form->descriptors = $descriptors;
+        $tpl = $this->template->create('form');
+        return $tpl->render($this, array('descriptors' => $descriptors));
     }
 
-    function execute()
-    {
-        return $this->form->execute();
-    }
-
-    function validate($values)
+    function validate()
     {
         return TRUE;
     }
 
-    function validHandler($values)
+    function postForm()
     {
-        $doctrine = $this->registry->get('doctrine');
-
+        if (!$this->validate()) {
+            return $this->render();
+        }
+        $values = $this->body();
         $course = Doctrine::getTable('VIH_Model_Course')->findOneById($this->context->getLangtKursusId());
 
         $period = new VIH_Model_Course_Period();
@@ -40,11 +45,6 @@ class VIH_Intranet_Controller_Langekurser_Periode_Create extends k_Component
         } catch (Exception $e) {
             throw $e;
         }
-        //$values['course_id'] = $this->context->getLangtKursusId();
-        //if (!$gateway->insert($values)) {
-        //    throw new Exception('insert failed');
-        //}
-        // It would be proper REST to reply with 201, but browsers doesn't understand that
         return new k_SeeOther($this->context->url());
     }
 }
