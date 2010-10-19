@@ -13,6 +13,9 @@ class VIH_Intranet_Controller_Protokol_Index extends k_Component
 
     function map($name)
     {
+        if ($name == 'indtast') {
+            return 'VIH_Intranet_Controller_Protokol_Item';
+        }
         return 'VIH_Intranet_Controller_Protokol_Holdliste';
     }
 

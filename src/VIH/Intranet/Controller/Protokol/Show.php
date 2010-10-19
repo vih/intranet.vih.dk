@@ -76,14 +76,38 @@ class VIH_Intranet_Controller_Protokol_Show extends k_Component
         if ($this->form) {
             return $this->form;
         }
+        $options = array('format' => 'd m Y H i',
+                         'optionIncrement' => array('i' => 15));
 
-        return ($this->form = $this->context->getForm());
+        $form = new HTML_QuickForm('protokol', 'POST', $this->url());
+        $form->addElement('hidden', 'elev_id');
+        $form->addElement('hidden', 'id');
+        $form->addElement('date', 'date_start', 'Startdato:', $options);
+        $form->addElement('date', 'date_end', 'Slutdato:', $options);
+
+        $radio[0] =& HTML_QuickForm::createElement('radio', null, null, 'fri', '1');
+        $radio[1] =& HTML_QuickForm::createElement('radio', null, null, 'syg', '2');
+        $radio[2] =& HTML_QuickForm::createElement('radio', null, null, 'fraværende', '3');
+        $radio[5] =& HTML_QuickForm::createElement('radio', null, null, 'henstilling', '6');
+        $radio[3] =& HTML_QuickForm::createElement('radio', null, null, 'mundtlig advarsel', '4');
+        $radio[4] =& HTML_QuickForm::createElement('radio', null, null, 'skriftlig advarsel', '5');
+        $radio[6] =& HTML_QuickForm::createElement('radio', null, null, 'hjemsendt', '7');
+        $radio[7] =& HTML_QuickForm::createElement('radio', null, null, 'andet', '8');
+        $form->addGroup($radio, 'type', 'Type:', ' ');
+        $form->addElement('textarea', 'text', '');
+        $form->addElement('submit', null, 'Send');
+
+        $form->addRule('date_start', 'Husk dato', 'required', null, 'client');
+        $form->addRule('date_end', 'Husk dato', 'required', null, 'client');
+        $form->addRule('type', 'Husk type', 'required', null, 'client');
+        $form->addRule('text', 'Tekst', 'required', null, 'client');
+
+        return ($this->form = $form);
     }
 
     function renderHtmlDelete()
     {
         $res = $this->db->query('DELETE FROM langtkursus_tilmelding_protokol_item WHERE id = ' . (int)$this->name());
-
         return new k_SeeOther($this->url('../../'));
     }
 }
