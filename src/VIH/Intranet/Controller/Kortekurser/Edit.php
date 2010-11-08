@@ -100,9 +100,16 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
             $values['dato_start'] = $values['dato_start']['Y'] . '-' . $values['dato_start']['M'] . '-' . $values['dato_start']['d'];
             $values['dato_slut'] = $values['dato_slut']['Y'] . '-' . $values['dato_slut']['M'] . '-' . $values['dato_slut']['d'];
             $values['beskrivelse'] = vih_handle_microsoft($values['beskrivelse']);
-            if (empty($values['tilmeldingsmulighed'])) $values['tilmeldingsmulighed'] = 0;
-            if (empty($values['published'])) $values['published'] = 0;
-            if (empty($values['nyhed'])) $values['nyhed'] = 0;
+            if (empty($values['tilmeldingsmulighed'])) {
+                $values['tilmeldingsmulighed'] = 0;
+            }
+            if (empty($values['published'])) {
+                $values['published'] = 0;
+            }
+            if (empty($values['nyhed'])) {
+                $values['nyhed'] = 0;
+            }
+
 
             if ($id = $kursus->save($values)) {
                 return new k_SeeOther($this->url('../'));
