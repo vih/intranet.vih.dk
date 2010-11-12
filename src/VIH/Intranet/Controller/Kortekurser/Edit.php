@@ -30,8 +30,8 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
         $form->addElement('header', null, 'Termin');
         $form->addElement('text', 'uge', 'Uge(r)');
         $date_options = array('minYear' => date('Y') - 10, 'maxYear' => date('Y') + 5);
-        $form->addElement('date', 'dato_start', 'Startdato', array($date_options));
-        $form->addElement('date', 'dato_slut', 'Slutdato', array($date_options));
+        $form->addElement('date', 'dato_start', 'Startdato', $date_options);
+        $form->addElement('date', 'dato_slut', 'Slutdato', $date_options);
         $form->addElement('select', 'ansat_id', 'Kursusleder', $ansatte_list);
         $form->addElement('select', 'gruppe_id', 'Gruppe', $kursus->gruppe);
         $form->addElement('text', 'begyndere', 'Begyndere');
