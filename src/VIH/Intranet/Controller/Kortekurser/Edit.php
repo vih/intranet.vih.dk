@@ -35,7 +35,13 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
         $form->addElement('select', 'ansat_id', 'Kursusleder', $ansatte_list);
         $form->addElement('select', 'gruppe_id', 'Gruppe', $kursus->gruppe);
         $form->addElement('text', 'begyndere', 'Begyndere');
-        $form->addElement('select', 'indkvartering_key', 'Indkvartering', $kursus->indkvartering);
+        $form->addElement('header', null, 'Indkvartering');
+        $gateway = new VIH_Model_KortKursus_Indkvartering($kursus);
+        foreach ($gateway->getTypes() as $key => $indkvartering) {
+            $form->addElement('checkbox', 'indkvartering['.$key.'][chosen]', $indkvartering);
+            $form->addElement('text', 'indkvartering['.$key.'][price]', 'Pris');
+        }
+        $form->addElement('header', null, 'Tal om kurset');
         $form->addElement('text', 'pladser', 'Antal pladser');
         $form->addElement('text', 'vaerelser', 'Antal værelser');
         $form->addElement('text', 'minimumsalder', 'Minimumsalder');
@@ -60,12 +66,20 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
     function renderHtml()
     {
         $kursus = new VIH_Model_KortKursus($this->context->name());
+
+        $gateway = new VIH_Model_KortKursus_Indkvartering($kursus);
+
+        foreach ($gateway->getActive() as $active) {
+            $indkvartering[$active['indkvartering_key']]['chosen'] = 1;
+            $indkvartering[$active['indkvartering_key']]['price'] = $active['price'];
+        }
+
         $this->getForm()->setDefaults(array(
             'id' => $kursus->get('id'),
             'navn' => $kursus->get('navn'),
             'uge' => $kursus->get('uge'),
             'nyhed' => $kursus->get('nyhed'),
-            'indkvartering_key' => $kursus->get('indkvartering_key'),
+            'indkvartering' => $indkvartering,
             'dato_start' => $kursus->get('dato_start'),
             'dato_slut' => $kursus->get('dato_slut'),
             'ansat_id' => $kursus->get('ansat_id'),
@@ -111,8 +125,14 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
                 $values['nyhed'] = 0;
             }
 
-
             if ($id = $kursus->save($values)) {
+                $gateway = new VIH_Model_KortKursus_Indkvartering($kursus);
+                $gateway->flushAll();
+                foreach ($values['indkvartering'] as $key => $indkvartering) {
+                    if (isset($indkvartering['chosen'])) {
+                        $gateway->activate($key, $indkvartering['price']);
+                    }
+                }
                 return new k_SeeOther($this->context->url(null));
             }
         }
