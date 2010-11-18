@@ -12,6 +12,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Create extends k_Component
 
     function renderHtml()
     {
+        $this->document->setTitle('Opret fagperiode');
         $descriptors[] = array('name' => 'name', 'filters' => array('trim'));
         $descriptors[] = array('name' => 'description', 'filters' => array('trim'));
         $descriptors[] = array('name' => 'date_start', 'filters' => array('trim'));

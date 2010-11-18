@@ -15,6 +15,9 @@ class VIH_Intranet_Controller_Langekurser_Periode_Index extends k_Component
 
     function map($name)
     {
+        if ($name == 'create') {
+            return 'VIH_Intranet_Controller_Langekurser_Periode_Create';
+        }
         return 'VIH_Intranet_Controller_Langekurser_Periode_Show';
     }
 
