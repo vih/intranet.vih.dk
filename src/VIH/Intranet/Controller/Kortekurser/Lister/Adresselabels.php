@@ -62,9 +62,9 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Adresselabels extends k_Compone
         foreach ($deltagere AS $row) {
             $LabelText = sprintf(
                 "%s\n%s\n%s",
-                $row->get('navn'),
-                $row->get('adresse'),
-                $row->get('postnr') . '  ' . $row->get('postby')
+                utf8_decode($row->get('navn')),
+                utf8_decode($row->get('adresse')),
+                $row->get('postnr') . '  ' . utf8_decode($row->get('postby'))
             );
 
             $this->Avery7160($x,$y,$pdf,$LabelText);
@@ -82,6 +82,4 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Adresselabels extends k_Compone
         }
         $pdf->Output();
     }
-
 }
-
