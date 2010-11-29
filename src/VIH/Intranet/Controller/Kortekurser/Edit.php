@@ -1,7 +1,7 @@
 <?php
 class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
 {
-    private $form;
+    protected $form;
     protected $template;
 
     function __construct(k_TemplateFactory $template)
@@ -11,6 +11,8 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
 
     function getForm()
     {
+        $ansatte_list = array();
+
         if ($this->form) {
             return $this->form;
         }
