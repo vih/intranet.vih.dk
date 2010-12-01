@@ -10,7 +10,7 @@ class VIH_Intranet_Factory
 
     function new_k_TemplateFactory($c)
     {
-        return new k_DefaultTemplateFactory(dirname(__FILE__) . '/view');
+        return new VIH_Intranet_TemplateFactory(dirname(__FILE__) . '/view');
     }
 
     function new_pdoext_Connection($c)
