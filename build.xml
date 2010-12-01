@@ -11,7 +11,7 @@
     <property name="reports.coverage.dir" value="../../build/logs/coverage" />
     <property name="api.dir" value="../build/api" />
 
-    <property name="version" value="2.0.1" />
+    <property name="version" value="2.1.0" />
     <property name="stability" value="stable" />
     <property name="package-filename" value="${package-name}-${version}.tgz" />
 	
