@@ -23,7 +23,7 @@
     </target>
 
     <target name="checkout">
-        <echo msg="Exporting SVN files" />
+        <echo msg="Cloning git repository" />
         <exec command="git clone git://github.com/vih/intranet.vih.dk.git ${build.dir}" />
 
         <mkdir dir="${build.dir}/package/${package-name}-${version}" />
