@@ -3,7 +3,7 @@ Vejle Idrætshøjskoles intranet
 
 PHP code for [Vejle Idrætshøjskole's intranet](http://vih.dk). You are more than welcome to suggest improvements. It is based on [konstrukt](http://konstrukt.dk).
 
-Install source code
+Create PEAR package
 --
 
 If you like to do a local installation, it best way right now is to do the following:
