@@ -1,8 +1,13 @@
 <?php
-require_once 'fpdf.php';
-
 class VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte extends k_Component
 {
+    protected $fpdf;
+
+    function __construct(FPDF $fpdf)
+    {
+        $this->fpdf;
+    }
+
     function renderHtml()
     {
         $kursus = new VIH_Model_KortKursus($this->context->name());
@@ -11,7 +16,7 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte extends k_Component
 
         $data = $this->printAddressLabels($deltagere);
 
-        $response = new k_http_Response(200, $data);
+        $response = new k_HttpResponse(200, $data);
         $response->setEncoding(NULL);
         $response->setContentType("application/pdf");
 
@@ -51,7 +56,7 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte extends k_Component
     {
         $rows = 7;
 
-        $pdf=new FPDF();
+        $pdf = $this->fpdf;
         $pdf->Open();
         $pdf->AddPage();
         $pdf->SetFont('Arial','',12);
@@ -61,7 +66,7 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte extends k_Component
         $x = 0;
         $y = 0;
         foreach ($deltagere as $row) {
-            $this->Avery7160($x,$y,$pdf,$row->get('navn'), $row->tilmelding->kursus->get('navn') . ', uge ' . $row->tilmelding->kursus->get('uge'));
+            $this->Avery7160($x, $y, $pdf, $row->get('navn'), $row->tilmelding->kursus->get('navn') . ', uge ' . $row->tilmelding->kursus->get('uge'));
 
             $y++; // next row
             if ($y == $rows) { // end of page wrap to next column
@@ -73,13 +78,7 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte extends k_Component
                     $pdf->AddPage();
                 }
             }
-
         }
         $pdf->Output();
     }
-
 }
-
-// http://www.webfrustration.com/archive/98/2003/11/4/139108
-
-

@@ -1,60 +1,13 @@
 <?php
-require_once 'fpdf.php';
-
-class B_FPDF extends FPDF
-{
-    function __construct($a, $b, $c)
-    {
-        parent::fpdf($a, $b, $c);
-    }
-
-    function footer()
-    {
-        //Go to 1.5 cm from bottom
-        $this->SetY(-20);
-        //Select Arial italic 8
-        $this->SetFont('Arial','I',8);
-        //Print centered page number
-        $this->Cell(0, 10 , 'Side ' . $this->PageNo()." af {nb}", 0, 0, 'R');
-        return true;
-    }
-
-    function setY($value)
-    {
-        if ($value > 0 && $value > $this->h - 30) {
-            $this->addPage();
-        } else {
-            parent::setY($value);
-        }
-    }
-
-    function Cell($w = '', $h = '', $text = '', $border = '', $ln  = '', $align  = '', $fill  = '', $link = '')
-    {
-        $text = utf8_decode($text);
-        return parent::Cell($w, $h, $text, $border, $ln, $align, $fill, $link);
-    }
-
-    function GetStringWidth($string)
-    {
-        $string = utf8_decode($string);
-        return parent::GetStringWidth($string);
-    }
-
-    function Text($x, $y, $txt)
-    {
-        $txt = utf8_decode($txt);
-        return parent::Text($x, $y, $txt);
-    }
-}
-
-
 class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
 {
     protected $templates;
+    protected $fpdf;
 
-    function __construct(k_TemplateFactory $template)
+    function __construct(FPDF $fpdf, k_TemplateFactory $template)
     {
         $this->templates = $template;
+        $this->fpdf = $fpdf;
     }
 
     function renderHtml()
@@ -133,7 +86,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Brev extends k_Component
 
         $line_height = 6;
 
-        $pdf = new B_FPDF('P','mm','A4');
+        $pdf = $this->fpdf;
         $pdf->Open();
         $pdf->AddPage();
         $pdf->SetFont($font,'', $size);

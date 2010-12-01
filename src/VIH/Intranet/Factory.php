@@ -77,4 +77,9 @@ class VIH_Intranet_Factory
         $conn->setCharset('utf8');
         return $conn;
     }
+
+    function new_FPDF()
+    {
+        return new VIH_Fpdf('P','mm','A4');
+    }
 }

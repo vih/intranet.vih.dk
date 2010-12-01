@@ -2,10 +2,21 @@
 class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
 {
     protected $templates;
+    protected $fpdf;
 
-    function __construct(k_TemplateFactory $templates)
+    function __construct(FPDF $fpdf, k_TemplateFactory $templates)
     {
         $this->templates = $templates;
+        $this->fpdf = $fpdf;
+    }
+
+    function map($name)
+    {
+        if ($name == 'sendbrev') {
+            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev';
+        } elseif ($name == 'edit') {
+            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit';
+        }
     }
 
     function renderHtml()
@@ -107,28 +118,17 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
     function postForm()
     {
         $tilmelding = new VIH_Model_KortKursus_Tilmelding($this->name());
-        if(!empty($_POST['annuller_tilmelding'])) {
+        if (!empty($_POST['annuller_tilmelding'])) {
             $tilmelding->setStatus("annulleret");
         }
         return new k_SeeOther($this->url());
     }
 
-    function map($name)
-    {
-        if ($name == 'sendbrev') {
-            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_SendBrev';
-        } elseif ($name == 'edit') {
-            return 'VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit';
-        }
-    }
-
     function renderPdf()
     {
-        require_once 'fpdf/fpdf.php';
-
         $data = file_get_contents(dirname(__FILE__) . '/udsendte_pdf/' . $name);
 
-        $response = new k_http_Response(200, $data);
+        $response = new k_HttpResponse(200, $data);
         $response->setEncoding(NULL);
         $response->setContentType("application/pdf");
 
