@@ -2,6 +2,8 @@
 /**
   * Provides class dependency wiring for this application
   */
+require_once 'fpdf.php';
+
 class VIH_Intranet_Factory
 {
     public $template_dir;
