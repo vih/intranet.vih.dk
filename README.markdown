@@ -22,4 +22,4 @@ That will create a pear package, which will take care of installing all the depe
 Install database schema
 --
 
-The database schema can be found in the sql-directory of vih.dk. Just run them in phpmyadmin or from the command line.
+The database schema can be found in the sql-directory of [github.com/vih/vih.dk](http://github.com/vih/vih.dk). Just run them in phpmyadmin or from the command line.
