@@ -13,9 +13,9 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create extends k_Com
     function renderHtml()
     {
         $descriptors = array();
-        $descriptors[] = array('name' => 'name', 'filters' => array('trim'));
-        $descriptors[] = array('name' => 'description', 'filters' => array('trim'));
-        $descriptors[] = array('name' => 'elective_course', 'filters' => array('trim'));
+        $descriptors[] = array('name' => 'name', 'filters' => array('trim'), 'default' => '');
+        $descriptors[] = array('name' => 'description', 'filters' => array('trim'), 'default' => '');
+        $descriptors[] = array('name' => 'elective_course', 'filters' => array('trim'), 'default' => '');
 
         $tpl = $this->template->create('form');
         return $tpl->render($this, array('descriptors' => $descriptors));
