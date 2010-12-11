@@ -75,7 +75,6 @@ class VIH_Intranet_Factory
     function new_Doctrine_Connection_Common()
     {
         $conn = Doctrine_Manager::connection(DB_DSN);
-        //$conn->setAttribute("model_loading", "conservative");
         $conn->setCharset('utf8');
         return $conn;
     }
