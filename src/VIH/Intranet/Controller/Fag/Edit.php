@@ -1,6 +1,8 @@
 <?php
 class VIH_Intranet_Controller_Fag_Edit extends k_Component
 {
+    protected $form;
+
     function renderHtml()
     {
         $fag = VIH_Model_Fag::getList();
@@ -87,6 +89,8 @@ class VIH_Intranet_Controller_Fag_Edit extends k_Component
         $form->addElement('text', 'title', 'Titel');
         $form->addElement('textarea', 'description', 'Beskrivelse');
         $form->addElement('textarea', 'keywords', 'Nøgleord');
+
+        $underviserlist = array();
         foreach ($undervisere AS $underviser) {
             $underviserlist[] = HTML_QuickForm::createElement('checkbox', $underviser->get('id'), null, $underviser->get('navn'));
         }
