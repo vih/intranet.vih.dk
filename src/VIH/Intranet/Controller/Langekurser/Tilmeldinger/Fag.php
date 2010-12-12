@@ -12,14 +12,24 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends k_Component
 
     function renderHtml()
     {
-        $this->document->setTitle('Tilmelding: Vælg fag');
+        $this->document->setTitle('Tilmelding: Fag');
 
         $tilmelding = $this->getRegistration();
-
         $periods = $this->getPeriods();
 
-        $data = array('periods' => $periods,
-                      'tilmelding' => $tilmelding);
+        $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($tilmelding->getId());
+        $ch_subj = Doctrine::getTable('VIH_Model_Course_Registration_Subject')->findByRegistrationId($tilmelding->getId());
+
+        $chosen = array();
+        foreach ($ch_subj as $subj) {
+            $chosen[$subj->period_id . $subj->subject_id . $subj->subjectgroup_id] = $subj->subject_id;
+        }
+
+        $data = array(
+            'periods' => $periods,
+            'tilmelding' => $tilmelding,
+            'registration' => $registration,
+            'chosen' => $chosen);
 
         $tpl = $this->template->create('langekurser/tilmelding/fag');
         return $tpl->render($this, $data);
@@ -32,25 +42,11 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends k_Component
         }
 
         $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($this->getRegistration()->getId());
-
         $current_subjects = Doctrine::getTable('VIH_Model_Course_Registration_Subject')->findByRegistrationId($this->getRegistration()->getId());
 
         foreach ($current_subjects as $subj) {
             $subj->delete();
         }
-        /*
-        $subjects = array();
-        foreach ($registration->Subjects as $subject) {
-            $subjects[] = $subject->getId();
-        }
-        if (!empty($subjects)) {
-            try {
-                $registration->unlink('Subjects', $subjects);
-            } catch (Doctrine_Query_Exception $e) {
-
-            }
-        }
-        */
 
         if ($this->body('subject')) {
             $input = $this->body();
@@ -64,15 +60,12 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Fag extends k_Component
             }
         }
 
-        //$registration->save();
-
         return new k_SeeOther($this->getRedirectUrl());
     }
 
     function getPeriods()
     {
-        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
-        return Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($tilmelding->getKursus()->getId());
+        return Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($this->getRegistration()->getKursus()->getId());
     }
 
     function getRedirectUrl()
