@@ -12,7 +12,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create extends k_Com
 
     function renderHtml()
     {
-        $this->setTitle('Rediger faggruppe');
+        $this->document->setTitle('Rediger faggruppe');
 
         $descriptors = array();
         $descriptors[] = array('name' => 'name', 'filters' => array('trim'), 'default' => '');
