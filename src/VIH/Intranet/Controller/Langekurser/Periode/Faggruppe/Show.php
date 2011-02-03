@@ -87,7 +87,7 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Compo
         $faggrupper = VIH_Model_Fag_Gruppe::getList();
         
         foreach ($faggrupper AS $gruppe) {
-            $fag[$gruppe->get('id')] = Doctrine::getTable('VIH_Model_Subject')->findBy('fag_gruppe_id', $gruppe->get('id'));
+            $fag[$gruppe->get('id')] = Doctrine::getTable('VIH_Model_Subject')->findByDql('fag_gruppe_id = ? AND published = 1 and active = 1 ORDER BY navn', $gruppe->get('id'));
         }
         
 
