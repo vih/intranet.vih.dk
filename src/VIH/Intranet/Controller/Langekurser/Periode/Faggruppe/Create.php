@@ -15,9 +15,9 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create extends k_Com
         $this->document->setTitle('Rediger faggruppe');
 
         $descriptors = array();
-        $descriptors[] = array('name' => 'name', 'filters' => array('trim'), 'default' => '');
-        $descriptors[] = array('name' => 'description', 'filters' => array('trim'), 'default' => '');
-        $descriptors[] = array('name' => 'elective_course', 'filters' => array('trim'), 'default' => '');
+        $descriptors[] = array('name' => 'name', 'description' => 'Navn', 'filters' => array('trim'), 'default' => '');
+        $descriptors[] = array('name' => 'description', 'description' => 'Beskrivelse', 'filters' => array('trim'), 'default' => '');
+        $descriptors[] = array('name' => 'elective_course', 'description' => 'Elever skal vælge fag (0 eller 1)', 'filters' => array('trim'), 'default' => '1');
 
         $tpl = $this->template->create('form');
         return $tpl->render($this, array('descriptors' => $descriptors));
@@ -49,6 +49,6 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Create extends k_Com
             throw $e;
         }
 
-        return new k_SeeOther($this->context->url());
+        return new k_SeeOther($this->context->context->url());
     }
 }
