@@ -26,7 +26,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
         $form->addElement('text', 'telefonnummer', 'Telefonnummer');
         $form->addElement('text', 'arbejdstelefon', 'Arbejdstelefon', 'Telefonnummer hvor du kan træffes mellem 8 og 16');
         $form->addElement('text', 'mobil', 'Mobil');
-        $form->addElement('text', 'email', 'E-mail'); // 'Bekr�ftelse sendes til denne e-mail-adresse. Hvis den udelades bruger vi Post Danmark.'
+        $form->addElement('text', 'email', 'E-mail'); // Confirmation is sent to this e-mail
         $form->addElement('header', null, 'Vil du tegne afbestillingsforsikring');
         $form->addElement('radio', 'afbestillingsforsikring', 'Afbestillingsforsikring', 'Ja', 'Ja');
         $form->addElement('radio', 'afbestillingsforsikring', '', 'Nej', 'Nej');
@@ -38,7 +38,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
         //$form->addRule('telefon', 'Skriv venligst din telefonnummer', 'required');
         //$form->addRule('arbejdstelefon', 'Skriv venligst din arbejdstelefon', 'required');
         //$form->addRule('email', 'Den e-mail du har indtastet er ikke gyldig', 'e-mail');
-        //$form->addRule('afbestillingsforsikring', 'Du skal v�lge, om du vil have en afbestillingsforsikring', 'required');
+        //$form->addRule('afbestillingsforsikring', 'Du skal vælge, om du vil have en afbestillingsforsikring', 'required');
 
         $form->setDefaults(array(
             'kontaktnavn' => $tilmelding->get('navn'),
@@ -62,28 +62,25 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
             $form->addElement('text', 'navn['.$i.']', 'Navn');
             $form->addElement('text', 'cpr['.$i.']', 'CPR-nummer', '(ddmmåå-xxxx)', null);
 
-            //$form->addRule('navn['.$i.']', 'Du skal skrive et navn', 'required');
-            //$form->addRule('cpr['.$i.']', 'Du skal skrive et cpr-nummer', 'required');
-            //$form->addRule('cpr['.$i.']', 'Du skal skrive et gyldigt cpr-nummer', 'callback', 'Validate_DK::ssn');
-
             $form->setDefaults(array(
                 'deltager_id['.$i.']' => $deltager->get('id'),
                 'navn['.$i.']' => $deltager->get('navn'),
                 'cpr['.$i.']' => $deltager->get('cpr'),
             ));
 
-            $radio = array();
-            if ($tilmelding->kursus->get('indkvartering') == 'kursuscenteret') {
-                $form->addElement('radio', 'enevaerelse['.$i.']', 'Eneværelse', 'Ja', 'ja');
-                $form->addElement('radio', 'enevaerelse['.$i.']', '', 'Nej', 'nej');
-                $form->addElement('text', 'sambo['.$i.']', 'Jeg ønsker at dele toilet og bad med?');
-                //$form->addRule('enevaerelse['.$i.']', 'Du skal v�lge om du vil have enev�relse', 'required');
-                // $form->addRule('sambo['.$i.']', 'Hvem vil du dele toilet og bad med?', 'required');
-
-                $form->setDefaults(array(
-                    'enevaerelse['.$i.']' => $deltager->get('enevaerelse'),
-                    'sambo['.$i.']' => $deltager->get('sambo')
-                ));
+            if (!$tilmelding->kursus->isFamilyCourse()) {
+                $indkvartering_headline = 'Indkvartering';
+                foreach ($tilmelding->kursus->getIndkvartering() as $key => $indkvartering) {
+                    $form->addElement('radio', 'indkvartering_key['.$i.']', $indkvartering_headline, $indkvartering['text'], $indkvartering['indkvartering_key'], 'id="værelse_'.$indkvartering['indkvartering_key'].'"');
+                    $indkvartering_headline = '';
+                }
+                if (empty($indkvartering_headline)) {
+                    $form->addElement('text', 'sambo['.$i.']', 'Vil gerne dele bad og toilet / værelse med?');
+                    $form->setDefaults(array(
+                            'indkvartering_key['.$i.']' => $deltager->get('indkvartering_key'),
+                            'sambo['.$i.']' => $deltager->get('sambo')));
+                    $form->addRule('værelse['.$i.']', 'Du skal vælge en indkvarteringsform', 'required');
+                }
             }
 
             switch ($tilmelding->kursus->get('gruppe_id')) {
@@ -92,8 +89,6 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
                         $form->addElement('text', 'handicap['.$i.']', 'Golfhandicap', '(begynder &rarr; skriv 99)');
                         $form->addElement('text', 'klub['.$i.']', 'Klub');
                         $form->addElement('text', 'dgu['.$i.']', 'DGU-medlem', null, null, 'ja');
-                        //$form->addRule('handicap['.$i.']', 'Du skal v�lge dit handicap', 'required');
-                        //$form->addRule('klub['.$i.']', 'Du skal skrive en klub', 'required');
 
                         $form->setDefaults(array(
                             'handicap['.$i.']' => $deltager->get('handicap'),
@@ -149,7 +144,6 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
         $this->document->setTitle('Rediger tilmelding');
 
         return $this->getForm()->toHTML();
-
     }
 
     function postForm()
@@ -195,7 +189,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
                     $deltager_object = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $post['deltager_id'][$i]);
 
                     if (!$deltager_object->save($var)) {
-                        // det gik ikke ret godt. Skal der ske noget?
+                        // saving was unsuccessful. What @todo
                     }
                     $i++;
                 } // foreach
