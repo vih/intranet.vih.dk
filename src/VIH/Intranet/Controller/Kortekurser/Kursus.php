@@ -124,7 +124,7 @@ class VIH_Intranet_Controller_Kortekurser_Kursus extends k_Component
         $kursus = new VIH_Model_KortKursus($this->name());
         $new_kursus = new VIH_Model_KortKursus();
         if ($id = $new_kursus->copy($kursus)) {
-            return new k_SeeOther($this->context->url('../' . $id));
+            return new k_SeeOther($this->url('../' . $id));
         }
         throw new Exception('Could not copy course');
     }

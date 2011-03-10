@@ -12,10 +12,11 @@ class VIH_Intranet_Controller_Langekurser_Periode_Create extends k_Component
 
     function renderHtml()
     {
-        $descriptors[] = array('name' => 'name', 'filters' => array('trim'));
-        $descriptors[] = array('name' => 'description', 'filters' => array('trim'));
-        $descriptors[] = array('name' => 'date_start', 'filters' => array('trim'));
-        $descriptors[] = array('name' => 'date_end', 'filters' => array('trim'));
+        $this->document->setTitle('Opret fagperiode');
+        $descriptors[] = array('name' => 'name', 'filters' => array('trim'), 'default' => '');
+        $descriptors[] = array('name' => 'description', 'filters' => array('trim'), 'default' => '');
+        $descriptors[] = array('name' => 'date_start', 'filters' => array('trim'), 'default' => '');
+        $descriptors[] = array('name' => 'date_end', 'filters' => array('trim'), 'default' => '');
         $tpl = $this->template->create('form');
         return $tpl->render($this, array('descriptors' => $descriptors));
     }

@@ -2,13 +2,15 @@
 /**
   * Provides class dependency wiring for this application
   */
+require_once 'fpdf.php';
+
 class VIH_Intranet_Factory
 {
     public $template_dir;
 
     function new_k_TemplateFactory($c)
     {
-        return new k_DefaultTemplateFactory(dirname(__FILE__) . '/view');
+        return new VIH_Intranet_TemplateFactory(dirname(__FILE__) . '/view');
     }
 
     function new_pdoext_Connection($c)
@@ -73,9 +75,12 @@ class VIH_Intranet_Factory
     function new_Doctrine_Connection_Common()
     {
         $conn = Doctrine_Manager::connection(DB_DSN);
-        Doctrine_Manager::getInstance()->setAttribute("model_loading", "conservative");
         $conn->setCharset('utf8');
         return $conn;
     }
 
+    function new_FPDF()
+    {
+        return new VIH_Fpdf('P','mm','A4');
+    }
 }

@@ -1,13 +1,3 @@
-<?php
-    $chosen = array();
-    $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($tilmelding->getId());
-    $ch_subj = Doctrine::getTable('VIH_Model_Course_Registration_Subject')->findByRegistrationId($tilmelding->getId());
-
-    foreach ($ch_subj as $subj) {
-    	$chosen[$subj->period_id . $subj->subject_id . $subj->subjectgroup_id] = $subj->subject_id;
-    }
-?>
-
 <form action="<?php e(url()); ?>" method="post" id="fag">
 <?php $i = 0; foreach ($periods as $p): ?>
     <h2 class="periode"><?php e($p->getName()); ?></h2>
@@ -27,5 +17,5 @@
     <?php endforeach; ?>
 <?php endforeach; ?>
 
-<p><input type="submit" id="submit" value="Videre" /></p>
+<p><input type="submit" id="submit" value="Gem" /></p>
 </form>

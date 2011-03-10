@@ -1,0 +1,6 @@
+.buildpath
+.project
+.settings/*
+src/intranet.vih.dk/config.local.php
+src/upload
+*.tgz

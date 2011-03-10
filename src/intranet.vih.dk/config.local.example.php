@@ -15,6 +15,6 @@ define('FILE_VIEWER', '/hojskole/src/vih.dk/file.php');
 set_include_path(PATH_INCLUDE);
 
 $GLOBALS['elevforeningen_intraface_private_key'] = '';
-$GLOBALS['users'] = array(
-            'test' => 'test'
-        );
+$GLOBALS['users'] = array('test' => 'test');
+$GLOBALS['twitter_username'] = '';
+$GLOBALS['twitter_password'] = '';

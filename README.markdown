@@ -3,7 +3,7 @@ Vejle Idrætshøjskoles intranet
 
 PHP code for [Vejle Idrætshøjskole's intranet](http://vih.dk). You are more than welcome to suggest improvements. It is based on [konstrukt](http://konstrukt.dk).
 
-Install source code
+Create PEAR package
 --
 
 If you like to do a local installation, it best way right now is to do the following:
@@ -22,4 +22,4 @@ That will create a pear package, which will take care of installing all the depe
 Install database schema
 --
 
-The database schema can be found in the sql-directory of vih.dk. Just run them in phpmyadmin or from the command line.
+The database schema can be found in the sql-directory of [github.com/vih/vih.dk](http://github.com/vih/vih.dk). Just run them in phpmyadmin or from the command line.

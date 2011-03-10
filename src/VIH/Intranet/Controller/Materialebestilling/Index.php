@@ -1,14 +1,13 @@
 <?php
-/**
- * Controller for the intranet
- */
 class VIH_Intranet_Controller_Materialebestilling_Index extends k_Component
 {
-     protected $template;
+    protected $template;
+    protected $fpdf;
 
-    function __construct(k_TemplateFactory $template)
+    function __construct(FPDF $fpdf, k_TemplateFactory $template)
     {
         $this->template = $template;
+        $this->fpdf = $fpdf;
     }
 
     function renderHtml()
@@ -41,12 +40,11 @@ class VIH_Intranet_Controller_Materialebestilling_Index extends k_Component
         $bestilling = new VIH_Model_MaterialeBestilling;
         $bestillinger = $bestilling->getList();
 
-        $pdf=new FPDF('L', 'mm', array(29, 90));
+        $pdf=$this->fpdf;
         $pdf->Open();
         $pdf->SetMargins(0,0);
         $pdf->SetAutoPageBreak(false);
 
-        // sætter startpunkterne for label
         $x = 0;
         $y = 0;
 

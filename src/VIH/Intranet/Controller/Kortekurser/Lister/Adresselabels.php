@@ -1,8 +1,13 @@
 <?php
-require_once 'fpdf.php';
-
 class VIH_Intranet_Controller_Kortekurser_Lister_Adresselabels extends k_Component
 {
+    protected $fpdf;
+
+    function __construct(FPDF $fpdf)
+    {
+        $this->fpdf = $fpdf;
+    }
+
     function renderHtml()
     {
         $kursus = new VIH_Model_KortKursus((int)$this->context->name());
@@ -11,13 +16,13 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Adresselabels extends k_Compone
         $data = $this->printAddressLabels($deltagere);
 
         // hack ...
-        $pdf=new FPDF();
+        $pdf=$this->fpdf;
         $pdf->Open();
         $pdf->AddPage();
         $pdf->Cell(10, 10, 'text');
         $data = $pdf->Output();
 
-        $response = new k_http_Response(200, $data);
+        $response = new k_HttpResponse(200, $data);
         $response->setEncoding(NULL);
         $response->setContentType("application/pdf");
 
@@ -49,7 +54,7 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Adresselabels extends k_Compone
     {
         $rows = 7;
 
-        $pdf = new FPDF();
+        $pdf = $this->fpdf;
         $pdf->Open();
         $pdf->AddPage();
         $pdf->SetFont('Arial','B',10);
@@ -82,6 +87,4 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Adresselabels extends k_Compone
         }
         $pdf->Output();
     }
-
 }
-

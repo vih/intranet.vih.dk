@@ -7,8 +7,8 @@
         <?php endif; ?>
         <th>Navn</th>
         <th>CPR-nummer</th>
-        <?php if (!empty($indkvartering) AND $indkvartering == 'kursuscenteret' OR $indkvartering == "højskole og kursuscenter"):?>
-            <th>Eneværelse</th>
+        <?php if (!empty($indkvartering) AND $indkvartering == 'kursuscenter' OR $indkvartering == "højskole og kursuscenter"):?>
+            <th>Indkvartering</th>
             <th>Sambo</th>
         <?php endif; ?>
         <?php if(in_array('golf', $type)): ?>
@@ -38,8 +38,8 @@
             <?php endif; ?>
             <td><?php echo $deltager->get('navn'); ?></td>
             <td><?php echo $deltager->get("cpr"); ?></td>
-            <?php if (!empty($indkvartering) AND $indkvartering == "kursuscenteret" OR $indkvartering == "højskole og kursuscenter"):?>
-                <td><?php echo ucfirst($deltager->get("enevaerelse")); ?></td>
+            <?php if (!empty($indkvartering) AND $indkvartering == "kursuscenter" OR $indkvartering == "højskole og kursuscenter"):?>
+                <td><?php $deltager_indkvartering = $deltager->getIndkvartering(); if(is_array($deltager_indkvartering) && isset($deltager_indkvartering['text'])) echo $deltager_indkvartering['text']; ?></td>
                 <td><?php if ($deltager->get("sambo")) echo $deltager->get("sambo"); else echo 'Ingen valgt';?></td>
             <?php endif; ?>
             <?php if(in_array('golf', $type)): ?>

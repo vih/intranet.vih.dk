@@ -83,9 +83,16 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Compo
         foreach ($this->getModel()->Subjects as $subject) {
             $chosen[] = $subject->getId();
         }
+        
+        $faggrupper = VIH_Model_Fag_Gruppe::getList();
+        
+        foreach ($faggrupper AS $gruppe) {
+            $fag[$gruppe->get('id')] = Doctrine::getTable('VIH_Model_Subject')->findByDql('fag_gruppe_id = ? AND published = 1 and active = 1 ORDER BY navn', $gruppe->get('id'));
+        }
+        
 
-        $data = array('fag'       => $this->getSubjects(),
-                      'faggruppe' => $this->getModel(),
+        $data = array('faggrupper'       => $faggrupper, // $this->getSubjects(),
+                       'fag' 		=> $fag,
                       'chosen'    => $chosen);
 
         $tpl = $this->template->create('langekurser/periode/faggruppe');
@@ -95,30 +102,33 @@ class VIH_Intranet_Controller_Langekurser_Periode_Faggruppe_Show extends k_Compo
     function postForm()
     {
         $SubjectGroup = $this->getModel();
-        $subjects = array();
+        
+        $current_subjects = array();
         foreach ($SubjectGroup->Subjects as $subject) {
-            $subjects[] = $subject->getId();
+            $current_subjects[] = $subject->getId();
         }
-        if (!empty($subjects)) {
-            try {
-                $SubjectGroup->unlink('Subjects', $subjects);
-            } catch (Doctrine_Query_Exception $e) {
-            }
-        }
-
+        
+        $new_subjects = array();
         if (is_array($this->body('fag'))) {
-            foreach ($this->body('fag') as $key => $post) {
-                $SubjectGroup->Subjects[] = $this->getSubject($post);
+            foreach ($this->body('fag') as $subject) {
+                $new_subjects[] = $subject;
             }
         }
-
-        try {
-            $SubjectGroup->save();
-        } catch (Exception $e) {
-            throw $e;
+        
+        $remove_subjects = array_diff($current_subjects, $new_subjects);
+        $add_subjects = array_diff($new_subjects, $current_subjects);
+        
+        if (!empty($remove_subjects)) {
+            $SubjectGroup->unlink('Subjects', $remove_subjects);
         }
 
-        return new k_SeeOther($this->context->url());
+        foreach ($add_subjects as $id) {
+            $SubjectGroup->Subjects[] = $this->getSubject($id);
+        }
+
+        $SubjectGroup->save();
+
+        return new k_SeeOther($this->context->context->url());
     }
 
 

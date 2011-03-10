@@ -26,11 +26,13 @@ class VIH_Intranet_Controller_Index extends k_Component
 
     protected $templates;
     protected $twitter;
+    protected $kernel;
 
-    function __construct(k_TemplateFactory $templates, Services_Twitter $twitter)
+    function __construct(VIH_Intraface_Kernel $kernel, k_TemplateFactory $templates, Services_Twitter $twitter)
     {
         $this->templates = $templates;
         $this->twitter = $twitter;
+        $this->kernel = $kernel;
     }
 
     function map($name)
@@ -71,5 +73,10 @@ class VIH_Intranet_Controller_Index extends k_Component
             throw $e;
         }
         return $this->render();
+    }
+
+    function getKernel()
+    {
+        return $this->kernel;
     }
 }

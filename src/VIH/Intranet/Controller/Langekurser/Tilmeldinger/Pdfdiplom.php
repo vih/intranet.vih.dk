@@ -1,23 +1,25 @@
 <?php
 /**
- * Bevis til eleverne n�r de slutter
+ * Diploma
  *
- * Form�let er at skrive et diplom til eleverne for opholdet p� Vejle
- * Idr�tsh�jskole. Diplomet skal indeholder f�lgende:
- *
- * - navn
- * - antal uger
- * - hvad de har lavet her
- * - tidsrum
- * - fagene
- * - forstandernavn og underskrift
+ * - name
+ * - weeks
+ * - activities
+ * - date period
+ * - subjects
+ * - headmaster and signature
  *
  * @author Sune Jensen <sj@sunet.dk>
  */
-require_once 'fpdf.php';
-
 class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Component
 {
+    protected $fpdf;
+
+    function __construct(FPDF $fpdf)
+    {
+        $this->fpdf = $fpdf;
+    }
+
     function renderHtml()
     {
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding($this->context->name());
@@ -27,7 +29,6 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
         $mdr = array('januar', 'februar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december');
         $dato_start = $tilmelding->get('dato_start_dk_streng');
         $dato_slut = $tilmelding->get('dato_slut_dk_streng');
-        // enten speciel fra eleven, hvis den er udfyldt - ellers en standard fra selve kurset
 
         if ($tilmelding->get('tekst_diplom')) {
         	$overskrift_tekst = $tilmelding->get('ugeantal') . ' ugers ' . $tilmelding->get('tekst_diplom');
@@ -37,19 +38,10 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
 
         $overskrift_tekst .= " på\nVejle Idrætshøjskole"; // skal v�re der
 
-        // Array med fag. Deles ligeligt p� to kolonner. Ingen opdeling af almene og idr�t,
-        // men betegnelserne bibeholdes fra tidligere version.
+        // array with subjects
 
         $fag = $tilmelding->getFag();
 
-        /*
-        $fag = array();
-        foreach ($fag_id AS $key => $id) {
-            $fag[$id->getFag()->getId()] = $id->getFag()->get('navn');
-
-        }
-        sort($fag);
-        */
         $foo = ceil(sizeof($fag)/2);
         $idraet = array_slice($fag, 0, $foo);
         $almene = array_slice($fag, $foo);
@@ -58,7 +50,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Pdfdiplom extends k_Compo
         $margin_top = 50;
         $margin_right = 30;
 
-        $pdf = new FPDF();
+        $pdf = $this->fpdf;
         $pdf->SetTitle('Diplom');
         $pdf->SetSubject('Diplom fra Vejle Idrætshøjskole');
         $pdf->SetAuthor('Lars Olesen, Vejle Idrætshøjskole');

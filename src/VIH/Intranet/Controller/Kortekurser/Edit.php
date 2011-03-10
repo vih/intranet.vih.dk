@@ -1,7 +1,7 @@
 <?php
 class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
 {
-    private $form;
+    protected $form;
     protected $template;
 
     function __construct(k_TemplateFactory $template)
@@ -11,6 +11,8 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
 
     function getForm()
     {
+        $ansatte_list = array();
+
         if ($this->form) {
             return $this->form;
         }
@@ -29,12 +31,19 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
         $form->addElement('text', 'navn', 'Kursusnavn');
         $form->addElement('header', null, 'Termin');
         $form->addElement('text', 'uge', 'Uge(r)');
-        $form->addElement('date', 'dato_start', 'Startdato', 'd-m-Y');
-        $form->addElement('date', 'dato_slut', 'Slutdato', 'd-m-Y');
+        $date_options = array('minYear' => date('Y') - 10, 'maxYear' => date('Y') + 5);
+        $form->addElement('date', 'dato_start', 'Startdato', $date_options);
+        $form->addElement('date', 'dato_slut', 'Slutdato', $date_options);
         $form->addElement('select', 'ansat_id', 'Kursusleder', $ansatte_list);
         $form->addElement('select', 'gruppe_id', 'Gruppe', $kursus->gruppe);
         $form->addElement('text', 'begyndere', 'Begyndere');
-        $form->addElement('select', 'indkvartering_key', 'Indkvartering', $kursus->indkvartering);
+        $form->addElement('header', null, 'Indkvartering');
+        $gateway = new VIH_Model_KortKursus_Indkvartering($kursus);
+        foreach ($gateway->getTypes() as $key => $indkvartering) {
+            $form->addElement('checkbox', 'indkvartering['.$key.'][chosen]', $indkvartering);
+            $form->addElement('text', 'indkvartering['.$key.'][price]', 'Pris');
+        }
+        $form->addElement('header', null, 'Tal om kurset');
         $form->addElement('text', 'pladser', 'Antal pladser');
         $form->addElement('text', 'vaerelser', 'Antal værelser');
         $form->addElement('text', 'minimumsalder', 'Minimumsalder');
@@ -59,12 +68,20 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
     function renderHtml()
     {
         $kursus = new VIH_Model_KortKursus($this->context->name());
+
+        $gateway = new VIH_Model_KortKursus_Indkvartering($kursus);
+
+        foreach ($gateway->getActive() as $active) {
+            $indkvartering[$active['indkvartering_key']]['chosen'] = 1;
+            $indkvartering[$active['indkvartering_key']]['price'] = $active['price'];
+        }
+
         $this->getForm()->setDefaults(array(
             'id' => $kursus->get('id'),
             'navn' => $kursus->get('navn'),
             'uge' => $kursus->get('uge'),
             'nyhed' => $kursus->get('nyhed'),
-            'indkvartering_key' => $kursus->get('indkvartering_key'),
+            'indkvartering' => $indkvartering,
             'dato_start' => $kursus->get('dato_start'),
             'dato_slut' => $kursus->get('dato_slut'),
             'ansat_id' => $kursus->get('ansat_id'),
@@ -100,12 +117,25 @@ class VIH_Intranet_Controller_Kortekurser_Edit extends k_Component
             $values['dato_start'] = $values['dato_start']['Y'] . '-' . $values['dato_start']['M'] . '-' . $values['dato_start']['d'];
             $values['dato_slut'] = $values['dato_slut']['Y'] . '-' . $values['dato_slut']['M'] . '-' . $values['dato_slut']['d'];
             $values['beskrivelse'] = vih_handle_microsoft($values['beskrivelse']);
-            if (empty($values['tilmeldingsmulighed'])) $values['tilmeldingsmulighed'] = 0;
-            if (empty($values['published'])) $values['published'] = 0;
-            if (empty($values['nyhed'])) $values['nyhed'] = 0;
+            if (empty($values['tilmeldingsmulighed'])) {
+                $values['tilmeldingsmulighed'] = 0;
+            }
+            if (empty($values['published'])) {
+                $values['published'] = 0;
+            }
+            if (empty($values['nyhed'])) {
+                $values['nyhed'] = 0;
+            }
 
             if ($id = $kursus->save($values)) {
-                return new k_SeeOther($this->url('../'));
+                $gateway = new VIH_Model_KortKursus_Indkvartering($kursus);
+                $gateway->flushAll();
+                foreach ($values['indkvartering'] as $key => $indkvartering) {
+                    if (isset($indkvartering['chosen'])) {
+                        $gateway->activate($key, $indkvartering['price']);
+                    }
+                }
+                return new k_SeeOther($this->context->url(null));
             }
         }
         return $this->render();
