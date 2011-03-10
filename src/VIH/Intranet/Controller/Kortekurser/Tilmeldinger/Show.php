@@ -68,7 +68,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
 
         $data = array(
             'deltagere' => $deltagere,
-        	'indkvartering' => $tilmelding->kursus->get('indkvartering'),
+        	'indkvartering' => !$tilmelding->kursus->isFamilyCourse(), //show if not a family course
         	'type' => $tilmelding->get('keywords'),
         	'vis_slet' => 'ja');
 

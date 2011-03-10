@@ -7,7 +7,7 @@
         <?php endif; ?>
         <th>Navn</th>
         <th>CPR-nummer</th>
-        <?php if (!empty($indkvartering) AND $indkvartering == 'kursuscenter' OR $indkvartering == "højskole og kursuscenter"):?>
+        <?php if ($indkvartering == true):?>
             <th>Indkvartering</th>
             <th>Sambo</th>
         <?php endif; ?>
@@ -38,7 +38,7 @@
             <?php endif; ?>
             <td><?php echo $deltager->get('navn'); ?></td>
             <td><?php echo $deltager->get("cpr"); ?></td>
-            <?php if (!empty($indkvartering) AND $indkvartering == "kursuscenter" OR $indkvartering == "højskole og kursuscenter"):?>
+            <?php if ($indkvartering == true):?>
                 <td><?php $deltager_indkvartering = $deltager->getIndkvartering(); if(is_array($deltager_indkvartering) && isset($deltager_indkvartering['text'])) echo $deltager_indkvartering['text']; ?></td>
                 <td><?php if ($deltager->get("sambo")) echo $deltager->get("sambo"); else echo 'Ingen valgt';?></td>
             <?php endif; ?>
