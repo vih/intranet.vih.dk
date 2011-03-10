@@ -37,7 +37,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
             }
         }
 
-        if($this->query('slet_historik_id')) {
+        if ($this->query('slet_historik_id')) {
             $historik = new VIH_Model_Historik(intval($this->query('slet_historik_id')));
             $historik->delete();
         }
@@ -46,8 +46,8 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
         $historik_object = new VIH_Model_Historik('kortekurser', $tilmelding->get("id"));
         $betalinger = new VIH_Model_Betaling('kortekurser', $tilmelding->get("id"));
 
-        if($this->query('registrer_betaling')) {
-            if($betalinger->save(array('type' => 'giro', 'amount' => $this->query('beloeb')))) {
+        if ($this->query('registrer_betaling')) {
+            if ($betalinger->save(array('type' => 'giro', 'amount' => $this->query('beloeb')))) {
                 $betalinger->setStatus('approved');
                 return new k_SeeOther($this->url());
             } else {
@@ -66,45 +66,39 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Show extends k_Component
         }
         $this->document->addOption('Kundens side', KORTEKURSER_LOGIN_URI . $tilmelding->get('code'));
 
-        $data =   array('deltagere' => $deltagere,
-        				'indkvartering' => $tilmelding->kursus->get('indkvartering'),
-        				'type' => $tilmelding->get('keywords'),
-        				'vis_slet' => 'ja');
+        $data = array(
+            'deltagere' => $deltagere,
+        	'indkvartering' => $tilmelding->kursus->get('indkvartering'),
+        	'type' => $tilmelding->get('keywords'),
+        	'vis_slet' => 'ja');
 
-        $historik = array('historik' => $historik_object->getList(),
-        				  'tilmelding' => $tilmelding);
+        $historik = array(
+            'historik' => $historik_object->getList(),
+        	'tilmelding' => $tilmelding);
 
         $historik_tpl = $this->templates->create('tilmelding/historik');
-        $betaling_data = array('caption' => 'Afventende betalinger',
-        					   'betalinger' => $betalinger->getList('not_approved'),
-        					   'msg_ingen', 'Der er ingen afventende betalinger.');
-
+        $betaling_data = array(
+            'caption' => 'Afventende betalinger',
+        	'betalinger' => $betalinger->getList('not_approved'),
+        	'msg_ingen', 'Der er ingen afventende betalinger.');
 
         $prisoversigt_data = array('tilmelding' => $tilmelding);
         $prisoversigt_tpl = $this->templates->create('kortekurser/tilmelding/prisoversigt');
         $deltager_tpl = $this->templates->create('kortekurser/deltagere');
         $betaling_tpl = $this->templates->create('tilmelding/betalinger');
 
-        $tilmelding = array('tilmelding' => $tilmelding,
-        					'historik_object' => $historik_object,
-        					'deltagere' => $deltager_tpl->render($this, $data),
-        					'status' => $tilmelding->get('status'),
-                            'prisoversigt' => $prisoversigt_tpl->render($this, $prisoversigt_data),
-        					'historik' => $historik_tpl->render($this, $historik),
-        					'betalinger'=> $betaling_tpl->render($this, $betaling_data));
+        $tilmelding = array(
+            'tilmelding' => $tilmelding,
+        	'historik_object' => $historik_object,
+        	'deltagere' => $deltager_tpl->render($this, $data),
+        	'status' => $tilmelding->get('status'),
+            'prisoversigt' => $prisoversigt_tpl->render($this, $prisoversigt_data),
+        	'historik' => $historik_tpl->render($this, $historik),
+        	'betalinger'=> $betaling_tpl->render($this, $betaling_data));
 
         $tpl = $this->templates->create('kortekurser/tilmelding');
 
         return $tpl->render($this, $tilmelding);
-
-        /*
-        $tpl->set('content_sub', '
-            <div class="status">
-                ' . ucfirst($status) . '
-            </div>
-        ');
-        */
-
     }
 
     function renderHtmlDelete()
