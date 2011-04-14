@@ -76,7 +76,9 @@ class VIH_Intranet_Controller_Protokol_Item extends k_Component
             return $this->form;
         }
         $options = array('format' => 'd m Y H i',
-                         'optionIncrement' => array('i' => 15));
+                         'optionIncrement' => array('i' => 15),
+                         'minYear' => date('Y') - 2,
+                         'maxYear' => date('Y') + 2);
 
         $form = new HTML_QuickForm('protokol', 'POST', $this->url());
         $form->addElement('hidden', 'elev_id');
