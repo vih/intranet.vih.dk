@@ -11,7 +11,7 @@
     <property name="reports.coverage.dir" value="../../build/logs/coverage" />
     <property name="api.dir" value="../build/api" />
 
-    <property name="version" value="2.4.0" />
+    <property name="version" value="2.4.1" />
     <property name="stability" value="stable" />
     <property name="package-filename" value="${package-name}-${version}.tgz" />
 	
@@ -23,11 +23,7 @@
     </target>
 
     <target name="checkout">
-<<<<<<< HEAD
         <echo msg="Cloning GIT repository" />
-=======
-        <echo msg="Cloning git repository" />
->>>>>>> c9b58c5e48eadc3577a3eab0ba4df213fdab00bf
         <exec command="git clone git://github.com/vih/intranet.vih.dk.git ${build.dir}" />
 
         <mkdir dir="${build.dir}/package/${package-name}-${version}" />
@@ -35,9 +31,9 @@
             <fileset dir="${build.dir}/src">
                 <include name="VIH/**" />
                 <include name="intranet.vih.dk/**" />
-                <exclude name="www/*.htm" />
-                <exclude name="www/config.local.php" />
-                <exclude name="www/config.local.example.php" />
+                <exclude name="intranet.vih.dk/*.htm" />
+                <exclude name="intranet.vih.dk/config.local.php" />
+                <exclude name="intranet.vih.dk/config.local.example.php" />
             </fileset>
         </copy>
         <mkdir dir="${reports.dir}" />      
