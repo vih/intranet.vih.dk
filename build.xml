@@ -176,12 +176,11 @@
                              channel="pear.doctrine-project.org"
                              minimum_version="1.2.3" />
                         <package name="Services_Twitter"
-                                 channel="pear.php.net"
-                                 minimum_version="0.1.0" />                   	
+                             channel="pear.php.net"
+                             minimum_version="0.1.0" />                   	
                     </dependencies>
                 <notes>
-                    * Added faggruppe when adding fag to perioder. Fix bug in adding fag to periode 
-                    * Made sure only active and published courses are shown in list 
+                    * Minor bugfixes
                 </notes>
             </d51pearpkg2>
     

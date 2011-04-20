@@ -34,15 +34,10 @@ class VIH_Intranet_Controller_Root extends k_Component
     {
         $this->document->navigation = array(
         $this->url('/restricted/') => 'Forside',
-        $this->url('/restricted/nyheder') => 'Nyheder',
         $this->url('/restricted/langekurser/tilmeldinger')  => 'Lange kurser',
         $this->url('/restricted/kortekurser/tilmeldinger')  => 'Korte kurser',
         $this->url('/restricted/betaling') => 'Betalinger',
-        $this->url('/restricted/materialebestilling')  => 'Brochurebestilling',
-        $this->url('/restricted/ansatte')  => 'Ansatte',
-        $this->url('/restricted/faciliteter')  => 'Faciliteter',
         $this->url('/restricted/filemanager') => 'Dokumenter',
-        $this->url('/restricted/fotogalleri')  => 'Højdepunkter',
         $this->url('/restricted/logout')  => 'Logout');
 
         $tpl = $this->template->create('main');
