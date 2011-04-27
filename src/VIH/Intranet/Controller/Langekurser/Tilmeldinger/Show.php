@@ -80,7 +80,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_Show extends k_Component
         $this->document->setTitle('Tilmelding #' . $tilmelding->get('id'));
         $this->document->addOption('Til kursus', $this->url('../../' . $tilmelding->kursus->get('id')));
         $this->document->addOption('Tilmeldinger', $this->url('../../'.$tilmelding->kursus->get('id') . '/tilmeldinger'));
-        $this->document->addOption('Ret', $this->url('edit'));
+        $this->document->addOption('Ret', $this->url(null, array('edit')));
         $this->document->addOption('Delete', $this->url(null, array('delete')));
         $this->document->addOption('Protokol', $this->url('../../../protokol/holdliste/' . $tilmelding->get('id')));
         $this->document->addOption('Brev', $this->url('brev'));
