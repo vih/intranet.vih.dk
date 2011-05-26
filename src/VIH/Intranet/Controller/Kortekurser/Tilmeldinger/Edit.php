@@ -154,6 +154,7 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
 
             if ($id = $tilmelding->save($this->body())) {
                 $i = 0;
+                $indkvartering = $this->body('indkvartering_key');
                 $post = $this->body();
 
                 foreach ($deltagere AS $deltager) {
@@ -161,8 +162,8 @@ class VIH_Intranet_Controller_Kortekurser_Tilmeldinger_Edit extends k_Component
                     $var['navn'] = $post['navn'][$i];
                     $var['cpr'] = $post['cpr'][$i];
 
-                    if ($tilmelding->kursus->get('indkvartering') == 'kursuscenteret') {
-                        $var['enevaerelse'] = $post['enevaerelse'][$i];
+                    if (!empty($indkvartering[$i])) {
+                        $var['indkvartering_key'] = $indkvartering[$i];
                         $var['sambo'] = $post['sambo'][$i];
                     }
 
