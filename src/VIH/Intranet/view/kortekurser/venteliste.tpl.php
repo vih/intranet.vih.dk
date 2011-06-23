@@ -22,22 +22,22 @@
     <?php foreach ($venteliste AS $entry): ?>
     <tr>
         <!--
-        <td><?php echo $entry['id']; ?></td>
+        <td><?php e($entry['id']); ?></td>
         -->
-        <td><?php echo $entry['nummer']; ?></td>
-        <td><?php echo $entry['date_created_dk']; ?></td>
-        <td><?php echo $entry['navn']; ?></td>
+        <td><?php e($entry['nummer']); ?></td>
+        <td><?php e($entry['date_created_dk']); ?></td>
+        <td><?php e($entry['navn']); ?></td>
         <!--
-        <td><?php echo $entry['adresse']; ?></td>
-        <td><?php echo $entry['postnr'].' '.$entry['postby']; ?></td>
+        <td><?php e($entry['adresse']); ?></td>
+        <td><?php e($entry['postnr'].' '.$entry['postby']); ?></td>
         -->
-        <td><a href="mailto:<?php echo $entry['email']; ?>"><?php echo $entry['email']; ?></a></td>
-        <td><?php echo $entry['telefon']; ?></td>
-        <td><?php echo $entry['arbejdstelefon']; ?></td>
-        <td><?php echo $entry['antal']; ?></td>
-        <td><?php echo $entry['besked']; ?></td>
-        <td><a href="<?php echo url($entry['id'] . '/edit'); ?>">Rediger</a></td>
-        <td><a href="<?php echo url($entry['id'] . '/delete'); ?>" onclick="return confirm('Dette vil slette personen');">Slet</a></td>
+        <td><a href="mailto:<?php e($entry['email']); ?>"><?php e($entry['email']); ?></a></td>
+        <td><?php e($entry['telefon']); ?></td>
+        <td><?php e($entry['arbejdstelefon']); ?></td>
+        <td><?php e($entry['antal']); ?></td>
+        <td><?php e($entry['besked']); ?></td>
+        <td><a href="<?php e(url($entry['id'], array('edit'))); ?>">Rediger</a></td>
+        <td><a href="<?php e(url($entry['id'], array('delete'))); ?>" onclick="return confirm('Dette vil slette personen');">Slet</a></td>
     </tr>
     <?php endforeach; ?>
 </table>

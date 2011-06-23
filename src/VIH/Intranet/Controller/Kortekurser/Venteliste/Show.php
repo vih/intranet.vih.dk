@@ -3,6 +3,11 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Show extends k_Component
 {
     protected $form;
 
+    function renderHtml()
+    {
+        return 'Intentionally left blank';
+    }
+
     function renderHtmlEdit()
     {
         $venteliste = $this->getVenteliste();
@@ -43,8 +48,7 @@ class VIH_Intranet_Controller_Kortekurser_Venteliste_Show extends k_Component
 
     function getVenteliste()
     {
-        $kursus = $this->context->context->getCourse();
-        $venteliste = new VIH_Model_Venteliste(1, $kursus->get('id'), $this->body('id'));
+        $venteliste = new VIH_Model_Venteliste(1, $this->context->context->getCourse()->get('id'), $this->name());
         return $venteliste;
     }
 
