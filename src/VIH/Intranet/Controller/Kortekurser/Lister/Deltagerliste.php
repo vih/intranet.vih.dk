@@ -10,8 +10,10 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Deltagerliste extends k_Compone
 
     function renderHtml()
     {
-        $kursus = new VIH_Model_KortKursus((int)$this->context->name());
+        $kursus = $this->context->getCourse();
         $deltagere = $kursus->getDeltagere();
+
+        $this->document->setTitle($kursus->get('navn'));
 
         $data = array('kursus' => $kursus, 'deltagere' => $deltagere);
 

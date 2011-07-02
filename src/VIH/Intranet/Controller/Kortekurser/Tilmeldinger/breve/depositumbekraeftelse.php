@@ -1,7 +1,5 @@
 <?php
-
-// oplysningert til inds�ttelse i teksten
-
+// information to put into the text
 $navn = $tilmelding->get('navn');
 $ordrenummer = $tilmelding->get("id");
 $kursus = $tilmelding->kursus->get("kursusnavn");
