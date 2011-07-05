@@ -16,8 +16,9 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
         if ($this->form) {
             return $this->form;
         }
-        $form = new HTML_QuickForm('holdliste', 'POST', $this->url());
-        $form->addElement('date', 'date', 'date');
+        $date_options = array('minYear' => date('Y') - 10, 'maxYear' => date('Y') + 5);
+        $form = new HTML_QuickForm('holdliste', 'GET', $this->url() . '.txt');
+        $form->addElement('date', 'date', 'date', $date_options);
         $form->addElement('submit', null, 'Hent');
 
         return ($this->form = $form);
@@ -39,11 +40,11 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
         return $this->getForm()->toHTML();
     }
 
-    function postForm()
+    function renderTxt()
     {
         $date = date('Y-m-d');
-        if ($this->body('date')) {
-            $post = $this->body();
+        if ($this->query('date')) {
+            $post = $this->query();
             $date = $post['date']['Y'] . '-' . $post['date']['M'] . '-' .$post['date']['d'];
         }
 
@@ -63,12 +64,10 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
 
         $list = array();
         $i = 0;
-        while($this->db->nextRecord()) {
+        while ($this->db->nextRecord()) {
             $t = new VIH_Model_LangtKursus_Tilmelding($this->db->f('id'));
 
-            /**
-             * strange way to do it, but only way to get the header match data!
-             */
+            // strange way to do it, but only way to get the header match data!
             $list[$i][3] = $t->get('navn');
             $list[$i][5] = $t->get('email');
             $list[$i][6] = $t->get('adresse');
@@ -78,17 +77,6 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
             // $list[$i][10] = $t->get('nationalitet');
             $list[$i][13] = $t->get('mobil');
 
-
-            /*
-            $list[$i]['displayname'] = $t->get('navn');
-            $list[$i]['home_address'] = $t->get('adresse');
-            $list[$i]['home_zipcode'] = $t->get('postnr');
-            $list[$i]['home_city'] = $t->get('postby');
-            $list[$i]['home_phone'] = $t->get('telefon');
-            $list[$i]['home_country'] = $t->get('nationalitet');
-            $list[$i]['email'] = $t->get('email');
-            $list[$i]['mobile'] = $t->get('mobil');
-            */
             $i++;
         }
 
@@ -99,7 +87,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
         }
 
         $result = $csv_builder->setData($list);
-        if(PEAR::isError($result)) {
+        if (PEAR::isError($result)) {
             throw new Exception('CSV_builder data error: '.$result->getUserInfo());
         }
 
@@ -108,7 +96,7 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
         $result = $csv_builder->build();
 
 
-        if(PEAR::isError($result)) {
+        if (PEAR::isError($result)) {
             throw new Exception('CSV_builder build error: '.$result->getUserInfo());
         }
 
@@ -132,7 +120,6 @@ class VIH_Intranet_Controller_Langekurser_Tilmeldinger_ExportCSV extends k_Compo
         }
 
         header('Content-Type: ' . $csv_builder->mime);
-        echo $csv_builder->result;
-        exit;
+        return $csv_builder->result;
     }
 }
