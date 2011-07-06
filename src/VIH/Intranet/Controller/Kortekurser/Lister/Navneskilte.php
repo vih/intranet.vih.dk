@@ -5,7 +5,7 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte extends k_Component
 
     function __construct(FPDF $fpdf)
     {
-        $this->fpdf;
+        $this->fpdf = $fpdf;
     }
 
     function renderHtml()
@@ -29,7 +29,7 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte extends k_Component
         throw $response;
     }
 
-    function Avery7160($x, $y, &$pdf, $navn, $kursus)
+    function Avery7160($x, $y, $navn, $kursus)
     {
         $LeftMargin = 6.0;
         $TopMargin = 12.7;
@@ -43,30 +43,29 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte extends k_Component
         $PicY = $TopMargin + ($LabelHeight * $y) +5;
 
         // Fudge the Start 3mm inside the label to avoid alignment errors
-        $pdf->SetXY($AbsX+3,$AbsY+4);
-        $pdf->SetFont('Arial','',16);
-        $pdf->Cell($LabelWidth-8, 2.25, $navn, 0, 0, "C");
-        $pdf->SetFont('Arial','',8);
-        $pdf->SetXY($AbsX+3,$AbsY+8);
-        $pdf->Cell($LabelWidth-8, 2.25, $kursus, 0, 0, "C");
-        $pdf->Image(dirname(__FILE__) . "/logo.jpg", $PicX,$PicY, 38);
+        $this->fpdf->SetXY($AbsX+3,$AbsY+4);
+        $this->fpdf->SetFont('Arial','',16);
+        $this->fpdf->Cell($LabelWidth-8, 2.25, $navn, 0, 0, "C");
+        $this->fpdf->SetFont('Arial','',8);
+        $this->fpdf->SetXY($AbsX+3,$AbsY+8);
+        $this->fpdf->Cell($LabelWidth-8, 2.25, $kursus, 0, 0, "C");
+        $this->fpdf->Image(dirname(__FILE__) . "/logo.jpg", $PicX,$PicY, 38);
     }
 
     function PrintAddressLabels($deltagere)
     {
         $rows = 7;
 
-        $pdf = $this->fpdf;
-        $pdf->Open();
-        $pdf->AddPage();
-        $pdf->SetFont('Arial','',12);
-        $pdf->SetMargins(0,0);
-        $pdf->SetAutoPageBreak(false);
+        $this->fpdf->Open();
+        $this->fpdf->AddPage();
+        $this->fpdf->SetFont('Arial','',12);
+        $this->fpdf->SetMargins(0,0);
+        $this->fpdf->SetAutoPageBreak(false);
 
         $x = 0;
         $y = 0;
         foreach ($deltagere as $row) {
-            $this->Avery7160($x, $y, $pdf, $row->get('navn'), $row->tilmelding->kursus->get('navn') . ', uge ' . $row->tilmelding->kursus->get('uge'));
+            $this->Avery7160($x, $y, $row->get('navn'), $row->tilmelding->kursus->get('navn') . ', uge ' . $row->tilmelding->kursus->get('uge'));
 
             $y++; // next row
             if ($y == $rows) { // end of page wrap to next column
@@ -75,10 +74,10 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Navneskilte extends k_Component
                 if ($x == 3 ) { // end of page
                     $x = 0;
                     $y = 0;
-                    $pdf->AddPage();
+                    $this->fpdf->AddPage();
                 }
             }
         }
-        $pdf->Output();
+        $this->fpdf->Output();
     }
 }
