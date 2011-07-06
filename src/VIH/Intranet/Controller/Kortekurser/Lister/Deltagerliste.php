@@ -10,12 +10,9 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Deltagerliste extends k_Compone
 
     function renderHtml()
     {
-        $kursus = $this->context->getCourse();
-        $deltagere = $kursus->getDeltagere();
+        $this->document->setTitle($this->context->getCourse()->get('navn'));
 
-        $this->document->setTitle($kursus->get('navn'));
-
-        $data = array('kursus' => $kursus, 'deltagere' => $deltagere);
+        $data = array('kursus' => $this->context->getCourse(), 'deltagere' => $this->context->getCourse()->getDeltagere());
 
         $tpl = $this->template->create('VIH/Intranet/view/kortekurser/lister/deltagerliste');
         return $tpl->render($this, $data);

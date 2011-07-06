@@ -10,9 +10,11 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Drikkevareliste extends k_Compo
 
     function renderHtml()
     {
+        $this->document->setTitle($this->context->getCourse()->get('navn'));
+
         $data = array('kursus' => $this->context->getCourse(), 'deltagere' => $this->context->getCourse()->getDeltagere());
 
         $tpl = $this->template->create('VIH/Intranet/view/kortekurser/lister/drikkevareliste');
-        return $this->render($this, $data);
+        return new k_HttpResponse(200, $tpl->render($this, $data));
     }
 }

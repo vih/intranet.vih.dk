@@ -12,10 +12,11 @@ class VIH_Intranet_Controller_Kortekurser_Lister_Ministerium extends k_Component
     {
         $kursus = new VIH_Model_KortKursus($this->context->name());
 
-        $data = array('kursus' => $kursus,
-                      'deltagere' => $kursus->getDeltagere());
+        $data = array(
+            'kursus' => $kursus,
+            'deltagere' => $kursus->getDeltagere());
 
         $tpl = $this->template->create('list/ministerium');
-        return $tpl->render($this, $data);
+        return new k_HttpResponsen(200, $tpl->render($this, $data));
     }
 }
